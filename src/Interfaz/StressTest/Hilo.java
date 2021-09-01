@@ -32,11 +32,15 @@ public class Hilo implements Runnable {
     private String ip;
     private String publicKey;
     private String tipoConsulta;
+    private String dp;
 
     private int aHonesto;
     private int aEnviarA;
     private int aEmpieza;
-
+    
+    public void setDp(String dp) {
+        this.dp = dp;
+    }
     
     public void setTipoConsulta(String tipoConsulta) {
         this.tipoConsulta = tipoConsulta;
@@ -134,13 +138,13 @@ public class Hilo implements Runnable {
             TimeUnit.MILLISECONDS.sleep(delay);
         }*/
         if(tipoConsulta=="honesto"){
-            AgentsHonest a = new AgentsHonest(caja, generateEmail(), generatePassword(), nombreU, apellidoP, apellidoM, typeU, ip, publicKey);
+            AgentsHonest a = new AgentsHonest(caja, generateEmail(), generatePassword(), nombreU, apellidoP, apellidoM, typeU, ip, publicKey, dp);
         }else{
             if(tipoConsulta=="enviarAlgo"){
-                AgentsSendAnything b = new AgentsSendAnything(caja, generateEmail(), generatePassword(), nombreU, apellidoP, apellidoM, typeU, ip, publicKey);
+                AgentsSendAnything b = new AgentsSendAnything(caja, generateEmail(), generatePassword(), nombreU, apellidoP, apellidoM, typeU, ip, publicKey, dp);
             } else{
                 if(tipoConsulta=="empiezaAlgun"){
-                    AgentsStartAnyStep c = new AgentsStartAnyStep(caja, generateEmail(), generatePassword(), nombreU, apellidoP, apellidoM, typeU, numberRequest, ip, publicKey);
+                    AgentsStartAnyStep c = new AgentsStartAnyStep(caja, generateEmail(), generatePassword(), nombreU, apellidoP, apellidoM, typeU, numberRequest, ip, publicKey, dp);
                 }
             }
         }

@@ -24,9 +24,10 @@ public final class AgentsStartAnyStep extends Hilo {
     String response;
     String ip;
     String publicK;
+    String dp;
 
 
-    public AgentsStartAnyStep(JTextArea caja, String email, String password, String nombre, String apellidoP, String apellidoM, String tipoU, int numberRequest, String ip, String publicK) {
+    public AgentsStartAnyStep(JTextArea caja, String email, String password, String nombre, String apellidoP, String apellidoM, String tipoU, int numberRequest, String ip, String publicK, String dp) {
         this.caja = caja;
         this.email = email;
         this.password = password;
@@ -36,6 +37,7 @@ public final class AgentsStartAnyStep extends Hilo {
         this.tipoU = tipoU;
         this.ip = ip;
         this.publicK = publicK;
+        this.dp = dp;
         
         double randomNumber = Math.random();
         //Integer[] any = new Integer[10];
@@ -122,7 +124,8 @@ public final class AgentsStartAnyStep extends Hilo {
             String typeOfOperation = "create";
             String nameOfOperation = "createRoot";
             String dpHashX = "{\\\"createAdministrator\\\":true,\\\"createTUser\\\":true,\\\"updateMe\\\":true,\\\"updateAdministrator\\\":true,\\\"updateTUser\\\":true,\\\"deleteMe\\\":true,\\\"deleteAdministrator\\\":true,\\\"deleteTUser\\\":true,\\\"readMe\\\":true,\\\"readAdministrator\\\":true,\\\"readTUser\\\":true,\\\"loginUser\\\":true}";
-            String dp = "{\"\"createAdministrator\"\":true,\"\"createTUser\"\":true,\"\"updateMe\"\":true,\"\"updateAdministrator\"\":true,\"\"updateTUser\"\":true,\"\"deleteMe\"\":true,\"\"deleteAdministrator\"\":true,\"\"deleteTUser\"\":true,\"\"readMe\"\":true,\"\"readAdministrator\"\":true,\"\"readTUser\"\":true,\"\"loginUser\"\":true}";
+            //String dp = "{\"\"createAdministrator\"\":true,\"\"createTUser\"\":true,\"\"updateMe\"\":true,\"\"updateAdministrator\"\":true,\"\"updateTUser\"\":true,\"\"deleteMe\"\":true,\"\"deleteAdministrator\"\":true,\"\"deleteTUser\"\":true,\"\"readMe\"\":true,\"\"readAdministrator\"\":true,\"\"readTUser\"\":true,\"\"loginUser\"\":true}";
+            String dp = this.dp;
             String jsonData = "{\"email\":\"" + email + "\",\"password\":\"" + password + "\",\"surnameA\":\"" + surnameA + "\",\"surnameB\":\"" + surnameB + "\",\"nameOfUser\":\"" + nameOfUser + "\",\"typeOfUser\":\"" + typeOfUser + "\",\"status\":\"" + status + "\",\"creationDate\":\"" + creationDate + "\",\"addressU\":\"" + publicK + "\",\"typeOfOperation\":\"" + typeOfOperation + "\",\"nameOfOperation\":\"" + nameOfOperation + "\",\"dp\":\"" + dpHashX + "\"}";
             System.out.println("AgentsStartAnyStep"+jsonData);
             String hashX = MD5.getMd5(jsonData);
@@ -144,20 +147,20 @@ public final class AgentsStartAnyStep extends Hilo {
                     + "-H \"Authorization: " + token + "\" "
                     + "-X POST http://"+ip+":80/userCreation";
             
-            String rootCreation2 = "curl -d \"email=" + email + "&"
+            /*String rootCreation2 = "curl -d \"email=" + email + "&"
                     + "password=" + password + "&"
                     + "surnameA=" + surnameA + "&"
                     + "surnameB=" + surnameB + "&"
                     + "addressU=" + publicK + "&"
                     + "-H \"Session: " + session + "\" "
                     + "-H \"Authorization: " + token + "\" "
-                    + "-X POST http://"+ip+":80/userCreation";
+                    + "-X POST http://"+ip+":80/userCreation";*/
             
             SimpleDateFormat sdf3 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
             Date now3 = new Date();
             String strDate3 = sdf3.format(now3);
             //System.out.println("--> Date: " + strDate3 + "; Token: " + token + "; NA: " + randomNumber + "; CURL: " + rootCreation2);
-            response = "AgentsStartAnyStep --> Date: " + strDate3 + "; Token: " + token + "; NA: " + randomNumber + "; CURL: " + rootCreation2;
+            response = "AgentsStartAnyStep --> Date: " + strDate3 + "; Token: " + token + "; NA: " + randomNumber + "; CURL: " + rootCreation;
             caja.append(response+ "\n");
 
             Runtime rt = Runtime.getRuntime();
