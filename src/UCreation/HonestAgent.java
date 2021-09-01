@@ -184,7 +184,7 @@ public class HonestAgent {
                         String strDate4 = sdf4.format(now4);
                         //System.out.println("<-- Date: " + strDate4 + "; Response: " + line);
                         response = "AgentHonest <-- Date: " + strDate4 + "; Response: " + line;
-                        caja.append(response+ "\n");
+                        caja.append(response+ "\n \n");
                     }
                     intentar = false;
                 }
@@ -219,7 +219,7 @@ public class HonestAgent {
             String nameOfOperation = nameOperation();
             //se utiliza en la función de jsonData 
             String dpHashX = "{\\\"createAdministrator\\\":true,\\\"createTUser\\\":true,\\\"updateMe\\\":true,\\\"updateAdministrator\\\":true,\\\"updateTUser\\\":true,\\\"deleteMe\\\":true,\\\"deleteAdministrator\\\":true,\\\"deleteTUser\\\":true,\\\"readMe\\\":true,\\\"readAdministrator\\\":true,\\\"readTUser\\\":true,\\\"loginUser\\\":true}";
-            String dp = this.dp;
+            String dp = permisosDP(this.dp);
             String jsonData = "{\"email\":\"" + email + "\",\"password\":\"" + password + "\",\"surnameA\":\"" + surnameA + "\",\"surnameB\":\"" + surnameB + "\",\"nameOfUser\":\"" 
                     + nameOfUser + "\",\"typeOfUser\":\"" + typeOfUser + "\",\"status\":\"" + status + "\",\"creationDate\":\"" + creationDate /*+ "\",\"initialToken\":\"" + 
                     authorization +"\",\"dp\":\"" + dpHashX*/ + "\",\"addressU\":\"" + adressU + "\",\"typeOfOperation\":\"" + typeOfOperation + "\",\"nameOfOperation\":\"" + nameOfOperation 
@@ -268,7 +268,7 @@ public class HonestAgent {
                         String strDate4 = sdf4.format(now4);
                         //System.out.println("<-- Date: " + strDate4 + "; Response: " + line);
                         response = "AgentHonest <-- Date: " + strDate4 + "; Response: " + line;
-                        caja.append(response+ "\n");
+                        caja.append(response+ "\n \n");
                     }
                     intentar = false;
                 }
@@ -290,6 +290,33 @@ public class HonestAgent {
             }
         }
         return "createRoot";
+    }
+    
+    private String permisosDP(String cadena) {
+        
+        int nRandom = (int) Math.floor(Math.random() * 101);
+        if (nRandom <= 50) {
+            this.authorization += "n";
+            return cadena;
+        } else {
+            if (nRandom > 50) {
+                String[] permisos = new String[12];
+                for(int x=0; x<12; x++){
+                    permisos[x]=String.valueOf(randomDP());
+                }
+                return "{\"\"createAdministrator\"\":"+permisos[0]+",\"\"createTUser\"\":"+permisos[1]+",\"\"updateMe\"\":"+permisos[2]+",\"\"updateAdministrator\"\":"+permisos[3]+",\"\"updateTUser\"\":"+permisos[4]+",\"\"deleteMe\"\":"+permisos[5]+",\"\"deleteAdministrator\"\":"+permisos[6]+",\"\"deleteTUser\"\":"+permisos[7]+",\"\"readMe\"\":"+permisos[8]+",\"\"readAdministrator\"\":"+permisos[9]+",\"\"readTUser\"\":"+permisos[10]+",\"\"loginUser\"\":"+permisos[11]+"}";
+            }
+        }
+        return cadena;
+    }
+    
+    private boolean randomDP() {
+        int nRandom = (int) Math.floor(Math.random() * 101);
+        if (nRandom <= 50) {
+            return true;
+        } else {
+            return false;
+        }
     }
     
     

@@ -93,23 +93,6 @@ public class hiloUC implements Runnable {
     public void setCaja(JTextArea caja) {
         this.caja = caja;
     }
-    
-    /*public hiloUC(int email, int password, String typeU, String adressU, String authorization, int fatherS, int name, int motherS, int nRequest, int aHonest, int aDishonest, String typeConsult, String ip, JTextArea caja) {
-        this.email = generateEmail(email);
-        this.password = generatePassword(password);
-        this.typeU = typeU;
-        this.adressU = adressU;
-        this.authorization = authorization;
-        this.fatherS = nombres(fatherS);
-        this.name = nombres(name);
-        this.motherS = nombres(motherS);
-        this.nRequest = nRequest;
-        this.aHonest = aHonest;
-        this.aDishonest = aDishonest;
-        this.typeConsult = typeConsult;
-        this.ip = ip;
-        this.caja = caja;
-    }*/
 
     public void loop1() throws InterruptedException {
         if (typeConsult == "Honest") {
