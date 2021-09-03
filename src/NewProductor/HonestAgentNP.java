@@ -50,9 +50,11 @@ public class HonestAgentNP {
         this.image = image;
         this.ip = ip;
         this.caja = caja;
+        userCreation();
     }
     
     public void userCreation() {
+        //caja.append("chile enhogada");
         //System.out.print(token);
         String[] firstname = {"firstname1", "firstname2", "firstname3", "firstname4", "firstname5",
             "firstname6", "firstname7", "firstname8", "firstname9", "firstname10"};
@@ -63,22 +65,7 @@ public class HonestAgentNP {
             int randomNum1 = rand.nextInt(firstname.length);
             int randomNum2 = rand.nextInt(firstname.length);
             String documentation = "document.pdf";
-            
-            
-            //se utiliza en la función de jsonData 
-            //String dpHashX = "{\\\"createAdministrator\\\":true,\\\"createTUser\\\":true,\\\"updateMe\\\":true,\\\"updateAdministrator\\\":true,\\\"updateTUser\\\":true,\\\"deleteMe\\\":true,\\\"deleteAdministrator\\\":true,\\\"deleteTUser\\\":true,\\\"readMe\\\":true,\\\"readAdministrator\\\":true,\\\"readTUser\\\":true,\\\"loginUser\\\":true}";
-            //String dp = permisosDP(this.dp);
-            /*String jsonData = "{\"fid\":\"" + fId + "\",\"ubication\":\"" + ubication + "\",\"name\":\"" + nameProduction + "\",\"harvestDate\":\"" 
-                    + harvestD + "\",\"caducationDate\":\"" + caducationD + "\",\"previousStage\":\"" + previousS + "\",\"currentStage\":\"" + currentS 
-                    + "\",\"description\":\"" + description + "\",\"image\":\"" + new File(image) + "\",\"documentation\":\"" + documentation + 
-                    "\",\"nameOfCompany\":\"" + nameCompany + "\",\"code\":\"" + code + "\"}";
-            System.out.println("jsonData: "+jsonData);*/
-            
-            /*ejemplo de subida = curl -F "file=@C:\Users\usuario\Desktop\fondo.png" https://0x0.st*/
-            
-            //String hashX = MD5.getMd5(jsonData);
-            //System.out.println("hashX: "+hashX);
-            
+
             String rootCreation = "curl -d \"fid=" + fId + "&"
                     + "ubication=" + ubication + "&"
                     + "name=" + nameProduction + "&"
@@ -91,12 +78,11 @@ public class HonestAgentNP {
                     + "documentation=" + documentation + "&"
                     + "nameOfCompany=" + nameCompany + "&"
                     + "code=" + code + "&"
-                    + "-X POST http://"+ip+":80/userCreation";
+                    + "-X POST http://"+ip+":80/productorsData";
             
             SimpleDateFormat sdf3 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
             Date now3 = new Date();
             String strDate3 = sdf3.format(now3);
-            //System.out.println("--> Date: " + strDate3 + "; Token: " + token + "; NA: " + randomNumber + "; CURL: " + rootCreation2);
             String response = "AgentHonest --> Date: " + strDate3 + "; CURL: " + rootCreation;
             caja.append(response+ "\n");
 

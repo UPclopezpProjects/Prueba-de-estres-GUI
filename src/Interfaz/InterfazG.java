@@ -219,6 +219,7 @@ public class InterfazG extends javax.swing.JFrame {
                         if (!description.isEmpty()) {
                             if (!nameCompany.isEmpty()) {
                                 if (totalP == 100) {
+                                    jDialog2.setVisible(true);
                                     hNP.setUbication(ubication);
                                     hNP.setHarvestD(harvestD);
                                     hNP.setCaducationD(caducationD);
@@ -233,6 +234,7 @@ public class InterfazG extends javax.swing.JFrame {
                                     hNP.setImage(archivo.toString());
                                     hNP.setIp(ip);
                                     hNP.setCaja(caja);
+                                    
                                     
                                     new Thread(hNP).start();
                                 } else {
@@ -461,10 +463,10 @@ public class InterfazG extends javax.swing.JFrame {
     }
 
     private void habilitarCB(String typeU) {
-        System.out.println(typeU);
+        //System.out.println(typeU);
         switch (typeU) {
             case "Productor":
-                System.out.println("Cayó productor");
+                //System.out.println("Cayó productor");
                 RBReadA.setEnabled(false);
                 RBReadM.setEnabled(true);
                 RBReadTU.setEnabled(false);
@@ -489,7 +491,7 @@ public class InterfazG extends javax.swing.JFrame {
                 ;
                 break;
             case "Acopio":
-                System.out.println("Cayó acopio");
+                //System.out.println("Cayó acopio");
                 RBReadA.setEnabled(false);
                 RBReadM.setEnabled(true);
                 RBReadTU.setEnabled(false);
@@ -514,7 +516,7 @@ public class InterfazG extends javax.swing.JFrame {
                 ;
                 break;
             case "Merchant":
-                System.out.println("Cayó merchant");
+                //System.out.println("Cayó merchant");
                 RBReadA.setEnabled(false);
                 RBReadM.setEnabled(true);
                 RBReadTU.setEnabled(false);
@@ -539,7 +541,7 @@ public class InterfazG extends javax.swing.JFrame {
                 ;
                 break;
             case "Carrier":
-                System.out.println("Cayó carrier");
+                //System.out.println("Cayó carrier");
                 RBReadA.setEnabled(false);
                 RBReadM.setEnabled(true);
                 RBReadTU.setEnabled(false);
@@ -564,7 +566,7 @@ public class InterfazG extends javax.swing.JFrame {
                 ;
                 break;
             case "Root":
-                System.out.println("Cayó root");
+                //System.out.println("Cayó root");
                 RBReadA.setEnabled(true);
                 RBReadM.setEnabled(true);
                 RBReadTU.setEnabled(true);
@@ -593,7 +595,7 @@ public class InterfazG extends javax.swing.JFrame {
                 ;
                 break;
             case "Administrador":
-                System.out.println("Cayó administrador");
+                //System.out.println("Cayó administrador");
                 RBReadA.setEnabled(true);
                 RBReadM.setEnabled(true);
                 RBReadTU.setEnabled(true);
@@ -609,7 +611,7 @@ public class InterfazG extends javax.swing.JFrame {
                 ;
                 break;
             default:
-                System.out.println("Cayó default");
+                //System.out.println("Cayó default");
                 RBReadA.setEnabled(false);
                 RBReadM.setEnabled(false);
                 RBReadTU.setEnabled(false);
@@ -2169,10 +2171,10 @@ public class InterfazG extends javax.swing.JFrame {
                     .addComponent(jButton1)
                     .addComponent(jLabel55)
                     .addComponent(CBIpNP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton2)
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 405, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 449, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
