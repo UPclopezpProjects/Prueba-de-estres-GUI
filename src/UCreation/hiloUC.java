@@ -98,8 +98,12 @@ public class hiloUC implements Runnable {
         if (typeConsult == "Honest") {
             HonestAgent h = new HonestAgent(email, password, typeU, adressU, authorization, fatherS, name, motherS, nRequest, aHonest, aDishonest, typeConsult, ip, caja, dp);
         } else {
-            if (typeConsult == "Dishonest") {
-                DishonestAgent d = new DishonestAgent(email, password, typeU, adressU, authorization, fatherS, name, motherS, nRequest, aHonest, aDishonest, typeConsult, ip, caja, dp);
+            if (typeConsult == "Dishonest A") {
+                DishonestAgentA d = new DishonestAgentA(email, password, typeU, adressU, authorization, fatherS, name, motherS, nRequest, aHonest, aDishonest, typeConsult, ip, caja, dp);
+            } else {
+                if (typeConsult == "Dishonest B"){
+                    DishonestAgentB d = new DishonestAgentB(email, password, typeU, adressU, authorization, fatherS, name, motherS, nRequest, aHonest, aDishonest, typeConsult, ip, caja, dp);
+                }
             }
         }
     }

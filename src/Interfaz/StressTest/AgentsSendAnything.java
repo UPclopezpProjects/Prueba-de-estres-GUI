@@ -140,15 +140,6 @@ public final class AgentsSendAnything extends Hilo {
                     + "-H \"Authorization: " + token + "\" "
                     + "-X POST http://"+ip+":80/userCreation";
             
-            /*String rootCreation2 = "curl -d \"email=" + email + "&"
-                    + "password=" + password + "&"
-                    + "surnameA=" + surnameA + "&"
-                    + "surnameB=" + surnameB + "&"
-                    + "addressU=" + publicK + "&"
-                    + "-H \"Session: " + session + "\" "
-                    + "-H \"Authorization: " + token + "\" "
-                    + "-X POST http://"+ip+":80/userCreation";*/
-            
             SimpleDateFormat sdf3 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
             Date now3 = new Date();
             String strDate3 = sdf3.format(now3);

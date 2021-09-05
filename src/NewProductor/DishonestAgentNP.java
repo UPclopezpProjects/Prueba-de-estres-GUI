@@ -24,7 +24,6 @@ public class DishonestAgentNP {
     private String harvestD;
     private String caducationD;
     private String description;
-    private String nameCompany;
     private String fId;
     private String nameProduction;
     private String previousS;
@@ -34,12 +33,11 @@ public class DishonestAgentNP {
     private String ip;
     private JTextArea caja;
 
-    public DishonestAgentNP(String ubication, String harvestD, String caducationD, String description, String nameCompany, String fId, String nameProduction, String previousS, String currentS, String code, String image, String ip, JTextArea caja) {
+    public DishonestAgentNP(String ubication, String harvestD, String caducationD, String description, String fId, String nameProduction, String previousS, String currentS, String code, String image, String ip, JTextArea caja) {
         this.ubication = ubication;
         this.harvestD = harvestD;
         this.caducationD = caducationD;
         this.description = description;
-        this.nameCompany = nameCompany;
         this.fId = fId;
         this.nameProduction = nameProduction;
         this.previousS = previousS;
@@ -48,6 +46,7 @@ public class DishonestAgentNP {
         this.image = image;
         this.ip = ip;
         this.caja = caja;
+        userCreation();
     }
     
     public void userCreation() {
@@ -70,17 +69,16 @@ public class DishonestAgentNP {
                     + "previousStage=" + previousS + "&"
                     + "currentStage=" + currentS + "&"
                     + "description=" + description + "&"
-                    + "-F \"image=@" + image + "\""
                     + "documentation=" + documentation + "&"
-                    + "nameOfCompany=" + nameCompany + "&"
-                    + "code=" + code + "&"
-                    + "-X POST http://"+ip+":80/userCreation";
+                    + "code=" + code + "\" "
+                    + "-F \"image=@" + image + "\" "
+                    + "-X POST http://"+ip+":80/productorsData";
             
             SimpleDateFormat sdf3 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
             Date now3 = new Date();
             String strDate3 = sdf3.format(now3);
             //System.out.println("--> Date: " + strDate3 + "; Token: " + token + "; NA: " + randomNumber + "; CURL: " + rootCreation2);
-            String response = "AgentHonest --> Date: " + strDate3 + "; CURL: " + rootCreation;
+            String response = "DishonestAgent --> Date: " + strDate3 + "; CURL: " + rootCreation;
             caja.append(response+ "\n");
 
             //hace la petición como en CMD
@@ -100,7 +98,7 @@ public class DishonestAgentNP {
                         Date now4 = new Date();
                         String strDate4 = sdf4.format(now4);
                         //System.out.println("<-- Date: " + strDate4 + "; Response: " + line);
-                        response = "AgentHonest <-- Date: " + strDate4 + "; Response: " + line;
+                        response = "DishonestAgent <-- Date: " + strDate4 + "; Response: " + line;
                         caja.append(response+ "\n \n");
                     }
                     intentar = false;

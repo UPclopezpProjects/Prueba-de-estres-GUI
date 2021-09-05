@@ -21,7 +21,7 @@ import org.json.JSONObject;
  *
  * @author frank
  */
-public class DishonestAgent {
+public class DishonestAgentB {
 
     String[] anything = {"1", "dos", "tr3s", "anything", "cualquier",
         "cosa", "999", "666", "0", "null", "none", "undefined"};
@@ -48,7 +48,7 @@ public class DishonestAgent {
     private JTextArea caja;
     private String dp;
 
-    public DishonestAgent(String email, String password, String typeU, String adressU, String authorization, String fatherS, String name, String motherS, int nRequest, int aHonest, int aDishonest, String typeConsult, String ip, JTextArea caja, String dp) {
+    public DishonestAgentB(String email, String password, String typeU, String adressU, String authorization, String fatherS, String name, String motherS, int nRequest, int aHonest, int aDishonest, String typeConsult, String ip, JTextArea caja, String dp) {
         this.email = email;
         this.password = password;
         this.typeU = typeU;
@@ -65,7 +65,7 @@ public class DishonestAgent {
         this.caja = caja;
         this.dp = dp;
         comparar();
-        
+
     }
 
     public void comparar() {
@@ -134,6 +134,7 @@ public class DishonestAgent {
             "lastname6", "lastname7", "lastname8", "lastname8", "lastname10"};
         try {
             //Thread.sleep(500);
+            
             Random rand = new Random();
             //int randomNum = rand.nextInt(firstname.length);
             String email = this.email;
@@ -147,14 +148,14 @@ public class DishonestAgent {
             String typeOfOperation = "create";
             String nameOfOperation = "createRoot";
             String dpHashX = "{\\\"createAdministrator\\\":true,\\\"createTUser\\\":true,\\\"updateMe\\\":true,\\\"updateAdministrator\\\":true,\\\"updateTUser\\\":true,\\\"deleteMe\\\":true,\\\"deleteAdministrator\\\":true,\\\"deleteTUser\\\":true,\\\"readMe\\\":true,\\\"readAdministrator\\\":true,\\\"readTUser\\\":true,\\\"loginUser\\\":true}";
-            String dp = permisosDP(this.dp);
-            String jsonData = "{\"email\":\"" + email + "\",\"password\":\"" + password + "\",\"surnameA\":\"" + surnameA + "\",\"surnameB\":\"" + surnameB + "\",\"nameOfUser\":\"" 
+            String dp = permisosDP();
+            String jsonData = "{\"email\":\"" + email + "\",\"password\":\"" + password + "\",\"surnameA\":\"" + surnameA + "\",\"surnameB\":\"" + surnameB + "\",\"nameOfUser\":\""
                     + nameOfUser + "\",\"typeOfUser\":\"" + typeOfUser + "\",\"status\":\"" + status + "\",\"creationDate\":\"" + creationDate /*+ "\",\"initialToken\":\"" + 
-                    authorization +"\",\"dp\":\"" + dpHashX*/ + "\",\"addressU\":\"" + adressU + "\",\"typeOfOperation\":\"" + typeOfOperation + "\",\"nameOfOperation\":\"" + nameOfOperation 
+                    authorization +"\",\"dp\":\"" + dpHashX*/ + "\",\"addressU\":\"" + adressU + "\",\"typeOfOperation\":\"" + typeOfOperation + "\",\"nameOfOperation\":\"" + nameOfOperation
                     + "\"}";
-            System.out.println("jsonData: "+jsonData);
+            System.out.println("jsonData: " + jsonData);
             String hashX = MD5.getMd5(jsonData);
-            System.out.println("hashX: "+hashX);
+            System.out.println("hashX: " + hashX);
             String rootCreation = "curl -d \"email=" + email + "&"
                     + "password=" + password + "&"
                     + "surnameA=" + surnameA + "&"
@@ -169,13 +170,13 @@ public class DishonestAgent {
                     + "hashX=" + hashX + "&"
                     + "nameOfOperation=" + nameOfOperation + "\" "
                     + "-H \"Authorization: " + authorization + "\" "
-                    + "-X POST http://"+ip+":80/userCreation";
+                    + "-X POST http://" + ip + ":80/userCreation";
 
             SimpleDateFormat sdf3 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
             Date now3 = new Date();
             String strDate3 = sdf3.format(now3);
             //System.out.println("--> Date: " + strDate3 + "; Token: " + token + "; NA: " + randomNumber + "; CURL: " + rootCreation2);
-            String response = "AgentsSendAnything --> Date: " + strDate3 + "; Token: " + token + "; NA: " + randomNumber + "; CURL: " + rootCreation;
+            String response = "Dishonest agent B --> Date: " + strDate3 + "; Token: " + token + "; NA: " + randomNumber + "; CURL: " + rootCreation;
             caja.append(response + "\n");
 
             Runtime rt = Runtime.getRuntime();
@@ -195,8 +196,8 @@ public class DishonestAgent {
                         Date now4 = new Date();
                         String strDate4 = sdf4.format(now4);
                         //System.out.println("<-- Date: " + strDate4 + "; Response: " + line);
-                        response = "AgentsSendAnything <-- Date: " + strDate4 + "; Response: " + line;
-                        caja.append(response+ "\n \n");
+                        response = "Dishonest agent B <-- Date: " + strDate4 + "; Response: " + line;
+                        caja.append(response + "\n \n");
                     }
                     intentar = false;
                 }
@@ -226,14 +227,14 @@ public class DishonestAgent {
             String nameOfOperation = nameOperation();
             String dpHashX = "{\\\"createAdministrator\\\":true,\\\"createTUser\\\":true,\\\"updateMe\\\":true,\\\"updateAdministrator\\\":true,\\\"updateTUser\\\":true,\\\"deleteMe\\\":true,\\\"deleteAdministrator\\\":true,\\\"deleteTUser\\\":true,\\\"readMe\\\":true,\\\"readAdministrator\\\":true,\\\"readTUser\\\":true,\\\"loginUser\\\":true}";
             //String dp = "{\"\"createAdministrator\"\":false,\"\"createTUser\"\":false,\"\"updateMe\"\":false,\"\"updateAdministrator\"\":false,\"\"updateTUser\"\":false,\"\"deleteMe\"\":false,\"\"deleteAdministrator\"\":false,\"\"deleteTUser\"\":false,\"\"readMe\"\":false,\"\"readAdministrator\"\":false,\"\"readTUser\"\":false,\"\"loginUser\"\":false}";
-            String dp = permisosDP(this.dp);
-            String jsonData = "{\"email\":\"" + email + "\",\"password\":\"" + password + "\",\"surnameA\":\"" + surnameA + "\",\"surnameB\":\"" + surnameB + "\",\"nameOfUser\":\"" 
+            String dp = permisosDP();
+            String jsonData = "{\"email\":\"" + email + "\",\"password\":\"" + password + "\",\"surnameA\":\"" + surnameA + "\",\"surnameB\":\"" + surnameB + "\",\"nameOfUser\":\""
                     + nameOfUser + "\",\"typeOfUser\":\"" + typeOfUser + "\",\"status\":\"" + status + "\",\"creationDate\":\"" + creationDate /*+ "\",\"initialToken\":\"" + 
-                    authorization +"\",\"dp\":\"" + dpHashX*/ + "\",\"addressU\":\"" + adressU + "\",\"typeOfOperation\":\"" + typeOfOperation + "\",\"nameOfOperation\":\"" + nameOfOperation 
+                    authorization +"\",\"dp\":\"" + dpHashX*/ + "\",\"addressU\":\"" + adressU + "\",\"typeOfOperation\":\"" + typeOfOperation + "\",\"nameOfOperation\":\"" + nameOfOperation
                     + "\"}";
-            System.out.println("jsonData: "+jsonData);
+            System.out.println("jsonData: " + jsonData);
             String hashX = MD5.getMd5(jsonData);
-            System.out.println("hashX: "+hashX);
+            System.out.println("hashX: " + hashX);
             String rootCreation = "curl -d \"email=" + email + "&"
                     + "password=" + password + "&"
                     + "surnameA=" + surnameA + "&"
@@ -248,14 +249,13 @@ public class DishonestAgent {
                     + "hashX=" + hashX + "&"
                     + "nameOfOperation=" + nameOfOperation + "\" "
                     + "-H \"Authorization: " + authorization + "\" "
-                    + "-X POST http://"+ip+":80/userCreation";
-
+                    + "-X POST http://" + ip + ":80/userCreation";
 
             SimpleDateFormat sdf3 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
             Date now3 = new Date();
             String strDate3 = sdf3.format(now3);
             //System.out.println("--> Date: " + strDate3 + "; Token: " + token + "; NA: " + randomNumber + "; CURL: " + rootCreation2);
-            String response = "AgentsSendAnything --> Date: " + strDate3 + "; CURL: " + rootCreation;
+            String response = "Dishonest agent B --> Date: " + strDate3 + "; CURL: " + rootCreation;
             caja.append(response + "\n");
 
             Runtime rt = Runtime.getRuntime();
@@ -275,8 +275,8 @@ public class DishonestAgent {
                         Date now4 = new Date();
                         String strDate4 = sdf4.format(now4);
                         //System.out.println("<-- Date: " + strDate4 + "; Response: " + line);
-                        response = "AgentsSendAnything <-- Date: " + strDate4 + "; Response: " + line;
-                        caja.append(response+ "\n \n");
+                        response = "Dishonest agent B <-- Date: " + strDate4 + "; Response: " + line;
+                        caja.append(response + "\n \n");
                     }
                     intentar = false;
                 }
@@ -289,22 +289,12 @@ public class DishonestAgent {
         }
     }
 
-    private String permisosDP(String cadena) {
-        
-        int nRandom = (int) Math.floor(Math.random() * 101);
-        if (nRandom <= 50) {
-            this.authorization += "n";
-            return cadena;
-        } else {
-            if (nRandom > 50) {
-                String[] permisos = new String[12];
-                for(int x=0; x<12; x++){
-                    permisos[x]=String.valueOf(randomDP());
-                }
-                return "{\"\"createAdministrator\"\":"+permisos[0]+",\"\"createTUser\"\":"+permisos[1]+",\"\"updateMe\"\":"+permisos[2]+",\"\"updateAdministrator\"\":"+permisos[3]+",\"\"updateTUser\"\":"+permisos[4]+",\"\"deleteMe\"\":"+permisos[5]+",\"\"deleteAdministrator\"\":"+permisos[6]+",\"\"deleteTUser\"\":"+permisos[7]+",\"\"readMe\"\":"+permisos[8]+",\"\"readAdministrator\"\":"+permisos[9]+",\"\"readTUser\"\":"+permisos[10]+",\"\"loginUser\"\":"+permisos[11]+"}";
+    private String permisosDP() {
+            String[] permisos = new String[12];
+            for (int x = 0; x < 12; x++) {
+                permisos[x] = String.valueOf(randomDP());
             }
-        }
-        return cadena;
+            return "{\"\"createAdministrator\"\":" + permisos[0] + ",\"\"createTUser\"\":" + permisos[1] + ",\"\"updateMe\"\":" + permisos[2] + ",\"\"updateAdministrator\"\":" + permisos[3] + ",\"\"updateTUser\"\":" + permisos[4] + ",\"\"deleteMe\"\":" + permisos[5] + ",\"\"deleteAdministrator\"\":" + permisos[6] + ",\"\"deleteTUser\"\":" + permisos[7] + ",\"\"readMe\"\":" + permisos[8] + ",\"\"readAdministrator\"\":" + permisos[9] + ",\"\"readTUser\"\":" + permisos[10] + ",\"\"loginUser\"\":" + permisos[11] + "}";
     }
 
     private boolean randomDP() {
@@ -315,12 +305,12 @@ public class DishonestAgent {
             return false;
         }
     }
-    
-    public String nameOperation(){
-        if(typeU=="Administrador"){
+
+    public String nameOperation() {
+        if (typeU == "Administrador") {
             return "createAdministrator";
-        }else{
-            if(typeU == "Productor" || typeU == "Acopio" || typeU == "Carrier" || typeU == "Merchant"){
+        } else {
+            if (typeU == "Productor" || typeU == "Acopio" || typeU == "Carrier" || typeU == "Merchant") {
                 return "createTUser";
             }
         }

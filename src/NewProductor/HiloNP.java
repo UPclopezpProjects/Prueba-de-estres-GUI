@@ -20,7 +20,6 @@ public class HiloNP implements Runnable {
     private String harvestD;
     private String caducationD;
     private String description;
-    private String nameCompany;
     private String fId;
     private String nameProduction;
     private String previousS;
@@ -59,12 +58,8 @@ public class HiloNP implements Runnable {
         this.caducationD = caducationD;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public void setNameCompany(String nameCompany) {
-        this.nameCompany = nameCompany;
+    public void setDescription(int description) {
+        this.description = texto(description);
     }
 
     public void setfId(int fId) {
@@ -72,7 +67,7 @@ public class HiloNP implements Runnable {
     }
 
     public void setNameProduction(int nameProductor) {
-        this.nameProduction = name(nameProductor);
+        this.nameProduction = texto(nameProductor);
     }
 
     public void setPreviousS(String previousS) {
@@ -89,13 +84,13 @@ public class HiloNP implements Runnable {
 
     public void loop1() throws InterruptedException {
         if(typeConsult == "Honest"){
-            HonestAgentNP honesto = new HonestAgentNP(ubication, harvestD, caducationD, description, nameCompany, fId, nameProduction, previousS, currentS, code, image, ip, caja);
+            HonestAgentNP honesto = new HonestAgentNP(ubication, harvestD, caducationD, description, fId, nameProduction, previousS, currentS, code, image, ip, caja);
         }else{
-            DishonestAgentNP dishonest = new DishonestAgentNP(ubication, harvestD, caducationD, description, nameCompany, fId, nameProduction, previousS, currentS, code, image, ip, caja);
+            DishonestAgentNP dishonest = new DishonestAgentNP(ubication, harvestD, caducationD, description, fId, nameProduction, previousS, currentS, code, image, ip, caja);
         }
     }
     
-    private String name(int name){
+    private String texto(int name){
         switch(name){
             case 0: return String.valueOf(letter());
             case 1: return String.valueOf(letter()+letter());

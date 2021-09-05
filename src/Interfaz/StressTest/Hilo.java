@@ -122,21 +122,7 @@ public class Hilo implements Runnable {
         this.estado = estado;
     }*/
     public void loop1() throws InterruptedException {
-        /*for (int x = 0; x < numberRequest; x++) {
-            double i = Math.floor(Math.random() * 101);
-            System.out.println("el random = " + i);
-            int desonesto = aHonesto+aEnviarA;
-            if(i<=aHonesto){
-                AgentsHonest a = new AgentsHonest(caja, generateEmail(), generatePassword(), nombreU, apellidoP, apellidoM, typeU, ip, publicKey);
-            }else{
-                if(i<=desonesto){
-                    AgentsSendAnything b = new AgentsSendAnything(caja, generateEmail(), generatePassword(), nombreU, apellidoP, apellidoM, typeU, ip, publicKey);
-                } else {
-                    AgentsStartAnyStep c = new AgentsStartAnyStep(caja, generateEmail(), generatePassword(), nombreU, apellidoP, apellidoM, typeU, numberRequest, ip, publicKey);
-                }
-            }
-            TimeUnit.MILLISECONDS.sleep(delay);
-        }*/
+        
         if(tipoConsulta=="honesto"){
             AgentsHonest a = new AgentsHonest(caja, generateEmail(), generatePassword(), nombreU, apellidoP, apellidoM, typeU, ip, publicKey, dp);
         }else{

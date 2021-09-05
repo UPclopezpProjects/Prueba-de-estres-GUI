@@ -26,7 +26,6 @@ public class HonestAgentNP {
     private String harvestD;
     private String caducationD;
     private String description;
-    private String nameCompany;
     private String fId;
     private String nameProduction;
     private String previousS;
@@ -36,12 +35,11 @@ public class HonestAgentNP {
     private String ip;
     private JTextArea caja;
     
-    public HonestAgentNP(String ubication, String harvestD, String caducationD, String description, String nameCompany, String fId, String nameProductor, String previousS, String currentS, String code, String image, String ip, JTextArea caja) {
+    public HonestAgentNP(String ubication, String harvestD, String caducationD, String description, String fId, String nameProductor, String previousS, String currentS, String code, String image, String ip, JTextArea caja) {
         this.ubication = ubication;
         this.harvestD = harvestD;
         this.caducationD = caducationD;
         this.description = description;
-        this.nameCompany = nameCompany;
         this.fId = fId;
         this.nameProduction = nameProductor;
         this.previousS = previousS;
@@ -74,10 +72,9 @@ public class HonestAgentNP {
                     + "previousStage=" + previousS + "&"
                     + "currentStage=" + currentS + "&"
                     + "description=" + description + "&"
-                    + "-F \"image=@" + image + "\""
                     + "documentation=" + documentation + "&"
-                    + "nameOfCompany=" + nameCompany + "&"
-                    + "code=" + code + "&"
+                    + "code=" + code + "\" "
+                    + "-F \"image=@" + image + "\" "
                     + "-X POST http://"+ip+":80/productorsData";
             
             SimpleDateFormat sdf3 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
