@@ -78,7 +78,7 @@ public class DishonestAgentNP {
             Date now3 = new Date();
             String strDate3 = sdf3.format(now3);
             //System.out.println("--> Date: " + strDate3 + "; Token: " + token + "; NA: " + randomNumber + "; CURL: " + rootCreation2);
-            String response = "DishonestAgent --> Date: " + strDate3 + "; CURL: " + rootCreation;
+            String response = "New Productor/DishonestAgent --> Date: " + strDate3 + "; CURL: " + rootCreation;
             caja.append(response+ "\n");
 
             //hace la petición como en CMD
@@ -98,7 +98,7 @@ public class DishonestAgentNP {
                         Date now4 = new Date();
                         String strDate4 = sdf4.format(now4);
                         //System.out.println("<-- Date: " + strDate4 + "; Response: " + line);
-                        response = "DishonestAgent <-- Date: " + strDate4 + "; Response: " + line;
+                        response = "New Productor/DishonestAgent <-- Date: " + strDate4 + "; Response: " + line;
                         caja.append(response+ "\n \n");
                     }
                     intentar = false;

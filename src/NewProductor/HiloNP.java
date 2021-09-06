@@ -93,10 +93,10 @@ public class HiloNP implements Runnable {
     private String texto(int name){
         switch(name){
             case 0: return String.valueOf(letter());
-            case 1: return String.valueOf(letter()+letter());
-            case 2: return String.valueOf(letter()+letter()+letter());
-            case 3: return String.valueOf(letter()+letter()+letter()+letter());
-            case 4: return String.valueOf(letter()+letter()+letter()+letter()+letter());
+            case 1: return String.valueOf(letter())+String.valueOf(letter());
+            case 2: return String.valueOf(letter())+String.valueOf(letter())+String.valueOf(letter());
+            case 3: return String.valueOf(letter())+String.valueOf(letter())+String.valueOf(letter())+String.valueOf(letter());
+            case 4: return String.valueOf(letter())+String.valueOf(letter())+String.valueOf(letter())+String.valueOf(letter())+String.valueOf(letter());
             default : return String.valueOf(letter());
         }        
     }
@@ -104,16 +104,16 @@ public class HiloNP implements Runnable {
     private String code(int code){
         switch(code){
             case 0: return String.valueOf(number());
-            case 1: return String.valueOf(number()+number());
-            case 2: return String.valueOf(number()+number()+number());
-            case 3: return String.valueOf(number()+number()+number()+number());
-            case 4: return String.valueOf(number()+number()+number()+number()+number());
+            case 1: return String.valueOf(number())+String.valueOf(number());
+            case 2: return String.valueOf(number())+String.valueOf(number())+String.valueOf(number());
+            case 3: return String.valueOf(number())+String.valueOf(number())+String.valueOf(number())+String.valueOf(number());
+            case 4: return String.valueOf(number())+String.valueOf(number())+String.valueOf(number())+String.valueOf(number())+String.valueOf(number());
             default : return String.valueOf(number());
         } 
     }
     private String fatherId(int id){
         switch(id){
-            case 0: return "";
+            case 0: return "null";
             case 1: return String.valueOf(number()+number()+number());
             default : return String.valueOf(number());
         }

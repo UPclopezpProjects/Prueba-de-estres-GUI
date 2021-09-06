@@ -84,7 +84,7 @@ public class DishonestAgentA {
             Date now1 = new Date();
             String strDate1 = sdf1.format(now1);
             //System.out.println("--> Date: " + strDate1 + "; CURL: " + getInitialNonce);
-            String response = "AgentsSendAnything --> Date: " + strDate1 + "; CURL: " + getInitialNonce;
+            String response = "Crear Usuario/AgentsSendAnything --> Date: " + strDate1 + "; CURL: " + getInitialNonce;
             caja.append(response + "\n");
 
             Runtime rt = Runtime.getRuntime();
@@ -105,7 +105,7 @@ public class DishonestAgentA {
                         Date now2 = new Date();
                         String strDate2 = sdf2.format(now2);
                         //System.out.println("<-- Date: " + strDate2 + "; Response: " + line);
-                        response = "AgentsSendAnything <-- Date: " + strDate2 + "; Response: " + line;
+                        response = "Crear Usuario/AgentsSendAnything <-- Date: " + strDate2 + "; Response: " + line;
                         caja.append(response + "\n");
                         String session = jsonObject.get("A").toString();
                         String na = jsonObject.get("NA").toString();
@@ -134,7 +134,7 @@ public class DishonestAgentA {
             "lastname6", "lastname7", "lastname8", "lastname8", "lastname10"};
         try {
             //Thread.sleep(500);
-            this.authorization= "n";
+            authorization= "n";
             Random rand = new Random();
             //int randomNum = rand.nextInt(firstname.length);
             String email = this.email;
@@ -176,7 +176,7 @@ public class DishonestAgentA {
             Date now3 = new Date();
             String strDate3 = sdf3.format(now3);
             //System.out.println("--> Date: " + strDate3 + "; Token: " + token + "; NA: " + randomNumber + "; CURL: " + rootCreation2);
-            String response = "Dishonest agent A --> Date: " + strDate3 + "; Token: " + token + "; NA: " + randomNumber + "; CURL: " + rootCreation;
+            String response = "Crear Usuario/Dishonest agent A --> Date: " + strDate3 + "; Token: " + token + "; NA: " + randomNumber + "; CURL: " + rootCreation;
             caja.append(response + "\n");
 
             Runtime rt = Runtime.getRuntime();
@@ -196,7 +196,7 @@ public class DishonestAgentA {
                         Date now4 = new Date();
                         String strDate4 = sdf4.format(now4);
                         //System.out.println("<-- Date: " + strDate4 + "; Response: " + line);
-                        response = "Dishonest agent A <-- Date: " + strDate4 + "; Response: " + line;
+                        response = "Crear Usuario/Dishonest agent A <-- Date: " + strDate4 + "; Response: " + line;
                         caja.append(response+ "\n \n");
                     }
                     intentar = false;
@@ -228,6 +228,7 @@ public class DishonestAgentA {
             String dpHashX = "{\\\"createAdministrator\\\":true,\\\"createTUser\\\":true,\\\"updateMe\\\":true,\\\"updateAdministrator\\\":true,\\\"updateTUser\\\":true,\\\"deleteMe\\\":true,\\\"deleteAdministrator\\\":true,\\\"deleteTUser\\\":true,\\\"readMe\\\":true,\\\"readAdministrator\\\":true,\\\"readTUser\\\":true,\\\"loginUser\\\":true}";
             //String dp = "{\"\"createAdministrator\"\":false,\"\"createTUser\"\":false,\"\"updateMe\"\":false,\"\"updateAdministrator\"\":false,\"\"updateTUser\"\":false,\"\"deleteMe\"\":false,\"\"deleteAdministrator\"\":false,\"\"deleteTUser\"\":false,\"\"readMe\"\":false,\"\"readAdministrator\"\":false,\"\"readTUser\"\":false,\"\"loginUser\"\":false}";
             String dp = this.dp;
+            authorization= "n";
             String jsonData = "{\"email\":\"" + email + "\",\"password\":\"" + password + "\",\"surnameA\":\"" + surnameA + "\",\"surnameB\":\"" + surnameB + "\",\"nameOfUser\":\"" 
                     + nameOfUser + "\",\"typeOfUser\":\"" + typeOfUser + "\",\"status\":\"" + status + "\",\"creationDate\":\"" + creationDate /*+ "\",\"initialToken\":\"" + 
                     authorization +"\",\"dp\":\"" + dpHashX*/ + "\",\"addressU\":\"" + adressU + "\",\"typeOfOperation\":\"" + typeOfOperation + "\",\"nameOfOperation\":\"" + nameOfOperation 
@@ -256,7 +257,7 @@ public class DishonestAgentA {
             Date now3 = new Date();
             String strDate3 = sdf3.format(now3);
             //System.out.println("--> Date: " + strDate3 + "; Token: " + token + "; NA: " + randomNumber + "; CURL: " + rootCreation2);
-            String response = "Dishonest agent A --> Date: " + strDate3 + "; CURL: " + rootCreation;
+            String response = "Crear Usuario/Dishonest agent A --> Date: " + strDate3 + "; CURL: " + rootCreation;
             caja.append(response + "\n");
 
             Runtime rt = Runtime.getRuntime();
@@ -276,7 +277,7 @@ public class DishonestAgentA {
                         Date now4 = new Date();
                         String strDate4 = sdf4.format(now4);
                         //System.out.println("<-- Date: " + strDate4 + "; Response: " + line);
-                        response = "Dishonest agent A <-- Date: " + strDate4 + "; Response: " + line;
+                        response = "Crear Usuario/Dishonest agent A <-- Date: " + strDate4 + "; Response: " + line;
                         caja.append(response+ "\n \n");
                     }
                     intentar = false;

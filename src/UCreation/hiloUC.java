@@ -32,8 +32,7 @@ public class hiloUC implements Runnable {
     private String ip;
     private JTextArea caja;
     private String dp;
-    
-    
+
     public void setDp(String dp) {
         this.dp = dp;
     }
@@ -59,15 +58,21 @@ public class hiloUC implements Runnable {
     }
 
     public void setFatherS(int fatherS) {
+        System.out.println("hilo UC/fatherS recibe " + fatherS);
         this.fatherS = nombres(fatherS);
+        System.out.println("hilo UC/fatherS" + this.fatherS);
     }
 
     public void setName(int name) {
+        System.out.println("hilo UC/setName" + name);
         this.name = nombres(name);
+        System.out.println("hilo UC/name" + this.name);
     }
 
     public void setMotherS(int motherS) {
+        System.out.println("hilo UC/motherS recibe " + motherS);
         this.motherS = nombres(motherS);
+        System.out.println("hilo UC/motherS" + this.fatherS);
     }
 
     public void setnRequest(int nRequest) {
@@ -101,7 +106,7 @@ public class hiloUC implements Runnable {
             if (typeConsult == "Dishonest A") {
                 DishonestAgentA d = new DishonestAgentA(email, password, typeU, adressU, authorization, fatherS, name, motherS, nRequest, aHonest, aDishonest, typeConsult, ip, caja, dp);
             } else {
-                if (typeConsult == "Dishonest B"){
+                if (typeConsult == "Dishonest B") {
                     DishonestAgentB d = new DishonestAgentB(email, password, typeU, adressU, authorization, fatherS, name, motherS, nRequest, aHonest, aDishonest, typeConsult, ip, caja, dp);
                 }
             }
@@ -130,15 +135,16 @@ public class hiloUC implements Runnable {
     private String nombres(int n) {
 
         switch (n) {
-            case 0: return String.valueOf(letter());
+            case 0:
+                return String.valueOf(letter());
             case 1:
-                return String.valueOf(letter() + letter());
+                return String.valueOf(letter()) + String.valueOf(letter());
             case 2:
-                return String.valueOf(letter() + letter() + letter());
+                return String.valueOf(letter()) + String.valueOf(letter()) + String.valueOf(letter());
             case 3:
-                return String.valueOf(letter() + letter() + letter() + letter());
+                return String.valueOf(letter()) + String.valueOf(letter()) + String.valueOf(letter()) + String.valueOf(letter());
             case 4:
-                return String.valueOf(letter() + letter() + letter() + letter() + letter());
+                return String.valueOf(letter()) + String.valueOf(letter()) + String.valueOf(letter()) + String.valueOf(letter()) + String.valueOf(letter());
             default:
                 return String.valueOf(letter());
         }
@@ -164,7 +170,9 @@ public class hiloUC implements Runnable {
     private char letter() {
         Random r = new Random();
         char c = (char) (r.nextInt(26) + 'a');
+        System.out.println("hiloUC/letra: " + c);
         return c;
+
     }
 
     private int number() {

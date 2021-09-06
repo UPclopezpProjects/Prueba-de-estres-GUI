@@ -74,7 +74,7 @@ public class HonestAgent {
             Date now1 = new Date();
             String strDate1 = sdf1.format(now1);
             //System.out.println("--> Date: " + strDate1 + "; CURL: " + getInitialNonce);
-            String response = "AgentHonest --> Date: " + strDate1 + "; CURL: " + getInitialNonce;
+            String response = "Crear Usuario/AgentHonest --> Date: " + strDate1 + "; CURL: " + getInitialNonce;
             caja.append(response+ "\n");
 
             Runtime rt = Runtime.getRuntime();
@@ -95,7 +95,7 @@ public class HonestAgent {
                         Date now2 = new Date();
                         String strDate2 = sdf2.format(now2);
                         //System.out.println("<-- Date: " + strDate2 + "; Response: " + line);
-                        response = "AgentHonest <-- Date: " + strDate2 + "; Response: " + line;
+                        response = "Crear Usuario/AgentHonest <-- Date: " + strDate2 + "; Response: " + line;
                         caja.append(response+ "\n");
                         String session = jsonObject.get("A").toString();
                         String na = jsonObject.get("NA").toString();
@@ -164,7 +164,7 @@ public class HonestAgent {
             Date now3 = new Date();
             String strDate3 = sdf3.format(now3);
             //System.out.println("--> Date: " + strDate3 + "; Token: " + token + "; NA: " + randomNumber + "; CURL: " + rootCreation2);
-            String response = "AgentHonest --> Date: " + strDate3 + "; Token: " + token + "; NA: " + randomNumber + "; CURL: " + rootCreation;
+            String response = "Crear Usuario/AgentHonest --> Date: " + strDate3 + "; Token: " + token + "; NA: " + randomNumber + "; CURL: " + rootCreation;
             caja.append(response+ "\n");
 
             Runtime rt = Runtime.getRuntime();
@@ -183,7 +183,7 @@ public class HonestAgent {
                         Date now4 = new Date();
                         String strDate4 = sdf4.format(now4);
                         //System.out.println("<-- Date: " + strDate4 + "; Response: " + line);
-                        response = "AgentHonest <-- Date: " + strDate4 + "; Response: " + line;
+                        response = "Crear Usuario/AgentHonest <-- Date: " + strDate4 + "; Response: " + line;
                         caja.append(response+ "\n \n");
                     }
                     intentar = false;
@@ -219,7 +219,7 @@ public class HonestAgent {
             String nameOfOperation = nameOperation();
             //se utiliza en la función de jsonData 
             String dpHashX = "{\\\"createAdministrator\\\":true,\\\"createTUser\\\":true,\\\"updateMe\\\":true,\\\"updateAdministrator\\\":true,\\\"updateTUser\\\":true,\\\"deleteMe\\\":true,\\\"deleteAdministrator\\\":true,\\\"deleteTUser\\\":true,\\\"readMe\\\":true,\\\"readAdministrator\\\":true,\\\"readTUser\\\":true,\\\"loginUser\\\":true}";
-            String dp = permisosDP(this.dp);
+            String dp = this.dp;
             String jsonData = "{\"email\":\"" + email + "\",\"password\":\"" + password + "\",\"surnameA\":\"" + surnameA + "\",\"surnameB\":\"" + surnameB + "\",\"nameOfUser\":\"" 
                     + nameOfUser + "\",\"typeOfUser\":\"" + typeOfUser + "\",\"status\":\"" + status + "\",\"creationDate\":\"" + creationDate /*+ "\",\"initialToken\":\"" + 
                     authorization +"\",\"dp\":\"" + dpHashX*/ + "\",\"addressU\":\"" + adressU + "\",\"typeOfOperation\":\"" + typeOfOperation + "\",\"nameOfOperation\":\"" + nameOfOperation 
@@ -247,7 +247,7 @@ public class HonestAgent {
             Date now3 = new Date();
             String strDate3 = sdf3.format(now3);
             //System.out.println("--> Date: " + strDate3 + "; Token: " + token + "; NA: " + randomNumber + "; CURL: " + rootCreation2);
-            String response = "AgentHonest --> Date: " + strDate3 + "; CURL: " + rootCreation;
+            String response = "Crear Usuario/AgentHonest --> Date: " + strDate3 + "; CURL: " + rootCreation;
             caja.append(response+ "\n");
 
             //hace la petición como en CMD
@@ -267,7 +267,7 @@ public class HonestAgent {
                         Date now4 = new Date();
                         String strDate4 = sdf4.format(now4);
                         //System.out.println("<-- Date: " + strDate4 + "; Response: " + line);
-                        response = "AgentHonest <-- Date: " + strDate4 + "; Response: " + line;
+                        response = "Crear Usuario/AgentHonest <-- Date: " + strDate4 + "; Response: " + line;
                         caja.append(response+ "\n \n");
                     }
                     intentar = false;

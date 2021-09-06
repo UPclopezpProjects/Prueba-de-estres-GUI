@@ -82,7 +82,7 @@ public class HonestAgentNP {
             SimpleDateFormat sdf3 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
             Date now3 = new Date();
             String strDate3 = sdf3.format(now3);
-            String response = "AgentHonest --> Date: " + strDate3 + "; CURL: " + rootCreation2;
+            String response = "New Productor/AgentHonest --> Date: " + strDate3 + "; CURL: " + rootCreation2;
             caja.append(response + "\n");
 
             //hace la petición como en CMD
@@ -102,7 +102,7 @@ public class HonestAgentNP {
                         Date now4 = new Date();
                         String strDate4 = sdf4.format(now4);
                         //System.out.println("<-- Date: " + strDate4 + "; Response: " + line);
-                        response = "AgentHonest <-- Date: " + strDate4 + "; Response: " + line;
+                        response = "New Productor/AgentHonest <-- Date: " + strDate4 + "; Response: " + line;
                         caja.append(response + "\n \n");
                     }
                     intentar = false;

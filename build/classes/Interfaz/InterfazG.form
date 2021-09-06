@@ -960,7 +960,7 @@
                                           <Component id="CBPasswordUC" alignment="0" max="32767" attributes="0"/>
                                           <Component id="CBEmailUC" alignment="0" max="32767" attributes="0"/>
                                           <Component id="CBTypeUserUC" alignment="0" max="32767" attributes="0"/>
-                                          <Component id="TFAuthorizationUC" max="32767" attributes="0"/>
+                                          <Component id="TFAuthorizationUC" alignment="1" min="-2" pref="138" max="-2" attributes="0"/>
                                       </Group>
                                       <EmptySpace max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" attributes="0">

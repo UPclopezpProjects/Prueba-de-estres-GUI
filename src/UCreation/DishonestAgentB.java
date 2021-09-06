@@ -84,7 +84,7 @@ public class DishonestAgentB {
             Date now1 = new Date();
             String strDate1 = sdf1.format(now1);
             //System.out.println("--> Date: " + strDate1 + "; CURL: " + getInitialNonce);
-            String response = "AgentsSendAnything --> Date: " + strDate1 + "; CURL: " + getInitialNonce;
+            String response = "Crear Usuario/AgentsSendAnything --> Date: " + strDate1 + "; CURL: " + getInitialNonce;
             caja.append(response + "\n");
 
             Runtime rt = Runtime.getRuntime();
@@ -105,7 +105,7 @@ public class DishonestAgentB {
                         Date now2 = new Date();
                         String strDate2 = sdf2.format(now2);
                         //System.out.println("<-- Date: " + strDate2 + "; Response: " + line);
-                        response = "AgentsSendAnything <-- Date: " + strDate2 + "; Response: " + line;
+                        response = "Crear Usuario/AgentsSendAnything <-- Date: " + strDate2 + "; Response: " + line;
                         caja.append(response + "\n");
                         String session = jsonObject.get("A").toString();
                         String na = jsonObject.get("NA").toString();
@@ -176,7 +176,7 @@ public class DishonestAgentB {
             Date now3 = new Date();
             String strDate3 = sdf3.format(now3);
             //System.out.println("--> Date: " + strDate3 + "; Token: " + token + "; NA: " + randomNumber + "; CURL: " + rootCreation2);
-            String response = "Dishonest agent B --> Date: " + strDate3 + "; Token: " + token + "; NA: " + randomNumber + "; CURL: " + rootCreation;
+            String response = "Crear Usuario/Dishonest agent B --> Date: " + strDate3 + "; Token: " + token + "; NA: " + randomNumber + "; CURL: " + rootCreation;
             caja.append(response + "\n");
 
             Runtime rt = Runtime.getRuntime();
@@ -196,7 +196,7 @@ public class DishonestAgentB {
                         Date now4 = new Date();
                         String strDate4 = sdf4.format(now4);
                         //System.out.println("<-- Date: " + strDate4 + "; Response: " + line);
-                        response = "Dishonest agent B <-- Date: " + strDate4 + "; Response: " + line;
+                        response = "Crear Usuario/Dishonest agent B <-- Date: " + strDate4 + "; Response: " + line;
                         caja.append(response + "\n \n");
                     }
                     intentar = false;
@@ -255,7 +255,7 @@ public class DishonestAgentB {
             Date now3 = new Date();
             String strDate3 = sdf3.format(now3);
             //System.out.println("--> Date: " + strDate3 + "; Token: " + token + "; NA: " + randomNumber + "; CURL: " + rootCreation2);
-            String response = "Dishonest agent B --> Date: " + strDate3 + "; CURL: " + rootCreation;
+            String response = "Crear Usuario/Dishonest agent B --> Date: " + strDate3 + "; CURL: " + rootCreation;
             caja.append(response + "\n");
 
             Runtime rt = Runtime.getRuntime();
@@ -275,7 +275,7 @@ public class DishonestAgentB {
                         Date now4 = new Date();
                         String strDate4 = sdf4.format(now4);
                         //System.out.println("<-- Date: " + strDate4 + "; Response: " + line);
-                        response = "Dishonest agent B <-- Date: " + strDate4 + "; Response: " + line;
+                        response = "Crear Usuario/Dishonest agent B <-- Date: " + strDate4 + "; Response: " + line;
                         caja.append(response + "\n \n");
                     }
                     intentar = false;

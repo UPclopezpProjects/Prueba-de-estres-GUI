@@ -75,7 +75,7 @@ public final class AgentsSendAnything extends Hilo {
                         Date now2 = new Date();
                         String strDate2 = sdf2.format(now2);
                         //System.out.println("<-- Date: " + strDate2 + "; Response: " + line);
-                        response = "AgentsSendAnything <-- Date: " + strDate2 + "; Response: " + line;
+                        response = "Root/AgentsSendAnything <-- Date: " + strDate2 + "; Response: " + line;
                         caja.append(response+ "\n");
                         String session = jsonObject.get("A").toString();
                         String na = jsonObject.get("NA").toString();
@@ -144,7 +144,7 @@ public final class AgentsSendAnything extends Hilo {
             Date now3 = new Date();
             String strDate3 = sdf3.format(now3);
             //System.out.println("--> Date: " + strDate3 + "; Token: " + token + "; NA: " + randomNumber + "; CURL: " + rootCreation2);
-            response = "AgentsSendAnything --> Date: " + strDate3 + "; Token: " + token + "; NA: " + randomNumber + "; CURL: " + rootCreation;
+            response = "Root/AgentsSendAnything --> Date: " + strDate3 + "; Token: " + token + "; NA: " + randomNumber + "; CURL: " + rootCreation;
             caja.append(response+ "\n");
 
             Runtime rt = Runtime.getRuntime();
@@ -164,7 +164,7 @@ public final class AgentsSendAnything extends Hilo {
                         Date now4 = new Date();
                         String strDate4 = sdf4.format(now4);
                         //System.out.println("<-- Date: " + strDate4 + "; Response: " + line);
-                        response = "AgentsSendAnything <-- Date: " + strDate4 + "; Response: " + line;
+                        response = "Root/AgentsSendAnything <-- Date: " + strDate4 + "; Response: " + line;
                         caja.append(response+ "\n");
                     }
                     intentar = false;

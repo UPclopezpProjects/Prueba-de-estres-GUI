@@ -49,7 +49,7 @@ public final class AgentsHonest extends Hilo {
             Date now1 = new Date();
             String strDate1 = sdf1.format(now1);
             //System.out.println("--> Date: " + strDate1 + "; CURL: " + getInitialNonce);
-            response = "AgentHonest --> Date: " + strDate1 + "; CURL: " + getInitialNonce;
+            response = "Root/AgentHonest --> Date: " + strDate1 + "; CURL: " + getInitialNonce;
             caja.append(response+ "\n");
 
             Runtime rt = Runtime.getRuntime();
@@ -70,7 +70,7 @@ public final class AgentsHonest extends Hilo {
                         Date now2 = new Date();
                         String strDate2 = sdf2.format(now2);
                         //System.out.println("<-- Date: " + strDate2 + "; Response: " + line);
-                        response = "AgentHonest <-- Date: " + strDate2 + "; Response: " + line;
+                        response = "Root/AgentHonest <-- Date: " + strDate2 + "; Response: " + line;
                         caja.append(response+ "\n");
                         String session = jsonObject.get("A").toString();
                         String na = jsonObject.get("NA").toString();
@@ -139,8 +139,8 @@ public final class AgentsHonest extends Hilo {
             SimpleDateFormat sdf3 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
             Date now3 = new Date();
             String strDate3 = sdf3.format(now3);
-            //System.out.println("--> Date: " + strDate3 + "; Token: " + token + "; NA: " + randomNumber + "; CURL: " + rootCreation2);
-            response = "AgentHonest --> Date: " + strDate3 + "; Token: " + token + "; NA: " + randomNumber + "; CURL: " + rootCreation;
+            System.out.println("--> Date: " + strDate3 + "; Token: " + token + "; NA: " + randomNumber + "; CURL: " + rootCreation);
+            response = "Root/AgentHonest --> Date: " + strDate3 + "; Token: " + token + "; NA: " + randomNumber + "; CURL1: " + rootCreation;
             caja.append(response+ "\n");
 
             Runtime rt = Runtime.getRuntime();
