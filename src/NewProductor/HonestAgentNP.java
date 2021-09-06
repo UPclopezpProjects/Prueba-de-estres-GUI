@@ -34,7 +34,7 @@ public class HonestAgentNP {
     private String image;
     private String ip;
     private JTextArea caja;
-    
+
     public HonestAgentNP(String ubication, String harvestD, String caducationD, String description, String fId, String nameProductor, String previousS, String currentS, String code, String image, String ip, JTextArea caja) {
         this.ubication = ubication;
         this.harvestD = harvestD;
@@ -50,7 +50,7 @@ public class HonestAgentNP {
         this.caja = caja;
         userCreation();
     }
-    
+
     public void userCreation() {
         //caja.append("chile enhogada");
         //System.out.print(token);
@@ -75,17 +75,19 @@ public class HonestAgentNP {
                     + "documentation=" + documentation + "&"
                     + "code=" + code + "\" "
                     + "-F \"image=@" + image + "\" "
-                    + "-X POST http://"+ip+":80/productorsData";
-            
+                    + "-X POST http://" + ip + ":80/productorsData";
+
+            String rootCreation2 = "curl -F \"fid="+fId+"\" -F \"ubication="+ubication+"\" -F \"name="+nameProduction+"\" -F \"harvestDate="+harvestD+"\" -F \"caducationDate="+caducationD+"\" -F \"previousStage="+previousS+"\" -F \"currentStage="+currentS+"\" -F \"description="+description+"\" -F \"image=@"+image+"\" -F \"documentation=document.pdf\" -F \"nameOfCompany=Productora de aguacates 3 S.A. de C.V.\" -F \"code="+code+"\" -X POST http://"+ip+":80/productorsData";
+
             SimpleDateFormat sdf3 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
             Date now3 = new Date();
             String strDate3 = sdf3.format(now3);
-            String response = "AgentHonest --> Date: " + strDate3 + "; CURL: " + rootCreation;
-            caja.append(response+ "\n");
+            String response = "AgentHonest --> Date: " + strDate3 + "; CURL: " + rootCreation2;
+            caja.append(response + "\n");
 
             //hace la petición como en CMD
             Runtime rt = Runtime.getRuntime();
-            Process proc = rt.exec(rootCreation);
+            Process proc = rt.exec(rootCreation2);
 
             InputStream stdIn = proc.getInputStream();
             InputStreamReader isr = new InputStreamReader(stdIn);
@@ -101,7 +103,7 @@ public class HonestAgentNP {
                         String strDate4 = sdf4.format(now4);
                         //System.out.println("<-- Date: " + strDate4 + "; Response: " + line);
                         response = "AgentHonest <-- Date: " + strDate4 + "; Response: " + line;
-                        caja.append(response+ "\n \n");
+                        caja.append(response + "\n \n");
                     }
                     intentar = false;
                 }

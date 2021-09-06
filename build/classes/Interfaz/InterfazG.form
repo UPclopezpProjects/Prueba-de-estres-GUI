@@ -941,9 +941,9 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="jLabel23" alignment="0" max="32767" attributes="0"/>
                   <Group type="102" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" attributes="0">
-                              <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="1" max="-2" attributes="0">
                                   <Component id="jScrollPane6" alignment="0" max="32767" attributes="0"/>
                                   <Group type="102" attributes="0">
@@ -984,10 +984,7 @@
                               </Group>
                               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                           </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jScrollPane3" max="32767" attributes="0"/>
-                          </Group>
+                          <Component id="jScrollPane3" alignment="0" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
@@ -1741,7 +1738,7 @@
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="1" attributes="0">
-                                  <Component id="CBPreviousSNP" pref="91" max="32767" attributes="0"/>
+                                  <Component id="CBPreviousSNP" max="32767" attributes="0"/>
                                   <Component id="CBDescriptionNP" alignment="0" max="32767" attributes="0"/>
                                   <Component id="CBCurrentSNP" max="32767" attributes="0"/>
                                   <Component id="CBNameNP" max="32767" attributes="0"/>
@@ -1763,12 +1760,12 @@
                               <EmptySpace min="-2" pref="60" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" alignment="0" attributes="0">
-                                      <EmptySpace min="0" pref="9" max="32767" attributes="0"/>
+                                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                       <Component id="jLabel54" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
                                       <Component id="SNumberRequestNP" min="-2" pref="63" max="-2" attributes="0"/>
                                   </Group>
-                                  <Component id="jScrollPane8" pref="182" max="32767" attributes="0"/>
+                                  <Component id="jScrollPane8" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
