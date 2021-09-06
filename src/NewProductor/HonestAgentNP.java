@@ -78,6 +78,7 @@ public class HonestAgentNP {
                     + "-X POST http://" + ip + ":80/productorsData";
 
             String rootCreation2 = "curl -F \"fid="+fId+"\" -F \"ubication="+ubication+"\" -F \"name="+nameProduction+"\" -F \"harvestDate="+harvestD+"\" -F \"caducationDate="+caducationD+"\" -F \"previousStage="+previousS+"\" -F \"currentStage="+currentS+"\" -F \"description="+description+"\" -F \"image=@"+image+"\" -F \"documentation=document.pdf\" -F \"nameOfCompany=Productora de aguacates 3 S.A. de C.V.\" -F \"code="+code+"\" -X POST http://"+ip+":80/productorsData";
+            //String rootCreation2 = "curl -F \"fid="+fId+"\" -F \"ubication="+ubication+"\" -F \"name="+nameProduction+"\" -F \"harvestDate="+harvestD+"\" -F \"caducationDate="+caducationD+"\" -F \"previousStage="+previousS+"\" -F \"currentStage="+currentS+"\" -F \"description="+description+"\" -F \"image=@"+image+"\" -F \"documentation=document.pdf\" -F \"nameOfCompany=Productora de aguacates 3 S.A. de C.V.\" -F \"code="+code+"\" -H \"Authorization=\"-X POST http://"+ip+":80/productorsData";
 
             SimpleDateFormat sdf3 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
             Date now3 = new Date();
