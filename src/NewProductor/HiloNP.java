@@ -29,6 +29,11 @@ public class HiloNP implements Runnable {
     private String image;
     private String ip;
     private JTextArea caja;
+    private String token;
+
+    public void setToken(String token) {
+        this.token = token;
+    }
 
     public void setIp(String ip) {
         this.ip = ip;
@@ -84,9 +89,9 @@ public class HiloNP implements Runnable {
 
     public void loop1() throws InterruptedException {
         if(typeConsult == "Honest"){
-            HonestAgentNP honesto = new HonestAgentNP(ubication, harvestD, caducationD, description, fId, nameProduction, previousS, currentS, code, image, ip, caja);
+            HonestAgentNP honesto = new HonestAgentNP(ubication, harvestD, caducationD, description, fId, nameProduction, previousS, currentS, code, image, ip, caja, token);
         }else{
-            DishonestAgentNP dishonest = new DishonestAgentNP(ubication, harvestD, caducationD, description, fId, nameProduction, previousS, currentS, code, image, ip, caja);
+            DishonestAgentNP dishonest = new DishonestAgentNP(ubication, harvestD, caducationD, description, fId, nameProduction, previousS, currentS, code, image, ip, caja, token);
         }
     }
     

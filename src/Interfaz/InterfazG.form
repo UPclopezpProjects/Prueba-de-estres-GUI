@@ -1759,7 +1759,7 @@
                                   <Component id="CBFIdNP" alignment="0" min="-2" pref="112" max="-2" attributes="0"/>
                                   <Component id="CBCodeNP" alignment="0" min="-2" pref="112" max="-2" attributes="0"/>
                                   <Component id="CBIpNP" min="-2" pref="112" max="-2" attributes="0"/>
-                                  <Component id="jTextField1" alignment="0" min="-2" pref="112" max="-2" attributes="0"/>
+                                  <Component id="TFTokenNP" alignment="0" min="-2" pref="112" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace min="-2" pref="60" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
@@ -1823,7 +1823,7 @@
                                           <Component id="jLabel44" alignment="3" min="-2" max="-2" attributes="0"/>
                                           <Component id="CBCurrentSNP" alignment="3" min="-2" max="-2" attributes="0"/>
                                           <Component id="jLabel37" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          <Component id="jTextField1" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="TFTokenNP" alignment="3" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
                               </Group>
@@ -2173,7 +2173,7 @@
                 <Property name="text" type="java.lang.String" value="Token:"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="jTextField1">
+            <Component class="javax.swing.JTextField" name="TFTokenNP">
             </Component>
           </SubComponents>
         </Container>

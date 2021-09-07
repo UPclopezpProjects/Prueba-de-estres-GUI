@@ -7,7 +7,6 @@ package NewProductor;
 
 import Interfaz.MD5;
 import java.io.BufferedReader;
-import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -21,7 +20,6 @@ import javax.swing.JTextArea;
  * @author frank
  */
 public class HonestAgentNP {
-
     private String ubication;
     private String harvestD;
     private String caducationD;
@@ -34,8 +32,9 @@ public class HonestAgentNP {
     private String image;
     private String ip;
     private JTextArea caja;
+    private String token;
 
-    public HonestAgentNP(String ubication, String harvestD, String caducationD, String description, String fId, String nameProductor, String previousS, String currentS, String code, String image, String ip, JTextArea caja) {
+    public HonestAgentNP(String ubication, String harvestD, String caducationD, String description, String fId, String nameProductor, String previousS, String currentS, String code, String image, String ip, JTextArea caja, String token) {
         this.ubication = ubication;
         this.harvestD = harvestD;
         this.caducationD = caducationD;
@@ -48,11 +47,11 @@ public class HonestAgentNP {
         this.image = image;
         this.ip = ip;
         this.caja = caja;
+        this.token = token;
         userCreation();
     }
 
     public void userCreation() {
-        //caja.append("chile enhogada");
         //System.out.print(token);
         String[] firstname = {"firstname1", "firstname2", "firstname3", "firstname4", "firstname5",
             "firstname6", "firstname7", "firstname8", "firstname9", "firstname10"};
@@ -76,9 +75,9 @@ public class HonestAgentNP {
                     + "code=" + code + "\" "
                     + "-F \"image=@" + image + "\" "
                     + "-X POST http://" + ip + ":80/productorsData";
-
-            String rootCreation2 = "curl -F \"fid="+fId+"\" -F \"ubication="+ubication+"\" -F \"name="+nameProduction+"\" -F \"harvestDate="+harvestD+"\" -F \"caducationDate="+caducationD+"\" -F \"previousStage="+previousS+"\" -F \"currentStage="+currentS+"\" -F \"description="+description+"\" -F \"image=@"+image+"\" -F \"documentation=document.pdf\" -F \"nameOfCompany=Productora de aguacates 3 S.A. de C.V.\" -F \"code="+code+"\" -X POST http://"+ip+":80/productorsData";
-            //String rootCreation2 = "curl -F \"fid="+fId+"\" -F \"ubication="+ubication+"\" -F \"name="+nameProduction+"\" -F \"harvestDate="+harvestD+"\" -F \"caducationDate="+caducationD+"\" -F \"previousStage="+previousS+"\" -F \"currentStage="+currentS+"\" -F \"description="+description+"\" -F \"image=@"+image+"\" -F \"documentation=document.pdf\" -F \"nameOfCompany=Productora de aguacates 3 S.A. de C.V.\" -F \"code="+code+"\" -H \"Authorization=\"-X POST http://"+ip+":80/productorsData";
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            
+            //String rootCreation2 = "curl -F \"fid="+fId+"\" -F \"ubication="+ubication+"\" -F \"name="+nameProduction+"\" -F \"harvestDate="+harvestD+"\" -F \"caducationDate="+caducationD+"\" -F \"previousStage="+previousS+"\" -F \"currentStage="+currentS+"\" -F \"description="+description+"\" -F \"image=@"+image+"\" -F \"documentation=document.pdf\" -F \"nameOfCompany=Productora de aguacates 3 S.A. de C.V.\" -F \"code="+code+"\" -X POST http://"+ip+":80/productorsData";
+            String rootCreation2 = "curl -F \"fid="+fId+"\" -F \"ubication="+ubication+"\" -F \"name="+nameProduction+"\" -F \"harvestDate="+harvestD+"\" -F \"caducationDate="+caducationD+"\" -F \"previousStage="+previousS+"\" -F \"currentStage="+currentS+"\" -F \"description="+description+"\" -F \"image=@"+image+"\" -F \"documentation=document.pdf\" -F \"nameOfCompany=Productora de aguacates 3 S.A. de C.V.\" -F \"code="+code+"\" -H \"Authorization:"+token+"\" -X POST http://"+ip+":80/productorsData";
 
             SimpleDateFormat sdf3 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
             Date now3 = new Date();

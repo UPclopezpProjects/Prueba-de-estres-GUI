@@ -32,20 +32,22 @@ public class DishonestAgentNP {
     private String image;
     private String ip;
     private JTextArea caja;
+    private String token;
 
-    public DishonestAgentNP(String ubication, String harvestD, String caducationD, String description, String fId, String nameProduction, String previousS, String currentS, String code, String image, String ip, JTextArea caja) {
+    public DishonestAgentNP(String ubication, String harvestD, String caducationD, String description, String fId, String nameProductor, String previousS, String currentS, String code, String image, String ip, JTextArea caja, String token) {
         this.ubication = ubication;
         this.harvestD = harvestD;
         this.caducationD = caducationD;
         this.description = description;
         this.fId = fId;
-        this.nameProduction = nameProduction;
+        this.nameProduction = nameProductor;
         this.previousS = previousS;
         this.currentS = currentS;
         this.code = code;
         this.image = image;
         this.ip = ip;
         this.caja = caja;
+        this.token = token;
         userCreation();
     }
     
@@ -74,20 +76,18 @@ public class DishonestAgentNP {
                     + "-F \"image=@" + image + "\" "
                     + "-X POST http://"+ip+":80/productorsData";
             
-            String rootCreation2 = "curl -F \"fid="+fId+"\" -F \"ubication="+ubication+"\" -F \"name="+nameProduction+"\" -F \"harvestDate="+harvestD+"\" -F \"caducationDate="+caducationD+"\" -F \"previousStage="+previousS+"\" -F \"currentStage="+currentS+"\" -F \"description="+description+"\" -F \"image=@"+image+"\" -F \"documentation=document.pdf\" -F \"nameOfCompany=Productora de aguacates 3 S.A. de C.V.\" -F \"code="+code+"\" -X POST http://"+ip+":80/productorsData";
-            //String rootCreation2 = "curl -F \"fid="+fId+"\" -F \"ubication="+ubication+"\" -F \"name="+nameProduction+"\" -F \"harvestDate="+harvestD+"\" -F \"caducationDate="+caducationD+"\" -F \"previousStage="+previousS+"\" -F \"currentStage="+currentS+"\" -F \"description="+description+"\" -F \"image=@"+image+"\" -F \"documentation=document.pdf\" -F \"nameOfCompany=Productora de aguacates 3 S.A. de C.V.\" -F \"code="+code+"\" -H \"Authorization=\"-X POST http://"+ip+":80/productorsData";
-
+            //String rootCreation2 = "curl -F \"fid="+fId+"\" -F \"ubication="+ubication+"\" -F \"name="+nameProduction+"\" -F \"harvestDate="+harvestD+"\" -F \"caducationDate="+caducationD+"\" -F \"previousStage="+previousS+"\" -F \"currentStage="+currentS+"\" -F \"description="+description+"\" -F \"image=@"+image+"\" -F \"documentation=document.pdf\" -F \"nameOfCompany=Productora de aguacates 3 S.A. de C.V.\" -F \"code="+code+"\" -X POST http://"+ip+":80/productorsData";
+            String rootCreation2 = "curl -F \"fid="+fId+"\" -F \"ubication="+ubication+"\" -F \"name="+nameProduction+"\" -F \"harvestDate="+harvestD+"\" -F \"caducationDate="+caducationD+"\" -F \"previousStage="+previousS+"\" -F \"currentStage="+currentS+"\" -F \"description="+description+"\" -F \"image=@"+image+"\" -F \"documentation=document.pdf\" -F \"nameOfCompany=Productora de aguacates 3 S.A. de C.V.\" -F \"code="+code+"\" -H \"Authorization:"+token+"\" -X POST http://"+ip+":80/productorsData";
             
             SimpleDateFormat sdf3 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
             Date now3 = new Date();
             String strDate3 = sdf3.format(now3);
-            //System.out.println("--> Date: " + strDate3 + "; Token: " + token + "; NA: " + randomNumber + "; CURL: " + rootCreation2);
             String response = "New Productor/DishonestAgent --> Date: " + strDate3 + "; CURL: " + rootCreation2;
             caja.append(response+ "\n");
 
             //hace la petición como en CMD
             Runtime rt = Runtime.getRuntime();
-            Process proc = rt.exec(rootCreation);
+            Process proc = rt.exec(rootCreation2);
 
             InputStream stdIn = proc.getInputStream();
             InputStreamReader isr = new InputStreamReader(stdIn);

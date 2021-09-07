@@ -223,6 +223,7 @@ public class InterfazG extends javax.swing.JFrame {
         String typeConsult = honest;
         String ip = String.valueOf(CBIpNP.getSelectedItem());
         JTextArea caja = areaTexto;
+        String token = TFTokenNP.getText();
 
         int aHonest = (Integer) SHonestAgentNP.getValue();
         int aDishonest = (Integer) SDishonestAgentNP.getValue();
@@ -248,6 +249,7 @@ public class InterfazG extends javax.swing.JFrame {
                             hNP.setImage(getImage());
                             hNP.setIp(ip);
                             hNP.setCaja(caja);
+                            hNP.setToken(token);
 
                             new Thread(hNP).start();
                         } else {
@@ -1000,7 +1002,7 @@ public class InterfazG extends javax.swing.JFrame {
         CBIpNP = new javax.swing.JComboBox<>();
         CBDescriptionNP = new javax.swing.JComboBox<>();
         jLabel37 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        TFTokenNP = new javax.swing.JTextField();
 
         jDialog1.setMinimumSize(new java.awt.Dimension(420, 270));
         jDialog1.setResizable(false);
@@ -2122,7 +2124,7 @@ public class InterfazG extends javax.swing.JFrame {
                             .addComponent(CBFIdNP, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(CBCodeNP, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(CBIpNP, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(TFTokenNP, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(60, 60, 60)
                         .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel5Layout.createSequentialGroup()
@@ -2173,7 +2175,7 @@ public class InterfazG extends javax.swing.JFrame {
                                     .addComponent(jLabel44)
                                     .addComponent(CBCurrentSNP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel37)
-                                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                    .addComponent(TFTokenNP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addGap(13, 13, 13)))
                 .addComponent(jButton2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -2505,6 +2507,7 @@ public class InterfazG extends javax.swing.JFrame {
     private javax.swing.JTextField TFAdressUUC;
     private javax.swing.JTextField TFAuthorizationUC;
     private javax.swing.JTextField TFPublicK;
+    private javax.swing.JTextField TFTokenNP;
     private javax.swing.JTextArea areaTexto;
     private javax.swing.JButton jButton2;
     private javax.swing.JDialog jDialog1;
@@ -2583,7 +2586,6 @@ public class InterfazG extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JScrollPane jScrollPane8;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JSpinner sAgenteH;
     private javax.swing.JSpinner sEmpieza;
     private javax.swing.JSpinner sEnvianA;
