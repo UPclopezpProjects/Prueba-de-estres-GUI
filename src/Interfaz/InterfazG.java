@@ -230,41 +230,40 @@ public class InterfazG extends javax.swing.JFrame {
         int totalP = aHonest + aDishonest;
         hNP = new HiloNP();
 
-        
-            if (!ubication.isEmpty()) {
-                if (!harvestD.isEmpty()) {
-                    if (!caducationD.isEmpty()) {
-                        if (totalP == 100) {
-                            jDialog2.setVisible(true);
-                            hNP.setUbication(ubication);
-                            hNP.setHarvestD(harvestD);
-                            hNP.setCaducationD(caducationD);
-                            hNP.setDescription(description);
-                            hNP.setfId(fId);
-                            hNP.setNameProduction(nameProduction);
-                            hNP.setPreviousS(previousS);
-                            hNP.setCurrentS(currentS);
-                            hNP.setCode(code);
-                            hNP.setTypeConsult(typeConsult);
-                            hNP.setImage(getImage());
-                            hNP.setIp(ip);
-                            hNP.setCaja(caja);
-                            hNP.setToken(token);
+        if (!ubication.isEmpty()) {
+            if (!harvestD.isEmpty()) {
+                if (!caducationD.isEmpty()) {
+                    if (totalP == 100) {
+                        jDialog2.setVisible(true);
+                        hNP.setUbication(ubication);
+                        hNP.setHarvestD(harvestD);
+                        hNP.setCaducationD(caducationD);
+                        hNP.setDescription(description);
+                        hNP.setfId(fId);
+                        hNP.setNameProduction(nameProduction);
+                        hNP.setPreviousS(previousS);
+                        hNP.setCurrentS(currentS);
+                        hNP.setCode(code);
+                        hNP.setTypeConsult(typeConsult);
+                        hNP.setImage(getImage());
+                        hNP.setIp(ip);
+                        hNP.setCaja(caja);
+                        hNP.setToken(token);
 
-                            new Thread(hNP).start();
-                        } else {
-                            JOptionPane.showMessageDialog(null, "The addition of porcentages must be 100%");
-                        }
+                        new Thread(hNP).start();
                     } else {
-                        JOptionPane.showMessageDialog(null, "Set a caducation date");
+                        JOptionPane.showMessageDialog(null, "The addition of porcentages must be 100%");
                     }
                 } else {
-                    JOptionPane.showMessageDialog(null, "Set a harvest");
+                    JOptionPane.showMessageDialog(null, "Set a caducation date");
                 }
             } else {
-                JOptionPane.showMessageDialog(null, "Set a ubication");
+                JOptionPane.showMessageDialog(null, "Set a harvest");
             }
-         
+        } else {
+            JOptionPane.showMessageDialog(null, "Set a ubication");
+        }
+
     }
 
     private void consultaHonestaUC(String typeConsult) {
@@ -486,6 +485,10 @@ public class InterfazG extends javax.swing.JFrame {
                 RBDeleteA.setEnabled(false);
                 RBDeleteTU.setEnabled(false);
                 RBDeleteM.setEnabled(true);
+                RBReadD.setEnabled(true);
+                RBUpdateD.setEnabled(true);
+                RBCreateD.setEnabled(true);
+                RBDeleteD.setEnabled(true);
 
                 RBReadA.setSelected(false);
                 RBReadTU.setSelected(false);
@@ -495,6 +498,10 @@ public class InterfazG extends javax.swing.JFrame {
                 RBCreateTU.setSelected(false);
                 RBDeleteA.setSelected(false);
                 RBDeleteTU.setSelected(false);
+                RBReadD.setSelected(true);
+                RBUpdateD.setSelected(true);
+                RBCreateD.setSelected(true);
+                RBDeleteD.setSelected(true);
                 ;
                 break;
             case "Acopio":
@@ -511,6 +518,10 @@ public class InterfazG extends javax.swing.JFrame {
                 RBDeleteA.setEnabled(false);
                 RBDeleteTU.setEnabled(false);
                 RBDeleteM.setEnabled(true);
+                RBReadD.setEnabled(true);
+                RBUpdateD.setEnabled(true);
+                RBCreateD.setEnabled(true);
+                RBDeleteD.setEnabled(true);
 
                 RBReadA.setSelected(false);
                 RBReadTU.setSelected(false);
@@ -520,6 +531,10 @@ public class InterfazG extends javax.swing.JFrame {
                 RBCreateTU.setSelected(false);
                 RBDeleteA.setSelected(false);
                 RBDeleteTU.setSelected(false);
+                RBReadD.setSelected(true);
+                RBUpdateD.setSelected(true);
+                RBCreateD.setSelected(true);
+                RBDeleteD.setSelected(true);
                 ;
                 break;
             case "Merchant":
@@ -536,6 +551,10 @@ public class InterfazG extends javax.swing.JFrame {
                 RBDeleteA.setEnabled(false);
                 RBDeleteTU.setEnabled(false);
                 RBDeleteM.setEnabled(true);
+                RBReadD.setEnabled(true);
+                RBUpdateD.setEnabled(true);
+                RBCreateD.setEnabled(true);
+                RBDeleteD.setEnabled(true);
 
                 RBReadA.setSelected(false);
                 RBReadTU.setSelected(false);
@@ -545,6 +564,10 @@ public class InterfazG extends javax.swing.JFrame {
                 RBCreateTU.setSelected(false);
                 RBDeleteA.setSelected(false);
                 RBDeleteTU.setSelected(false);
+                RBReadD.setSelected(true);
+                RBUpdateD.setSelected(true);
+                RBCreateD.setSelected(true);
+                RBDeleteD.setSelected(true);
                 ;
                 break;
             case "Carrier":
@@ -561,6 +584,10 @@ public class InterfazG extends javax.swing.JFrame {
                 RBDeleteA.setEnabled(false);
                 RBDeleteTU.setEnabled(false);
                 RBDeleteM.setEnabled(true);
+                RBReadD.setEnabled(true);
+                RBUpdateD.setEnabled(true);
+                RBCreateD.setEnabled(true);
+                RBDeleteD.setEnabled(true);
 
                 RBReadA.setSelected(false);
                 RBReadTU.setSelected(false);
@@ -570,6 +597,10 @@ public class InterfazG extends javax.swing.JFrame {
                 RBCreateTU.setSelected(false);
                 RBDeleteA.setSelected(false);
                 RBDeleteTU.setSelected(false);
+                RBReadD.setSelected(true);
+                RBUpdateD.setSelected(true);
+                RBCreateD.setSelected(true);
+                RBDeleteD.setSelected(true);
                 ;
                 break;
             case "Root":
@@ -586,6 +617,11 @@ public class InterfazG extends javax.swing.JFrame {
                 RBDeleteA.setEnabled(true);
                 RBDeleteTU.setEnabled(true);
                 RBDeleteM.setEnabled(true);
+                RBReadD.setEnabled(false);
+                RBUpdateD.setEnabled(false);
+                RBCreateD.setEnabled(false);
+                RBDeleteD.setEnabled(false);
+                
 
                 RBReadA.setSelected(true);
                 RBReadM.setSelected(true);
@@ -599,6 +635,10 @@ public class InterfazG extends javax.swing.JFrame {
                 RBDeleteA.setSelected(true);
                 RBDeleteTU.setSelected(true);
                 RBDeleteM.setSelected(true);
+                RBReadD.setSelected(false);
+                RBUpdateD.setSelected(false);
+                RBCreateD.setSelected(false);
+                RBDeleteD.setSelected(false);
                 ;
                 break;
             case "Administrador":
@@ -615,6 +655,15 @@ public class InterfazG extends javax.swing.JFrame {
                 RBDeleteA.setEnabled(true);
                 RBDeleteTU.setEnabled(true);
                 RBDeleteM.setEnabled(true);
+                RBReadD.setEnabled(false);
+                RBUpdateD.setEnabled(false);
+                RBCreateD.setEnabled(false);
+                RBDeleteD.setEnabled(false);
+                
+                RBReadD.setSelected(false);
+                RBUpdateD.setSelected(false);
+                RBCreateD.setSelected(false);
+                RBDeleteD.setSelected(false);                
                 ;
                 break;
             default:
@@ -662,6 +711,10 @@ public class InterfazG extends javax.swing.JFrame {
         boolean crearA;
         boolean crearTU;
         boolean loginU;
+        boolean leerI;
+        boolean actualizarI;
+        boolean crearI;
+        boolean borrarI;
 
         if (RBReadA.isSelected()) {
             leerA = true;
@@ -734,9 +787,37 @@ public class InterfazG extends javax.swing.JFrame {
         } else {
             loginU = false;
         }
+        
+        if(RBReadD.isSelected()){
+            leerI = true;
+        } else {
+            leerI = false;
+        }
+        //boolean leerI;
+        
+        if(RBUpdateD.isSelected()){
+            actualizarI = true;
+        } else {
+            actualizarI = false;
+        }
+        //boolean actualizarI;
+        
+        if(RBCreateD.isSelected()){
+            crearI = true;
+        } else {
+            crearI = false;
+        }
+        //boolean crearI;
+        
+        if(RBDeleteD.isSelected()){
+            borrarI = true;
+        } else {
+            borrarI = false;
+        }
+        //boolean borrarI;
 
         System.out.println("getRadioBCU= {\"\"createAdministrator\"\":" + String.valueOf(crearA) + ",\"\"createTUser\"\":" + String.valueOf(crearTU) + ",\"\"updateMe\"\":" + String.valueOf(actualizarM) + ",\"\"updateAdministrator\"\":" + String.valueOf(actualizarA) + ",\"\"updateTUser\"\":" + String.valueOf(actualizarTU) + ",\"\"deleteMe\"\":" + String.valueOf(eliminarM) + ",\"\"deleteAdministrator\"\":" + String.valueOf(eliminarA) + ",\"\"deleteTUser\"\":" + String.valueOf(eliminarTU) + ",\"\"readMe\"\":" + String.valueOf(leerM) + ",\"\"readAdministrator\"\":" + String.valueOf(leerA) + ",\"\"readTUser\"\":" + String.valueOf(leerTU) + ",\"\"loginUser\"\":" + String.valueOf(loginU) + "}");
-        return "{\"\"createAdministrator\"\":" + String.valueOf(crearA) + ",\"\"createTUser\"\":" + String.valueOf(crearTU) + ",\"\"updateMe\"\":" + String.valueOf(actualizarM) + ",\"\"updateAdministrator\"\":" + String.valueOf(actualizarA) + ",\"\"updateTUser\"\":" + String.valueOf(actualizarTU) + ",\"\"deleteMe\"\":" + String.valueOf(eliminarM) + ",\"\"deleteAdministrator\"\":" + String.valueOf(eliminarA) + ",\"\"deleteTUser\"\":" + String.valueOf(eliminarTU) + ",\"\"readMe\"\":" + String.valueOf(leerM) + ",\"\"readAdministrator\"\":" + String.valueOf(leerA) + ",\"\"readTUser\"\":" + String.valueOf(leerTU) + ",\"\"loginUser\"\":" + String.valueOf(loginU) + "}";
+        return "{\"\"createAdministrator\"\":" + String.valueOf(crearA) + ",\"\"createTUser\"\":" + String.valueOf(crearTU) + ",\"\"updateMe\"\":" + String.valueOf(actualizarM) + ",\"\"updateAdministrator\"\":" + String.valueOf(actualizarA) + ",\"\"updateTUser\"\":" + String.valueOf(actualizarTU) + ",\"\"deleteMe\"\":" + String.valueOf(eliminarM) + ",\"\"deleteAdministrator\"\":" + String.valueOf(eliminarA) + ",\"\"deleteTUser\"\":" + String.valueOf(eliminarTU) + ",\"\"readMe\"\":" + String.valueOf(leerM) + ",\"\"readAdministrator\"\":" + String.valueOf(leerA) + ",\"\"readTUser\"\":" + String.valueOf(leerTU) + ",\"\"loginUser\"\":" + String.valueOf(loginU) + ",\"\"readData\"\":" + String.valueOf(leerI)+",\"\"updateData\"\":" + String.valueOf(actualizarI)+",\"\"createData\"\":" + String.valueOf(crearI)+",\"\"deleteData\"\":" + String.valueOf(borrarI)+"}";
     }
 
     private String getRadioB() {
@@ -833,7 +914,7 @@ public class InterfazG extends javax.swing.JFrame {
         String ubicaciones[] = {"17.531220571705116, -99.54728275095816", "17.132791271521327, -96.7728431841885", "22.146749160456203, -97.79458054076693",
             "25.616705695203237, -100.31109896934211", "28.5929766805675, -106.06668768489162"};
         int i = (int) Math.floor(Math.random() * 5);
-        System.out.println("getUbication = "+i);
+        System.out.println("getUbication = " + i);
         String lugar = ubicaciones[i];
         return lugar;
     }
@@ -841,7 +922,7 @@ public class InterfazG extends javax.swing.JFrame {
     private String getHarvestDate() {
         String harvests[] = {"25/01/2021", "15/05/2021", "01/05/2021", "29/07/2021", "25/07/2021"};
         int i = (int) Math.floor(Math.random() * 5);
-        System.out.println("getHavestDate = "+i);
+        System.out.println("getHavestDate = " + i);
         String fechaH = harvests[i];
         return fechaH;
     }
@@ -969,10 +1050,10 @@ public class InterfazG extends javax.swing.JFrame {
         RBDeleteA = new javax.swing.JRadioButton();
         RBDeleteTU = new javax.swing.JRadioButton();
         RBDeleteM = new javax.swing.JRadioButton();
-        jRadioButton1 = new javax.swing.JRadioButton();
-        jRadioButton2 = new javax.swing.JRadioButton();
-        jRadioButton3 = new javax.swing.JRadioButton();
-        jRadioButton4 = new javax.swing.JRadioButton();
+        RBReadD = new javax.swing.JRadioButton();
+        RBUpdateD = new javax.swing.JRadioButton();
+        RBCreateD = new javax.swing.JRadioButton();
+        RBDeleteD = new javax.swing.JRadioButton();
         jPanel5 = new javax.swing.JPanel();
         jLabel30 = new javax.swing.JLabel();
         jLabel46 = new javax.swing.JLabel();
@@ -1003,6 +1084,7 @@ public class InterfazG extends javax.swing.JFrame {
         CBDescriptionNP = new javax.swing.JComboBox<>();
         jLabel37 = new javax.swing.JLabel();
         TFTokenNP = new javax.swing.JTextField();
+        BAyuda1 = new javax.swing.JButton();
 
         jDialog1.setMinimumSize(new java.awt.Dimension(420, 270));
         jDialog1.setResizable(false);
@@ -1786,17 +1868,22 @@ public class InterfazG extends javax.swing.JFrame {
             }
         });
 
-        jRadioButton1.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        jRadioButton1.setText("jRadioButton1");
+        RBReadD.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        RBReadD.setText("readData");
+        RBReadD.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                RBReadDActionPerformed(evt);
+            }
+        });
 
-        jRadioButton2.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        jRadioButton2.setText("jRadioButton1");
+        RBUpdateD.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        RBUpdateD.setText("updateData");
 
-        jRadioButton3.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        jRadioButton3.setText("jRadioButton1");
+        RBCreateD.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        RBCreateD.setText("createData");
 
-        jRadioButton4.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        jRadioButton4.setText("jRadioButton1");
+        RBDeleteD.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        RBDeleteD.setText("deleteData");
 
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
         jPanel8.setLayout(jPanel8Layout);
@@ -1809,22 +1896,22 @@ public class InterfazG extends javax.swing.JFrame {
                     .addComponent(RBReadA)
                     .addComponent(RBReadM)
                     .addComponent(RBReadTU)
-                    .addComponent(jRadioButton1))
+                    .addComponent(RBReadD))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(RBUpdateA)
                     .addComponent(RBUpdateM)
                     .addComponent(RBUpdateTU)
-                    .addComponent(jRadioButton2))
+                    .addComponent(RBUpdateD))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(RBCreateA)
                     .addComponent(RBCreateTU)
                     .addComponent(RBLoginU)
-                    .addComponent(jRadioButton3))
+                    .addComponent(RBCreateD))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jRadioButton4)
+                    .addComponent(RBDeleteD)
                     .addComponent(RBDeleteM)
                     .addComponent(RBDeleteTU)
                     .addComponent(RBDeleteA))
@@ -1855,10 +1942,10 @@ public class InterfazG extends javax.swing.JFrame {
                     .addComponent(RBDeleteM))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jRadioButton1)
-                    .addComponent(jRadioButton2)
-                    .addComponent(jRadioButton3)
-                    .addComponent(jRadioButton4))
+                    .addComponent(RBReadD)
+                    .addComponent(RBUpdateD)
+                    .addComponent(RBCreateD)
+                    .addComponent(RBDeleteD))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -2051,7 +2138,7 @@ public class InterfazG extends javax.swing.JFrame {
         SNumberRequestNP.setModel(new javax.swing.SpinnerNumberModel(1, 1, 100, 1));
 
         CBPreviousSNP.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        CBPreviousSNP.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Productor", "Carrier", "Acopio", "Merchant" }));
+        CBPreviousSNP.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Null", "Productor", "Carrier", "Acopio", "Merchant" }));
         CBPreviousSNP.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 CBPreviousSNPActionPerformed(evt);
@@ -2059,7 +2146,7 @@ public class InterfazG extends javax.swing.JFrame {
         });
 
         CBCurrentSNP.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        CBCurrentSNP.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Productor", "Carrier", "Acopio", "Merchant" }));
+        CBCurrentSNP.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Null", "Productor", "Carrier", "Acopio", "Merchant" }));
 
         CBNameNP.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         CBNameNP.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "[x]", "[xx]", "[xxx]", "[xxxx]", "[xxxxx]" }));
@@ -2089,6 +2176,14 @@ public class InterfazG extends javax.swing.JFrame {
 
         jLabel37.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel37.setText("Token:");
+
+        BAyuda1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Interfaz/informacion.png"))); // NOI18N
+        BAyuda1.setBorder(null);
+        BAyuda1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BAyuda1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -2125,7 +2220,9 @@ public class InterfazG extends javax.swing.JFrame {
                             .addComponent(CBCodeNP, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(CBIpNP, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(TFTokenNP, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(60, 60, 60)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(BAyuda1)
+                        .addGap(37, 37, 37)
                         .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel5Layout.createSequentialGroup()
                                 .addGap(0, 0, Short.MAX_VALUE)
@@ -2152,30 +2249,32 @@ public class InterfazG extends javax.swing.JFrame {
                                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(SNumberRequestNP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel54)))
-                            .addGroup(jPanel5Layout.createSequentialGroup()
-                                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel46)
-                                    .addComponent(CBDescriptionNP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel47)
-                                    .addComponent(CBFIdNP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(8, 8, 8)
-                                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel45)
-                                    .addComponent(CBNameNP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel49)
-                                    .addComponent(CBCodeNP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel41)
-                                    .addComponent(CBPreviousSNP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel55)
-                                    .addComponent(CBIpNP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel44)
-                                    .addComponent(CBCurrentSNP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel37)
-                                    .addComponent(TFTokenNP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(BAyuda1)
+                                .addGroup(jPanel5Layout.createSequentialGroup()
+                                    .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(jLabel46)
+                                        .addComponent(CBDescriptionNP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jLabel47)
+                                        .addComponent(CBFIdNP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGap(8, 8, 8)
+                                    .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(jLabel45)
+                                        .addComponent(CBNameNP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jLabel49)
+                                        .addComponent(CBCodeNP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(jLabel41)
+                                        .addComponent(CBPreviousSNP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jLabel55)
+                                        .addComponent(CBIpNP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(jLabel44)
+                                        .addComponent(CBCurrentSNP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jLabel37)
+                                        .addComponent(TFTokenNP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                         .addGap(13, 13, 13)))
                 .addComponent(jButton2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -2389,30 +2488,37 @@ public class InterfazG extends javax.swing.JFrame {
         int aDishonest = (Integer) SDishonestAgentNP.getValue();
         int totalP = aHonest + aDishonest;
 
-        
-            if (!ubication.isEmpty()) {
-                if (!harvestD.isEmpty()) {
-                    if (!caducationD.isEmpty()) {
-                        if (totalP == 100) {
-                            crearBNP(numberR, aHonest, aDishonest);
-                        } else {
-                            JOptionPane.showMessageDialog(null, "The addition of porcentages must be 100%");
-                        }
+        if (!ubication.isEmpty()) {
+            if (!harvestD.isEmpty()) {
+                if (!caducationD.isEmpty()) {
+                    if (totalP == 100) {
+                        crearBNP(numberR, aHonest, aDishonest);
                     } else {
-                        JOptionPane.showMessageDialog(null, "Set a caducation date");
+                        JOptionPane.showMessageDialog(null, "The addition of porcentages must be 100%");
                     }
                 } else {
-                    JOptionPane.showMessageDialog(null, "Set a harvest");
+                    JOptionPane.showMessageDialog(null, "Set a caducation date");
                 }
             } else {
-                JOptionPane.showMessageDialog(null, "Set a ubication");
+                JOptionPane.showMessageDialog(null, "Set a harvest");
             }
-        
+        } else {
+            JOptionPane.showMessageDialog(null, "Set a ubication");
+        }
+
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void CBPreviousSNPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CBPreviousSNPActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_CBPreviousSNPActionPerformed
+
+    private void RBReadDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RBReadDActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_RBReadDActionPerformed
+
+    private void BAyuda1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BAyuda1ActionPerformed
+        JOptionPane.showMessageDialog(null, "Ingresa el token de root para registrar una nueva cosecha");
+    }//GEN-LAST:event_BAyuda1ActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -2451,6 +2557,7 @@ public class InterfazG extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BAyuda;
+    private javax.swing.JButton BAyuda1;
     private javax.swing.JButton BIniciar;
     private javax.swing.JButton BIniciarUC;
     private javax.swing.JComboBox<String> CBCodeNP;
@@ -2475,10 +2582,12 @@ public class InterfazG extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> CBTypeUserUC;
     private javax.swing.JRadioButton RBCreateA;
     private javax.swing.JRadioButton RBCreateA1;
+    private javax.swing.JRadioButton RBCreateD;
     private javax.swing.JRadioButton RBCreateTU;
     private javax.swing.JRadioButton RBCreateTU1;
     private javax.swing.JRadioButton RBDeleteA;
     private javax.swing.JRadioButton RBDeleteA1;
+    private javax.swing.JRadioButton RBDeleteD;
     private javax.swing.JRadioButton RBDeleteM;
     private javax.swing.JRadioButton RBDeleteM1;
     private javax.swing.JRadioButton RBDeleteTU;
@@ -2487,12 +2596,14 @@ public class InterfazG extends javax.swing.JFrame {
     private javax.swing.JRadioButton RBLoginU1;
     private javax.swing.JRadioButton RBReadA;
     private javax.swing.JRadioButton RBReadA1;
+    private javax.swing.JRadioButton RBReadD;
     private javax.swing.JRadioButton RBReadM;
     private javax.swing.JRadioButton RBReadM1;
     private javax.swing.JRadioButton RBReadTU;
     private javax.swing.JRadioButton RBReadTU1;
     private javax.swing.JRadioButton RBUpdateA;
     private javax.swing.JRadioButton RBUpdateA1;
+    private javax.swing.JRadioButton RBUpdateD;
     private javax.swing.JRadioButton RBUpdateM;
     private javax.swing.JRadioButton RBUpdateM1;
     private javax.swing.JRadioButton RBUpdateTU;
@@ -2574,10 +2685,6 @@ public class InterfazG extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
-    private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JRadioButton jRadioButton2;
-    private javax.swing.JRadioButton jRadioButton3;
-    private javax.swing.JRadioButton jRadioButton4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
