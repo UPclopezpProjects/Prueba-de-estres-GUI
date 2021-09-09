@@ -32,7 +32,12 @@ public class hiloUC implements Runnable {
     private String ip;
     private JTextArea caja;
     private String dp;
+    private String gas;
 
+    public void setGas(String gas) {
+        this.gas = gas;
+    }
+    
     public void setDp(String dp) {
         this.dp = dp;
     }
@@ -101,13 +106,13 @@ public class hiloUC implements Runnable {
 
     public void loop1() throws InterruptedException {
         if (typeConsult == "Honest") {
-            HonestAgent h = new HonestAgent(email, password, typeU, adressU, authorization, fatherS, name, motherS, nRequest, aHonest, aDishonest, typeConsult, ip, caja, dp);
+            HonestAgent h = new HonestAgent(email, password, typeU, adressU, authorization, fatherS, name, motherS, nRequest, aHonest, aDishonest, typeConsult, ip, caja, dp, gas);
         } else {
             if (typeConsult == "Dishonest A") {
-                DishonestAgentA d = new DishonestAgentA(email, password, typeU, adressU, authorization, fatherS, name, motherS, nRequest, aHonest, aDishonest, typeConsult, ip, caja, dp);
+                DishonestAgentA d = new DishonestAgentA(email, password, typeU, adressU, authorization, fatherS, name, motherS, nRequest, aHonest, aDishonest, typeConsult, ip, caja, dp, gas);
             } else {
                 if (typeConsult == "Dishonest B") {
-                    DishonestAgentB d = new DishonestAgentB(email, password, typeU, adressU, authorization, fatherS, name, motherS, nRequest, aHonest, aDishonest, typeConsult, ip, caja, dp);
+                    DishonestAgentB d = new DishonestAgentB(email, password, typeU, adressU, authorization, fatherS, name, motherS, nRequest, aHonest, aDishonest, typeConsult, ip, caja, dp, gas);
                 }
             }
         }

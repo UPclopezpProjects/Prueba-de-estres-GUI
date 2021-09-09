@@ -159,7 +159,7 @@ public final class AgentsHonest extends Hilo {
                         Date now4 = new Date();
                         String strDate4 = sdf4.format(now4);
                         //System.out.println("<-- Date: " + strDate4 + "; Response: " + line);
-                        response = "AgentHonest <-- Date: " + strDate4 + "; Response: " + line;
+                        response = "Root/AgentHonest <-- Date: " + strDate4 + "; Response: " + line;
                         caja.append(response+ "\n");
                     }
                     intentar = false;
