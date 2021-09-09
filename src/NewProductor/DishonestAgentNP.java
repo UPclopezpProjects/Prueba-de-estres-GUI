@@ -116,7 +116,7 @@ public class DishonestAgentNP {
             SimpleDateFormat sdf3 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
             Date now3 = new Date();
             String strDate3 = sdf3.format(now3);
-            String response = "New Productor/AgentHonest --> Date: " + strDate3 + "; CURL: " + rootCreation2;
+            String response = "New Productor/AgentDishonest --> Date: " + strDate3 + "; CURL: " + rootCreation2;
             caja.append(response + "\n");
 
             //hace la petición como en CMD
@@ -136,7 +136,7 @@ public class DishonestAgentNP {
                         Date now4 = new Date();
                         String strDate4 = sdf4.format(now4);
                         //System.out.println("<-- Date: " + strDate4 + "; Response: " + line);
-                        response = "New Productor/AgentHonest <-- Date: " + strDate4 + "; Response: " + line;
+                        response = "New Productor/AgentDishonest <-- Date: " + strDate4 + "; Response: " + line;
                         caja.append(response + "\n \n");
                     }
                     intentar = false;
@@ -160,20 +160,7 @@ public class DishonestAgentNP {
             Random rand = new Random();
             int randomNum1 = rand.nextInt(firstname.length);
             int randomNum2 = rand.nextInt(firstname.length);
-            String documentation = "document.pdf";
-
-            /*String rootCreation = "curl -d \"fid=" + fId + "&"
-                    //+ "ubication=" + ubication + "&"
-                    + "name=" + nameProduction + "&"
-                    + "harvestDate=" + harvestD + "&"
-                    + "caducationDate=" + caducationD + "&"
-                    + "previousStage=" + previousS + "&"
-                    + "currentStage=" + currentS + "&"
-                    + "description=" + description + "&"
-                    + "documentation=" + documentation + "&"
-                    + "code=" + code + "\" "
-                    + "-F \"image=@" + image + "\" "
-                    + "-X POST http://" + ip + ":80/productorsData";*/                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             
+            String documentation = "document.pdf";                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
             
             //String rootCreation2 = "curl -F \"fid="+fId+"\" -F \"name="+nameProduction+"\" -F \"harvestDate="+harvestD+"\" -F \"caducationDate="+caducationD+"\" -F \"previousStage="+previousS+"\" -F \"currentStage="+currentS+"\" -F \"description="+description+"\" -F \"image=@"+image+"\" -F \"documentation=document.pdf\" -F \"nameOfCompany=Productora de aguacates 3 S.A. de C.V.\" -F \"code="+code+"\" -F \"origin="+origin+"\" -F \"destination="+destination+"\" -H \"Authorization:"+token+"\" -X POST http://"+ip+":80/productorsData";
             String rootCreation2 = "curl -F \"fid="+fId+"\" -F \"ubication="+ubication+"\" -F \"name="+nameProduction+"\" -F \"previousStage="+previousS+"\" -F \"currentStage="+currentS+"\" -F \"nameOfCompany=Transportadora de aguacates 3 S.A. de C.V."+"\" -F \"image=@"+image+"\" -F \"description="+description+"\" -F \"code="+code+"\" -F \"driverName="+driverName+"\" -F \"origin="+origin+"\" -F \"destination="+destination+"\" -F \"plates="+plates+"\" -F \"productPhotos=@"+productPhotos+"\" -F \"vehiclePhotos=@"+vehiclePhotos+"\" -F \"tracking="+tracking+"\" -H \"Authorization:"+token+"\" -X POST http://"+ip+":80/carriersData";
@@ -181,7 +168,7 @@ public class DishonestAgentNP {
             SimpleDateFormat sdf3 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
             Date now3 = new Date();
             String strDate3 = sdf3.format(now3);
-            String response = "New Productor/AgentHonest Carrier --> Date: " + strDate3 + "; CURL: " + rootCreation2;
+            String response = "New Productor/AgentDishonest Carrier --> Date: " + strDate3 + "; CURL: " + rootCreation2;
             caja.append(response + "\n");
 
             //hace la petición como en CMD
@@ -201,7 +188,7 @@ public class DishonestAgentNP {
                         Date now4 = new Date();
                         String strDate4 = sdf4.format(now4);
                         //System.out.println("<-- Date: " + strDate4 + "; Response: " + line);
-                        response = "New Productor/AgentHonest Carrier <-- Date: " + strDate4 + "; Response: " + line;
+                        response = "New Productor/AgentDishonest Carrier <-- Date: " + strDate4 + "; Response: " + line;
                         caja.append(response + "\n \n");
                     }
                     intentar = false;
