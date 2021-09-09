@@ -137,7 +137,7 @@ public class HiloNP implements Runnable {
         }else{
             if(currentS=="Carrier"){
                 System.out.println("HiloNP/Agente deshonesto 1");
-                DishonestAgentNP dishonest = new DishonestAgentNP(harvestD, caducationD, description, fId, nameProduction, previousS, currentS, code, image, ip, caja, token, origin, ubication);
+                DishonestAgentNP dishonest = new DishonestAgentNP(fId,ubication, nameProduction, previousS, currentS, image, description, code, driverName, origin, destination, plates, productPhotos, vehiclePhotos, tracking, token, ip, caja);
             } else {
                 System.out.println("HiloNP/Agente deshonesto 2");
                 DishonestAgentNP dishonest = new DishonestAgentNP(ubication, harvestD, caducationD, description, fId, nameProduction, previousS, currentS, code, image, ip, caja, token);
