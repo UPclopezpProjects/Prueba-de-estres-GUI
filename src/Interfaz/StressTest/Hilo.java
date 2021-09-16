@@ -6,6 +6,7 @@
 package Interfaz.StressTest;
 
 import static java.lang.Math.random;
+import java.util.ArrayList;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
@@ -33,19 +34,33 @@ public class Hilo implements Runnable {
     private String publicKey;
     private String tipoConsulta;
     private String dp;
+    private int position;   
+    private String acumulado[];
+
 
     private int aHonesto;
     private int aEnviarA;
     private int aEmpieza;
     
+    
+    public void setPosition(int position) {
+        System.out.println("Hilo/setPosition/esta es la posición: " + position);
+        this.position = position;
+    }
+
+    public String getAcumulado(int n) {
+        System.out.println("Hilo/getAcumulado registro: "+n);
+        return acumulado[n];
+    }
+
     public void setDp(String dp) {
         this.dp = dp;
     }
-    
+
     public void setTipoConsulta(String tipoConsulta) {
         this.tipoConsulta = tipoConsulta;
     }
-    
+
     public void setPublicKey(String publicKey) {
         this.publicKey = publicKey;
     }
@@ -84,7 +99,7 @@ public class Hilo implements Runnable {
         for (int x = 0; x < (valor + 1); x++) {
             this.apellidoP += letter();
         }
-        System.out.println("el apellido paterno:" + this.apellidoP);
+        //System.out.println("el apellido paterno:" + this.apellidoP);
     }
 
     public void setApellidoM(String apellidoM) {
@@ -93,7 +108,7 @@ public class Hilo implements Runnable {
         for (int x = 0; x < (valor + 1); x++) {
             this.apellidoM += letter();
         }
-        System.out.println("el apellido materno:" + this.apellidoM);
+        //System.out.println("el apellido materno:" + this.apellidoM);
     }
 
     public void setNombreU(String nombreU) {
@@ -102,7 +117,7 @@ public class Hilo implements Runnable {
         for (int x = 0; x < (valor + 1); x++) {
             this.nombreU += letter();
         }
-        System.out.println("el nombre:" + this.nombreU);
+        //System.out.println("el nombre:" + this.nombreU);
     }
 
     public void setTypeU(String typeU) {
@@ -110,27 +125,35 @@ public class Hilo implements Runnable {
 
     }
 
-    /*public void setRequestFS(int requestFS) {
-        this.delay = requestFS;
-    }*/
-
     public void setNumberRequest(int numberRequest) {
+        
         this.numberRequest = numberRequest;
     }
-
-    /*public void setEstado(boolean estado) {
-        this.estado = estado;
-    }*/
+    
+    public void crearMatriz(int n){
+        System.out.println("Hilo/crearMatriz/este es el número de requests: "+n);
+        acumulado = new String[n];
+    }
+    
     public void loop1() throws InterruptedException {
-        
-        if(tipoConsulta=="honesto"){
-            AgentsHonest a = new AgentsHonest(caja, generateEmail(), generatePassword(), nombreU, apellidoP, apellidoM, typeU, ip, publicKey, dp);
-        }else{
-            if(tipoConsulta=="enviarAlgo"){
+        acumulado= new String[numberRequest];
+        if (tipoConsulta == "honesto") {
+            System.out.println("Hilo/Honesto");
+            AgentsHonest a= new AgentsHonest(caja, generateEmail(), generatePassword(), nombreU, apellidoP, apellidoM, typeU, ip, publicKey, dp);
+            acumulado[position] =a.getAcumulado().replace("null", "");
+            System.out.println("Hilo/Honesta creación: posición= "+position+", contenido= "+acumulado[position]);
+        } else {
+            if (tipoConsulta == "enviarAlgo") {
+                System.out.println("Hilo/enviarAlgo");
                 AgentsSendAnything b = new AgentsSendAnything(caja, generateEmail(), generatePassword(), nombreU, apellidoP, apellidoM, typeU, ip, publicKey, dp);
-            } else{
-                if(tipoConsulta=="empiezaAlgun"){
+                acumulado[position]=b.getAcumulado().replace("null", "");
+                System.out.println("Hilo/enviarAlgo creación: posición= "+position+", contenido= "+acumulado[position]);
+            } else {
+                if (tipoConsulta == "empiezaAlgun") {
+                    System.out.println("Hilo/Empieza en algún paso");
                     AgentsStartAnyStep c = new AgentsStartAnyStep(caja, generateEmail(), generatePassword(), nombreU, apellidoP, apellidoM, typeU, numberRequest, ip, publicKey, dp);
+                    acumulado[position]=c.getAcumulado().replace("null", "");
+                    System.out.println("Hilo/empiezaAlgun creación: posición= "+position+", contenido= "+acumulado[position]);
                 }
             }
         }
@@ -191,5 +214,4 @@ public class Hilo implements Runnable {
             Logger.getLogger(Hilo.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
 }

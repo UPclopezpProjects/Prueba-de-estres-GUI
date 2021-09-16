@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Interfaz;
 
 import Interfaz.StressTest.Hilo;
@@ -27,18 +22,12 @@ import javax.swing.JFileChooser;
 import javax.swing.JTextArea;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
-/**
- *
- * @author frank
- */
 public class InterfazG extends javax.swing.JFrame {
 
     private Hilo objetoH;
     private hiloUC h;
     private HiloNP hNP;
-    //private List<JButton> botones;
-    //private File archivo;
-    //boolean flag = false;
+    String rootRequests[];
 
     public InterfazG() {
         initComponents();
@@ -63,6 +52,7 @@ public class InterfazG extends javax.swing.JFrame {
                 boton.addActionListener(new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent ae) {
+                        jDialog2.setVisible(true);
                         int aHonesto = (Integer) sAgenteH.getValue();
                         int aEnviarA = (Integer) sEnvianA.getValue();
                         int aEmpieza = (Integer) sEmpieza.getValue();
@@ -231,7 +221,7 @@ public class InterfazG extends javax.swing.JFrame {
         String productP = getImage();
         String vehicleP = getImage();
         String tracking = getPlates();
-        System.out.println("InterfazG/destination: "+destination);
+        System.out.println("InterfazG/destination: " + destination);
 
         int aHonest = (Integer) SHonestAgentNP.getValue();
         int aDishonest = (Integer) SDishonestAgentNP.getValue();
@@ -326,27 +316,27 @@ public class InterfazG extends javax.swing.JFrame {
         if (porcentaje == 100) {
             if (!adressU.isEmpty()) {
                 if (!authorization.isEmpty()) {
-                    if(!gas.isEmpty()){
-                    jDialog2.setVisible(true);
-                    h.setEmail(email);
-                    h.setPassword(password);
-                    h.setTypeU(typeU);
-                    h.setAdressU(adressU);
-                    h.setAuthorization(authorization);
-                    h.setFatherS(fatherS);
-                    h.setName(name);
-                    h.setMotherS(motherS);
-                    h.setnRequest(nRequest);
-                    h.setaHonest(aHonest);
-                    h.setaDishonest(aDishonest);
-                    h.setTypeConsult(typeConsult);
-                    h.setIp(ip);
-                    h.setCaja(areaTexto);
-                    h.setDp(dp);
-                    h.setGas(gas);
+                    if (!gas.isEmpty()) {
+                        jDialog2.setVisible(true);
+                        h.setEmail(email);
+                        h.setPassword(password);
+                        h.setTypeU(typeU);
+                        h.setAdressU(adressU);
+                        h.setAuthorization(authorization);
+                        h.setFatherS(fatherS);
+                        h.setName(name);
+                        h.setMotherS(motherS);
+                        h.setnRequest(nRequest);
+                        h.setaHonest(aHonest);
+                        h.setaDishonest(aDishonest);
+                        h.setTypeConsult(typeConsult);
+                        h.setIp(ip);
+                        h.setCaja(areaTexto);
+                        h.setDp(dp);
+                        h.setGas(gas);
 
-                    //hiloUC h = new hiloUC(email, password, typeU, adressU, authorization, fatherS, name, motherS, nRequest, aHonest, aDishonest, typeConsult, ip, areaTexto);
-                    new Thread(h).start();
+                        //hiloUC h = new hiloUC(email, password, typeU, adressU, authorization, fatherS, name, motherS, nRequest, aHonest, aDishonest, typeConsult, ip, areaTexto);
+                        new Thread(h).start();
                     } else {
                         JOptionPane.showMessageDialog(this, "Refill the gas field");
                     }
@@ -362,8 +352,8 @@ public class InterfazG extends javax.swing.JFrame {
     }
 
     private void consultaHonesta() {
-        areaTexto.setText("");
-        objetoH = new Hilo();
+        //areaTexto.setText("");
+        //objetoH = new Hilo();
 
         int email = CBEmail.getSelectedIndex();
         int password = CBPassword.getSelectedIndex();
@@ -387,7 +377,7 @@ public class InterfazG extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Set the public key");
         } else {
             if (pTotal == 100) {
-                jDialog2.setVisible(true);
+                //jDialog2.setVisible(true);
                 objetoH.setEmail(email);
                 objetoH.setPassword(password);
                 objetoH.setApellidoP(apellidoP);
@@ -405,7 +395,6 @@ public class InterfazG extends javax.swing.JFrame {
                 objetoH.setTipoConsulta(tipoConsulta);
                 objetoH.setDp(dp);
                 new Thread(objetoH).start();
-                //refreshA();
             } else {
                 JOptionPane.showMessageDialog(null, "The addition of porcentages must be 100%");
             }
@@ -414,7 +403,7 @@ public class InterfazG extends javax.swing.JFrame {
 
     private void consultaEnviar() {
         areaTexto.setText("");
-        objetoH = new Hilo();
+        //objetoH = new Hilo();
 
         int email = CBEmail.getSelectedIndex();
         int password = CBPassword.getSelectedIndex();
@@ -437,7 +426,7 @@ public class InterfazG extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Set the public key");
         } else {
             if (pTotal == 100) {
-                jDialog2.setVisible(true);
+                //jDialog2.setVisible(true);
                 objetoH.setEmail(email);
                 objetoH.setPassword(password);
                 objetoH.setApellidoP(apellidoP);
@@ -454,7 +443,7 @@ public class InterfazG extends javax.swing.JFrame {
                 objetoH.setPublicKey(publicK);
                 objetoH.setTipoConsulta(tipoConsulta);
                 new Thread(objetoH).start();
-                //refreshA();
+
             } else {
                 JOptionPane.showMessageDialog(null, "The addition of porcentages must be 100%");
             }
@@ -463,7 +452,7 @@ public class InterfazG extends javax.swing.JFrame {
 
     private void consultaEmpezarA() {
         areaTexto.setText("");
-        objetoH = new Hilo();
+        //objetoH = new Hilo();
 
         int email = CBEmail.getSelectedIndex();
         int password = CBPassword.getSelectedIndex();
@@ -486,7 +475,7 @@ public class InterfazG extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Set the public key");
         } else {
             if (pTotal == 100) {
-                jDialog2.setVisible(true);
+                //jDialog2.setVisible(true);
                 objetoH.setEmail(email);
                 objetoH.setPassword(password);
                 objetoH.setApellidoP(apellidoP);
@@ -503,7 +492,6 @@ public class InterfazG extends javax.swing.JFrame {
                 objetoH.setPublicKey(publicK);
                 objetoH.setTipoConsulta(tipoConsulta);
                 new Thread(objetoH).start();
-                //refreshA();
             } else {
                 JOptionPane.showMessageDialog(null, "The addition of porcentages must be 100%");
             }
@@ -850,80 +838,7 @@ public class InterfazG extends javax.swing.JFrame {
         boolean crearTU;
         boolean loginU;
 
-        if (RBReadA1.isSelected()) {
-            leerA = true;
-        } else {
-            leerA = false;
-        }
-
-        if (RBReadM1.isSelected()) {
-            leerM = true;
-        } else {
-            leerM = false;
-        }
-
-        if (RBReadTU1.isSelected()) {
-            leerTU = true;
-        } else {
-            leerTU = false;
-        }
-
-        if (RBUpdateA1.isSelected()) {
-            actualizarA = true;
-        } else {
-            actualizarA = false;
-        }
-
-        if (RBUpdateM1.isSelected()) {
-            actualizarM = true;
-        } else {
-            actualizarM = false;
-        }
-
-        if (RBUpdateTU1.isSelected()) {
-            actualizarTU = true;
-        } else {
-            actualizarTU = false;
-        }
-
-        if (RBDeleteA1.isSelected()) {
-            eliminarA = true;
-        } else {
-            eliminarA = false;
-        }
-
-        if (RBDeleteM1.isSelected()) {
-            eliminarM = true;
-        } else {
-            eliminarM = false;
-        }
-
-        if (RBDeleteTU1.isSelected()) {
-            eliminarTU = true;
-        } else {
-            eliminarTU = false;
-        }
-
-        if (RBCreateA1.isSelected()) {
-            crearA = true;
-        } else {
-            crearA = false;
-        }
-
-        if (RBCreateTU1.isSelected()) {
-            crearTU = true;
-        } else {
-            crearTU = false;
-        }
-
-        if (RBLoginU1.isSelected()) {
-            loginU = true;
-        } else {
-            loginU = false;
-        }
-
-        System.out.println("getRadioBCU= {\"\"createAdministrator\"\":" + String.valueOf(crearA) + ",\"\"createTUser\"\":" + String.valueOf(crearTU) + ",\"\"updateMe\"\":" + String.valueOf(actualizarM) + ",\"\"updateAdministrator\"\":" + String.valueOf(actualizarA) + ",\"\"updateTUser\"\":" + String.valueOf(actualizarTU) + ",\"\"deleteMe\"\":" + String.valueOf(eliminarM) + ",\"\"deleteAdministrator\"\":" + String.valueOf(eliminarA) + ",\"\"deleteTUser\"\":" + String.valueOf(eliminarTU) + ",\"\"readMe\"\":" + String.valueOf(leerM) + ",\"\"readAdministrator\"\":" + String.valueOf(leerA) + ",\"\"readTUser\"\":" + String.valueOf(leerTU) + ",\"\"loginUser\"\":" + String.valueOf(loginU) + "}");
-        return "{\"\"createAdministrator\"\":" + String.valueOf(crearA) + ",\"\"createTUser\"\":" + String.valueOf(crearTU) + ",\"\"updateMe\"\":" + String.valueOf(actualizarM) + ",\"\"updateAdministrator\"\":" + String.valueOf(actualizarA) + ",\"\"updateTUser\"\":" + String.valueOf(actualizarTU) + ",\"\"deleteMe\"\":" + String.valueOf(eliminarM) + ",\"\"deleteAdministrator\"\":" + String.valueOf(eliminarA) + ",\"\"deleteTUser\"\":" + String.valueOf(eliminarTU) + ",\"\"readMe\"\":" + String.valueOf(leerM) + ",\"\"readAdministrator\"\":" + String.valueOf(leerA) + ",\"\"readTUser\"\":" + String.valueOf(leerTU) + ",\"\"loginUser\"\":" + String.valueOf(loginU) + "}";
+        return "{\"\"createAdministrator\"\":" + true + ",\"\"createTUser\"\":" + true + ",\"\"updateMe\"\":" + true + ",\"\"updateAdministrator\"\":" + true + ",\"\"updateTUser\"\":" + true + ",\"\"deleteMe\"\":" + true + ",\"\"deleteAdministrator\"\":" + true + ",\"\"deleteTUser\"\":" + true + ",\"\"readMe\"\":" + true + ",\"\"readAdministrator\"\":" + true + ",\"\"readTUser\"\":" + true + ",\"\"loginUser\"\":" + true + "}";
     }
 
     private String getUbication() {
@@ -934,7 +849,7 @@ public class InterfazG extends javax.swing.JFrame {
         String lugar = ubicaciones[i];
         return lugar;
     }
-    
+
     private String getOrigin() {
         String ubicaciones[] = {"17.531220571705117, -99.54728275095817", "17.132791271521328, -96.7728431841886", "22.146749160456204, -97.79458054076694",
             "25.616705695203238, -100.31109896934212", "28.5929766805676, -106.06668768489163"};
@@ -943,7 +858,7 @@ public class InterfazG extends javax.swing.JFrame {
         String lugar = ubicaciones[i];
         return lugar;
     }
-    
+
     private String getDestination() {
         String ubicaciones[] = {"17.531220571705115, -99.54728275095815", "17.132791271521326, -96.7728431841884", "22.146749160456202, -97.79458054076692",
             "25.616705695203236, -100.31109896934210", "28.5929766805674, -106.06668768489161"};
@@ -974,7 +889,7 @@ public class InterfazG extends javax.swing.JFrame {
         String imagen = imagenes[i];
         return imagen;
     }
-    
+
     private String getPlates() {
         String imagenes[] = {"AÑ23HJ", "LIHJB5L", "HJKL3H52", "7KJ457K46", "2ÑL4JH2"};
         int i = (int) Math.floor(Math.random() * 5);
@@ -1036,21 +951,7 @@ public class InterfazG extends javax.swing.JFrame {
         CBName = new javax.swing.JComboBox<>();
         jScrollPane2 = new javax.swing.JScrollPane();
         jPanel2 = new javax.swing.JPanel();
-        jScrollPane5 = new javax.swing.JScrollPane();
-        jPanel7 = new javax.swing.JPanel();
-        jLabel50 = new javax.swing.JLabel();
-        RBReadA1 = new javax.swing.JRadioButton();
-        RBReadM1 = new javax.swing.JRadioButton();
-        RBReadTU1 = new javax.swing.JRadioButton();
-        RBUpdateA1 = new javax.swing.JRadioButton();
-        RBUpdateM1 = new javax.swing.JRadioButton();
-        RBUpdateTU1 = new javax.swing.JRadioButton();
-        RBDeleteA1 = new javax.swing.JRadioButton();
-        RBDeleteTU1 = new javax.swing.JRadioButton();
-        RBDeleteM1 = new javax.swing.JRadioButton();
-        RBCreateA1 = new javax.swing.JRadioButton();
-        RBCreateTU1 = new javax.swing.JRadioButton();
-        RBLoginU1 = new javax.swing.JRadioButton();
+        RBRequestAR = new javax.swing.JRadioButton();
         jPanel3 = new javax.swing.JPanel();
         jLabel23 = new javax.swing.JLabel();
         jLabel24 = new javax.swing.JLabel();
@@ -1135,6 +1036,18 @@ public class InterfazG extends javax.swing.JFrame {
         jLabel37 = new javax.swing.JLabel();
         TFTokenNP = new javax.swing.JTextField();
         BAyuda1 = new javax.swing.JButton();
+        jPanel7 = new javax.swing.JPanel();
+        jLabel50 = new javax.swing.JLabel();
+        jLabel58 = new javax.swing.JLabel();
+        CBNameNP1 = new javax.swing.JComboBox<>();
+        jLabel59 = new javax.swing.JLabel();
+        CBPreviousSNP1 = new javax.swing.JComboBox<>();
+        jLabel60 = new javax.swing.JLabel();
+        CBCurrentSNP1 = new javax.swing.JComboBox<>();
+        CBPasswordUC1 = new javax.swing.JComboBox<>();
+        jLabel61 = new javax.swing.JLabel();
+        jLabel62 = new javax.swing.JLabel();
+        CBNameNP2 = new javax.swing.JComboBox<>();
 
         jDialog1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jDialog1.setMinimumSize(new java.awt.Dimension(420, 270));
@@ -1302,6 +1215,8 @@ public class InterfazG extends javax.swing.JFrame {
         BIniciar.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         BIniciar.setForeground(new java.awt.Color(255, 255, 255));
         BIniciar.setText("Start");
+        BIniciar.setMaximumSize(new java.awt.Dimension(720, 31));
+        BIniciar.setPreferredSize(new java.awt.Dimension(720, 31));
         BIniciar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BIniciarActionPerformed(evt);
@@ -1326,21 +1241,28 @@ public class InterfazG extends javax.swing.JFrame {
             }
         });
 
+        jLabel1.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel1.setText("Email:");
 
+        jLabel2.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel2.setText("Password:");
 
+        jLabel3.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel3.setText("Father Surname:");
 
+        jLabel4.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel4.setText("Mother Surname:");
 
+        jLabel5.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel5.setText("Name:");
 
+        jLabel6.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel6.setText("Server:");
 
-        SpinnerNS.setModel(new javax.swing.SpinnerNumberModel(1, 1, 100, 1));
+        SpinnerNS.setModel(new javax.swing.SpinnerNumberModel(5, 1, 100, 1));
 
-        jLabel9.setText("Number of request:");
+        jLabel9.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        jLabel9.setText("<html><body>Number of <br> requests </body></html>");
 
         CBEmail.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "[x]_[x]@[x].[x].com", "[x]_[x][#]@[x].[x].com" }));
         CBEmail.addActionListener(new java.awt.event.ActionListener() {
@@ -1351,22 +1273,27 @@ public class InterfazG extends javax.swing.JFrame {
 
         jLayeredPane1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
+        jLabel7.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel7.setText("total: 100%");
 
+        jLabel11.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel11.setText("HONEST AGENT:");
 
-        sAgenteH.setModel(new javax.swing.SpinnerNumberModel(1, 1, 100, 1));
+        sAgenteH.setModel(new javax.swing.SpinnerNumberModel(50, 1, 100, 1));
 
+        jLabel12.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel12.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel12.setText("DISHONEST AGENT");
 
+        jLabel13.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel13.setText("Send something:");
 
-        sEnvianA.setModel(new javax.swing.SpinnerNumberModel(1, 1, 100, 1));
+        sEnvianA.setModel(new javax.swing.SpinnerNumberModel(30, 1, 100, 1));
 
+        jLabel27.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel27.setText("Begin any step:");
 
-        sEmpieza.setModel(new javax.swing.SpinnerNumberModel(1, 1, 100, 1));
+        sEmpieza.setModel(new javax.swing.SpinnerNumberModel(20, 1, 100, 1));
 
         jLayeredPane1.setLayer(jLabel7, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPane1.setLayer(jLabel11, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -1382,7 +1309,7 @@ public class InterfazG extends javax.swing.JFrame {
         jLayeredPane1Layout.setHorizontalGroup(
             jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jLayeredPane1Layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(18, 18, 18)
                 .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jLayeredPane1Layout.createSequentialGroup()
                         .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -1406,7 +1333,7 @@ public class InterfazG extends javax.swing.JFrame {
         jLayeredPane1Layout.setVerticalGroup(
             jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jLayeredPane1Layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(3, 3, 3)
                 .addComponent(jLabel7)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
                 .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -1422,7 +1349,7 @@ public class InterfazG extends javax.swing.JFrame {
                 .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel27)
                     .addComponent(sEmpieza, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
+                .addGap(3, 3, 3))
         );
 
         BAyuda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Interfaz/informacion.png"))); // NOI18N
@@ -1433,6 +1360,7 @@ public class InterfazG extends javax.swing.JFrame {
             }
         });
 
+        jLabel22.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel22.setText("Public key:");
 
         CBFatherS.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "[x]", "[xx]", "[xxx]", "[xxxx]", "[xxxxx]" }));
@@ -1448,178 +1376,8 @@ public class InterfazG extends javax.swing.JFrame {
         jPanel2.setLayout(new java.awt.GridLayout(0, 1));
         jScrollPane2.setViewportView(jPanel2);
 
-        jScrollPane5.setMaximumSize(new java.awt.Dimension(170, 400));
-        jScrollPane5.setPreferredSize(new java.awt.Dimension(170, 400));
-
-        jPanel7.setPreferredSize(new java.awt.Dimension(100, 365));
-
-        jLabel50.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        jLabel50.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel50.setText("Permissions DP");
-
-        RBReadA1.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        RBReadA1.setText("readAdministrator");
-        RBReadA1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        RBReadA1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                RBReadA1ActionPerformed(evt);
-            }
-        });
-
-        RBReadM1.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        RBReadM1.setText("readMe");
-        RBReadM1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        RBReadM1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                RBReadM1ActionPerformed(evt);
-            }
-        });
-
-        RBReadTU1.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        RBReadTU1.setText("readTUser");
-        RBReadTU1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        RBReadTU1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                RBReadTU1ActionPerformed(evt);
-            }
-        });
-
-        RBUpdateA1.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        RBUpdateA1.setText("updateAdministrator");
-        RBUpdateA1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        RBUpdateA1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                RBUpdateA1ActionPerformed(evt);
-            }
-        });
-
-        RBUpdateM1.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        RBUpdateM1.setText("updateMe");
-        RBUpdateM1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        RBUpdateM1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                RBUpdateM1ActionPerformed(evt);
-            }
-        });
-
-        RBUpdateTU1.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        RBUpdateTU1.setText("updateTUser");
-        RBUpdateTU1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        RBUpdateTU1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                RBUpdateTU1ActionPerformed(evt);
-            }
-        });
-
-        RBDeleteA1.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        RBDeleteA1.setText("deleteAdministrator");
-        RBDeleteA1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        RBDeleteA1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                RBDeleteA1ActionPerformed(evt);
-            }
-        });
-
-        RBDeleteTU1.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        RBDeleteTU1.setText("deleteTUser");
-        RBDeleteTU1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        RBDeleteTU1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                RBDeleteTU1ActionPerformed(evt);
-            }
-        });
-
-        RBDeleteM1.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        RBDeleteM1.setText("deleteMe");
-        RBDeleteM1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        RBDeleteM1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                RBDeleteM1ActionPerformed(evt);
-            }
-        });
-
-        RBCreateA1.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        RBCreateA1.setText("createAdministrator");
-        RBCreateA1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        RBCreateA1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                RBCreateA1ActionPerformed(evt);
-            }
-        });
-
-        RBCreateTU1.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        RBCreateTU1.setText("createTUser");
-        RBCreateTU1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        RBCreateTU1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                RBCreateTU1ActionPerformed(evt);
-            }
-        });
-
-        RBLoginU1.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        RBLoginU1.setText("loginUser");
-        RBLoginU1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        RBLoginU1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                RBLoginU1ActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
-        jPanel7.setLayout(jPanel7Layout);
-        jPanel7Layout.setHorizontalGroup(
-            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel7Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(RBLoginU1)
-                    .addComponent(RBCreateTU1)
-                    .addComponent(RBCreateA1)
-                    .addComponent(RBDeleteM1)
-                    .addComponent(RBDeleteTU1)
-                    .addComponent(RBDeleteA1)
-                    .addComponent(RBUpdateTU1)
-                    .addComponent(RBUpdateM1)
-                    .addComponent(RBUpdateA1)
-                    .addComponent(RBReadTU1)
-                    .addComponent(RBReadM1)
-                    .addComponent(RBReadA1))
-                .addContainerGap(8, Short.MAX_VALUE))
-            .addComponent(jLabel50, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        jPanel7Layout.setVerticalGroup(
-            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel7Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel50)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(RBReadA1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(RBReadM1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(RBReadTU1)
-                .addGap(18, 18, 18)
-                .addComponent(RBUpdateA1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(RBUpdateM1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(RBUpdateTU1)
-                .addGap(18, 18, 18)
-                .addComponent(RBDeleteA1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(RBDeleteTU1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(RBDeleteM1)
-                .addGap(18, 18, 18)
-                .addComponent(RBCreateA1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(RBCreateTU1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(RBLoginU1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
-        jScrollPane5.setViewportView(jPanel7);
+        RBRequestAR.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        RBRequestAR.setText("Automatic requests");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -1627,10 +1385,10 @@ public class InterfazG extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 685, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 35, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane2)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -1638,33 +1396,35 @@ public class InterfazG extends javax.swing.JFrame {
                             .addComponent(jLabel2)
                             .addComponent(jLabel3)
                             .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel6)
-                            .addComponent(jLabel22))
+                            .addComponent(jLabel5))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(CBPassword, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(CBFatherS, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(CBMotherS, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(CBName, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(CBServer, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(TFPublicK, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(CBEmail, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(CBPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(CBFatherS, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(CBMotherS, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(CBEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(CBName, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(44, 44, 44)
-                                .addComponent(jLayeredPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(BAyuda)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel9)
+                                .addGap(37, 37, 37)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel22)
+                                    .addComponent(jLabel6))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(SpinnerNS, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(44, 44, 44)
-                        .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(BIniciar, javax.swing.GroupLayout.DEFAULT_SIZE, 700, Short.MAX_VALUE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(CBServer, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(SpinnerNS, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(TFPublicK, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(RBRequestAR))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLayeredPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(BIniciar, javax.swing.GroupLayout.PREFERRED_SIZE, 720, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1695,29 +1455,29 @@ public class InterfazG extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel5)
                             .addComponent(CBName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(CBServer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel6))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel22)
-                            .addComponent(TFPublicK, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                            .addComponent(jLayeredPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel9, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(SpinnerNS, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(SpinnerNS, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel9))
-                                .addGap(13, 13, 13)
-                                .addComponent(jLayeredPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jScrollPane5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                    .addComponent(jLabel22)
+                                    .addComponent(TFPublicK, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(CBServer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel6))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(RBRequestAR)))
+                        .addGap(23, 23, 23)))
+                .addComponent(BIniciar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(BIniciar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 430, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 470, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -2082,7 +1842,6 @@ public class InterfazG extends javax.swing.JFrame {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane3)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel25)
@@ -2111,23 +1870,26 @@ public class InterfazG extends javax.swing.JFrame {
                             .addComponent(CBNameUC, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(CBMotherSUC, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(SNumberRequestUC, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
+                        .addGap(31, 31, 31)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLayeredPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addComponent(jLabel57)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(TFGasUC, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 0, Short.MAX_VALUE))
+                        .addGap(0, 25, Short.MAX_VALUE))
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(BIniciarUC, javax.swing.GroupLayout.DEFAULT_SIZE, 96, Short.MAX_VALUE)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(BAyuda2)))))
-                .addContainerGap())
+                            .addComponent(jScrollPane3)
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 598, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(BIniciarUC, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                                        .addGap(0, 0, Short.MAX_VALUE)
+                                        .addComponent(BAyuda2)))))
+                        .addContainerGap())))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -2180,14 +1942,16 @@ public class InterfazG extends javax.swing.JFrame {
                             .addComponent(jLabel10)))
                     .addComponent(jLayeredPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                         .addComponent(BIniciarUC, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(BAyuda2)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 385, Short.MAX_VALUE)
+                        .addComponent(BAyuda2)
+                        .addGap(6, 6, 6))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 389, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -2195,7 +1959,7 @@ public class InterfazG extends javax.swing.JFrame {
 
         jLabel30.setFont(new java.awt.Font("Arial", 1, 20)); // NOI18N
         jLabel30.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel30.setText("New productor");
+        jLabel30.setText("New harvest");
 
         jLabel46.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel46.setText("Description:");
@@ -2280,7 +2044,7 @@ public class InterfazG extends javax.swing.JFrame {
         });
 
         CBCurrentSNP.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        CBCurrentSNP.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Null", "Productor", "Carrier", "Acopio", "Merchant" }));
+        CBCurrentSNP.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Productor", "Carrier", "Acopio", "Merchant" }));
 
         CBNameNP.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         CBNameNP.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "[x]", "[xx]", "[xxx]", "[xxxx]", "[xxxxx]" }));
@@ -2356,14 +2120,13 @@ public class InterfazG extends javax.swing.JFrame {
                             .addComponent(TFTokenNP, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(BAyuda1)
-                        .addGap(37, 37, 37)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 101, Short.MAX_VALUE)
                         .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel5Layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
                                 .addComponent(jLabel54)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(SNumberRequestNP, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jScrollPane8, javax.swing.GroupLayout.DEFAULT_SIZE, 222, Short.MAX_VALUE))))
+                            .addComponent(jScrollPane8, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap())
         );
         jPanel5Layout.setVerticalGroup(
@@ -2412,17 +2175,114 @@ public class InterfazG extends javax.swing.JFrame {
                         .addGap(13, 13, 13)))
                 .addComponent(jButton2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 495, Short.MAX_VALUE)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 500, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
-        jTabbedPane1.addTab("Agregar Productor", jPanel5);
+        jTabbedPane1.addTab("Add harvest", jPanel5);
+
+        jLabel50.setFont(new java.awt.Font("Arial", 1, 20)); // NOI18N
+        jLabel50.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel50.setText("New Carrier");
+
+        jLabel58.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        jLabel58.setText("Name:");
+
+        CBNameNP1.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        CBNameNP1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "[x]", "[xx]", "[xxx]", "[xxxx]", "[xxxxx]" }));
+
+        jLabel59.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        jLabel59.setText("Previous stage:");
+
+        CBPreviousSNP1.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        CBPreviousSNP1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Productor", "Carrier", "Acopio", "Merchant" }));
+        CBPreviousSNP1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CBPreviousSNP1ActionPerformed(evt);
+            }
+        });
+
+        jLabel60.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        jLabel60.setText("Current stage:");
+
+        CBCurrentSNP1.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        CBCurrentSNP1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Productor", "Carrier", "Acopio", "Merchant" }));
+
+        CBPasswordUC1.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        CBPasswordUC1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "[xx#x]", "[xxx#]" }));
+
+        jLabel61.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        jLabel61.setText("Password:");
+
+        jLabel62.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        jLabel62.setText("driver Name:");
+
+        CBNameNP2.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        CBNameNP2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "[x]", "[xx]", "[xxx]", "[xxxx]", "[xxxxx]" }));
+
+        javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
+        jPanel7.setLayout(jPanel7Layout);
+        jPanel7Layout.setHorizontalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel50, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPanel7Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
+                        .addComponent(jLabel58)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(CBNameNP1, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel7Layout.createSequentialGroup()
+                        .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel59)
+                            .addComponent(jLabel60)
+                            .addComponent(jLabel61))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(CBPreviousSNP1, javax.swing.GroupLayout.Alignment.LEADING, 0, 110, Short.MAX_VALUE)
+                            .addComponent(CBCurrentSNP1, javax.swing.GroupLayout.Alignment.LEADING, 0, 110, Short.MAX_VALUE)
+                            .addComponent(CBPasswordUC1, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addGap(18, 18, 18)
+                .addComponent(jLabel62)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(CBNameNP2, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(324, Short.MAX_VALUE))
+        );
+        jPanel7Layout.setVerticalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel7Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel50)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel62)
+                        .addComponent(CBNameNP2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel58)
+                        .addComponent(CBNameNP1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel59)
+                    .addComponent(CBPreviousSNP1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel60)
+                    .addComponent(CBCurrentSNP1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel61)
+                    .addComponent(CBPasswordUC1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(570, Short.MAX_VALUE))
+        );
+
+        jTabbedPane1.addTab("Add carrier", jPanel7);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 740, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -2443,21 +2303,104 @@ public class InterfazG extends javax.swing.JFrame {
     private void BIniciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BIniciarActionPerformed
         jPanel2.removeAll();
         jPanel2.updateUI();
+        
+        objetoH = new Hilo();
         int nSolicitudes = (Integer) SpinnerNS.getValue();
+        objetoH.crearMatriz(nSolicitudes);
+        rootRequests = new String[nSolicitudes];
         int aHonesto = (Integer) sAgenteH.getValue();
         int aEnviarA = (Integer) sEnvianA.getValue();
         int aEmpieza = (Integer) sEmpieza.getValue();
         int pTotal = aHonesto + aEnviarA + aEmpieza;
         String publicK = TFPublicK.getText();
+        
 
-        if (!publicK.isEmpty()) {
-            if (pTotal == 100) {
-                crearB(nSolicitudes, aHonesto, aEnviarA);
+        if (RBRequestAR.isSelected()) {
+            if (!publicK.isEmpty()) {
+                if (pTotal == 100) {
+                    for (int x = 0; x < nSolicitudes; x++) {
+                        objetoH.setPosition(x);
+                        double i = Math.floor(Math.random() * 101);
+                        if (i <= aHonesto) {
+                            int position = x;
+                            System.out.println("InterfazG/cayó honesto");
+                            consultaHonesta();
+                            
+                            
+                            JButton boton = new JButton("Honest agent");
+                            boton.setPreferredSize(new Dimension(30, 70));
+                            boton.setBackground(Color.GREEN);
+                            jPanel2.add(boton);
+
+                            boton.addActionListener(new ActionListener() {
+                                @Override
+                                public void actionPerformed(ActionEvent ae) {
+                                    jDialog2.setVisible(true);
+                                    areaTexto.setText(objetoH.getAcumulado(position));
+                                }
+                            });
+
+                        } else {
+                            if (i <= (aHonesto + aEnviarA)) {
+                                int position = x;
+                                System.out.println("InterfazG/cayó aEnviarA");
+                                consultaEnviar();
+                                
+
+                                JButton boton = new JButton("Dishonest agent send something");
+                                boton.setPreferredSize(new Dimension(30, 70));
+                                boton.setBackground(Color.ORANGE);
+                                jPanel2.add(boton);
+                                //botones.add(boton); //agrego el boton
+
+                                boton.addActionListener(new ActionListener() {
+                                    @Override
+                                    public void actionPerformed(ActionEvent ae) {
+                                        jDialog2.setVisible(true);
+                                        areaTexto.setText(objetoH.getAcumulado(position));
+                                    }
+                                });
+
+                            } else {
+                                int position = x;
+                                System.out.println("InterfazG/cayó EmpezarA");
+                                consultaEmpezarA();
+                                
+
+                                JButton boton = new JButton("Dishonest agent begin any step");
+                                boton.setPreferredSize(new Dimension(30, 70));
+                                boton.setBackground(Color.YELLOW);
+                                jPanel2.add(boton);
+
+                                boton.addActionListener(new ActionListener() {
+                                    @Override
+                                    public void actionPerformed(ActionEvent ae) {
+                                        jDialog2.setVisible(true);
+                                        areaTexto.setText(objetoH.getAcumulado(position));
+                                    }
+                                });
+
+                            }
+                        }
+
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(null, "The addition of porcentages must be 100%");
+                }
             } else {
-                JOptionPane.showMessageDialog(null, "The addition of porcentages must be 100%");
+                JOptionPane.showMessageDialog(null, "Set the public key");
             }
+
         } else {
-            JOptionPane.showMessageDialog(null, "Set the public key");
+            if (!publicK.isEmpty()) {
+                if (pTotal == 100) {
+                    crearB(nSolicitudes, aHonesto, aEnviarA);
+                } else {
+                    JOptionPane.showMessageDialog(null, "The addition of porcentages must be 100%");
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "Set the public key");
+            }
         }
 
 
@@ -2470,42 +2413,6 @@ public class InterfazG extends javax.swing.JFrame {
     private void BAyudaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BAyudaActionPerformed
         jDialog1.setVisible(true);
     }//GEN-LAST:event_BAyudaActionPerformed
-
-    private void RBReadA1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RBReadA1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_RBReadA1ActionPerformed
-
-    private void RBReadM1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RBReadM1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_RBReadM1ActionPerformed
-
-    private void RBReadTU1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RBReadTU1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_RBReadTU1ActionPerformed
-
-    private void RBUpdateA1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RBUpdateA1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_RBUpdateA1ActionPerformed
-
-    private void RBUpdateM1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RBUpdateM1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_RBUpdateM1ActionPerformed
-
-    private void RBUpdateTU1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RBUpdateTU1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_RBUpdateTU1ActionPerformed
-
-    private void RBDeleteA1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RBDeleteA1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_RBDeleteA1ActionPerformed
-
-    private void RBDeleteTU1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RBDeleteTU1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_RBDeleteTU1ActionPerformed
-
-    private void RBDeleteM1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RBDeleteM1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_RBDeleteM1ActionPerformed
 
     private void RBDeleteMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RBDeleteMActionPerformed
         // TODO add your handling code here:
@@ -2573,7 +2480,7 @@ public class InterfazG extends javax.swing.JFrame {
         if (porcentaje == 100) {
             if (!adressU.isEmpty()) {
                 if (!authorization.isEmpty()) {
-                    if(!gas.isEmpty()){
+                    if (!gas.isEmpty()) {
                         crearBUC(nSolicitudes, aHonesto, aDeshonesto);
                     } else {
                         JOptionPane.showMessageDialog(null, "Refill the gas field");
@@ -2596,18 +2503,6 @@ public class InterfazG extends javax.swing.JFrame {
     private void CBTypeUserUCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CBTypeUserUCActionPerformed
         habilitarCB(String.valueOf(CBTypeUserUC.getSelectedItem()));
     }//GEN-LAST:event_CBTypeUserUCActionPerformed
-
-    private void RBCreateA1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RBCreateA1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_RBCreateA1ActionPerformed
-
-    private void RBCreateTU1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RBCreateTU1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_RBCreateTU1ActionPerformed
-
-    private void RBLoginU1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RBLoginU1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_RBLoginU1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         jPanel6.removeAll();
@@ -2663,6 +2558,10 @@ public class InterfazG extends javax.swing.JFrame {
         jDialog3.setVisible(true);
     }//GEN-LAST:event_BAyuda2ActionPerformed
 
+    private void CBPreviousSNP1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CBPreviousSNP1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_CBPreviousSNP1ActionPerformed
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -2706,6 +2605,7 @@ public class InterfazG extends javax.swing.JFrame {
     private javax.swing.JButton BIniciarUC;
     private javax.swing.JComboBox<String> CBCodeNP;
     private javax.swing.JComboBox<String> CBCurrentSNP;
+    private javax.swing.JComboBox<String> CBCurrentSNP1;
     private javax.swing.JComboBox<String> CBDescriptionNP;
     private javax.swing.JComboBox<String> CBEmail;
     private javax.swing.JComboBox<String> CBEmailUC;
@@ -2717,41 +2617,34 @@ public class InterfazG extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> CBMotherSUC;
     private javax.swing.JComboBox<String> CBName;
     private javax.swing.JComboBox<String> CBNameNP;
+    private javax.swing.JComboBox<String> CBNameNP1;
+    private javax.swing.JComboBox<String> CBNameNP2;
     private javax.swing.JComboBox<String> CBNameUC;
     private javax.swing.JComboBox<String> CBPassword;
     private javax.swing.JComboBox<String> CBPasswordUC;
+    private javax.swing.JComboBox<String> CBPasswordUC1;
     private javax.swing.JComboBox<String> CBPreviousSNP;
+    private javax.swing.JComboBox<String> CBPreviousSNP1;
     private javax.swing.JComboBox<String> CBServer;
     private javax.swing.JComboBox<String> CBServer1;
     private javax.swing.JComboBox<String> CBTypeUserUC;
     private javax.swing.JRadioButton RBCreateA;
-    private javax.swing.JRadioButton RBCreateA1;
     private javax.swing.JRadioButton RBCreateD;
     private javax.swing.JRadioButton RBCreateTU;
-    private javax.swing.JRadioButton RBCreateTU1;
     private javax.swing.JRadioButton RBDeleteA;
-    private javax.swing.JRadioButton RBDeleteA1;
     private javax.swing.JRadioButton RBDeleteD;
     private javax.swing.JRadioButton RBDeleteM;
-    private javax.swing.JRadioButton RBDeleteM1;
     private javax.swing.JRadioButton RBDeleteTU;
-    private javax.swing.JRadioButton RBDeleteTU1;
     private javax.swing.JRadioButton RBLoginU;
-    private javax.swing.JRadioButton RBLoginU1;
     private javax.swing.JRadioButton RBReadA;
-    private javax.swing.JRadioButton RBReadA1;
     private javax.swing.JRadioButton RBReadD;
     private javax.swing.JRadioButton RBReadM;
-    private javax.swing.JRadioButton RBReadM1;
     private javax.swing.JRadioButton RBReadTU;
-    private javax.swing.JRadioButton RBReadTU1;
+    private javax.swing.JRadioButton RBRequestAR;
     private javax.swing.JRadioButton RBUpdateA;
-    private javax.swing.JRadioButton RBUpdateA1;
     private javax.swing.JRadioButton RBUpdateD;
     private javax.swing.JRadioButton RBUpdateM;
-    private javax.swing.JRadioButton RBUpdateM1;
     private javax.swing.JRadioButton RBUpdateTU;
-    private javax.swing.JRadioButton RBUpdateTU1;
     private javax.swing.JSpinner SDishonestAgentNP;
     private javax.swing.JSpinner SDishonestAgentUC;
     private javax.swing.JSpinner SHonestAgentNP;
@@ -2822,7 +2715,12 @@ public class InterfazG extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel55;
     private javax.swing.JLabel jLabel56;
     private javax.swing.JLabel jLabel57;
+    private javax.swing.JLabel jLabel58;
+    private javax.swing.JLabel jLabel59;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel60;
+    private javax.swing.JLabel jLabel61;
+    private javax.swing.JLabel jLabel62;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
@@ -2841,7 +2739,6 @@ public class InterfazG extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
-    private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JScrollPane jScrollPane8;
     private javax.swing.JTabbedPane jTabbedPane1;

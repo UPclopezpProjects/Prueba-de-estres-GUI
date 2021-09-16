@@ -26,7 +26,12 @@ public final class AgentsHonest extends Hilo {
     String ip;
     String publicK;
     String dp;
+    String acumulado;
 
+    public String getAcumulado() {
+        return acumulado;
+    }
+    
     public AgentsHonest(JTextArea caja, String email, String password, String nombre, String apellidoP, String apellidoM, String tipoU, String ip, String publicK, String dp) {
         this.caja = caja;
         this.email = email;
@@ -49,7 +54,8 @@ public final class AgentsHonest extends Hilo {
             Date now1 = new Date();
             String strDate1 = sdf1.format(now1);
             //System.out.println("--> Date: " + strDate1 + "; CURL: " + getInitialNonce);
-            response = "Root/AgentHonest --> Date: " + strDate1 + "; CURL: " + getInitialNonce;
+            response = "Root/AgentHonest/getInitialNonce --> Date: " + strDate1 + "; CURL: " + getInitialNonce;
+            acumulado += response + "\n";
             caja.append(response+ "\n");
 
             Runtime rt = Runtime.getRuntime();
@@ -70,7 +76,8 @@ public final class AgentsHonest extends Hilo {
                         Date now2 = new Date();
                         String strDate2 = sdf2.format(now2);
                         //System.out.println("<-- Date: " + strDate2 + "; Response: " + line);
-                        response = "Root/AgentHonest <-- Date: " + strDate2 + "; Response: " + line;
+                        response = "Root/AgentHonest/getInitialNonce <-- Date: " + strDate2 + "; Response: " + line;
+                        acumulado += response + "\n";
                         caja.append(response+ "\n");
                         String session = jsonObject.get("A").toString();
                         String na = jsonObject.get("NA").toString();
@@ -90,7 +97,7 @@ public final class AgentsHonest extends Hilo {
         }
     }
 
-    public void userCreation(String token, String session, double randomNumber) {
+    public String userCreation(String token, String session, double randomNumber) {
         //System.out.print(token);
         String[] firstname = {"firstname1", "firstname2", "firstname3", "firstname4", "firstname5",
             "firstname6", "firstname7", "firstname8", "firstname9", "firstname10"};
@@ -114,7 +121,7 @@ public final class AgentsHonest extends Hilo {
             //String dp = "{\"\"createAdministrator\"\":true,\"\"createTUser\"\":true,\"\"updateMe\"\":true,\"\"updateAdministrator\"\":true,\"\"updateTUser\"\":true,\"\"deleteMe\"\":true,\"\"deleteAdministrator\"\":true,\"\"deleteTUser\"\":true,\"\"readMe\"\":true,\"\"readAdministrator\"\":true,\"\"readTUser\"\":true,\"\"loginUser\"\":true}";
             String dp = this.dp;
             String jsonData = "{\"email\":\"" + email + "\",\"password\":\"" + password + "\",\"surnameA\":\"" + surnameA + "\",\"surnameB\":\"" + surnameB + "\",\"nameOfUser\":\"" + nameOfUser + "\",\"typeOfUser\":\"" + typeOfUser + "\",\"status\":\"" + status + "\",\"creationDate\":\"" + creationDate + "\",\"addressU\":\"" + publicK + "\",\"typeOfOperation\":\"" + typeOfOperation + "\",\"nameOfOperation\":\"" + nameOfOperation + "\",\"dp\":\"" + dpHashX + "\"}";
-            System.out.println("AgentsHonest"+jsonData);
+            //System.out.println("AgentsHonest"+jsonData);
             String hashX = MD5.getMd5(jsonData);
             //System.out.println(jsonData);
             String rootCreation = "curl -d \"email=" + email + "&"
@@ -139,8 +146,9 @@ public final class AgentsHonest extends Hilo {
             SimpleDateFormat sdf3 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
             Date now3 = new Date();
             String strDate3 = sdf3.format(now3);
-            System.out.println("--> Date: " + strDate3 + "; Token: " + token + "; NA: " + randomNumber + "; CURL: " + rootCreation);
-            response = "Root/AgentHonest --> Date: " + strDate3 + "; Token: " + token + "; NA: " + randomNumber + "; CURL1: " + rootCreation;
+            //System.out.println("--> Date: " + strDate3 + "; Token: " + token + "; NA: " + randomNumber + "; CURL: " + rootCreation);
+            response = "Root/AgentHonest/userCreation --> Date: " + strDate3 + "; Token: " + token + "; NA: " + randomNumber + "; CURL1: " + rootCreation;
+            acumulado += response + "\n";
             caja.append(response+ "\n");
 
             Runtime rt = Runtime.getRuntime();
@@ -159,7 +167,8 @@ public final class AgentsHonest extends Hilo {
                         Date now4 = new Date();
                         String strDate4 = sdf4.format(now4);
                         //System.out.println("<-- Date: " + strDate4 + "; Response: " + line);
-                        response = "Root/AgentHonest <-- Date: " + strDate4 + "; Response: " + line;
+                        response = "Root/AgentHonest/userCreation <-- Date: " + strDate4 + "; Response: " + line;
+                        acumulado += response + "\n";
                         caja.append(response+ "\n");
                     }
                     intentar = false;
@@ -167,9 +176,12 @@ public final class AgentsHonest extends Hilo {
             }
             //System.out.println("</OUTPUT2>");
             int exitVal = proc.waitFor();
+            System.out.println("AgentHonest/acumulado: "+acumulado.replace("null", ""));
+            return acumulado;
             //System.out.println("Process exitValue: " + exitVal);
         } catch (IOException | InterruptedException t) {
             //System.out.println(t);
         }
+        return null;
     }
 }
