@@ -5,21 +5,16 @@
  */
 package Interfaz.StressTest;
 
-import static java.lang.Math.random;
-import java.util.ArrayList;
 import java.util.Random;
-import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JFrame;
-import javax.swing.JOptionPane;
 import javax.swing.JTextArea;
 
 /**
  *
  * @author frank
  */
-public class Hilo implements Runnable {
+public class HiloAuto implements Runnable {
 
     private int email;
     private int password;
@@ -34,15 +29,16 @@ public class Hilo implements Runnable {
     private String publicKey;
     private String tipoConsulta;
     private String dp;
-    
-
+    private String r;
 
     private int aHonesto;
     private int aEnviarA;
     private int aEmpieza;
-    
-   
 
+    public String getR() {
+        return r;
+    }
+    
     public void setDp(String dp) {
         this.dp = dp;
     }
@@ -116,25 +112,36 @@ public class Hilo implements Runnable {
     }
 
     public void setNumberRequest(int numberRequest) {
-        
+
         this.numberRequest = numberRequest;
     }
+
     
     public void loop1() throws InterruptedException {
         if (tipoConsulta == "honesto") {
-            System.out.println("Hilo/Honesto");
-            AgentsHonest a= new AgentsHonest(caja, generateEmail(), generatePassword(), nombreU, apellidoP, apellidoM, typeU, ip, publicKey, dp);
+            System.out.println("HiloAuto/Honesto");
+            AgentsHonest a = new AgentsHonest(caja, generateEmail(), generatePassword(), nombreU, apellidoP, apellidoM, typeU, ip, publicKey, dp);
+            //Thread.sleep(10000);
+            r=a.getAcumulado().replace("null", "");
+            System.out.println("HiloAuto/loop1/honesto/ contenido :"+a.getAcumulado().replace("null", ""));
         } else {
             if (tipoConsulta == "enviarAlgo") {
-                System.out.println("Hilo/enviarAlgo");
+                System.out.println("HiloAuto/enviarAlgo");
                 AgentsSendAnything b = new AgentsSendAnything(caja, generateEmail(), generatePassword(), nombreU, apellidoP, apellidoM, typeU, ip, publicKey, dp);
+                //Thread.sleep(10000);
+                r= b.getAcumulado().replace("null", "");
+                System.out.println("HiloAuto/loop1/enviarAlgo/ contenido :"+b.getAcumulado().replace("null", ""));
             } else {
                 if (tipoConsulta == "empiezaAlgun") {
-                    System.out.println("Hilo/Empieza en algún paso");
+                    System.out.println("HiloAuto/Empieza en algún paso");
                     AgentsStartAnyStep c = new AgentsStartAnyStep(caja, generateEmail(), generatePassword(), nombreU, apellidoP, apellidoM, typeU, numberRequest, ip, publicKey, dp);
+                    //Thread.sleep(10000);
+                    r=c.getAcumulado().replace("null", "");
+                    System.out.println("HiloAuto/loop1/empiezaAlgun/ contenido :"+c.getAcumulado().replace("null", ""));
                 }
             }
         }
+        System.out.println("HiloAuto/loop1/ el response "+r);
     }
 
     public String generateEmail() {
@@ -184,12 +191,13 @@ public class Hilo implements Runnable {
         return numero;
     }
 
+    @Override
     public void run() {
         try {
-            //caja.append("lalo");
             loop1();
         } catch (InterruptedException ex) {
-            Logger.getLogger(Hilo.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(HiloAuto.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
 }

@@ -187,7 +187,7 @@ public final class AgentsStartAnyStep extends Hilo {
             }
             //System.out.println("</OUTPUT2>");
             int exitVal = proc.waitFor();
-            System.out.println("AgentsStartAnyStep/acumulado: "+acumulado.replace("null", ""));
+            //System.out.println("AgentsStartAnyStep/acumulado: "+acumulado.replace("null", ""));
             return acumulado;
             //System.out.println("Process exitValue: " + exitVal);
         } catch (IOException | InterruptedException t) {

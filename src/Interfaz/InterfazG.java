@@ -1,6 +1,7 @@
 package Interfaz;
 
 import Interfaz.StressTest.Hilo;
+import Interfaz.StressTest.HiloAuto;
 import NewProductor.HiloNP;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -25,8 +26,10 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 public class InterfazG extends javax.swing.JFrame {
 
     private Hilo objetoH;
+    private HiloAuto objetoA;
     private hiloUC h;
     private HiloNP hNP;
+    private String responseRA;
     String rootRequests[];
 
     public InterfazG() {
@@ -351,9 +354,55 @@ public class InterfazG extends javax.swing.JFrame {
         }
     }
 
-    private void consultaHonesta() {
-        //areaTexto.setText("");
+    private void consultaHonestaAuto(String tipoConsulta) throws InterruptedException {
+        areaTexto.setText("");
         //objetoH = new Hilo();
+
+        System.out.println("InterfazG/ConsultaHonestaAuto/ el tipo de consulta es: " + tipoConsulta);
+        int email = CBEmail.getSelectedIndex();
+        int password = CBPassword.getSelectedIndex();
+        String apellidoP = String.valueOf(CBFatherS.getSelectedIndex());
+        String apellidoM = String.valueOf(CBMotherS.getSelectedIndex());
+        String nombreU = String.valueOf(CBName.getSelectedIndex());
+        String tipoU = "Root";
+        //int sPorSegundo = (Integer) SSolicitudes.getValue();
+        int nSolicitudes = (Integer) SpinnerNS.getValue();
+        int aHonesto = (Integer) sAgenteH.getValue();
+        int aEnviarA = (Integer) sEnvianA.getValue();
+        int aEmpieza = (Integer) sEmpieza.getValue();
+        String ip = String.valueOf(CBServer.getSelectedItem());
+        String publicK = TFPublicK.getText();
+        //String tipoConsulta = "honesto";
+        String dp = getRadioB();
+
+        int pTotal = aHonesto + aEnviarA + aEmpieza;
+
+        //jDialog2.setVisible(true);
+        objetoA.setEmail(email);
+        objetoA.setPassword(password);
+        objetoA.setApellidoP(apellidoP);
+        objetoA.setApellidoM(apellidoM);
+        objetoA.setNombreU(nombreU);
+        objetoA.setTypeU(tipoU);
+        //objetoH.setRequestFS(sPorSegundo);
+        objetoA.setNumberRequest(nSolicitudes);
+        objetoA.setaHonesto(aHonesto);
+        objetoA.setaEnviarA(aEnviarA);
+        objetoA.setaEmpieza(aEmpieza);
+        objetoA.setCaja(areaTexto);
+        objetoA.setIp(ip);
+        objetoA.setPublicKey(publicK);
+        objetoA.setTipoConsulta(tipoConsulta);
+        objetoA.setDp(dp);
+        new Thread(objetoA).start();
+        Thread.sleep(7000);
+        responseRA = objetoA.getR();
+        //System.out.println("InterfazG/ConsultaHonestaAuto/el response: " + objetoA.getR());
+    }
+
+    private void consultaHonesta() {
+        areaTexto.setText("");
+        objetoH = new Hilo();
 
         int email = CBEmail.getSelectedIndex();
         int password = CBPassword.getSelectedIndex();
@@ -377,7 +426,7 @@ public class InterfazG extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Set the public key");
         } else {
             if (pTotal == 100) {
-                //jDialog2.setVisible(true);
+                jDialog2.setVisible(true);
                 objetoH.setEmail(email);
                 objetoH.setPassword(password);
                 objetoH.setApellidoP(apellidoP);
@@ -403,7 +452,7 @@ public class InterfazG extends javax.swing.JFrame {
 
     private void consultaEnviar() {
         areaTexto.setText("");
-        //objetoH = new Hilo();
+        objetoH = new Hilo();
 
         int email = CBEmail.getSelectedIndex();
         int password = CBPassword.getSelectedIndex();
@@ -426,7 +475,7 @@ public class InterfazG extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Set the public key");
         } else {
             if (pTotal == 100) {
-                //jDialog2.setVisible(true);
+                jDialog2.setVisible(true);
                 objetoH.setEmail(email);
                 objetoH.setPassword(password);
                 objetoH.setApellidoP(apellidoP);
@@ -452,7 +501,7 @@ public class InterfazG extends javax.swing.JFrame {
 
     private void consultaEmpezarA() {
         areaTexto.setText("");
-        //objetoH = new Hilo();
+        objetoH = new Hilo();
 
         int email = CBEmail.getSelectedIndex();
         int password = CBPassword.getSelectedIndex();
@@ -475,7 +524,7 @@ public class InterfazG extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Set the public key");
         } else {
             if (pTotal == 100) {
-                //jDialog2.setVisible(true);
+                jDialog2.setVisible(true);
                 objetoH.setEmail(email);
                 objetoH.setPassword(password);
                 objetoH.setApellidoP(apellidoP);
@@ -2303,86 +2352,92 @@ public class InterfazG extends javax.swing.JFrame {
     private void BIniciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BIniciarActionPerformed
         jPanel2.removeAll();
         jPanel2.updateUI();
-        
-        objetoH = new Hilo();
+
+        objetoA = new HiloAuto();
         int nSolicitudes = (Integer) SpinnerNS.getValue();
-        objetoH.crearMatriz(nSolicitudes);
         rootRequests = new String[nSolicitudes];
         int aHonesto = (Integer) sAgenteH.getValue();
         int aEnviarA = (Integer) sEnvianA.getValue();
         int aEmpieza = (Integer) sEmpieza.getValue();
         int pTotal = aHonesto + aEnviarA + aEmpieza;
         String publicK = TFPublicK.getText();
-        
 
         if (RBRequestAR.isSelected()) {
             if (!publicK.isEmpty()) {
                 if (pTotal == 100) {
                     for (int x = 0; x < nSolicitudes; x++) {
-                        objetoH.setPosition(x);
                         double i = Math.floor(Math.random() * 101);
                         if (i <= aHonesto) {
                             int position = x;
-                            System.out.println("InterfazG/cayó honesto");
-                            consultaHonesta();
-                            
-                            
-                            JButton boton = new JButton("Honest agent");
-                            boton.setPreferredSize(new Dimension(30, 70));
-                            boton.setBackground(Color.GREEN);
-                            jPanel2.add(boton);
+                            System.out.println("InterfazG/root/cayó honesto");
+                            try {
+                                consultaHonestaAuto("honesto");
+                                rootRequests[x] = responseRA;
 
-                            boton.addActionListener(new ActionListener() {
-                                @Override
-                                public void actionPerformed(ActionEvent ae) {
-                                    jDialog2.setVisible(true);
-                                    areaTexto.setText(objetoH.getAcumulado(position));
-                                }
-                            });
+                                JButton boton = new JButton("Honest agent");
+                                boton.setPreferredSize(new Dimension(30, 70));
+                                boton.setBackground(Color.GREEN);
+                                jPanel2.add(boton);
 
+                                boton.addActionListener(new ActionListener() {
+                                    @Override
+                                    public void actionPerformed(ActionEvent ae) {
+                                        jDialog2.setVisible(true);
+                                        areaTexto.setText(rootRequests[position]);
+                                    }
+                                });
+                            } catch (InterruptedException ex) {
+                                Logger.getLogger(InterfazG.class.getName()).log(Level.SEVERE, null, ex);
+                            }
                         } else {
                             if (i <= (aHonesto + aEnviarA)) {
                                 int position = x;
-                                System.out.println("InterfazG/cayó aEnviarA");
-                                consultaEnviar();
-                                
+                                System.out.println("InterfazG/root/cayó aEnviarA");
+                                try {
+                                    consultaHonestaAuto("enviarAlgo");
+                                    rootRequests[x] = responseRA;
 
-                                JButton boton = new JButton("Dishonest agent send something");
-                                boton.setPreferredSize(new Dimension(30, 70));
-                                boton.setBackground(Color.ORANGE);
-                                jPanel2.add(boton);
-                                //botones.add(boton); //agrego el boton
+                                    JButton boton = new JButton("Dishonest agent send something");
+                                    boton.setPreferredSize(new Dimension(30, 70));
+                                    boton.setBackground(Color.ORANGE);
+                                    jPanel2.add(boton);
 
-                                boton.addActionListener(new ActionListener() {
-                                    @Override
-                                    public void actionPerformed(ActionEvent ae) {
-                                        jDialog2.setVisible(true);
-                                        areaTexto.setText(objetoH.getAcumulado(position));
-                                    }
-                                });
+                                    boton.addActionListener(new ActionListener() {
+                                        @Override
+                                        public void actionPerformed(ActionEvent ae) {
+                                            jDialog2.setVisible(true);
+                                            areaTexto.setText(rootRequests[position]);
+                                        }
+                                    });
+                                } catch (InterruptedException ex) {
+                                    Logger.getLogger(InterfazG.class.getName()).log(Level.SEVERE, null, ex);
+                                }
 
                             } else {
                                 int position = x;
-                                System.out.println("InterfazG/cayó EmpezarA");
-                                consultaEmpezarA();
-                                
+                                System.out.println("InterfazG/root/cayó EmpezarA");
+                                try {
+                                    consultaHonestaAuto("empiezaAlgun");
+                                    rootRequests[x] = responseRA;
 
-                                JButton boton = new JButton("Dishonest agent begin any step");
-                                boton.setPreferredSize(new Dimension(30, 70));
-                                boton.setBackground(Color.YELLOW);
-                                jPanel2.add(boton);
+                                    JButton boton = new JButton("Dishonest agent begin any step");
+                                    boton.setPreferredSize(new Dimension(30, 70));
+                                    boton.setBackground(Color.YELLOW);
+                                    jPanel2.add(boton);
 
-                                boton.addActionListener(new ActionListener() {
-                                    @Override
-                                    public void actionPerformed(ActionEvent ae) {
-                                        jDialog2.setVisible(true);
-                                        areaTexto.setText(objetoH.getAcumulado(position));
-                                    }
-                                });
+                                    boton.addActionListener(new ActionListener() {
+                                        @Override
+                                        public void actionPerformed(ActionEvent ae) {
+                                            jDialog2.setVisible(true);
+                                            areaTexto.setText(rootRequests[position]);
+                                        }
+                                    });
 
+                                } catch (InterruptedException ex) {
+                                    Logger.getLogger(InterfazG.class.getName()).log(Level.SEVERE, null, ex);
+                                }
                             }
                         }
-
                     }
                 } else {
                     JOptionPane.showMessageDialog(null, "The addition of porcentages must be 100%");
@@ -2390,7 +2445,6 @@ public class InterfazG extends javax.swing.JFrame {
             } else {
                 JOptionPane.showMessageDialog(null, "Set the public key");
             }
-
         } else {
             if (!publicK.isEmpty()) {
                 if (pTotal == 100) {
@@ -2402,8 +2456,6 @@ public class InterfazG extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "Set the public key");
             }
         }
-
-
     }//GEN-LAST:event_BIniciarActionPerformed
 
     private void CBEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CBEmailActionPerformed

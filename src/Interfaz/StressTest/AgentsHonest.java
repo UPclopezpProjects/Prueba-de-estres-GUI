@@ -176,7 +176,7 @@ public final class AgentsHonest extends Hilo {
             }
             //System.out.println("</OUTPUT2>");
             int exitVal = proc.waitFor();
-            System.out.println("AgentHonest/acumulado: "+acumulado.replace("null", ""));
+            //System.out.println("AgentHonest/acumulado: "+acumulado.replace("null", ""));
             return acumulado;
             //System.out.println("Process exitValue: " + exitVal);
         } catch (IOException | InterruptedException t) {
