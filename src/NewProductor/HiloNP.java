@@ -30,7 +30,6 @@ public class HiloNP implements Runnable {
     private String ip;
     private JTextArea caja;
     private String token;
-    //carrier
     private String origin;
     private String destination;
     private String driverName;
