@@ -29,14 +29,20 @@ public class HiloAuto implements Runnable {
     private String publicKey;
     private String tipoConsulta;
     private String dp;
-    private String r;
+    private int position;
+    private String respuestas[];
 
+    
     private int aHonesto;
     private int aEnviarA;
     private int aEmpieza;
-
-    public String getR() {
-        return r;
+    
+    public String[] getRespuestas() {
+        return respuestas;
+    }
+    
+    public void setPosition(int position) {
+        this.position = position;
     }
     
     public void setDp(String dp) {
@@ -118,30 +124,22 @@ public class HiloAuto implements Runnable {
 
     
     public void loop1() throws InterruptedException {
+        respuestas= new String[numberRequest];
         if (tipoConsulta == "honesto") {
-            System.out.println("HiloAuto/Honesto");
-            AgentsHonest a = new AgentsHonest(caja, generateEmail(), generatePassword(), nombreU, apellidoP, apellidoM, typeU, ip, publicKey, dp);
-            //Thread.sleep(10000);
-            r=a.getAcumulado().replace("null", "");
-            System.out.println("HiloAuto/loop1/honesto/ contenido :"+a.getAcumulado().replace("null", ""));
+            //System.out.println("HiloAuto/Honesto/ position: ");
+            AgentsHonest a = new AgentsHonest(caja, generateEmail(), generatePassword(), nombreU, apellidoP, apellidoM, typeU, ip, publicKey, dp, position);
         } else {
             if (tipoConsulta == "enviarAlgo") {
-                System.out.println("HiloAuto/enviarAlgo");
-                AgentsSendAnything b = new AgentsSendAnything(caja, generateEmail(), generatePassword(), nombreU, apellidoP, apellidoM, typeU, ip, publicKey, dp);
-                //Thread.sleep(10000);
-                r= b.getAcumulado().replace("null", "");
-                System.out.println("HiloAuto/loop1/enviarAlgo/ contenido :"+b.getAcumulado().replace("null", ""));
+                //System.out.println("HiloAuto/enviarAlgo");
+                AgentsSendAnything b = new AgentsSendAnything(caja, generateEmail(), generatePassword(), nombreU, apellidoP, apellidoM, typeU, ip, publicKey, dp, position);
             } else {
                 if (tipoConsulta == "empiezaAlgun") {
-                    System.out.println("HiloAuto/Empieza en algún paso");
-                    AgentsStartAnyStep c = new AgentsStartAnyStep(caja, generateEmail(), generatePassword(), nombreU, apellidoP, apellidoM, typeU, numberRequest, ip, publicKey, dp);
-                    //Thread.sleep(10000);
-                    r=c.getAcumulado().replace("null", "");
-                    System.out.println("HiloAuto/loop1/empiezaAlgun/ contenido :"+c.getAcumulado().replace("null", ""));
+                    //System.out.println("HiloAuto/Empieza en algún paso");
+                    AgentsStartAnyStep c = new AgentsStartAnyStep(caja, generateEmail(), generatePassword(), nombreU, apellidoP, apellidoM, typeU, numberRequest, ip, publicKey, dp, position);
                 }
             }
         }
-        System.out.println("HiloAuto/loop1/ el response "+r);
+        //System.out.println("HiloAuto/loop1/ el response "+r);
     }
 
     public String generateEmail() {

@@ -123,15 +123,15 @@ public class Hilo implements Runnable {
     public void loop1() throws InterruptedException {
         if (tipoConsulta == "honesto") {
             System.out.println("Hilo/Honesto");
-            AgentsHonest a= new AgentsHonest(caja, generateEmail(), generatePassword(), nombreU, apellidoP, apellidoM, typeU, ip, publicKey, dp);
+            AgentsHonest a= new AgentsHonest(caja, generateEmail(), generatePassword(), nombreU, apellidoP, apellidoM, typeU, ip, publicKey, dp, -1);
         } else {
             if (tipoConsulta == "enviarAlgo") {
                 System.out.println("Hilo/enviarAlgo");
-                AgentsSendAnything b = new AgentsSendAnything(caja, generateEmail(), generatePassword(), nombreU, apellidoP, apellidoM, typeU, ip, publicKey, dp);
+                AgentsSendAnything b = new AgentsSendAnything(caja, generateEmail(), generatePassword(), nombreU, apellidoP, apellidoM, typeU, ip, publicKey, dp, -1);
             } else {
                 if (tipoConsulta == "empiezaAlgun") {
                     System.out.println("Hilo/Empieza en algún paso");
-                    AgentsStartAnyStep c = new AgentsStartAnyStep(caja, generateEmail(), generatePassword(), nombreU, apellidoP, apellidoM, typeU, numberRequest, ip, publicKey, dp);
+                    AgentsStartAnyStep c = new AgentsStartAnyStep(caja, generateEmail(), generatePassword(), nombreU, apellidoP, apellidoM, typeU, numberRequest, ip, publicKey, dp, -1);
                 }
             }
         }

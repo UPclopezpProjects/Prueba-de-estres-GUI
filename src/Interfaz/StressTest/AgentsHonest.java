@@ -9,6 +9,7 @@ import Interfaz.StressTest.Hilo;
 import Interfaz.InterfazG;
 import Interfaz.MD5;
 import Interfaz.MD5;
+import Interfaz.Respuesta;
 import javax.swing.JTextArea;
 
 public final class AgentsHonest extends Hilo {
@@ -26,13 +27,9 @@ public final class AgentsHonest extends Hilo {
     String ip;
     String publicK;
     String dp;
-    String acumulado;
+    //Respuesta mensaje;
 
-    public String getAcumulado() {
-        return acumulado;
-    }
-    
-    public AgentsHonest(JTextArea caja, String email, String password, String nombre, String apellidoP, String apellidoM, String tipoU, String ip, String publicK, String dp) {
+    public AgentsHonest(JTextArea caja, String email, String password, String nombre, String apellidoP, String apellidoM, String tipoU, String ip, String publicK, String dp, int position) {
         this.caja = caja;
         this.email = email;
         this.password = password;
@@ -43,20 +40,22 @@ public final class AgentsHonest extends Hilo {
         this.ip = ip;
         this.publicK = publicK;
         this.dp = dp;
-        getInitialNonce();
+        //mensaje = new InterfazG();
+        getInitialNonce(position);
     }
 
-    public void getInitialNonce() {
+    public void getInitialNonce(int position) {
         double randomNumber = Math.random();
         try {
-            String getInitialNonce = "curl -d na=" + randomNumber + " -X POST http://"+ip+":80/getInitialNonce";
+            String getInitialNonce = "curl -d na=" + randomNumber + " -X POST http://" + ip + ":80/getInitialNonce";
             SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
             Date now1 = new Date();
             String strDate1 = sdf1.format(now1);
-            //System.out.println("--> Date: " + strDate1 + "; CURL: " + getInitialNonce);
             response = "Root/AgentHonest/getInitialNonce --> Date: " + strDate1 + "; CURL: " + getInitialNonce;
-            acumulado += response + "\n";
-            caja.append(response+ "\n");
+            System.out.println(response+", "+position);
+            caja.append(response + "\n");
+            
+            if (position != -1) Respuesta.setConsultaRoot(response+ "\n", position);
 
             Runtime rt = Runtime.getRuntime();
             Process proc = rt.exec(getInitialNonce);
@@ -65,7 +64,6 @@ public final class AgentsHonest extends Hilo {
             InputStreamReader isr = new InputStreamReader(stdIn);
             BufferedReader br = new BufferedReader(isr);
 
-            //System.out.println("<OUTPUT>");
             Boolean intentar = true;
             String line;
             while (intentar) {
@@ -75,16 +73,19 @@ public final class AgentsHonest extends Hilo {
                         SimpleDateFormat sdf2 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
                         Date now2 = new Date();
                         String strDate2 = sdf2.format(now2);
-                        //System.out.println("<-- Date: " + strDate2 + "; Response: " + line);
+
                         response = "Root/AgentHonest/getInitialNonce <-- Date: " + strDate2 + "; Response: " + line;
-                        acumulado += response + "\n";
-                        caja.append(response+ "\n");
+                        System.out.println(response+", "+position);
+                        caja.append(response + "\n");
+                        if (position != -1) {
+                            Respuesta.setConsultaRoot(response+ "\n", position);
+                        }
                         String session = jsonObject.get("A").toString();
                         String na = jsonObject.get("NA").toString();
                         String nb = jsonObject.get("NB").toString();
                         String nanb = na + nb;
                         String token = MD5.getMd5('"' + nanb + '"');
-                        userCreation(token, session, randomNumber);
+                        userCreation(token, session, randomNumber, position);
                     }
                     intentar = false;
                 }
@@ -97,7 +98,7 @@ public final class AgentsHonest extends Hilo {
         }
     }
 
-    public String userCreation(String token, String session, double randomNumber) {
+    public void userCreation(String token, String session, double randomNumber, int position) {
         //System.out.print(token);
         String[] firstname = {"firstname1", "firstname2", "firstname3", "firstname4", "firstname5",
             "firstname6", "firstname7", "firstname8", "firstname9", "firstname10"};
@@ -139,17 +140,16 @@ public final class AgentsHonest extends Hilo {
                     + "nameOfOperation=" + nameOfOperation + "\" "
                     + "-H \"Session: " + session + "\" "
                     + "-H \"Authorization: " + token + "\" "
-                    + "-X POST http://"+ip+":80/userCreation";
-            
-            
-            
+                    + "-X POST http://" + ip + ":80/userCreation";
+
             SimpleDateFormat sdf3 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
             Date now3 = new Date();
             String strDate3 = sdf3.format(now3);
-            //System.out.println("--> Date: " + strDate3 + "; Token: " + token + "; NA: " + randomNumber + "; CURL: " + rootCreation);
             response = "Root/AgentHonest/userCreation --> Date: " + strDate3 + "; Token: " + token + "; NA: " + randomNumber + "; CURL1: " + rootCreation;
-            acumulado += response + "\n";
-            caja.append(response+ "\n");
+            System.out.println(response+", "+position);
+            caja.append(response + "\n");
+
+            if (position != -1) Respuesta.setConsultaRoot(response+ "\n", position);
 
             Runtime rt = Runtime.getRuntime();
             Process proc = rt.exec(rootCreation);
@@ -166,10 +166,10 @@ public final class AgentsHonest extends Hilo {
                         SimpleDateFormat sdf4 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
                         Date now4 = new Date();
                         String strDate4 = sdf4.format(now4);
-                        //System.out.println("<-- Date: " + strDate4 + "; Response: " + line);
                         response = "Root/AgentHonest/userCreation <-- Date: " + strDate4 + "; Response: " + line;
-                        acumulado += response + "\n";
-                        caja.append(response+ "\n");
+                        System.out.println(response+", "+position);
+                        caja.append(response + "\n");
+                        if (position != -1) Respuesta.setConsultaRoot(response+ "\n", position);
                     }
                     intentar = false;
                 }
@@ -177,11 +177,9 @@ public final class AgentsHonest extends Hilo {
             //System.out.println("</OUTPUT2>");
             int exitVal = proc.waitFor();
             //System.out.println("AgentHonest/acumulado: "+acumulado.replace("null", ""));
-            return acumulado;
             //System.out.println("Process exitValue: " + exitVal);
         } catch (IOException | InterruptedException t) {
             //System.out.println(t);
         }
-        return null;
     }
 }
