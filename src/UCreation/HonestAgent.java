@@ -6,6 +6,7 @@
 package UCreation;
 
 import Interfaz.MD5;
+import Interfaz.Respuesta;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -41,7 +42,7 @@ public class HonestAgent {
     private String dp;
     private String gas;
 
-    public HonestAgent(String email, String password, String typeU, String addressU, String authorization, String fatherS, String name, String motherS, int nRequest, int aHonest, int aDishonest, String typeConsult, String ip, JTextArea caja, String dp, String gas) {
+    public HonestAgent(String email, String password, String typeU, String addressU, String authorization, String fatherS, String name, String motherS, int nRequest, int aHonest, int aDishonest, String typeConsult, String ip, JTextArea caja, String dp, String gas, int position) {
         this.email = email;
         this.password = password;
         this.typeU = typeU;
@@ -58,10 +59,10 @@ public class HonestAgent {
         this.caja = caja;
         this.dp = dp;
         this.gas = gas;
-        userCreation();
+        userCreation(position);
     }
 
-    public void userCreation() {
+    public void userCreation(int position) {
         //System.out.print(token);
         String[] firstname = {"firstname1", "firstname2", "firstname3", "firstname4", "firstname5",
             "firstname6", "firstname7", "firstname8", "firstname9", "firstname10"};
@@ -85,29 +86,48 @@ public class HonestAgent {
             //se utiliza en la función de jsonData 
             String dpHashX = "{\\\"createAdministrator\\\":true,\\\"createTUser\\\":true,\\\"updateMe\\\":true,\\\"updateAdministrator\\\":true,\\\"updateTUser\\\":true,\\\"deleteMe\\\":true,\\\"deleteAdministrator\\\":true,\\\"deleteTUser\\\":true,\\\"readMe\\\":true,\\\"readAdministrator\\\":true,\\\"readTUser\\\":true,\\\"loginUser\\\":true}";
             String dp = this.dp;
-            System.out.println("''");
             String jsonData = "{\"email\":\"" + email + "\",\"password\":\"" + password + "\",\"surnameA\":\"" + surnameA + "\",\"surnameB\":\"" + surnameB + "\",\"nameOfUser\":\"" + nameOfUser + "\",\"typeOfUser\":\"" + typeOfUser + "\",\"status\":\"" + status + "\",\"creationDate\":\"" + creationDate + "\",\"initialToken\":\"" + authorization + "\",\"addressU\":\"" + addressU + "\",\"gas\":\"" + gas + "\",\"typeOfOperation\":\"" + typeOfOperation + "\",\"nameOfOperation\":\"" + nameOfOperation + /*"\",\"dp\":\"" + dpHashX + */ "\"}";
-            System.out.println("jsonData: " + jsonData);
+            //System.out.println("jsonData: " + jsonData);
             String hashX = MD5.getMd5(jsonData);
-            System.out.println("hashX: " + hashX);
+            //System.out.println("hashX: " + hashX);
 
-            caja.append("EMAIL: " + email + "\n");
-            caja.append("PASSWORD: " + password + "\n");
-            caja.append("SURNAME A: " + surnameA + "\n");
-            caja.append("SURNAME B: " + surnameB + "\n");
-            caja.append("NAME OF USER: " + nameOfUser + "\n");
-            caja.append("TYPE OF USER: " + typeOfUser + "\n");
-            caja.append("ADRESS U: " + addressU + "\n");
-            caja.append("AUTHORIZATION: " + authorization + "\n");
-            caja.append("DP: " + dp + "\n");
-            caja.append("STATUS: " + status + "\n");
-            caja.append("CREATION DATE: " + creationDate + "\n");
-            caja.append("JSON DATA: " + jsonData + "\n");
-            caja.append("TYPE OF OPERATION: " + typeOfOperation + "\n");
-            caja.append("HASH X: " + hashX + "\n");
-            caja.append("NAME OF OPERATION: " + nameOfOperation + "\n");
-            caja.append("IP: " + ip + "\n");
-            caja.append("\n");
+                caja.append("EMAIL: " + email + "\n");
+                caja.append("PASSWORD: " + password + "\n");
+                caja.append("SURNAME A: " + surnameA + "\n");
+                caja.append("SURNAME B: " + surnameB + "\n");
+                caja.append("NAME OF USER: " + nameOfUser + "\n");
+                caja.append("TYPE OF USER: " + typeOfUser + "\n");
+                caja.append("ADRESS U: " + addressU + "\n");
+                caja.append("AUTHORIZATION: " + authorization + "\n");
+                caja.append("DP: " + dp + "\n");
+                caja.append("STATUS: " + status + "\n");
+                caja.append("CREATION DATE: " + creationDate + "\n");
+                caja.append("JSON DATA: " + jsonData + "\n");
+                caja.append("TYPE OF OPERATION: " + typeOfOperation + "\n");
+                caja.append("HASH X: " + hashX + "\n");
+                caja.append("NAME OF OPERATION: " + nameOfOperation + "\n");
+                caja.append("IP: " + ip + "\n");
+                caja.append("\n");
+            
+            if(position != -1){
+            Respuesta.setConsultaUC("EMAIL: " + email + "\n", position);
+            Respuesta.setConsultaUC("PASSWORD: " + password + "\n", position);
+            Respuesta.setConsultaUC("SURNAME A: " + surnameA + "\n", position);
+            Respuesta.setConsultaUC("SURNAME B: " + surnameB + "\n", position);
+            Respuesta.setConsultaUC("NAME OF USER: " + nameOfUser + "\n", position);
+            Respuesta.setConsultaUC("TYPE OF USER: " + typeOfUser + "\n", position);
+            Respuesta.setConsultaUC("ADRESS U: " + addressU + "\n", position);
+            Respuesta.setConsultaUC("AUTHORIZATION: " + authorization + "\n", position);
+            Respuesta.setConsultaUC("DP: " + dp + "\n", position);
+            Respuesta.setConsultaUC("STATUS: " + status + "\n", position);
+            Respuesta.setConsultaUC("CREATION DATE: " + creationDate + "\n", position);
+            Respuesta.setConsultaUC("JSON DATA: " + jsonData + "\n", position);
+            Respuesta.setConsultaUC("TYPE OF OPERATION: " + typeOfOperation + "\n", position);
+            Respuesta.setConsultaUC("HASH X: " + hashX + "\n", position);
+            Respuesta.setConsultaUC("NAME OF OPERATION: " + nameOfOperation + "\n", position);
+            Respuesta.setConsultaUC("IP: " + ip + "\n", position);
+            Respuesta.setConsultaUC("\n", position);
+            }
 
             String rootCreation = "curl -d \"email=" + email + "&"
                     + "password=" + password + "&"
@@ -131,7 +151,10 @@ public class HonestAgent {
             String strDate3 = sdf3.format(now3);
             //System.out.println("--> Date: " + strDate3 + "; Token: " + token + "; NA: " + randomNumber + "; CURL: " + rootCreation2);
             String response = "Crear Usuario/AgentHonest --> Date: " + strDate3 + "; CURL: " + rootCreation;
+            System.out.println(response);
             caja.append(response + "\n");
+            
+            if(position != -1) Respuesta.setConsultaUC(response+"\n", position);
 
             //hace la petición como en CMD
             Runtime rt = Runtime.getRuntime();
@@ -151,7 +174,9 @@ public class HonestAgent {
                         String strDate4 = sdf4.format(now4);
                         //System.out.println("<-- Date: " + strDate4 + "; Response: " + line);
                         response = "Crear Usuario/AgentHonest <-- Date: " + strDate4 + "; Response: " + line;
+                        System.out.println(response);
                         caja.append(response + "\n \n");
+                        if(position != -1) Respuesta.setConsultaUC(response+"\n", position);
                     }
                     intentar = false;
                 }
@@ -173,15 +198,6 @@ public class HonestAgent {
             default: 
                 return "createTUser";
         }
-
-        /*if (typeU == "Administrator") {
-            return "createAdministrator";
-        } else {
-            if (typeU == "Productor" || typeU == "Acopio" || typeU == "Carrier" || typeU == "Merchant") {
-                return "createTUser";
-            }
-        }
-        return "createRoot";*/
     }
 
     private String permisosDP(String cadena) {

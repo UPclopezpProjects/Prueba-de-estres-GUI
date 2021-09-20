@@ -6,6 +6,7 @@
 package UCreation;
 
 import Interfaz.MD5;
+import Interfaz.Respuesta;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -49,7 +50,7 @@ public class DishonestAgentB {
     private String dp;
     private String gas;
 
-    public DishonestAgentB(String email, String password, String typeU, String addressU, String authorization, String fatherS, String name, String motherS, int nRequest, int aHonest, int aDishonest, String typeConsult, String ip, JTextArea caja, String dp, String gas) {
+    public DishonestAgentB(String email, String password, String typeU, String addressU, String authorization, String fatherS, String name, String motherS, int nRequest, int aHonest, int aDishonest, String typeConsult, String ip, JTextArea caja, String dp, String gas, int position) {
         this.email = email;
         this.password = password;
         this.typeU = typeU;
@@ -66,10 +67,10 @@ public class DishonestAgentB {
         this.caja = caja;
         this.dp = dp;
         this.gas = gas;
-        userCreation();
+        userCreation(position);
     }
 
-    public void userCreation() {
+    public void userCreation(int position) {
         try {
             //Thread.sleep(500);
             Random rand = new Random();
@@ -88,9 +89,9 @@ public class DishonestAgentB {
             //String dp = "{\"\"createAdministrator\"\":false,\"\"createTUser\"\":false,\"\"updateMe\"\":false,\"\"updateAdministrator\"\":false,\"\"updateTUser\"\":false,\"\"deleteMe\"\":false,\"\"deleteAdministrator\"\":false,\"\"deleteTUser\"\":false,\"\"readMe\"\":false,\"\"readAdministrator\"\":false,\"\"readTUser\"\":false,\"\"loginUser\"\":false}";
             String dp = permisosDP();
             String jsonData = "{\"email\":\"" + email + "\",\"password\":\"" + password + "\",\"surnameA\":\"" + surnameA + "\",\"surnameB\":\"" + surnameB + "\",\"nameOfUser\":\"" + nameOfUser + "\",\"typeOfUser\":\"" + typeOfUser + "\",\"status\":\"" + status + "\",\"creationDate\":\"" + creationDate + "\",\"initialToken\":\"" + authorization + "\",\"addressU\":\"" + addressU + "\",\"gas\":\"" + gas + "\",\"typeOfOperation\":\"" + typeOfOperation + "\",\"nameOfOperation\":\"" + nameOfOperation + /*"\",\"dp\":\"" + dpHashX + */ "\"}";
-            System.out.println("jsonData: " + jsonData);
+            //System.out.println("jsonData: " + jsonData);
             String hashX = MD5.getMd5(jsonData);
-            System.out.println("hashX: " + hashX);
+            //System.out.println("hashX: " + hashX);
 
             caja.append("EMAIL: " + email + "\n");
             caja.append("PASSWORD: " + password + "\n");
@@ -109,6 +110,26 @@ public class DishonestAgentB {
             caja.append("NAME OF OPERATION: " + nameOfOperation + "\n");
             caja.append("IP: " + ip + "\n");
             caja.append("\n");
+
+            if (position != -1) {
+                Respuesta.setConsultaUC("EMAIL: " + email + "\n", position);
+                Respuesta.setConsultaUC("PASSWORD: " + password + "\n", position);
+                Respuesta.setConsultaUC("SURNAME A: " + surnameA + "\n", position);
+                Respuesta.setConsultaUC("SURNAME B: " + surnameB + "\n", position);
+                Respuesta.setConsultaUC("NAME OF USER: " + nameOfUser + "\n", position);
+                Respuesta.setConsultaUC("TYPE OF USER: " + typeOfUser + "\n", position);
+                Respuesta.setConsultaUC("ADRESS U: " + addressU + "\n", position);
+                Respuesta.setConsultaUC("AUTHORIZATION: " + authorization + "\n", position);
+                Respuesta.setConsultaUC("DP: " + dp + "\n", position);
+                Respuesta.setConsultaUC("STATUS: " + status + "\n", position);
+                Respuesta.setConsultaUC("CREATION DATE: " + creationDate + "\n", position);
+                Respuesta.setConsultaUC("JSON DATA: " + jsonData + "\n", position);
+                Respuesta.setConsultaUC("TYPE OF OPERATION: " + typeOfOperation + "\n", position);
+                Respuesta.setConsultaUC("HASH X: " + hashX + "\n", position);
+                Respuesta.setConsultaUC("NAME OF OPERATION: " + nameOfOperation + "\n", position);
+                Respuesta.setConsultaUC("IP: " + ip + "\n", position);
+                Respuesta.setConsultaUC("\n", position);
+            }
 
             String rootCreation = "curl -d \"email=" + email + "&"
                     + "password=" + password + "&"
@@ -132,7 +153,9 @@ public class DishonestAgentB {
             String strDate3 = sdf3.format(now3);
             //System.out.println("--> Date: " + strDate3 + "; Token: " + token + "; NA: " + randomNumber + "; CURL: " + rootCreation2);
             String response = "Crear Usuario/Dishonest agent B --> Date: " + strDate3 + "; CURL: " + rootCreation;
+            System.out.println(response);
             caja.append(response + "\n");
+            if(position != -1) Respuesta.setConsultaUC(response+"\n", position);
 
             Runtime rt = Runtime.getRuntime();
             Process proc = rt.exec(rootCreation);
@@ -152,7 +175,10 @@ public class DishonestAgentB {
                         String strDate4 = sdf4.format(now4);
                         //System.out.println("<-- Date: " + strDate4 + "; Response: " + line);
                         response = "Crear Usuario/Dishonest agent B <-- Date: " + strDate4 + "; Response: " + line;
+                        System.out.println(response);
                         caja.append(response + "\n \n");
+                        
+                        if(position != -1) Respuesta.setConsultaUC(response+"\n", position);
                     }
                     intentar = false;
                 }
@@ -166,11 +192,11 @@ public class DishonestAgentB {
     }
 
     private String permisosDP() {
-            String[] permisos = new String[16];
-            for (int x = 0; x < permisos.length; x++) {
-                permisos[x] = String.valueOf(randomDP());
-            }
-            return "{\"\"createAdministrator\"\":" + permisos[0] + ",\"\"createTUser\"\":" + permisos[1] + ",\"\"updateMe\"\":" + permisos[2] + ",\"\"updateAdministrator\"\":" + permisos[3] + ",\"\"updateTUser\"\":" + permisos[4] + ",\"\"deleteMe\"\":" + permisos[5] + ",\"\"deleteAdministrator\"\":" + permisos[6] + ",\"\"deleteTUser\"\":" + permisos[7] + ",\"\"readMe\"\":" + permisos[8] + ",\"\"readAdministrator\"\":" + permisos[9] + ",\"\"readTUser\"\":" + permisos[10] + ",\"\"loginUser\"\":" + permisos[11] + ",\"\"readData\"\":" + permisos[12] + ",\"\"updateData\"\":" + permisos[13] + ",\"\"createData\"\":" + permisos[14] + ",\"\"deleteData\"\":" + permisos[15] +"}";
+        String[] permisos = new String[16];
+        for (int x = 0; x < permisos.length; x++) {
+            permisos[x] = String.valueOf(randomDP());
+        }
+        return "{\"\"createAdministrator\"\":" + permisos[0] + ",\"\"createTUser\"\":" + permisos[1] + ",\"\"updateMe\"\":" + permisos[2] + ",\"\"updateAdministrator\"\":" + permisos[3] + ",\"\"updateTUser\"\":" + permisos[4] + ",\"\"deleteMe\"\":" + permisos[5] + ",\"\"deleteAdministrator\"\":" + permisos[6] + ",\"\"deleteTUser\"\":" + permisos[7] + ",\"\"readMe\"\":" + permisos[8] + ",\"\"readAdministrator\"\":" + permisos[9] + ",\"\"readTUser\"\":" + permisos[10] + ",\"\"loginUser\"\":" + permisos[11] + ",\"\"readData\"\":" + permisos[12] + ",\"\"updateData\"\":" + permisos[13] + ",\"\"createData\"\":" + permisos[14] + ",\"\"deleteData\"\":" + permisos[15] + "}";
     }
 
     private boolean randomDP() {

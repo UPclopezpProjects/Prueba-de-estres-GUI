@@ -6,6 +6,7 @@
 package UCreation;
 
 import Interfaz.MD5;
+import Interfaz.Respuesta;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -49,7 +50,7 @@ public class DishonestAgentA {
     private String dp;
     private String gas;
 
-    public DishonestAgentA(String email, String password, String typeU, String addressU, String authorization, String fatherS, String name, String motherS, int nRequest, int aHonest, int aDishonest, String typeConsult, String ip, JTextArea caja, String dp, String gas) {
+    public DishonestAgentA(String email, String password, String typeU, String addressU, String authorization, String fatherS, String name, String motherS, int nRequest, int aHonest, int aDishonest, String typeConsult, String ip, JTextArea caja, String dp, String gas, int position) {
         this.email = email;
         this.password = password;
         this.typeU = typeU;
@@ -66,12 +67,12 @@ public class DishonestAgentA {
         this.caja = caja;
         this.dp = dp;
         this.gas = gas;
-        userCreation();
+        userCreation(position);
         //comparar();
-        
+
     }
 
-    public void userCreation() {
+    public void userCreation(int position) {
         try {
             //Thread.sleep(500);
             Random rand = new Random();
@@ -89,12 +90,12 @@ public class DishonestAgentA {
             String dpHashX = "{\\\"createAdministrator\\\":true,\\\"createTUser\\\":true,\\\"updateMe\\\":true,\\\"updateAdministrator\\\":true,\\\"updateTUser\\\":true,\\\"deleteMe\\\":true,\\\"deleteAdministrator\\\":true,\\\"deleteTUser\\\":true,\\\"readMe\\\":true,\\\"readAdministrator\\\":true,\\\"readTUser\\\":true,\\\"loginUser\\\":true}";
             //String dp = "{\"\"createAdministrator\"\":false,\"\"createTUser\"\":false,\"\"updateMe\"\":false,\"\"updateAdministrator\"\":false,\"\"updateTUser\"\":false,\"\"deleteMe\"\":false,\"\"deleteAdministrator\"\":false,\"\"deleteTUser\"\":false,\"\"readMe\"\":false,\"\"readAdministrator\"\":false,\"\"readTUser\"\":false,\"\"loginUser\"\":false}";
             String dp = this.dp;
-            authorization= "n";
+            authorization = "n";
             String jsonData = "{\"email\":\"" + email + "\",\"password\":\"" + password + "\",\"surnameA\":\"" + surnameA + "\",\"surnameB\":\"" + surnameB + "\",\"nameOfUser\":\"" + nameOfUser + "\",\"typeOfUser\":\"" + typeOfUser + "\",\"status\":\"" + status + "\",\"creationDate\":\"" + creationDate + "\",\"initialToken\":\"" + authorization + "\",\"addressU\":\"" + addressU + "\",\"gas\":\"" + gas + "\",\"typeOfOperation\":\"" + typeOfOperation + "\",\"nameOfOperation\":\"" + nameOfOperation + /*"\",\"dp\":\"" + dpHashX + */ "\"}";
-            System.out.println("jsonData: "+jsonData);
+            //System.out.println("jsonData: " + jsonData);
             String hashX = MD5.getMd5(jsonData);
-            System.out.println("hashX: "+hashX);
-            
+            //System.out.println("hashX: " + hashX);
+
             caja.append("EMAIL: " + email + "\n");
             caja.append("PASSWORD: " + password + "\n");
             caja.append("SURNAME A: " + surnameA + "\n");
@@ -113,6 +114,26 @@ public class DishonestAgentA {
             caja.append("IP: " + ip + "\n");
             caja.append("\n");
 
+            if (position != -1) {
+                Respuesta.setConsultaUC("EMAIL: " + email + "\n", position);
+                Respuesta.setConsultaUC("PASSWORD: " + password + "\n", position);
+                Respuesta.setConsultaUC("SURNAME A: " + surnameA + "\n", position);
+                Respuesta.setConsultaUC("SURNAME B: " + surnameB + "\n", position);
+                Respuesta.setConsultaUC("NAME OF USER: " + nameOfUser + "\n", position);
+                Respuesta.setConsultaUC("TYPE OF USER: " + typeOfUser + "\n", position);
+                Respuesta.setConsultaUC("ADRESS U: " + addressU + "\n", position);
+                Respuesta.setConsultaUC("AUTHORIZATION: " + authorization + "\n", position);
+                Respuesta.setConsultaUC("DP: " + dp + "\n", position);
+                Respuesta.setConsultaUC("STATUS: " + status + "\n", position);
+                Respuesta.setConsultaUC("CREATION DATE: " + creationDate + "\n", position);
+                Respuesta.setConsultaUC("JSON DATA: " + jsonData + "\n", position);
+                Respuesta.setConsultaUC("TYPE OF OPERATION: " + typeOfOperation + "\n", position);
+                Respuesta.setConsultaUC("HASH X: " + hashX + "\n", position);
+                Respuesta.setConsultaUC("NAME OF OPERATION: " + nameOfOperation + "\n", position);
+                Respuesta.setConsultaUC("IP: " + ip + "\n", position);
+                Respuesta.setConsultaUC("\n", position);
+            }
+
             String rootCreation = "curl -d \"email=" + email + "&"
                     + "password=" + password + "&"
                     + "surnameA=" + surnameA + "&"
@@ -130,13 +151,17 @@ public class DishonestAgentA {
                     + "-H \"Authorization: " + authorization + "\" "
                     + "-X POST http://" + ip + ":80/userCreation";
 
-
             SimpleDateFormat sdf3 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
             Date now3 = new Date();
             String strDate3 = sdf3.format(now3);
             //System.out.println("--> Date: " + strDate3 + "; Token: " + token + "; NA: " + randomNumber + "; CURL: " + rootCreation2);
             String response = "Crear Usuario/Dishonest agent A --> Date: " + strDate3 + "; CURL: " + rootCreation;
+            System.out.println(response);
             caja.append(response + "\n");
+            
+            if (position != -1) {
+                Respuesta.setConsultaUC(response + "\n", position);
+            }
 
             Runtime rt = Runtime.getRuntime();
             Process proc = rt.exec(rootCreation);
@@ -156,7 +181,12 @@ public class DishonestAgentA {
                         String strDate4 = sdf4.format(now4);
                         //System.out.println("<-- Date: " + strDate4 + "; Response: " + line);
                         response = "Crear Usuario/Dishonest agent A <-- Date: " + strDate4 + "; Response: " + line;
-                        caja.append(response+ "\n \n");
+                        System.out.println(response);
+                        caja.append(response + "\n \n");
+                        
+                        if (position != -1) {
+                            Respuesta.setConsultaUC(response + "\n", position);
+                        }
                     }
                     intentar = false;
                 }
@@ -168,12 +198,12 @@ public class DishonestAgentA {
             //System.out.println(t);
         }
     }
-    
-    public String nameOperation(){
-        if(typeU=="Administrator"){
+
+    public String nameOperation() {
+        if (typeU == "Administrator") {
             return "createAdministrator";
-        }else{
-            if(typeU == "Productor" || typeU == "Acopio" || typeU == "Carrier" || typeU == "Merchant"){
+        } else {
+            if (typeU == "Productor" || typeU == "Acopio" || typeU == "Carrier" || typeU == "Merchant") {
                 return "createTUser";
             }
         }

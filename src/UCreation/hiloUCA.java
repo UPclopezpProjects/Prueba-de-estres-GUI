@@ -8,15 +8,13 @@ package UCreation;
 import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JOptionPane;
 import javax.swing.JTextArea;
 
 /**
  *
  * @author frank
  */
-public class hiloUC implements Runnable {
-
+public class hiloUCA implements Runnable{
     private String email;
     private String password;
     private String typeU;
@@ -68,21 +66,21 @@ public class hiloUC implements Runnable {
     }
 
     public void setFatherS(int fatherS) {
-        System.out.println("hilo UC/fatherS recibe " + fatherS);
+        //System.out.println("hilo UC/fatherS recibe " + fatherS);
         this.fatherS = nombres(fatherS);
-        System.out.println("hilo UC/fatherS" + this.fatherS);
+        //System.out.println("hilo UC/fatherS" + this.fatherS);
     }
 
     public void setName(int name) {
-        System.out.println("hilo UC/setName" + name);
+        //System.out.println("hilo UC/setName" + name);
         this.name = nombres(name);
-        System.out.println("hilo UC/name" + this.name);
+        //System.out.println("hilo UC/name" + this.name);
     }
 
     public void setMotherS(int motherS) {
-        System.out.println("hilo UC/motherS recibe " + motherS);
+        //System.out.println("hilo UC/motherS recibe " + motherS);
         this.motherS = nombres(motherS);
-        System.out.println("hilo UC/motherS" + this.fatherS);
+        //System.out.println("hilo UC/motherS" + this.fatherS);
     }
 
     public void setnRequest(int nRequest) {
@@ -111,16 +109,19 @@ public class hiloUC implements Runnable {
 
     public void loop1() throws InterruptedException {
         if (typeConsult == "Honest") {
-            HonestAgent h = new HonestAgent(email, password, typeU, adressU, authorization, fatherS, name, motherS, nRequest, aHonest, aDishonest, typeConsult, ip, caja, dp, gas, -1);
+            //System.out.println();
+            HonestAgent h = new HonestAgent(email, password, typeU, adressU, authorization, fatherS, name, motherS, nRequest, aHonest, aDishonest, typeConsult, ip, caja, dp, gas, position);
         } else {
             if (typeConsult == "Dishonest A") {
-                DishonestAgentA d = new DishonestAgentA(email, password, typeU, adressU, authorization, fatherS, name, motherS, nRequest, aHonest, aDishonest, typeConsult, ip, caja, dp, gas, -1);
+                DishonestAgentA d = new DishonestAgentA(email, password, typeU, adressU, authorization, fatherS, name, motherS, nRequest, aHonest, aDishonest, typeConsult, ip, caja, dp, gas, position);
             } else {
                 if (typeConsult == "Dishonest B") {
-                    DishonestAgentB d = new DishonestAgentB(email, password, typeU, adressU, authorization, fatherS, name, motherS, nRequest, aHonest, aDishonest, typeConsult, ip, caja, dp, gas, -1);
+                    DishonestAgentB d = new DishonestAgentB(email, password, typeU, adressU, authorization, fatherS, name, motherS, nRequest, aHonest, aDishonest, typeConsult, ip, caja, dp, gas, position);
                 }
             }
         }
+        
+        System.out.println();
     }
 
     private String generateEmail(int n) {
@@ -180,7 +181,7 @@ public class hiloUC implements Runnable {
     private char letter() {
         Random r = new Random();
         char c = (char) (r.nextInt(26) + 'a');
-        System.out.println("hiloUC/letra: " + c);
+        //System.out.println("hiloUC/letra: " + c);
         return c;
 
     }
@@ -189,14 +190,14 @@ public class hiloUC implements Runnable {
         int numero = (int) (Math.random() * 10 + 1);
         return numero;
     }
-
+    
+    @Override
     public void run() {
         try {
-            //caja.append("lalo");
             loop1();
         } catch (InterruptedException ex) {
-            Logger.getLogger(Interfaz.StressTest.Hilo.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(hiloUCA.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
+    
 }
