@@ -244,7 +244,7 @@ public class InterfazG extends javax.swing.JFrame {
                             hNP.setCurrentS(currentS);
                             hNP.setCode(code);
                             hNP.setTypeConsult(typeConsult);
-                            hNP.setImage(getImage());
+                            hNP.setImage(/*getImage()*/getCurrentStageI(currentS));
                             hNP.setIp(ip);
                             hNP.setCaja(caja);
                             hNP.setToken(token);
@@ -257,7 +257,7 @@ public class InterfazG extends javax.swing.JFrame {
                             hNP.setUbication(ubication);
                             hNP.setPreviousS(previousS);
                             hNP.setCurrentS(currentS);
-                            hNP.setImage(getImage());
+                            hNP.setImage(/*getImage()*/getCurrentStageI(currentS));
                             hNP.setDescription(description);
                             hNP.setCode(code);
                             hNP.setDriverName("6");
@@ -874,6 +874,10 @@ public class InterfazG extends javax.swing.JFrame {
         return fechaCD;
     }
 
+    private String getCurrentStageI(String stage){
+        return "C:/imagenes/"+stage+"1.jpg";
+    }
+    
     private String getImage() {
         String imagenes[] = {"C:/imagenes/1.png", "C:/imagenes/2.png", "C:/imagenes/3.png", "C:/imagenes/4.png", "C:/imagenes/5.png"};
         int i = (int) Math.floor(Math.random() * 5);
@@ -1895,27 +1899,22 @@ public class InterfazG extends javax.swing.JFrame {
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addComponent(jLabel57)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(TFGasUC, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                                .addComponent(jLayeredPane2)
-                                .addContainerGap())))
+                                .addComponent(TFGasUC))
+                            .addComponent(jLayeredPane2, javax.swing.GroupLayout.Alignment.TRAILING)))
+                    .addComponent(jScrollPane3)
                     .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 598, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane3)
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 598, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(BIniciarUC, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
                                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(BIniciarUC, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(BAyuda2, javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                                        .addGap(0, 0, Short.MAX_VALUE)
-                                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(BAyuda2, javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                                                .addComponent(RBRequestAUC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addGap(16, 16, 16)))))))
-                        .addContainerGap())))
+                                        .addComponent(RBRequestAUC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(16, 16, 16)))))))
+                .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1995,6 +1994,7 @@ public class InterfazG extends javax.swing.JFrame {
         jLabel49.setText("Code:");
 
         CBCodeNP.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "[x]", "[xx]", "[xxx]", "[xxxx]", "[xxxxx]" }));
+        CBCodeNP.setSelectedIndex(4);
 
         jButton2.setBackground(new java.awt.Color(0, 153, 0));
         jButton2.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
@@ -2063,7 +2063,7 @@ public class InterfazG extends javax.swing.JFrame {
         SNumberRequestNP.setModel(new javax.swing.SpinnerNumberModel(1, 1, 100, 1));
 
         CBPreviousSNP.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        CBPreviousSNP.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Null", "Productor", "Carrier", "Acopio", "Merchant" }));
+        CBPreviousSNP.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "null", "Productor", "Carrier", "Acopio", "Merchant" }));
         CBPreviousSNP.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 CBPreviousSNPActionPerformed(evt);
