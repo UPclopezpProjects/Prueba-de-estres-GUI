@@ -125,23 +125,85 @@ public class HiloNP implements Runnable {
 
     public void loop1() throws InterruptedException {
         if(typeConsult == "Honest"){
+            
             if(currentS=="Carrier"){
                 System.out.println("HiloNP/Agente honesto 1");
                 HonestAgentNP honesto = new HonestAgentNP(fId,ubication, nameProduction, previousS, currentS, image, description, code, driverName, origin, destination, plates, productPhotos, vehiclePhotos, tracking, token, ip, caja);
-            } else {
+            }
+            
+            if(currentS=="Productor"){
                 System.out.println("HiloNP/Agente honesto 2");
                 HonestAgentNP honesto = new HonestAgentNP(ubication, harvestD, caducationD, description, fId, nameProduction, previousS, currentS, code, image, ip, caja, token);
+            }
+            
+            if(currentS=="Acopio"){
+                System.out.println("HiloNP/Agente honesto 3");
+                HonestAgentNP honesto = new HonestAgentNP(fId, ubication, nameAcopio(), previousS, currentS, image, description, code, arrivalDate(), quantity(), "KG", whoReceives(), token, ip, caja);
+            }
+            
+            if(currentS=="Merchant"){
+                System.out.println("HiloNP/Agente honesto 4");
+                HonestAgentNP honesto = new HonestAgentNP(fId, ubication, nameMerchant(), previousS, currentS, image, description, code, arrivalDate(), quantity(), token, ip, caja);
             }
             
         }else{
             if(currentS=="Carrier"){
                 System.out.println("HiloNP/Agente deshonesto 1");
                 DishonestAgentNP dishonest = new DishonestAgentNP(fId,ubication, nameProduction, previousS, currentS, image, description, code, driverName, origin, destination, plates, productPhotos, vehiclePhotos, tracking, token, ip, caja);
-            } else {
+            }
+            
+            if(currentS=="Productor"){
                 System.out.println("HiloNP/Agente deshonesto 2");
                 DishonestAgentNP dishonest = new DishonestAgentNP(ubication, harvestD, caducationD, description, fId, nameProduction, previousS, currentS, code, image, ip, caja, token);
             }
+            
+            if(currentS=="Acopio"){
+                System.out.println("HiloNP/Agente deshonesto 3");
+                DishonestAgentNP dishonesto = new DishonestAgentNP(fId, ubication, nameAcopio(), previousS, currentS, image, description, code, arrivalDate(), quantity(), "KG", whoReceives(), token, ip, caja);
+            }
+            
+            if(currentS=="Merchant"){
+                System.out.println("HiloNP/Agente deshonesto 4");
+                DishonestAgentNP dishonesto = new DishonestAgentNP(fId, ubication, nameMerchant(), previousS, currentS, image, description, code, arrivalDate(), quantity(), token, ip, caja);
+            }
         }
+    }
+    private String whoReceives() {
+        String date[] = {"Javier", "José Manuel", "Andrés", "Sergio", "Antonio"};
+        int i = (int) Math.floor(Math.random() * 5);
+        String dateR = date[i];
+        return dateR;
+    }
+    
+    private String quantity(){
+        String quantity = "";
+        for(int i =0; i<4; i++){
+            quantity += number();
+        }
+        return quantity;
+    }
+    
+    private String arrivalDate() {
+        String date[] = {"25/02/2022", "15/06/2022", "01/06/2022", "29/08/2022", "25/08/2022"};
+        int i = (int) Math.floor(Math.random() * 5);
+        String dateA = date[i];
+        return dateA;
+    }
+    
+    private String nameMerchant(){
+        String merchant = "";
+        for(int i =0; i<5; i++){
+            merchant += letter();
+        }
+        return merchant;
+    }
+    
+    private String nameAcopio(){
+        String nombre = "";
+        for(int i =0; i<5; i++){
+            nombre += letter();
+        }
+        return nombre;
     }
     
     private String texto(int name){
