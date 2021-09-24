@@ -248,7 +248,7 @@ public class InterfazG extends javax.swing.JFrame {
                             hNP.setIp(ip);
                             hNP.setCaja(caja);
                             hNP.setToken(token);
-
+                            hNP.setPosition(-1);
                             new Thread(hNP).start();
                         } else {
                             //fId,ubication, nameProduction, previousS, currentS, image, description, code, driverName, origin, destination, plates, productPhotos, vehiclePhotos, tracking, token, ip, caja
@@ -272,7 +272,7 @@ public class InterfazG extends javax.swing.JFrame {
                             hNP.setCaja(caja);
                             hNP.setTypeConsult(typeConsult);
                             hNP.setNameProduction(nameProduction);
-
+                            hNP.setPosition(-1);
                             new Thread(hNP).start();
 
                         }
@@ -874,10 +874,10 @@ public class InterfazG extends javax.swing.JFrame {
         return fechaCD;
     }
 
-    private String getCurrentStageI(String stage){
-        return "C:/imagenes/"+stage+"1.jpg";
+    private String getCurrentStageI(String stage) {
+        return "C:/imagenes/" + stage + "1.jpg";
     }
-    
+
     private String getImage() {
         String imagenes[] = {"C:/imagenes/1.png", "C:/imagenes/2.png", "C:/imagenes/3.png", "C:/imagenes/4.png", "C:/imagenes/5.png"};
         int i = (int) Math.floor(Math.random() * 5);
@@ -1032,6 +1032,7 @@ public class InterfazG extends javax.swing.JFrame {
         jLabel37 = new javax.swing.JLabel();
         TFTokenNP = new javax.swing.JTextField();
         BAyuda1 = new javax.swing.JButton();
+        RBRequestsANS = new javax.swing.JRadioButton();
 
         jDialog1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jDialog1.setMinimumSize(new java.awt.Dimension(420, 270));
@@ -1962,6 +1963,7 @@ public class InterfazG extends javax.swing.JFrame {
         jLabel49.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel49.setText("Code:");
 
+        CBCodeNP.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         CBCodeNP.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "[x]", "[xx]", "[xxx]", "[xxxx]", "[xxxxx]" }));
         CBCodeNP.setSelectedIndex(4);
 
@@ -2029,6 +2031,7 @@ public class InterfazG extends javax.swing.JFrame {
         jLabel54.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel54.setText("<html><body>Number of <br> requests </body></html>");
 
+        SNumberRequestNP.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         SNumberRequestNP.setModel(new javax.swing.SpinnerNumberModel(5, 1, 100, 1));
 
         CBPreviousSNP.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
@@ -2047,6 +2050,11 @@ public class InterfazG extends javax.swing.JFrame {
 
         CBFIdNP.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         CBFIdNP.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "null", "Random" }));
+        CBFIdNP.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CBFIdNPActionPerformed(evt);
+            }
+        });
 
         jLabel41.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel41.setText("Previous stage:");
@@ -2066,10 +2074,13 @@ public class InterfazG extends javax.swing.JFrame {
         CBIpNP.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         CBIpNP.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "localhost", "54.87.22.33", "52.202.214.13" }));
 
+        CBDescriptionNP.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         CBDescriptionNP.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "[x]", "[xx]", "[xxx]", "[xxxx]", "[xxxxx]" }));
 
         jLabel37.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel37.setText("Token:");
+
+        TFTokenNP.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
 
         BAyuda1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Interfaz/informacion.png"))); // NOI18N
         BAyuda1.setBorder(null);
@@ -2078,6 +2089,9 @@ public class InterfazG extends javax.swing.JFrame {
                 BAyuda1ActionPerformed(evt);
             }
         });
+
+        RBRequestsANS.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        RBRequestsANS.setText("Automatic requests");
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -2088,34 +2102,38 @@ public class InterfazG extends javax.swing.JFrame {
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel30, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jScrollPane8, javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addGroup(jPanel5Layout.createSequentialGroup()
-                                    .addGap(18, 18, 18)
-                                    .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addComponent(jLabel46)
-                                        .addComponent(jLabel41)
-                                        .addComponent(jLabel44)
-                                        .addComponent(jLabel45)
-                                        .addComponent(jLabel47)
-                                        .addComponent(jLabel49)
-                                        .addComponent(jLabel55)
-                                        .addComponent(jLabel37)
-                                        .addComponent(jLabel54, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                        .addComponent(CBPreviousSNP, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(CBDescriptionNP, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(CBCurrentSNP, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(CBNameNP, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(CBFIdNP, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(CBCodeNP, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(CBIpNP, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(TFTokenNP, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(SNumberRequestNP, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                            .addComponent(BAyuda1))
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jScrollPane8, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPanel5Layout.createSequentialGroup()
+                                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addGroup(jPanel5Layout.createSequentialGroup()
+                                        .addGap(18, 18, 18)
+                                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(jLabel46)
+                                            .addComponent(jLabel41)
+                                            .addComponent(jLabel44)
+                                            .addComponent(jLabel45)
+                                            .addComponent(jLabel47)
+                                            .addComponent(jLabel49)
+                                            .addComponent(jLabel55)
+                                            .addComponent(jLabel54, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addGroup(jPanel5Layout.createSequentialGroup()
+                                        .addComponent(BAyuda1)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jLabel37)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(CBPreviousSNP, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(CBDescriptionNP, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(CBCurrentSNP, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(CBNameNP, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(CBFIdNP, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(CBCodeNP, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(CBIpNP, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(TFTokenNP, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(SNumberRequestNP, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(RBRequestsANS, javax.swing.GroupLayout.Alignment.TRAILING))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 490, Short.MAX_VALUE)))
                 .addContainerGap())
@@ -2156,19 +2174,22 @@ public class InterfazG extends javax.swing.JFrame {
                             .addComponent(jLabel55)
                             .addComponent(CBIpNP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel37)
-                            .addComponent(TFTokenNP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(BAyuda1)
+                            .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jLabel37)
+                                .addComponent(TFTokenNP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(SNumberRequestNP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel54, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 269, Short.MAX_VALUE)
-                        .addComponent(BAyuda1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(RBRequestsANS)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton2))
+                        .addComponent(jButton2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 262, Short.MAX_VALUE))
                     .addComponent(jScrollPane4))
                 .addContainerGap())
         );
@@ -2204,34 +2225,120 @@ public class InterfazG extends javax.swing.JFrame {
         String ubication = getUbication();
         String harvestD = getHarvestDate();
         String caducationD = getCaducationDate();
+        String token = TFTokenNP.getText();
         int description = CBDescriptionNP.getSelectedIndex();
-        String fId = String.valueOf(CBFIdNP.getSelectedItem());
-        int nameProductor = CBNameNP.getSelectedIndex();
+        String fId = String.valueOf(CBFIdNP.getSelectedIndex());
+        int nameProduction = CBNameNP.getSelectedIndex();
         String previousS = String.valueOf(CBPreviousSNP.getSelectedItem());
+        String ip = String.valueOf(CBIpNP.getSelectedItem());
         String currentS = String.valueOf(CBCurrentSNP.getSelectedItem());
         int code = CBCodeNP.getSelectedIndex();
         int numberR = (Integer) SNumberRequestNP.getValue();
         int aHonest = (Integer) SHonestAgentNP.getValue();
         int aDishonest = (Integer) SDishonestAgentNP.getValue();
+        JTextArea caja = areaTexto;
         int totalP = aHonest + aDishonest;
 
-        if (!ubication.isEmpty()) {
-            if (!harvestD.isEmpty()) {
-                if (!caducationD.isEmpty()) {
-                    if (totalP == 100) {
-                        crearBNP(numberR, aHonest, aDishonest);
-                    } else {
-                        JOptionPane.showMessageDialog(null, "The addition of porcentages must be 100%");
+        if (RBRequestsANS.isSelected()) {
+            Respuesta.setTamanioS(numberR);
+            if (totalP == 100) {
+                if (!token.isEmpty()) {
+                    for (int x = 0; x < numberR; x++) {
+                        double i = Math.floor(Math.random() * 101);
+                        System.out.println("el random interfaz = " + i);
+                        HiloNP hNP = new HiloNP();
+                        if (i < aHonest) {
+                            int position = x;
+
+                            //jDialog2.setVisible(true);
+                            hNP.setUbication(ubication);
+                            hNP.setHarvestD(harvestD);
+                            hNP.setCaducationD(caducationD);
+                            hNP.setDescription(description);
+                            hNP.setfId(Integer.parseInt(fId));
+                            hNP.setNameProduction(nameProduction);
+                            hNP.setPreviousS(previousS);
+                            hNP.setCurrentS(currentS);
+                            hNP.setCode(code);
+                            hNP.setTypeConsult("Honest");
+                            hNP.setImage(/*getImage()*/getCurrentStageI(currentS));
+                            hNP.setIp(ip);
+                            hNP.setCaja(caja);
+                            hNP.setToken(token);
+                            hNP.setPosition(position);
+                            new Thread(hNP).start();
+
+                            JButton boton = new JButton("Honest agent");
+                            boton.setPreferredSize(new Dimension(30, 70));
+                            boton.setBackground(Color.GREEN);
+                            jPanel6.add(boton);
+                            //botones.add(boton); //agrego el boton
+
+                            boton.addActionListener(new ActionListener() {
+                                @Override
+                                public void actionPerformed(ActionEvent ae) {
+                                    jDialog2.setVisible(true);
+                                    areaTexto.setText(Respuesta.getConsultaS(position));
+                                }
+
+                            });
+                        } else {
+                            int position = x;
+
+                            //jDialog2.setVisible(true);
+                            hNP.setUbication(ubication);
+                            hNP.setHarvestD(harvestD);
+                            hNP.setCaducationD(caducationD);
+                            hNP.setDescription(description);
+                            hNP.setfId(Integer.parseInt(fId));
+                            hNP.setNameProduction(nameProduction);
+                            hNP.setPreviousS(previousS);
+                            hNP.setCurrentS(currentS);
+                            hNP.setCode(code);
+                            hNP.setTypeConsult("Honest");
+                            hNP.setImage(/*getImage()*/getCurrentStageI(currentS));
+                            hNP.setIp(ip);
+                            hNP.setCaja(caja);
+                            hNP.setToken(token);
+                            hNP.setPosition(position);
+                            new Thread(hNP).start();
+
+                            //AgentsHonest a = new AgentsHonest(caja, generateEmail(), generatePassword(), nombreU, apellidoP, apellidoM, typeU, ip, publicKey);
+                            JButton boton = new JButton("Dishonest agent");
+                            boton.setPreferredSize(new Dimension(30, 70));
+                            boton.setBackground(Color.YELLOW);
+                            jPanel6.add(boton);
+                            //botones.add(boton); //agrego el boton
+
+                            boton.addActionListener(new ActionListener() {
+                                @Override
+                                public void actionPerformed(ActionEvent ae) {
+                                    jDialog2.setVisible(true);
+                                    areaTexto.setText(Respuesta.getConsultaS(position));
+                                }
+
+                            });
+                        }
                     }
+                    //jPanel6.updateUI();
                 } else {
-                    JOptionPane.showMessageDialog(null, "Set a caducation date");
+                    JOptionPane.showMessageDialog(null, "Set a token");
                 }
             } else {
-                JOptionPane.showMessageDialog(null, "Set a harvest");
+                JOptionPane.showMessageDialog(null, "The addition of porcentages must be 100%");
             }
         } else {
-            JOptionPane.showMessageDialog(null, "Set a ubication");
+            if (totalP == 100) {
+                if (!token.isEmpty()) {
+                    crearBNP(numberR, aHonest, aDishonest);
+                } else {
+                    JOptionPane.showMessageDialog(null, "Set a token");
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "The addition of porcentages must be 100%");
+            }
         }
+
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void RBRequestAUCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RBRequestAUCActionPerformed
@@ -2328,7 +2435,7 @@ public class InterfazG extends javax.swing.JFrame {
                     if (!authorization.isEmpty()) {
                         if (!gas.isEmpty()) {
                             for (int x = 0; x < nSolicitudes; x++) {
-                                System.out.println("Solicitud automática: "+x);
+                                System.out.println("Solicitud automática: " + x);
                                 BIniciarUC.setEnabled(false);
                                 double i = Math.floor(Math.random() * 101);
                                 hiloUCA objetoUCA = new hiloUCA();
@@ -2652,6 +2759,10 @@ public class InterfazG extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_BIniciarActionPerformed
 
+    private void CBFIdNPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CBFIdNPActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_CBFIdNPActionPerformed
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -2727,6 +2838,7 @@ public class InterfazG extends javax.swing.JFrame {
     private javax.swing.JRadioButton RBReadTU;
     private javax.swing.JRadioButton RBRequestAR;
     private javax.swing.JRadioButton RBRequestAUC;
+    private javax.swing.JRadioButton RBRequestsANS;
     private javax.swing.JRadioButton RBUpdateA;
     private javax.swing.JRadioButton RBUpdateD;
     private javax.swing.JRadioButton RBUpdateM;

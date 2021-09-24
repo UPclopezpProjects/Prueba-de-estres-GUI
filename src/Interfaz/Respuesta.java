@@ -8,6 +8,22 @@ public class Respuesta {
     //para la creación de usuarios automáticos
     public static int tamanioUC;
     public static String consultaUC[];
+    //para la creación de fases
+    public static int tamanioS;
+    public static String consultaS[];
+
+    public static String getConsultaS(int position) {
+        return Respuesta.consultaS[position];
+    }
+
+    public static void setConsultaS(String consultaS, int position) {
+        Respuesta.consultaS[position] += consultaS;
+    }
+
+    public static void setTamanioS(int tamanioS) {
+        Respuesta.tamanioS = tamanioS;
+        Respuesta.consultaS = new String[tamanioS];
+    }
 
     public static String getConsultaUC(int position) {
         return Respuesta.consultaUC[position];
@@ -25,7 +41,7 @@ public class Respuesta {
 
     public static void setConsultaRoot(String consultaRoot, int position) {
         //System.out.println("Respuesta/setConsultaRoot: "+consultaRoot+", "+position);
-        Respuesta.consultaRoot[position] += consultaRoot+ "\n";
+        Respuesta.consultaRoot[position] += consultaRoot;
     }
     
     public static String getConsultaRoot(int position){
