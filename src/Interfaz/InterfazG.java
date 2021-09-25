@@ -2278,7 +2278,7 @@ public class InterfazG extends javax.swing.JFrame {
                                 @Override
                                 public void actionPerformed(ActionEvent ae) {
                                     jDialog2.setVisible(true);
-                                    areaTexto.setText(Respuesta.getConsultaS(position));
+                                    areaTexto.setText(Respuesta.getConsultaS(position).replace("null", ""));
                                 }
 
                             });
@@ -2314,7 +2314,7 @@ public class InterfazG extends javax.swing.JFrame {
                                 @Override
                                 public void actionPerformed(ActionEvent ae) {
                                     jDialog2.setVisible(true);
-                                    areaTexto.setText(Respuesta.getConsultaS(position));
+                                    areaTexto.setText(Respuesta.getConsultaS(position).replace("null", ""));
                                 }
 
                             });
@@ -2473,7 +2473,7 @@ public class InterfazG extends javax.swing.JFrame {
                                         public void actionPerformed(ActionEvent ae) {
                                             //JOptionPane.showMessageDialog(null, "Agente honesto");
                                             jDialog2.setVisible(true);
-                                            areaTexto.setText(Respuesta.getConsultaUC(position));
+                                            areaTexto.setText(Respuesta.getConsultaUC(position).replace("null", ""));
                                         }
                                     });
                                 } else {
@@ -2513,7 +2513,7 @@ public class InterfazG extends javax.swing.JFrame {
                                             public void actionPerformed(ActionEvent ae) {
                                                 //JOptionPane.showMessageDialog(null, "Agente honesto");
                                                 jDialog2.setVisible(true);
-                                                areaTexto.setText(Respuesta.getConsultaUC(position));;
+                                                areaTexto.setText(Respuesta.getConsultaUC(position).replace("null", ""));
                                             }
                                         });
                                     } else {
@@ -2549,7 +2549,8 @@ public class InterfazG extends javax.swing.JFrame {
                                             @Override
                                             public void actionPerformed(ActionEvent ae) {
                                                 //JOptionPane.showMessageDialog(null, "Agente deshonesto");
-                                                consultaHonestaUC("Dishonest B");
+                                                jDialog2.setVisible(true);
+                                                areaTexto.setText(Respuesta.getConsultaUC(position).replace("null", ""));
                                             }
                                         });
                                     }
@@ -2668,7 +2669,7 @@ public class InterfazG extends javax.swing.JFrame {
                                 @Override
                                 public void actionPerformed(ActionEvent ae) {
                                     jDialog2.setVisible(true);
-                                    areaTexto.setText(Respuesta.getConsultaRoot(position));
+                                    areaTexto.setText(Respuesta.getConsultaRoot(position).replace("null", ""));
                                 }
                             });
                         } else {
@@ -2701,7 +2702,7 @@ public class InterfazG extends javax.swing.JFrame {
                                     @Override
                                     public void actionPerformed(ActionEvent ae) {
                                         jDialog2.setVisible(true);
-                                        areaTexto.setText(Respuesta.getConsultaRoot(position));
+                                        areaTexto.setText(Respuesta.getConsultaRoot(position).replace("null", ""));
                                     }
                                 });
 
@@ -2734,7 +2735,7 @@ public class InterfazG extends javax.swing.JFrame {
                                     @Override
                                     public void actionPerformed(ActionEvent ae) {
                                         jDialog2.setVisible(true);
-                                        areaTexto.setText(Respuesta.getConsultaRoot(position));
+                                        areaTexto.setText(Respuesta.getConsultaRoot(position).replace("null", ""));
                                     }
                                 });
                             }

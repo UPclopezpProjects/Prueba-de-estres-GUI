@@ -52,10 +52,14 @@ public final class AgentsHonest extends Hilo {
             Date now1 = new Date();
             String strDate1 = sdf1.format(now1);
             response = "Root/AgentHonest/getInitialNonce --> Date: " + strDate1 + "; CURL: " + getInitialNonce;
-            System.out.println(response+", "+position);
-            caja.append(response + "\n");
+            System.out.println(response + ", " + position);
             
-            if (position != -1) Respuesta.setConsultaRoot(response+ "\n", position);
+
+            if (position != -1) {
+                Respuesta.setConsultaRoot(response + "\n", position);
+            } else {
+                caja.append(response + "\n");
+            }
 
             Runtime rt = Runtime.getRuntime();
             Process proc = rt.exec(getInitialNonce);
@@ -75,10 +79,12 @@ public final class AgentsHonest extends Hilo {
                         String strDate2 = sdf2.format(now2);
 
                         response = "Root/AgentHonest/getInitialNonce <-- Date: " + strDate2 + "; Response: " + line;
-                        System.out.println(response+", "+position);
-                        caja.append(response + "\n");
+                        System.out.println(response + ", " + position);
+                        
                         if (position != -1) {
-                            Respuesta.setConsultaRoot(response+ "\n", position);
+                            Respuesta.setConsultaRoot(response + "\n", position);
+                        } else {
+                            caja.append(response + "\n");
                         }
                         String session = jsonObject.get("A").toString();
                         String na = jsonObject.get("NA").toString();
@@ -121,7 +127,7 @@ public final class AgentsHonest extends Hilo {
             String dpHashX = "{\\\"createAdministrator\\\":true,\\\"createTUser\\\":true,\\\"updateMe\\\":true,\\\"updateAdministrator\\\":true,\\\"updateTUser\\\":true,\\\"deleteMe\\\":true,\\\"deleteAdministrator\\\":true,\\\"deleteTUser\\\":true,\\\"readMe\\\":true,\\\"readAdministrator\\\":true,\\\"readTUser\\\":true,\\\"loginUser\\\":true}";
             //String dp = "{\"\"createAdministrator\"\":true,\"\"createTUser\"\":true,\"\"updateMe\"\":true,\"\"updateAdministrator\"\":true,\"\"updateTUser\"\":true,\"\"deleteMe\"\":true,\"\"deleteAdministrator\"\":true,\"\"deleteTUser\"\":true,\"\"readMe\"\":true,\"\"readAdministrator\"\":true,\"\"readTUser\"\":true,\"\"loginUser\"\":true}";
             String dp = this.dp;
-            String jsonData = "{\"email\":\"" + email + "\",\"password\":\"" + password + "\",\"surnameA\":\"" + surnameA + "\",\"surnameB\":\"" + surnameB + "\",\"nameOfUser\":\"" + nameOfUser + "\",\"typeOfUser\":\"" + typeOfUser + "\",\"status\":\"" + status + "\",\"creationDate\":\"" + creationDate + "\",\"addressU\":\"" + publicK +"\",\"gas\":\""+"900000" +"\",\"typeOfOperation\":\"" + typeOfOperation + "\",\"nameOfOperation\":\"" + nameOfOperation + "\",\"dp\":\"" + dpHashX + "\"}";
+            String jsonData = "{\"email\":\"" + email + "\",\"password\":\"" + password + "\",\"surnameA\":\"" + surnameA + "\",\"surnameB\":\"" + surnameB + "\",\"nameOfUser\":\"" + nameOfUser + "\",\"typeOfUser\":\"" + typeOfUser + "\",\"status\":\"" + status + "\",\"creationDate\":\"" + creationDate + "\",\"addressU\":\"" + publicK + "\",\"gas\":\"" + "900000" + "\",\"typeOfOperation\":\"" + typeOfOperation + "\",\"nameOfOperation\":\"" + nameOfOperation + "\",\"dp\":\"" + dpHashX + "\"}";
             //System.out.println("AgentsHonest"+jsonData);
             String hashX = MD5.getMd5(jsonData);
             //System.out.println(jsonData);
@@ -147,10 +153,14 @@ public final class AgentsHonest extends Hilo {
             Date now3 = new Date();
             String strDate3 = sdf3.format(now3);
             response = "Root/AgentHonest/userCreation --> Date: " + strDate3 + "; Token: " + token + "; NA: " + randomNumber + "; CURL1: " + rootCreation;
-            System.out.println(response+", "+position);
-            caja.append(response + "\n");
+            System.out.println(response + ", " + position);
+            
 
-            if (position != -1) Respuesta.setConsultaRoot(response+ "\n", position);
+            if (position != -1) {
+                Respuesta.setConsultaRoot(response + "\n", position);
+            } else {
+                caja.append(response + "\n");
+            }
 
             Runtime rt = Runtime.getRuntime();
             Process proc = rt.exec(rootCreation);
@@ -168,9 +178,13 @@ public final class AgentsHonest extends Hilo {
                         Date now4 = new Date();
                         String strDate4 = sdf4.format(now4);
                         response = "Root/AgentHonest/userCreation <-- Date: " + strDate4 + "; Response: " + line;
-                        System.out.println(response+", "+position);
-                        caja.append(response + "\n");
-                        if (position != -1) Respuesta.setConsultaRoot(response+ "\n", position);
+                        System.out.println(response + ", " + position);
+                        
+                        if (position != -1) {
+                            Respuesta.setConsultaRoot(response + "\n", position);
+                        } else {
+                            caja.append(response + "\n");
+                        }
                     }
                     intentar = false;
                 }

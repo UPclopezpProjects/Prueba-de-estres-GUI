@@ -5,6 +5,7 @@ public class Respuesta {
     //para la creación de roots
     public static int tamanio;
     public static String consultaRoot[];
+    
     //para la creación de usuarios automáticos
     public static int tamanioUC;
     public static String consultaUC[];

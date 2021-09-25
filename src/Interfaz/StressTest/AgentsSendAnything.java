@@ -12,7 +12,7 @@ import org.json.*;
 import java.util.Random;
 import javax.swing.JTextArea;
 
-public final class AgentsSendAnything extends Hilo{
+public final class AgentsSendAnything extends Hilo {
 
     String[] anything = {"1", "dos", "tr3s", "anything", "cualquier",
         "cosa", "999", "666", "0", "null", "none", "undefined"};
@@ -52,15 +52,19 @@ public final class AgentsSendAnything extends Hilo{
     public void getInitialNonce(int position) {
         double randomNumber = Math.random();
         try {
-            String getInitialNonce = "curl -d na=" + randomNumber + " -X POST http://"+ip+":80/getInitialNonce";
+            String getInitialNonce = "curl -d na=" + randomNumber + " -X POST http://" + ip + ":80/getInitialNonce";
             SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
             Date now1 = new Date();
             String strDate1 = sdf1.format(now1);
-            response= "Root/AgentsSendAnything/getInitialNonce --> Date: " + strDate1 + "; CURL: " + getInitialNonce;
-            System.out.println(response+", "+position);
-            caja.append(response+ "\n");           
-            if (position != -1) Respuesta.setConsultaRoot(response+ "\n", position);
-            
+            response = "Root/AgentsSendAnything/getInitialNonce --> Date: " + strDate1 + "; CURL: " + getInitialNonce;
+            System.out.println(response + ", " + position);
+
+            if (position != -1) {
+                Respuesta.setConsultaRoot(response + "\n", position);
+            } else {
+                caja.append(response + "\n");
+            }
+
             Runtime rt = Runtime.getRuntime();
             Process proc = rt.exec(getInitialNonce);
 
@@ -79,9 +83,13 @@ public final class AgentsSendAnything extends Hilo{
                         Date now2 = new Date();
                         String strDate2 = sdf2.format(now2);
                         response = "Root/AgentsSendAnything/getInitialNonce <-- Date: " + strDate2 + "; Response: " + line;
-                        System.out.println(response+", "+position);
-                        caja.append(response+ "\n");
-                        if (position != -1) Respuesta.setConsultaRoot(response+ "\n", position);  
+                        System.out.println(response + ", " + position);
+                        
+                        if (position != -1) {
+                            Respuesta.setConsultaRoot(response + "\n", position);
+                        } else {
+                            caja.append(response + "\n");
+                        }
                         String session = jsonObject.get("A").toString();
                         String na = jsonObject.get("NA").toString();
                         String nb = jsonObject.get("NB").toString();
@@ -144,15 +152,19 @@ public final class AgentsSendAnything extends Hilo{
                     + "nameOfOperation=" + nameOfOperation + "\" "
                     + "-H \"Session: " + session + "\" "
                     + "-H \"Authorization: " + token + "\" "
-                    + "-X POST http://"+ip+":80/userCreation";
-            
+                    + "-X POST http://" + ip + ":80/userCreation";
+
             SimpleDateFormat sdf3 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
             Date now3 = new Date();
             String strDate3 = sdf3.format(now3);
             response = "Root/AgentsSendAnything/userCreation --> Date: " + strDate3 + "; Token: " + token + "; NA: " + randomNumber + "; CURL: " + rootCreation;
-            System.out.println(response+", "+position);
-            caja.append(response+ "\n");
-            if (position != -1) Respuesta.setConsultaRoot(response+ "\n", position);
+            System.out.println(response + ", " + position);
+            
+            if (position != -1) {
+                Respuesta.setConsultaRoot(response + "\n", position);
+            } else {
+                caja.append(response + "\n");
+            }
 
             Runtime rt = Runtime.getRuntime();
             Process proc = rt.exec(rootCreation);
@@ -170,9 +182,13 @@ public final class AgentsSendAnything extends Hilo{
                         Date now4 = new Date();
                         String strDate4 = sdf4.format(now4);
                         response = "Root/AgentsSendAnything/userCreation <-- Date: " + strDate4 + "; Response: " + line;
-                        System.out.println(response+", "+position);
-                        caja.append(response+ "\n");
-                        if (position != -1) Respuesta.setConsultaRoot(response+ "\n", position);  
+                        System.out.println(response + ", " + position);
+                        
+                        if (position != -1) {
+                            Respuesta.setConsultaRoot(response + "\n", position);
+                        } else {
+                            caja.append(response + "\n");
+                        }
                     }
                     intentar = false;
                 }
@@ -183,5 +199,5 @@ public final class AgentsSendAnything extends Hilo{
         } catch (IOException | InterruptedException t) {
             //System.out.println(t);
         }
-    }   
+    }
 }
