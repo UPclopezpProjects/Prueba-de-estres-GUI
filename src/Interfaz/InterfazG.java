@@ -17,23 +17,38 @@ import javax.swing.SwingUtilities;
 import UCreation.hiloUC;
 import UCreation.hiloUCA;
 import java.awt.Image;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.PrintWriter;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
+import javax.swing.JDialog;
 import javax.swing.JFileChooser;
+import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.filechooser.FileNameExtensionFilter;
+import javax.swing.table.DefaultTableModel;
 
 public class InterfazG extends javax.swing.JFrame {
 
     private Hilo objetoH;
     private hiloUC h;
     private HiloNP hNP;
+    DefaultTableModel model;
+    //private int numeroCR=0;
 
     public InterfazG() {
         initComponents();
-        //botones = new ArrayList<>();
+        setLocationRelativeTo(null);
+        jDialog5.setLocationRelativeTo(null);
+        jDialog4.setLocationRelativeTo(null);
+        jDialog4.setTitle("Cargando...");
         habilitarCB(String.valueOf(CBTypeUserUC.getSelectedItem()));
+        LecEscTXT objeto = new LecEscTXT();
+        TBDirecciones.setModel(objeto.leer());
     }
 
     public void crearB(int n, int aHonesto, int aEnviarA) {
@@ -44,7 +59,7 @@ public class InterfazG extends javax.swing.JFrame {
             int desonesto = aHonesto + aEnviarA;
             if (i <= aHonesto) {
                 //AgentsHonest a = new AgentsHonest(caja, generateEmail(), generatePassword(), nombreU, apellidoP, apellidoM, typeU, ip, publicKey);
-                JButton boton = new JButton("Honest agent");
+                JButton boton = new JButton("Compliant agent");
                 boton.setPreferredSize(new Dimension(30, 70));
                 boton.setBackground(Color.GREEN);
                 jPanel2.add(boton);
@@ -64,7 +79,7 @@ public class InterfazG extends javax.swing.JFrame {
             } else {
                 if (i <= desonesto) {
                     //AgentsSendAnything b = new AgentsSendAnything(caja, generateEmail(), generatePassword(), nombreU, apellidoP, apellidoM, typeU, ip, publicKey);
-                    JButton boton = new JButton("Dishonest agent send something");
+                    JButton boton = new JButton("Non compliant agent, send something");
                     boton.setPreferredSize(new Dimension(30, 70));
                     boton.setBackground(Color.ORANGE);
                     jPanel2.add(boton);
@@ -78,7 +93,7 @@ public class InterfazG extends javax.swing.JFrame {
                     });
                 } else {
                     //AgentsStartAnyStep c = new AgentsStartAnyStep(caja, generateEmail(), generatePassword(), nombreU, apellidoP, apellidoM, typeU, numberRequest, ip, publicKey);
-                    JButton boton = new JButton("Dishonest agent begin any step");
+                    JButton boton = new JButton("Non compliant agent, begin any step");
                     boton.setPreferredSize(new Dimension(30, 70));
                     boton.setBackground(Color.YELLOW);
                     jPanel2.add(boton);
@@ -105,7 +120,7 @@ public class InterfazG extends javax.swing.JFrame {
             System.out.println("el random interfaz = " + i);
             if (i < aHonesto) {
                 //AgentsHonest a = new AgentsHonest(caja, generateEmail(), generatePassword(), nombreU, apellidoP, apellidoM, typeU, ip, publicKey);
-                JButton boton = new JButton("Honest agent");
+                JButton boton = new JButton("Compliant agent");
                 boton.setPreferredSize(new Dimension(30, 70));
                 boton.setBackground(Color.GREEN);
                 jPanel4.add(boton);
@@ -122,7 +137,7 @@ public class InterfazG extends javax.swing.JFrame {
                 double a = Math.floor(Math.random() * 101);
                 if (a < 50) {
                     //AgentsHonest a = new AgentsHonest(caja, generateEmail(), generatePassword(), nombreU, apellidoP, apellidoM, typeU, ip, publicKey);
-                    JButton boton = new JButton("Dishonest agent A");
+                    JButton boton = new JButton("Non compliant agent A");
                     boton.setPreferredSize(new Dimension(30, 70));
                     boton.setBackground(Color.YELLOW);
                     jPanel4.add(boton);
@@ -137,7 +152,7 @@ public class InterfazG extends javax.swing.JFrame {
                     });
                 } else {
                     //AgentsHonest a = new AgentsHonest(caja, generateEmail(), generatePassword(), nombreU, apellidoP, apellidoM, typeU, ip, publicKey);
-                    JButton boton = new JButton("Dishonest agent B");
+                    JButton boton = new JButton("Non compliant agent B");
                     boton.setPreferredSize(new Dimension(30, 70));
                     boton.setBackground(Color.ORANGE);
                     jPanel4.add(boton);
@@ -161,40 +176,23 @@ public class InterfazG extends javax.swing.JFrame {
         //JOptionPane.showMessageDialog(null, nSolicitudes+" "+aHonesto+" "+aDeshonesto);
         for (int x = 0; x < nSolicitudes; x++) {
             double i = Math.floor(Math.random() * 101);
-            System.out.println("el random interfaz = " + i);
-            if (i < aHonesto) {
-                //AgentsHonest a = new AgentsHonest(caja, generateEmail(), generatePassword(), nombreU, apellidoP, apellidoM, typeU, ip, publicKey);
-                JButton boton = new JButton("Honest agent");
-                boton.setPreferredSize(new Dimension(30, 70));
-                boton.setBackground(Color.GREEN);
-                jPanel6.add(boton);
-                //botones.add(boton); //agrego el boton
+            //System.out.println("el random interfaz = " + i);
+            //if (i < aHonesto) {
+            //AgentsHonest a = new AgentsHonest(caja, generateEmail(), generatePassword(), nombreU, apellidoP, apellidoM, typeU, ip, publicKey);
+            JButton boton = new JButton("Request and Response");
+            boton.setPreferredSize(new Dimension(30, 70));
+            boton.setBackground(Color.GREEN);
+            jPanel6.add(boton);
+            //botones.add(boton); //agrego el boton
 
-                boton.addActionListener(new ActionListener() {
-                    @Override
-                    public void actionPerformed(ActionEvent ae) {
-                        //JOptionPane.showMessageDialog(null, "Agente honesto");
-                        consultaHonestaNP("Honest");
-                    }
+            boton.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent ae) {
+                    //JOptionPane.showMessageDialog(null, "Agente honesto");
+                    consultaHonestaNP("Honest");
+                }
 
-                });
-            } else {
-                //AgentsHonest a = new AgentsHonest(caja, generateEmail(), generatePassword(), nombreU, apellidoP, apellidoM, typeU, ip, publicKey);
-                JButton boton = new JButton("Dishonest agent");
-                boton.setPreferredSize(new Dimension(30, 70));
-                boton.setBackground(Color.YELLOW);
-                jPanel6.add(boton);
-                //botones.add(boton); //agrego el boton
-
-                boton.addActionListener(new ActionListener() {
-                    @Override
-                    public void actionPerformed(ActionEvent ae) {
-                        //JOptionPane.showMessageDialog(null, "Agente deshonesto");
-                        consultaHonestaNP("Dishonest");
-                    }
-
-                });
-            }
+            });
         }
 
         jPanel6.updateUI();
@@ -914,6 +912,17 @@ public class InterfazG extends javax.swing.JFrame {
         jLabel43 = new javax.swing.JLabel();
         jLabel48 = new javax.swing.JLabel();
         jLabel56 = new javax.swing.JLabel();
+        jDialog4 = new javax.swing.JDialog();
+        jPanel7 = new javax.swing.JPanel();
+        jLabel50 = new javax.swing.JLabel();
+        jDialog5 = new javax.swing.JDialog();
+        jLabel58 = new javax.swing.JLabel();
+        jLabel59 = new javax.swing.JLabel();
+        jLabel60 = new javax.swing.JLabel();
+        jLabel61 = new javax.swing.JLabel();
+        jLabel62 = new javax.swing.JLabel();
+        jLabel63 = new javax.swing.JLabel();
+        jLabel64 = new javax.swing.JLabel();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
         BIniciar = new javax.swing.JButton();
@@ -947,6 +956,7 @@ public class InterfazG extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         jPanel2 = new javax.swing.JPanel();
         RBRequestAR = new javax.swing.JRadioButton();
+        BAyuda3 = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jLabel23 = new javax.swing.JLabel();
         jLabel24 = new javax.swing.JLabel();
@@ -1033,6 +1043,15 @@ public class InterfazG extends javax.swing.JFrame {
         TFTokenNP = new javax.swing.JTextField();
         BAyuda1 = new javax.swing.JButton();
         RBRequestsANS = new javax.swing.JRadioButton();
+        jPanel10 = new javax.swing.JPanel();
+        TFConfiguration = new javax.swing.JTextField();
+        BTModificar = new javax.swing.JButton();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        TBDirecciones = new javax.swing.JTable();
+        jButton4 = new javax.swing.JButton();
+        jButton5 = new javax.swing.JButton();
+        BTAgregar = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
 
         jDialog1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jDialog1.setMinimumSize(new java.awt.Dimension(420, 270));
@@ -1145,13 +1164,13 @@ public class InterfazG extends javax.swing.JFrame {
 
         jLabel40.setFont(new java.awt.Font("Arial", 1, 20)); // NOI18N
         jLabel40.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel40.setText("Dishonest Agents");
+        jLabel40.setText("Non compliant Agents");
 
         jLabel42.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        jLabel42.setText("Dishonest agent A:");
+        jLabel42.setText("Non compliant A:");
 
         jLabel43.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        jLabel43.setText("Dishonest agent B:");
+        jLabel43.setText("Non compliant B:");
 
         jLabel48.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLabel48.setText("it follow the permissions with a wrong token");
@@ -1193,7 +1212,102 @@ public class InterfazG extends javax.swing.JFrame {
                 .addContainerGap(13, Short.MAX_VALUE))
         );
 
+        jDialog4.setLocation(new java.awt.Point(0, 0));
+        jDialog4.setMinimumSize(new java.awt.Dimension(190, 130));
+        jDialog4.setPreferredSize(new java.awt.Dimension(180, 100));
+
+        jPanel7.setBackground(new java.awt.Color(255, 255, 255));
+
+        jLabel50.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Interfaz/loading-11.gif"))); // NOI18N
+
+        javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
+        jPanel7.setLayout(jPanel7Layout);
+        jPanel7Layout.setHorizontalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel50, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        jPanel7Layout.setVerticalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel7Layout.createSequentialGroup()
+                .addComponent(jLabel50)
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout jDialog4Layout = new javax.swing.GroupLayout(jDialog4.getContentPane());
+        jDialog4.getContentPane().setLayout(jDialog4Layout);
+        jDialog4Layout.setHorizontalGroup(
+            jDialog4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        jDialog4Layout.setVerticalGroup(
+            jDialog4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+
+        jDialog5.setMinimumSize(new java.awt.Dimension(500, 150));
+
+        jLabel58.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        jLabel58.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel58.setText("Type of agents");
+
+        jLabel59.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jLabel59.setText("Compliant:");
+
+        jLabel60.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jLabel60.setText("Not compliant, send something:");
+
+        jLabel61.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jLabel61.setText("Not compliant, begin any step:");
+
+        jLabel62.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jLabel62.setText("send anything instead the correct data");
+
+        jLabel63.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jLabel63.setText("begin normally o directly in user creation");
+
+        jLabel64.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jLabel64.setText("send the correct data and begin normally");
+
+        javax.swing.GroupLayout jDialog5Layout = new javax.swing.GroupLayout(jDialog5.getContentPane());
+        jDialog5.getContentPane().setLayout(jDialog5Layout);
+        jDialog5Layout.setHorizontalGroup(
+            jDialog5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jDialog5Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jDialog5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel61)
+                    .addComponent(jLabel60)
+                    .addComponent(jLabel59))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jDialog5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel62)
+                    .addComponent(jLabel63)
+                    .addComponent(jLabel64))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(jLabel58, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        jDialog5Layout.setVerticalGroup(
+            jDialog5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jDialog5Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel58)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jDialog5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel59)
+                    .addComponent(jLabel64))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jDialog5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel60)
+                    .addComponent(jLabel62))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jDialog5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel61)
+                    .addComponent(jLabel63))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Cargando");
         setResizable(false);
 
         BIniciar.setBackground(new java.awt.Color(0, 153, 0));
@@ -1364,6 +1478,14 @@ public class InterfazG extends javax.swing.JFrame {
         RBRequestAR.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         RBRequestAR.setText("Automatic requests");
 
+        BAyuda3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Interfaz/informacion.png"))); // NOI18N
+        BAyuda3.setBorder(null);
+        BAyuda3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BAyuda3ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -1389,22 +1511,28 @@ public class InterfazG extends javax.swing.JFrame {
                             .addComponent(CBMotherS, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(CBEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(CBName, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(BAyuda)
-                                .addGap(37, 37, 37)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel22)
-                                    .addComponent(jLabel6))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(CBServer, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(SpinnerNS, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(TFPublicK, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addComponent(RBRequestAR))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(BAyuda)
+                                        .addGap(37, 37, 37)
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jLabel22)
+                                            .addComponent(jLabel6))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(CBServer, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(SpinnerNS, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(TFPublicK, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(RBRequestAR))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(BAyuda3)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
                         .addComponent(jLayeredPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(BIniciar, javax.swing.GroupLayout.PREFERRED_SIZE, 720, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1439,25 +1567,28 @@ public class InterfazG extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel5)
-                            .addComponent(CBName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addComponent(CBName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLayeredPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel9, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(SpinnerNS, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel22)
-                                    .addComponent(TFPublicK, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(CBServer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel6))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(RBRequestAR)))))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLayeredPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jLabel9, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(SpinnerNS, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(jLabel22)
+                                        .addComponent(TFPublicK, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(CBServer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jLabel6))
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(RBRequestAR)))
+                            .addComponent(BAyuda3, javax.swing.GroupLayout.Alignment.TRAILING))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(BIniciar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -2196,6 +2327,110 @@ public class InterfazG extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Add stage", jPanel5);
 
+        TFConfiguration.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TFConfigurationActionPerformed(evt);
+            }
+        });
+
+        BTModificar.setText("Modificar");
+        BTModificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BTModificarActionPerformed(evt);
+            }
+        });
+
+        TBDirecciones.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null}
+            },
+            new String [] {
+                "Dirección IP"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        TBDirecciones.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                TBDireccionesMousePressed(evt);
+            }
+        });
+        jScrollPane5.setViewportView(TBDirecciones);
+
+        jButton4.setText("Eliminar");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+
+        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Interfaz/4210604.png"))); // NOI18N
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
+
+        BTAgregar.setText("Agregar");
+        BTAgregar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BTAgregarActionPerformed(evt);
+            }
+        });
+
+        jButton3.setText("Escribir");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
+        jPanel10.setLayout(jPanel10Layout);
+        jPanel10Layout.setHorizontalGroup(
+            jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel10Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane5)
+                    .addGroup(jPanel10Layout.createSequentialGroup()
+                        .addComponent(TFConfiguration, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(BTAgregar)
+                        .addGap(24, 24, 24)
+                        .addComponent(BTModificar)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton4)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 165, Short.MAX_VALUE)
+                        .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
+        );
+        jPanel10Layout.setVerticalGroup(
+            jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel10Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(TFConfiguration, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(BTModificar)
+                    .addComponent(jButton4)
+                    .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(BTAgregar)
+                    .addComponent(jButton3))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 662, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        jTabbedPane1.addTab("Configuration", jPanel10);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -2211,7 +2446,7 @@ public class InterfazG extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void BAyuda1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BAyuda1ActionPerformed
-        JOptionPane.showMessageDialog(null, "Ingresa el token de root para registrar una nueva cosecha");
+        JOptionPane.showMessageDialog(null, "How to get the token \n Step 1: Create a user (productor, acopio, carrier or merchant) \n Step 2: use the token generated in user creation, for create a Company name \n Step 3: Use the toke generated in Company name for add new stage");
     }//GEN-LAST:event_BAyuda1ActionPerformed
 
     private void CBPreviousSNPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CBPreviousSNPActionPerformed
@@ -2244,81 +2479,42 @@ public class InterfazG extends javax.swing.JFrame {
             if (totalP == 100) {
                 if (!token.isEmpty()) {
                     for (int x = 0; x < numberR; x++) {
-                        double i = Math.floor(Math.random() * 101);
-                        System.out.println("el random interfaz = " + i);
                         HiloNP hNP = new HiloNP();
-                        if (i < aHonest) {
-                            int position = x;
+                        int position = x;
 
-                            //jDialog2.setVisible(true);
-                            hNP.setUbication(ubication);
-                            hNP.setHarvestD(harvestD);
-                            hNP.setCaducationD(caducationD);
-                            hNP.setDescription(description);
-                            hNP.setfId(Integer.parseInt(fId));
-                            hNP.setNameProduction(nameProduction);
-                            hNP.setPreviousS(previousS);
-                            hNP.setCurrentS(currentS);
-                            hNP.setCode(code);
-                            hNP.setTypeConsult("Honest");
-                            hNP.setImage(/*getImage()*/getCurrentStageI(currentS));
-                            hNP.setIp(ip);
-                            hNP.setCaja(caja);
-                            hNP.setToken(token);
-                            hNP.setPosition(position);
-                            new Thread(hNP).start();
+                        //jDialog2.setVisible(true);
+                        hNP.setUbication(ubication);
+                        hNP.setHarvestD(harvestD);
+                        hNP.setCaducationD(caducationD);
+                        hNP.setDescription(description);
+                        hNP.setfId(Integer.parseInt(fId));
+                        hNP.setNameProduction(nameProduction);
+                        hNP.setPreviousS(previousS);
+                        hNP.setCurrentS(currentS);
+                        hNP.setCode(code);
+                        hNP.setTypeConsult("Honest");
+                        hNP.setImage(/*getImage()*/getCurrentStageI(currentS));
+                        hNP.setIp(ip);
+                        hNP.setCaja(caja);
+                        hNP.setToken(token);
+                        hNP.setPosition(position);
+                        new Thread(hNP).start();
 
-                            JButton boton = new JButton("Honest agent");
-                            boton.setPreferredSize(new Dimension(30, 70));
-                            boton.setBackground(Color.GREEN);
-                            jPanel6.add(boton);
-                            //botones.add(boton); //agrego el boton
+                        JButton boton = new JButton("Request and Response");
+                        boton.setPreferredSize(new Dimension(30, 70));
+                        boton.setBackground(Color.GREEN);
+                        jPanel6.add(boton);
+                        //botones.add(boton); //agrego el boton
 
-                            boton.addActionListener(new ActionListener() {
-                                @Override
-                                public void actionPerformed(ActionEvent ae) {
-                                    jDialog2.setVisible(true);
-                                    areaTexto.setText(Respuesta.getConsultaS(position).replace("null", ""));
-                                }
+                        boton.addActionListener(new ActionListener() {
+                            @Override
+                            public void actionPerformed(ActionEvent ae) {
+                                jDialog2.setVisible(true);
+                                areaTexto.setText(Respuesta.getConsultaS(position).replace("null", ""));
+                            }
 
-                            });
-                        } else {
-                            int position = x;
+                        });
 
-                            //jDialog2.setVisible(true);
-                            hNP.setUbication(ubication);
-                            hNP.setHarvestD(harvestD);
-                            hNP.setCaducationD(caducationD);
-                            hNP.setDescription(description);
-                            hNP.setfId(Integer.parseInt(fId));
-                            hNP.setNameProduction(nameProduction);
-                            hNP.setPreviousS(previousS);
-                            hNP.setCurrentS(currentS);
-                            hNP.setCode(code);
-                            hNP.setTypeConsult("Honest");
-                            hNP.setImage(/*getImage()*/getCurrentStageI(currentS));
-                            hNP.setIp(ip);
-                            hNP.setCaja(caja);
-                            hNP.setToken(token);
-                            hNP.setPosition(position);
-                            new Thread(hNP).start();
-
-                            //AgentsHonest a = new AgentsHonest(caja, generateEmail(), generatePassword(), nombreU, apellidoP, apellidoM, typeU, ip, publicKey);
-                            JButton boton = new JButton("Dishonest agent");
-                            boton.setPreferredSize(new Dimension(30, 70));
-                            boton.setBackground(Color.YELLOW);
-                            jPanel6.add(boton);
-                            //botones.add(boton); //agrego el boton
-
-                            boton.addActionListener(new ActionListener() {
-                                @Override
-                                public void actionPerformed(ActionEvent ae) {
-                                    jDialog2.setVisible(true);
-                                    areaTexto.setText(Respuesta.getConsultaS(position).replace("null", ""));
-                                }
-
-                            });
-                        }
                     }
                     //jPanel6.updateUI();
                 } else {
@@ -2434,11 +2630,12 @@ public class InterfazG extends javax.swing.JFrame {
                 if (!adressU.isEmpty()) {
                     if (!authorization.isEmpty()) {
                         if (!gas.isEmpty()) {
+                            hiloUCA objetoUCA = new hiloUCA();
                             for (int x = 0; x < nSolicitudes; x++) {
                                 System.out.println("Solicitud automática: " + x);
                                 BIniciarUC.setEnabled(false);
                                 double i = Math.floor(Math.random() * 101);
-                                hiloUCA objetoUCA = new hiloUCA();
+
                                 if (i <= aHonesto) {
                                     int position = x;
 
@@ -2462,7 +2659,7 @@ public class InterfazG extends javax.swing.JFrame {
 
                                     new Thread(objetoUCA).start();
 
-                                    JButton boton = new JButton("Honest agent");
+                                    JButton boton = new JButton("Compliant agent");
                                     boton.setPreferredSize(new Dimension(30, 70));
                                     boton.setBackground(Color.GREEN);
                                     jPanel4.add(boton);
@@ -2502,7 +2699,7 @@ public class InterfazG extends javax.swing.JFrame {
                                         new Thread(objetoUCA).start();
 
                                         //AgentsHonest a = new AgentsHonest(caja, generateEmail(), generatePassword(), nombreU, apellidoP, apellidoM, typeU, ip, publicKey);
-                                        JButton boton = new JButton("Dishonest agent A");
+                                        JButton boton = new JButton("Non compliant agent A");
                                         boton.setPreferredSize(new Dimension(30, 70));
                                         boton.setBackground(Color.YELLOW);
                                         jPanel4.add(boton);
@@ -2539,7 +2736,7 @@ public class InterfazG extends javax.swing.JFrame {
 
                                         new Thread(objetoUCA).start();
                                         //AgentsHonest a = new AgentsHonest(caja, generateEmail(), generatePassword(), nombreU, apellidoP, apellidoM, typeU, ip, publicKey);
-                                        JButton boton = new JButton("Dishonest agent B");
+                                        JButton boton = new JButton("Non compliant agent B");
                                         boton.setPreferredSize(new Dimension(30, 70));
                                         boton.setBackground(Color.ORANGE);
                                         jPanel4.add(boton);
@@ -2640,6 +2837,7 @@ public class InterfazG extends javax.swing.JFrame {
                     for (int x = 0; x < nSolicitudes; x++) {
                         double i = Math.floor(Math.random() * 101);
                         HiloAuto objetoA = new HiloAuto();
+
                         if (i <= aHonesto) {
                             int position = x;
                             //consultaHonestaAuto("honesto", position);
@@ -2661,7 +2859,7 @@ public class InterfazG extends javax.swing.JFrame {
                             objetoA.setaHonesto(aHonesto);
                             new Thread(objetoA).start();
 
-                            JButton boton = new JButton("Honest agent");
+                            JButton boton = new JButton("Compliant agent");
                             boton.setPreferredSize(new Dimension(30, 70));
                             boton.setBackground(Color.GREEN);
                             jPanel2.add(boton);
@@ -2694,7 +2892,7 @@ public class InterfazG extends javax.swing.JFrame {
                                 objetoA.setaHonesto(aHonesto);
                                 new Thread(objetoA).start();
 
-                                JButton boton = new JButton("Dishonest agent send something");
+                                JButton boton = new JButton("Non compliant, send something");
                                 boton.setPreferredSize(new Dimension(30, 70));
                                 boton.setBackground(Color.ORANGE);
                                 jPanel2.add(boton);
@@ -2727,7 +2925,7 @@ public class InterfazG extends javax.swing.JFrame {
                                 objetoA.setaHonesto(aHonesto);
                                 new Thread(objetoA).start();
 
-                                JButton boton = new JButton("Dishonest agent begin any step");
+                                JButton boton = new JButton("Non compliant, begin any step");
                                 boton.setPreferredSize(new Dimension(30, 70));
                                 boton.setBackground(Color.YELLOW);
                                 jPanel2.add(boton);
@@ -2741,6 +2939,7 @@ public class InterfazG extends javax.swing.JFrame {
                             }
                         }
                     }
+
                 } else {
                     JOptionPane.showMessageDialog(null, "The addition of porcentages must be 100%");
                 }
@@ -2763,6 +2962,102 @@ public class InterfazG extends javax.swing.JFrame {
     private void CBFIdNPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CBFIdNPActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_CBFIdNPActionPerformed
+
+    private void BAyuda3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BAyuda3ActionPerformed
+        jDialog5.setVisible(true);
+    }//GEN-LAST:event_BAyuda3ActionPerformed
+
+    private void TFConfigurationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TFConfigurationActionPerformed
+        // TODO add your handling code here:FileWriter fichero = null;
+
+    }//GEN-LAST:event_TFConfigurationActionPerformed
+
+    private void BTModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTModificarActionPerformed
+        try {
+            LecEscTXT objeto = new LecEscTXT();
+
+            File archivo = new File("C:\\archivo.txt");
+            FileReader fr = new FileReader(archivo);
+            BufferedReader br = new BufferedReader(fr);
+            String linea = "";
+
+            model = new DefaultTableModel();
+            model.addColumn("Dirección IP");
+
+            System.out.println("InterfazG/ModificarAction/tamaño de la tabla: " + TBDirecciones.getRowCount());
+            for (int x = 0; x < TBDirecciones.getRowCount(); x++) {
+                //System.out.println("InterfazG/posición en la tabla: " + x + " ," + TBDirecciones.getValueAt(x, 0));
+                //linea += br.readLine();
+                if (TBDirecciones.getSelectedRow() == x) {
+
+                    br.readLine();
+                    model.addRow(new Object[]{TFConfiguration.getText()});
+                } else {
+                    model.addRow(new Object[]{br.readLine()});
+                }
+                objeto.modificar(model);
+                TFConfiguration.setText("");
+                //System.out.println("InterfazG/ModificarAction/contenido del modelo: "+model.getValueAt(x, 0));
+            }
+        } catch (Exception e) {
+
+        }
+    }//GEN-LAST:event_BTModificarActionPerformed
+
+    private void TBDireccionesMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TBDireccionesMousePressed
+        System.out.println("InterfazG/ModificarAction/seleccionaste: " + TBDirecciones.getSelectedRow() + ", " + TBDirecciones.getSelectedColumn());
+        TFConfiguration.setText(String.valueOf(TBDirecciones.getValueAt(TBDirecciones.getSelectedRow(), TBDirecciones.getSelectedColumn())));
+    }//GEN-LAST:event_TBDireccionesMousePressed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        LecEscTXT objeto = new LecEscTXT();
+        TBDirecciones.setModel(objeto.leer());
+        TFConfiguration.setText("");
+    }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void BTAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTAgregarActionPerformed
+        LecEscTXT objeto = new LecEscTXT();
+        objeto.agregar(TFConfiguration.getText());
+        TBDirecciones.setModel(objeto.leer());
+        TFConfiguration.setText("");
+    }//GEN-LAST:event_BTAgregarActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        try {
+            LecEscTXT objeto = new LecEscTXT();
+
+            File archivo = new File("C:\\archivo.txt");
+            FileReader fr = new FileReader(archivo);
+            BufferedReader br = new BufferedReader(fr);
+            String linea = "";
+
+            model = new DefaultTableModel();
+            model.addColumn("Dirección IP");
+
+            System.out.println("InterfazG/ModificarAction/tamaño de la tabla: " + TBDirecciones.getRowCount());
+            for (int x = 0; x < TBDirecciones.getRowCount(); x++) {
+                //System.out.println("InterfazG/posición en la tabla: " + x + " ," + TBDirecciones.getValueAt(x, 0));
+                //linea += br.readLine();
+                if (TBDirecciones.getSelectedRow() == x) {
+
+                    br.readLine();
+                    //model.addRow(new Object[]{TFConfiguration.getText()});
+                } else {
+                    model.addRow(new Object[]{br.readLine()});
+                }
+                objeto.modificar(model);
+                TFConfiguration.setText("");
+                //System.out.println("InterfazG/ModificarAction/contenido del modelo: "+model.getValueAt(x, 0));
+            }
+        } catch (Exception e) {
+
+        }
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        LecEscTXT objeto = new LecEscTXT();
+        objeto.escribir();
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -2803,8 +3098,11 @@ public class InterfazG extends javax.swing.JFrame {
     private javax.swing.JButton BAyuda;
     private javax.swing.JButton BAyuda1;
     private javax.swing.JButton BAyuda2;
+    private javax.swing.JButton BAyuda3;
     private javax.swing.JButton BIniciar;
     private javax.swing.JButton BIniciarUC;
+    private javax.swing.JButton BTAgregar;
+    private javax.swing.JButton BTModificar;
     private javax.swing.JComboBox<String> CBCodeNP;
     private javax.swing.JComboBox<String> CBCurrentSNP;
     private javax.swing.JComboBox<String> CBDescriptionNP;
@@ -2851,16 +3149,23 @@ public class InterfazG extends javax.swing.JFrame {
     private javax.swing.JSpinner SNumberRequestNP;
     private javax.swing.JSpinner SNumberRequestUC;
     private javax.swing.JSpinner SpinnerNS;
+    private javax.swing.JTable TBDirecciones;
     private javax.swing.JTextField TFAdressUUC;
     private javax.swing.JTextField TFAuthorizationUC;
+    private javax.swing.JTextField TFConfiguration;
     private javax.swing.JTextField TFGasUC;
     private javax.swing.JTextField TFPublicK;
     private javax.swing.JTextField TFTokenNP;
     private javax.swing.JTextArea areaTexto;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
     private javax.swing.JDialog jDialog1;
     private javax.swing.JDialog jDialog2;
     private javax.swing.JDialog jDialog3;
+    private javax.swing.JDialog jDialog4;
+    private javax.swing.JDialog jDialog5;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -2906,6 +3211,7 @@ public class InterfazG extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel48;
     private javax.swing.JLabel jLabel49;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel50;
     private javax.swing.JLabel jLabel51;
     private javax.swing.JLabel jLabel52;
     private javax.swing.JLabel jLabel53;
@@ -2913,24 +3219,34 @@ public class InterfazG extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel55;
     private javax.swing.JLabel jLabel56;
     private javax.swing.JLabel jLabel57;
+    private javax.swing.JLabel jLabel58;
+    private javax.swing.JLabel jLabel59;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel60;
+    private javax.swing.JLabel jLabel61;
+    private javax.swing.JLabel jLabel62;
+    private javax.swing.JLabel jLabel63;
+    private javax.swing.JLabel jLabel64;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JLayeredPane jLayeredPane1;
     private javax.swing.JLayeredPane jLayeredPane2;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
+    private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JScrollPane jScrollPane8;
     private javax.swing.JTabbedPane jTabbedPane1;

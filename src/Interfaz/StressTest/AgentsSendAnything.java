@@ -57,7 +57,7 @@ public final class AgentsSendAnything extends Hilo {
             Date now1 = new Date();
             String strDate1 = sdf1.format(now1);
             response = "Root/AgentsSendAnything/getInitialNonce --> Date: " + strDate1 + "; CURL: " + getInitialNonce;
-            System.out.println(response + ", " + position);
+            //System.out.println(response + ", " + position);
 
             if (position != -1) {
                 Respuesta.setConsultaRoot(response + "\n", position);
@@ -83,7 +83,7 @@ public final class AgentsSendAnything extends Hilo {
                         Date now2 = new Date();
                         String strDate2 = sdf2.format(now2);
                         response = "Root/AgentsSendAnything/getInitialNonce <-- Date: " + strDate2 + "; Response: " + line;
-                        System.out.println(response + ", " + position);
+                        //System.out.println(response + ", " + position);
                         
                         if (position != -1) {
                             Respuesta.setConsultaRoot(response + "\n", position);
@@ -158,7 +158,7 @@ public final class AgentsSendAnything extends Hilo {
             Date now3 = new Date();
             String strDate3 = sdf3.format(now3);
             response = "Root/AgentsSendAnything/userCreation --> Date: " + strDate3 + "; Token: " + token + "; NA: " + randomNumber + "; CURL: " + rootCreation;
-            System.out.println(response + ", " + position);
+            //System.out.println(response + ", " + position);
             
             if (position != -1) {
                 Respuesta.setConsultaRoot(response + "\n", position);
@@ -182,7 +182,7 @@ public final class AgentsSendAnything extends Hilo {
                         Date now4 = new Date();
                         String strDate4 = sdf4.format(now4);
                         response = "Root/AgentsSendAnything/userCreation <-- Date: " + strDate4 + "; Response: " + line;
-                        System.out.println(response + ", " + position);
+                        //System.out.println(response + ", " + position);
                         
                         if (position != -1) {
                             Respuesta.setConsultaRoot(response + "\n", position);

@@ -5,6 +5,7 @@ public class Respuesta {
     //para la creación de roots
     public static int tamanio;
     public static String consultaRoot[];
+    public static int numeroCR=0;
     
     //para la creación de usuarios automáticos
     public static int tamanioUC;
@@ -13,6 +14,15 @@ public class Respuesta {
     public static int tamanioS;
     public static String consultaS[];
 
+    public static int getNumeroCR() {
+        return numeroCR;
+    }
+    
+    public static void setNumeroCR() {
+        numeroCR++;
+        System.out.println("Respuesta/setNumeroCR: "+numeroCR);
+    }
+    
     public static String getConsultaS(int position) {
         return Respuesta.consultaS[position];
     }
@@ -48,6 +58,11 @@ public class Respuesta {
     public static String getConsultaRoot(int position){
         //System.out.println("Respuesta/getConsultaRoot: "+Respuesta.consultaRoot[position]);
         return Respuesta.consultaRoot[position];
+    }
+    
+    
+    public static int getTamanio() {
+        return tamanio;
     }
     
     public static void setTamanio(int tamanio){

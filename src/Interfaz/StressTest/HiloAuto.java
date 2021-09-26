@@ -5,6 +5,8 @@
  */
 package Interfaz.StressTest;
 
+import Interfaz.InterfazG;
+import Interfaz.Respuesta;
 import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -32,19 +34,18 @@ public class HiloAuto implements Runnable {
     private int position;
     private String respuestas[];
 
-    
     private int aHonesto;
     private int aEnviarA;
     private int aEmpieza;
-    
+
     public String[] getRespuestas() {
         return respuestas;
     }
-    
+
     public void setPosition(int position) {
         this.position = position;
     }
-    
+
     public void setDp(String dp) {
         this.dp = dp;
     }
@@ -122,24 +123,25 @@ public class HiloAuto implements Runnable {
         this.numberRequest = numberRequest;
     }
 
-    
     public void loop1() throws InterruptedException {
-        respuestas= new String[numberRequest];
+        respuestas = new String[numberRequest];
         if (tipoConsulta == "honesto") {
-            //System.out.println("HiloAuto/Honesto/ position: ");
             AgentsHonest a = new AgentsHonest(caja, generateEmail(), generatePassword(), nombreU, apellidoP, apellidoM, typeU, ip, publicKey, dp, position);
+            Respuesta.setNumeroCR();
+            System.out.println("HiloAuto/loop1: " + position);
         } else {
             if (tipoConsulta == "enviarAlgo") {
-                //System.out.println("HiloAuto/enviarAlgo");
                 AgentsSendAnything b = new AgentsSendAnything(caja, generateEmail(), generatePassword(), nombreU, apellidoP, apellidoM, typeU, ip, publicKey, dp, position);
+                Respuesta.setNumeroCR();
+                System.out.println("HiloAuto/loop1: " + position);
             } else {
                 if (tipoConsulta == "empiezaAlgun") {
-                    //System.out.println("HiloAuto/Empieza en algún paso");
                     AgentsStartAnyStep c = new AgentsStartAnyStep(caja, generateEmail(), generatePassword(), nombreU, apellidoP, apellidoM, typeU, numberRequest, ip, publicKey, dp, position);
+                    Respuesta.setNumeroCR();
+                    System.out.println("HiloAuto/loop1: " + position);
                 }
             }
         }
-        //System.out.println("HiloAuto/loop1/ el response "+r);
     }
 
     public String generateEmail() {
@@ -197,5 +199,6 @@ public class HiloAuto implements Runnable {
             Logger.getLogger(HiloAuto.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
 
 }
