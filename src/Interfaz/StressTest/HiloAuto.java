@@ -10,6 +10,7 @@ import Interfaz.Respuesta;
 import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JDialog;
 import javax.swing.JTextArea;
 
 /**
@@ -37,6 +38,8 @@ public class HiloAuto implements Runnable {
     private int aHonesto;
     private int aEnviarA;
     private int aEmpieza;
+    
+    
 
     public String[] getRespuestas() {
         return respuestas;

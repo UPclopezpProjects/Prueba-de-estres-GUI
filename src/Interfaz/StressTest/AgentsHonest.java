@@ -10,6 +10,7 @@ import Interfaz.InterfazG;
 import Interfaz.MD5;
 import Interfaz.MD5;
 import Interfaz.Respuesta;
+import javax.swing.JDialog;
 import javax.swing.JTextArea;
 
 public final class AgentsHonest extends Hilo {

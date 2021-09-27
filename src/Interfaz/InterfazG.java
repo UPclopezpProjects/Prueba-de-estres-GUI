@@ -38,7 +38,6 @@ public class InterfazG extends javax.swing.JFrame {
     private hiloUC h;
     private HiloNP hNP;
     DefaultTableModel model;
-    //private int numeroCR=0;
 
     public InterfazG() {
         initComponents();
@@ -1212,9 +1211,10 @@ public class InterfazG extends javax.swing.JFrame {
                 .addContainerGap(13, Short.MAX_VALUE))
         );
 
+        jDialog4.setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         jDialog4.setLocation(new java.awt.Point(0, 0));
-        jDialog4.setMinimumSize(new java.awt.Dimension(190, 130));
-        jDialog4.setPreferredSize(new java.awt.Dimension(180, 100));
+        jDialog4.setMinimumSize(new java.awt.Dimension(180, 100));
+        jDialog4.setUndecorated(true);
 
         jPanel7.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -1307,7 +1307,6 @@ public class InterfazG extends javax.swing.JFrame {
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Cargando");
         setResizable(false);
 
         BIniciar.setBackground(new java.awt.Color(0, 153, 0));
@@ -2834,10 +2833,12 @@ public class InterfazG extends javax.swing.JFrame {
             if (!publicK.isEmpty()) {
                 Respuesta.setTamanio(nSolicitudes);
                 if (pTotal == 100) {
+                    jDialog4.setVisible(true);
+                    Respuesta.setVentanaCarga(jDialog4);
+                    Respuesta.setInterfazG(this);
                     for (int x = 0; x < nSolicitudes; x++) {
                         double i = Math.floor(Math.random() * 101);
                         HiloAuto objetoA = new HiloAuto();
-
                         if (i <= aHonesto) {
                             int position = x;
                             //consultaHonestaAuto("honesto", position);
@@ -2939,7 +2940,6 @@ public class InterfazG extends javax.swing.JFrame {
                             }
                         }
                     }
-
                 } else {
                     JOptionPane.showMessageDialog(null, "The addition of porcentages must be 100%");
                 }
