@@ -42,6 +42,7 @@ public class InterfazG extends javax.swing.JFrame {
 
     public InterfazG() {
         initComponents();
+        Respuesta.setVentanaCarga(jDialog4);
         setLocationRelativeTo(null);
         jDialog5.setLocationRelativeTo(null);
         jDialog4.setLocationRelativeTo(null);
@@ -2501,6 +2502,8 @@ public class InterfazG extends javax.swing.JFrame {
             Respuesta.setTamanioS(numberR);
             if (totalP == 100) {
                 if (!token.isEmpty()) {
+                    jDialog4.setVisible(true);
+                    Respuesta.setInterfazG(this);
                     for (int x = 0; x < numberR; x++) {
                         double i = Math.floor(Math.random() * 101);
                         HiloNP hNP = new HiloNP();
@@ -2689,6 +2692,8 @@ public class InterfazG extends javax.swing.JFrame {
                 if (!adressU.isEmpty()) {
                     if (!authorization.isEmpty()) {
                         if (!gas.isEmpty()) {
+                            jDialog4.setVisible(true);
+                            Respuesta.setInterfazG(this);
                             hiloUCA objetoUCA = new hiloUCA();
                             for (int x = 0; x < nSolicitudes; x++) {
                                 System.out.println("Solicitud automática: " + x);
@@ -2894,7 +2899,6 @@ public class InterfazG extends javax.swing.JFrame {
                 Respuesta.setTamanio(nSolicitudes);
                 if (pTotal == 100) {
                     jDialog4.setVisible(true);
-                    Respuesta.setVentanaCarga(jDialog4);
                     Respuesta.setInterfazG(this);
                     for (int x = 0; x < nSolicitudes; x++) {
                         double i = Math.floor(Math.random() * 101);

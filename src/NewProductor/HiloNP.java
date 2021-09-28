@@ -5,6 +5,7 @@
  */
 package NewProductor;
 
+import Interfaz.Respuesta;
 import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -134,42 +135,50 @@ public class HiloNP implements Runnable {
             if (currentS == "Carrier") {
                 System.out.println("HiloNP/Agente honesto 1");
                 HonestAgentNP honesto = new HonestAgentNP(fId, ubication, nameProduction, previousS, currentS, image, description, code, driverName, origin, destination, plates, productPhotos, vehiclePhotos, tracking, token, ip, caja, position);
+                Respuesta.setNumeroNP();
             }
 
             if (currentS == "Productor") {
                 System.out.println("HiloNP/Agente honesto 2");
                 HonestAgentNP honesto = new HonestAgentNP(ubication, harvestD, caducationD, description, fId, nameProduction, previousS, currentS, code, image, ip, caja, token, position);
+                Respuesta.setNumeroNP();
             }
 
             if (currentS == "Acopio") {
                 System.out.println("HiloNP/Agente honesto 3");
                 HonestAgentNP honesto = new HonestAgentNP(fId, ubication, nameAcopio(), previousS, currentS, image, description, code, arrivalDate(), quantity(), "KG", whoReceives(), token, ip, caja, position);
+                Respuesta.setNumeroNP();
             }
 
             if (currentS == "Merchant") {
                 System.out.println("HiloNP/Agente honesto 4");
                 HonestAgentNP honesto = new HonestAgentNP(fId, ubication, nameMerchant(), previousS, currentS, image, description, code, arrivalDate(), quantity(), token, ip, caja, position);
+                Respuesta.setNumeroNP();
             }
 
         } else {
             if (currentS == "Carrier") {
                 System.out.println("HiloNP/Agente deshonesto 1");
                 DishonestAgentNP dishonest = new DishonestAgentNP(fId, ubication, nameProduction, previousS, currentS, image, description, code, driverName, origin, destination, plates, productPhotos, vehiclePhotos, tracking, generateFakeToken(), ip, caja, position);
+                Respuesta.setNumeroNP();
             }
 
             if (currentS == "Productor") {
                 System.out.println("HiloNP/Agente deshonesto 2");
                 DishonestAgentNP dishonest = new DishonestAgentNP(ubication, harvestD, caducationD, description, fId, nameProduction, previousS, currentS, code, image, ip, caja, generateFakeToken(), position);
+                Respuesta.setNumeroNP();
             }
 
             if (currentS == "Acopio") {
                 System.out.println("HiloNP/Agente deshonesto 3");
                 DishonestAgentNP dishonesto = new DishonestAgentNP(fId, ubication, nameAcopio(), previousS, currentS, image, description, code, arrivalDate(), quantity(), "KG", whoReceives(), generateFakeToken(), ip, caja, position);
+                Respuesta.setNumeroNP();
             }
 
             if (currentS == "Merchant") {
                 System.out.println("HiloNP/Agente deshonesto 4");
                 DishonestAgentNP dishonesto = new DishonestAgentNP(fId, ubication, nameMerchant(), previousS, currentS, image, description, code, arrivalDate(), quantity(), generateFakeToken(), ip, caja, position);
+                Respuesta.setNumeroNP();
             }
         }
     }

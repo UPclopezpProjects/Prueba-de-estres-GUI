@@ -5,19 +5,49 @@ import javax.swing.JFrame;
 import javax.swing.JTabbedPane;
 
 public class Respuesta {
+    public static JFrame interfazG;
+    public static JDialog ventanaCarga;
     
-    //para la creación de roots
+//para la creación de roots
     public static int tamanio;
     public static String consultaRoot[];
     public static int numeroCR=0;
-    public static JDialog ventanaCarga;
-    public static JFrame interfazG;
+
     //para la creación de usuarios automáticos
     public static int tamanioUC;
     public static String consultaUC[];
+    public static int numeroCU=0;
+
     //para la creación de fases
     public static int tamanioS;
     public static String consultaS[];
+    public static int numeroNP=0;
+
+    public static void setNumeroNP() {
+        System.out.println("Respuesta/setNumeroNP: hago la autosuma");
+        numeroNP++;
+        
+        if(numeroCU==tamanioS){
+            System.out.println("Respuesta/setNumeroNP: SE TERMINARON LAS CONSULTAS");
+            System.out.println("Respuesta/setNumeroNP: "+numeroNP);
+            ventanaCarga.setVisible(false);
+            interfazG.setEnabled(true);
+            numeroNP=0;
+        }
+    }
+    
+    public static void setNumeroCU() {
+        System.out.println("Respuesta/setNumeroCU: hago la autosuma");
+        numeroCU++;
+        
+        if(numeroCU==tamanioUC){
+            System.out.println("Respuesta/setNumeroCU: SE TERMINARON LAS CONSULTAS");
+            System.out.println("Respuesta/setNumeroCU: "+numeroCR);
+            ventanaCarga.setVisible(false);
+            interfazG.setEnabled(true);
+            numeroCU=0;
+        }
+    }
     
     public static void setInterfazG(JFrame interfazG) {
         Respuesta.interfazG = interfazG;

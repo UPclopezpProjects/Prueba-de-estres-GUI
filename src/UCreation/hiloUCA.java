@@ -5,6 +5,7 @@
  */
 package UCreation;
 
+import Interfaz.Respuesta;
 import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -111,12 +112,15 @@ public class hiloUCA implements Runnable{
         if (typeConsult == "Honest") {
             //System.out.println();
             HonestAgent h = new HonestAgent(email, password, typeU, adressU, authorization, fatherS, name, motherS, nRequest, aHonest, aDishonest, typeConsult, ip, caja, dp, gas, position);
+            Respuesta.setNumeroCU();
         } else {
             if (typeConsult == "Dishonest A") {
                 DishonestAgentA d = new DishonestAgentA(email, password, typeU, adressU, authorization, fatherS, name, motherS, nRequest, aHonest, aDishonest, typeConsult, ip, caja, dp, gas, position);
+                Respuesta.setNumeroCU();
             } else {
                 if (typeConsult == "Dishonest B") {
                     DishonestAgentB d = new DishonestAgentB(email, password, typeU, adressU, authorization, fatherS, name, motherS, nRequest, aHonest, aDishonest, typeConsult, ip, caja, dp, gas, position);
+                    Respuesta.setNumeroCU();
                 }
             }
         }
