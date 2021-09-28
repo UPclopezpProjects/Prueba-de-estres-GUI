@@ -8,6 +8,8 @@ package Interfaz;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -21,10 +23,16 @@ import javax.swing.table.DefaultTableModel;
 public class LecEscTXT {
 
     DefaultTableModel model;
+    String ruta = "C:\\Users\\frank\\Documents\\archivo.txt";
 
     public DefaultTableModel leer() {
         try {
-            File archivo = new File("C:\\archivo.txt");
+            File archivo = new File(ruta);
+
+            if (!archivo.exists()) {
+                archivo.createNewFile();
+            }
+
             FileReader fr = new FileReader(archivo);
             BufferedReader br = new BufferedReader(fr);
             String linea = "";
@@ -48,8 +56,13 @@ public class LecEscTXT {
     public void escribir() {
         FileWriter fichero = null;
         PrintWriter pw = null;
+        File archivo = new File(ruta);
         try {
-            fichero = new FileWriter("C:\\archivo.txt");
+            if (!archivo.exists()) {
+                archivo.createNewFile();
+            }
+
+            fichero = new FileWriter(ruta);
             pw = new PrintWriter(fichero);
 
             for (int i = 0; i < 10; i++) {
@@ -71,11 +84,17 @@ public class LecEscTXT {
         }
     }
 
-    public void agregar(String valor) {
-        try (FileWriter fw = new FileWriter("C:\\archivo.txt", true);
+    public void agregar(String valor) throws IOException {
+        File archivo = new File(ruta);
+
+        if (!archivo.exists()) {
+            archivo.createNewFile();
+        }
+        try (FileWriter fw = new FileWriter(ruta, true);
                 BufferedWriter bw = new BufferedWriter(fw);
                 PrintWriter out = new PrintWriter(bw)) {
             out.println(valor);
+
         } catch (IOException e) {
             //exception handling left as an exercise for the reader
         }
@@ -84,8 +103,14 @@ public class LecEscTXT {
     public void modificar(DefaultTableModel model) {
         FileWriter fichero = null;
         PrintWriter pw = null;
+        File archivo = new File(ruta);
         try {
-            fichero = new FileWriter("C:\\archivo.txt");
+            
+            if(!archivo.exists()){
+                archivo.createNewFile();
+            }
+            
+            fichero = new FileWriter(ruta);
             pw = new PrintWriter(fichero);
 
             for (int i = 0; i < model.getRowCount(); i++) {
@@ -106,7 +131,4 @@ public class LecEscTXT {
             }
         }
     }
-
-    
-
 }

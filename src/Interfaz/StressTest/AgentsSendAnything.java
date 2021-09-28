@@ -34,6 +34,7 @@ public final class AgentsSendAnything extends Hilo {
     String publicK;
     String dp;
     Respuesta mensaje;
+    String puerto ="80";
 
     public AgentsSendAnything(JTextArea caja, String email, String password, String nombre, String apellidoP, String apellidoM, String tipoU, String ip, String publicK, String dp, int position) {
         this.caja = caja;
@@ -52,7 +53,7 @@ public final class AgentsSendAnything extends Hilo {
     public void getInitialNonce(int position) {
         double randomNumber = Math.random();
         try {
-            String getInitialNonce = "curl -d na=" + randomNumber + " -X POST http://" + ip + ":80/getInitialNonce";
+            String getInitialNonce = "curl -d na=" + randomNumber + " -X POST http://" + ip +":"+puerto+"/getInitialNonce";
             SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
             Date now1 = new Date();
             String strDate1 = sdf1.format(now1);
@@ -152,7 +153,7 @@ public final class AgentsSendAnything extends Hilo {
                     + "nameOfOperation=" + nameOfOperation + "\" "
                     + "-H \"Session: " + session + "\" "
                     + "-H \"Authorization: " + token + "\" "
-                    + "-X POST http://" + ip + ":80/userCreation";
+                    + "-X POST http://" + ip +":"+puerto+"/userCreation";
 
             SimpleDateFormat sdf3 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
             Date now3 = new Date();

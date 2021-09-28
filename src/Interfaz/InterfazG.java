@@ -22,6 +22,7 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
+import java.io.IOException;
 import java.io.PrintWriter;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
@@ -48,6 +49,9 @@ public class InterfazG extends javax.swing.JFrame {
         habilitarCB(String.valueOf(CBTypeUserUC.getSelectedItem()));
         LecEscTXT objeto = new LecEscTXT();
         TBDirecciones.setModel(objeto.leer());
+        generateCBR();
+        generateCBCU();
+        generateCBAS();
     }
 
     public void crearB(int n, int aHonesto, int aEnviarA) {
@@ -176,22 +180,36 @@ public class InterfazG extends javax.swing.JFrame {
         for (int x = 0; x < nSolicitudes; x++) {
             double i = Math.floor(Math.random() * 101);
             //System.out.println("el random interfaz = " + i);
-            //if (i < aHonesto) {
-            //AgentsHonest a = new AgentsHonest(caja, generateEmail(), generatePassword(), nombreU, apellidoP, apellidoM, typeU, ip, publicKey);
-            JButton boton = new JButton("Request and Response");
-            boton.setPreferredSize(new Dimension(30, 70));
-            boton.setBackground(Color.GREEN);
-            jPanel6.add(boton);
-            //botones.add(boton); //agrego el boton
+            if (i < aHonesto) {
+                //AgentsHonest a = new AgentsHonest(caja, generateEmail(), generatePassword(), nombreU, apellidoP, apellidoM, typeU, ip, publicKey);
+                JButton boton = new JButton("Compliant agent");
+                boton.setPreferredSize(new Dimension(30, 70));
+                boton.setBackground(Color.GREEN);
+                jPanel6.add(boton);
+                //botones.add(boton); //agrego el boton
 
-            boton.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent ae) {
-                    //JOptionPane.showMessageDialog(null, "Agente honesto");
-                    consultaHonestaNP("Honest");
-                }
+                boton.addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent ae) {
+                        //JOptionPane.showMessageDialog(null, "Agente honesto");
+                        consultaHonestaNP("Honest");
+                    }
 
-            });
+                });
+            } else {
+                JButton boton = new JButton("Non compliant agent");
+                boton.setPreferredSize(new Dimension(30, 70));
+                boton.setBackground(Color.ORANGE);
+                jPanel6.add(boton);
+                //botones.add(boton); //agrego el boton
+
+                boton.addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent ae) {
+                        consultaHonestaNP("Dishonest");
+                    }
+                });
+            }
         }
 
         jPanel6.updateUI();
@@ -889,6 +907,36 @@ public class InterfazG extends javax.swing.JFrame {
         return imagen;
     }
 
+    private void generateCBR() {
+        LecEscTXT object = new LecEscTXT();
+        DefaultTableModel m = object.leer();
+        CBServer.removeAllItems();
+
+        for (int x = 0; x < m.getRowCount(); x++) {
+            CBServer.addItem((String) m.getValueAt(x, 0));
+        }
+    }
+
+    private void generateCBCU() {
+        LecEscTXT object = new LecEscTXT();
+        DefaultTableModel m = object.leer();
+        CBServer1.removeAllItems();
+
+        for (int x = 0; x < m.getRowCount(); x++) {
+            CBServer1.addItem((String) m.getValueAt(x, 0));
+        }
+    }
+
+    private void generateCBAS() {
+        LecEscTXT object = new LecEscTXT();
+        DefaultTableModel m = object.leer();
+        CBIpNP.removeAllItems();
+
+        for (int x = 0; x < m.getRowCount(); x++) {
+            CBIpNP.addItem((String) m.getValueAt(x, 0));
+        }
+    }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -1044,13 +1092,11 @@ public class InterfazG extends javax.swing.JFrame {
         RBRequestsANS = new javax.swing.JRadioButton();
         jPanel10 = new javax.swing.JPanel();
         TFConfiguration = new javax.swing.JTextField();
-        BTModificar = new javax.swing.JButton();
         jScrollPane5 = new javax.swing.JScrollPane();
         TBDirecciones = new javax.swing.JTable();
-        jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
+        BTEliminar = new javax.swing.JButton();
         BTAgregar = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        BTModificar = new javax.swing.JButton();
 
         jDialog1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jDialog1.setMinimumSize(new java.awt.Dimension(420, 270));
@@ -1332,7 +1378,6 @@ public class InterfazG extends javax.swing.JFrame {
             }
         });
 
-        CBServer.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "localhost", "54.87.22.33", "52.202.214.13" }));
         CBServer.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 CBServerActionPerformed(evt);
@@ -1742,7 +1787,6 @@ public class InterfazG extends javax.swing.JFrame {
             }
         });
 
-        CBServer1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "localhost", "54.87.22.33", "52.202.214.13" }));
         CBServer1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 CBServer1ActionPerformed(evt);
@@ -2202,7 +2246,6 @@ public class InterfazG extends javax.swing.JFrame {
         jLabel55.setText("Server:");
 
         CBIpNP.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        CBIpNP.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "localhost", "54.87.22.33", "52.202.214.13" }));
 
         CBDescriptionNP.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         CBDescriptionNP.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "[x]", "[xx]", "[xxx]", "[xxxx]", "[xxxxx]" }));
@@ -2332,13 +2375,6 @@ public class InterfazG extends javax.swing.JFrame {
             }
         });
 
-        BTModificar.setText("Modificar");
-        BTModificar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BTModificarActionPerformed(evt);
-            }
-        });
-
         TBDirecciones.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null}
@@ -2362,17 +2398,10 @@ public class InterfazG extends javax.swing.JFrame {
         });
         jScrollPane5.setViewportView(TBDirecciones);
 
-        jButton4.setText("Eliminar");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        BTEliminar.setText("Eliminar");
+        BTEliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
-            }
-        });
-
-        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Interfaz/4210604.png"))); // NOI18N
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
+                BTEliminarActionPerformed(evt);
             }
         });
 
@@ -2383,10 +2412,10 @@ public class InterfazG extends javax.swing.JFrame {
             }
         });
 
-        jButton3.setText("Escribir");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        BTModificar.setText("Modificar");
+        BTModificar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                BTModificarActionPerformed(evt);
             }
         });
 
@@ -2397,19 +2426,16 @@ public class InterfazG extends javax.swing.JFrame {
             .addGroup(jPanel10Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane5)
+                    .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 725, Short.MAX_VALUE)
                     .addGroup(jPanel10Layout.createSequentialGroup()
                         .addComponent(TFConfiguration, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(BTAgregar)
-                        .addGap(24, 24, 24)
+                        .addGap(18, 18, 18)
+                        .addComponent(BTEliminar)
+                        .addGap(18, 18, 18)
                         .addComponent(BTModificar)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton4)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 165, Short.MAX_VALUE)
-                        .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel10Layout.setVerticalGroup(
@@ -2418,11 +2444,9 @@ public class InterfazG extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(TFConfiguration, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(BTModificar)
-                    .addComponent(jButton4)
-                    .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(BTEliminar)
                     .addComponent(BTAgregar)
-                    .addComponent(jButton3))
+                    .addComponent(BTModificar))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 662, Short.MAX_VALUE)
                 .addContainerGap())
@@ -2445,7 +2469,7 @@ public class InterfazG extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void BAyuda1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BAyuda1ActionPerformed
-        JOptionPane.showMessageDialog(null, "How to get the token \n Step 1: Create a user (productor, acopio, carrier or merchant) \n Step 2: use the token generated in user creation, for create a Company name \n Step 3: Use the toke generated in Company name for add new stage");
+        JOptionPane.showMessageDialog(null, "How to get the token \n Step 1: Create a user (productor, acopio, carrier or merchant) \n Step 2: use the token generated in user creation, to create a Company name \n Step 3: Use the token generated in Company name for add new stage");
     }//GEN-LAST:event_BAyuda1ActionPerformed
 
     private void CBPreviousSNPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CBPreviousSNPActionPerformed
@@ -2478,41 +2502,77 @@ public class InterfazG extends javax.swing.JFrame {
             if (totalP == 100) {
                 if (!token.isEmpty()) {
                     for (int x = 0; x < numberR; x++) {
+                        double i = Math.floor(Math.random() * 101);
                         HiloNP hNP = new HiloNP();
-                        int position = x;
+                        if (i <= 50) {
+                            int position = x;
 
-                        //jDialog2.setVisible(true);
-                        hNP.setUbication(ubication);
-                        hNP.setHarvestD(harvestD);
-                        hNP.setCaducationD(caducationD);
-                        hNP.setDescription(description);
-                        hNP.setfId(Integer.parseInt(fId));
-                        hNP.setNameProduction(nameProduction);
-                        hNP.setPreviousS(previousS);
-                        hNP.setCurrentS(currentS);
-                        hNP.setCode(code);
-                        hNP.setTypeConsult("Honest");
-                        hNP.setImage(/*getImage()*/getCurrentStageI(currentS));
-                        hNP.setIp(ip);
-                        hNP.setCaja(caja);
-                        hNP.setToken(token);
-                        hNP.setPosition(position);
-                        new Thread(hNP).start();
+                            hNP.setUbication(ubication);
+                            hNP.setHarvestD(harvestD);
+                            hNP.setCaducationD(caducationD);
+                            hNP.setDescription(description);
+                            hNP.setfId(Integer.parseInt(fId));
+                            hNP.setNameProduction(nameProduction);
+                            hNP.setPreviousS(previousS);
+                            hNP.setCurrentS(currentS);
+                            hNP.setCode(code);
+                            hNP.setTypeConsult("Honest");
+                            hNP.setImage(/*getImage()*/getCurrentStageI(currentS));
+                            hNP.setIp(ip);
+                            hNP.setCaja(caja);
+                            hNP.setToken(token);
+                            hNP.setPosition(position);
+                            new Thread(hNP).start();
 
-                        JButton boton = new JButton("Request and Response");
-                        boton.setPreferredSize(new Dimension(30, 70));
-                        boton.setBackground(Color.GREEN);
-                        jPanel6.add(boton);
-                        //botones.add(boton); //agrego el boton
+                            JButton boton = new JButton("Compliant agent");
+                            boton.setPreferredSize(new Dimension(30, 70));
+                            boton.setBackground(Color.GREEN);
+                            jPanel6.add(boton);
+                            //botones.add(boton); //agrego el boton
 
-                        boton.addActionListener(new ActionListener() {
-                            @Override
-                            public void actionPerformed(ActionEvent ae) {
-                                jDialog2.setVisible(true);
-                                areaTexto.setText(Respuesta.getConsultaS(position).replace("null", ""));
-                            }
+                            boton.addActionListener(new ActionListener() {
+                                @Override
+                                public void actionPerformed(ActionEvent ae) {
+                                    jDialog2.setVisible(true);
+                                    areaTexto.setText(Respuesta.getConsultaS(position).replace("null", ""));
+                                }
 
-                        });
+                            });
+                        } else {
+                            int position = x;
+
+                            hNP.setUbication(ubication);
+                            hNP.setHarvestD(harvestD);
+                            hNP.setCaducationD(caducationD);
+                            hNP.setDescription(description);
+                            hNP.setfId(Integer.parseInt(fId));
+                            hNP.setNameProduction(nameProduction);
+                            hNP.setPreviousS(previousS);
+                            hNP.setCurrentS(currentS);
+                            hNP.setCode(code);
+                            hNP.setTypeConsult("Dishonest");
+                            hNP.setImage(/*getImage()*/getCurrentStageI(currentS));
+                            hNP.setIp(ip);
+                            hNP.setCaja(caja);
+                            hNP.setToken(token);
+                            hNP.setPosition(position);
+                            new Thread(hNP).start();
+
+                            JButton boton = new JButton("Non compliant agent");
+                            boton.setPreferredSize(new Dimension(30, 70));
+                            boton.setBackground(Color.ORANGE);
+                            jPanel6.add(boton);
+                            //botones.add(boton); //agrego el boton
+
+                            boton.addActionListener(new ActionListener() {
+                                @Override
+                                public void actionPerformed(ActionEvent ae) {
+                                    jDialog2.setVisible(true);
+                                    areaTexto.setText(Respuesta.getConsultaS(position).replace("null", ""));
+                                }
+
+                            });
+                        }
 
                     }
                     //jPanel6.updateUI();
@@ -2972,61 +3032,36 @@ public class InterfazG extends javax.swing.JFrame {
 
     }//GEN-LAST:event_TFConfigurationActionPerformed
 
-    private void BTModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTModificarActionPerformed
-        try {
-            LecEscTXT objeto = new LecEscTXT();
-
-            File archivo = new File("C:\\archivo.txt");
-            FileReader fr = new FileReader(archivo);
-            BufferedReader br = new BufferedReader(fr);
-            String linea = "";
-
-            model = new DefaultTableModel();
-            model.addColumn("Dirección IP");
-
-            System.out.println("InterfazG/ModificarAction/tamaño de la tabla: " + TBDirecciones.getRowCount());
-            for (int x = 0; x < TBDirecciones.getRowCount(); x++) {
-                //System.out.println("InterfazG/posición en la tabla: " + x + " ," + TBDirecciones.getValueAt(x, 0));
-                //linea += br.readLine();
-                if (TBDirecciones.getSelectedRow() == x) {
-
-                    br.readLine();
-                    model.addRow(new Object[]{TFConfiguration.getText()});
-                } else {
-                    model.addRow(new Object[]{br.readLine()});
-                }
-                objeto.modificar(model);
-                TFConfiguration.setText("");
-                //System.out.println("InterfazG/ModificarAction/contenido del modelo: "+model.getValueAt(x, 0));
-            }
-        } catch (Exception e) {
-
-        }
-    }//GEN-LAST:event_BTModificarActionPerformed
-
     private void TBDireccionesMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TBDireccionesMousePressed
         System.out.println("InterfazG/ModificarAction/seleccionaste: " + TBDirecciones.getSelectedRow() + ", " + TBDirecciones.getSelectedColumn());
         TFConfiguration.setText(String.valueOf(TBDirecciones.getValueAt(TBDirecciones.getSelectedRow(), TBDirecciones.getSelectedColumn())));
     }//GEN-LAST:event_TBDireccionesMousePressed
 
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        LecEscTXT objeto = new LecEscTXT();
-        TBDirecciones.setModel(objeto.leer());
-        TFConfiguration.setText("");
-    }//GEN-LAST:event_jButton5ActionPerformed
-
     private void BTAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTAgregarActionPerformed
-        LecEscTXT objeto = new LecEscTXT();
-        objeto.agregar(TFConfiguration.getText());
-        TBDirecciones.setModel(objeto.leer());
-        TFConfiguration.setText("");
+        try {
+            if (TFConfiguration.getText().isEmpty()) {
+                JOptionPane.showMessageDialog(null, "Ingresa una dirección ip");
+            } else {
+                LecEscTXT objeto = new LecEscTXT();
+
+                objeto.agregar(TFConfiguration.getText());
+
+                TBDirecciones.setModel(objeto.leer());
+                TFConfiguration.setText("");
+                generateCBR();
+                generateCBCU();
+                generateCBAS();
+            }
+        } catch (IOException ex) {
+            Logger.getLogger(InterfazG.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_BTAgregarActionPerformed
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+    private void BTEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTEliminarActionPerformed
         try {
             LecEscTXT objeto = new LecEscTXT();
 
-            File archivo = new File("C:\\archivo.txt");
+            File archivo = new File("C:\\Users\\frank\\Documents\\archivo.txt");
             FileReader fr = new FileReader(archivo);
             BufferedReader br = new BufferedReader(fr);
             String linea = "";
@@ -3036,28 +3071,55 @@ public class InterfazG extends javax.swing.JFrame {
 
             System.out.println("InterfazG/ModificarAction/tamaño de la tabla: " + TBDirecciones.getRowCount());
             for (int x = 0; x < TBDirecciones.getRowCount(); x++) {
-                //System.out.println("InterfazG/posición en la tabla: " + x + " ," + TBDirecciones.getValueAt(x, 0));
-                //linea += br.readLine();
                 if (TBDirecciones.getSelectedRow() == x) {
-
                     br.readLine();
-                    //model.addRow(new Object[]{TFConfiguration.getText()});
                 } else {
                     model.addRow(new Object[]{br.readLine()});
                 }
-                objeto.modificar(model);
-                TFConfiguration.setText("");
-                //System.out.println("InterfazG/ModificarAction/contenido del modelo: "+model.getValueAt(x, 0));
             }
+
+            objeto.modificar(model);
+            TFConfiguration.setText("");
+            TBDirecciones.setModel(objeto.leer());
         } catch (Exception e) {
 
         }
-    }//GEN-LAST:event_jButton4ActionPerformed
+    }//GEN-LAST:event_BTEliminarActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        LecEscTXT objeto = new LecEscTXT();
-        objeto.escribir();
-    }//GEN-LAST:event_jButton3ActionPerformed
+    private void BTModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTModificarActionPerformed
+        try {
+            if (TFConfiguration.getText().isEmpty()) {
+                JOptionPane.showMessageDialog(null, "Ingresa una dirección ip");
+            } else {
+                LecEscTXT objeto = new LecEscTXT();
+
+                File archivo = new File("C:\\Users\\frank\\Documents\\archivo.txt");
+                FileReader fr = new FileReader(archivo);
+                BufferedReader br = new BufferedReader(fr);
+                String linea = "";
+
+                model = new DefaultTableModel();
+                model.addColumn("Dirección IP");
+
+                System.out.println("InterfazG/ModificarAction/tamaño de la tabla: " + TBDirecciones.getRowCount());
+                for (int x = 0; x < TBDirecciones.getRowCount(); x++) {
+                    if (TBDirecciones.getSelectedRow() == x) {
+                        br.readLine();
+                        model.addRow(new Object[]{TFConfiguration.getText()});
+                    } else {
+                        model.addRow(new Object[]{br.readLine()});
+                    }
+                }
+
+                objeto.modificar(model);
+                TFConfiguration.setText("");
+                TBDirecciones.setModel(objeto.leer());
+            }
+
+        } catch (Exception e) {
+
+        }
+    }//GEN-LAST:event_BTModificarActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -3073,13 +3135,17 @@ public class InterfazG extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(InterfazG.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(InterfazG.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(InterfazG.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(InterfazG.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(InterfazG.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(InterfazG.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(InterfazG.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(InterfazG.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
         //</editor-fold>
@@ -3102,6 +3168,7 @@ public class InterfazG extends javax.swing.JFrame {
     private javax.swing.JButton BIniciar;
     private javax.swing.JButton BIniciarUC;
     private javax.swing.JButton BTAgregar;
+    private javax.swing.JButton BTEliminar;
     private javax.swing.JButton BTModificar;
     private javax.swing.JComboBox<String> CBCodeNP;
     private javax.swing.JComboBox<String> CBCurrentSNP;
@@ -3158,9 +3225,6 @@ public class InterfazG extends javax.swing.JFrame {
     private javax.swing.JTextField TFTokenNP;
     private javax.swing.JTextArea areaTexto;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
     private javax.swing.JDialog jDialog1;
     private javax.swing.JDialog jDialog2;
     private javax.swing.JDialog jDialog3;

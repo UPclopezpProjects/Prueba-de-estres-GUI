@@ -41,6 +41,7 @@ public class HonestAgent {
     private JTextArea caja;
     private String dp;
     private String gas;
+    private String puerto = "80";
 
     public HonestAgent(String email, String password, String typeU, String addressU, String authorization, String fatherS, String name, String motherS, int nRequest, int aHonest, int aDishonest, String typeConsult, String ip, JTextArea caja, String dp, String gas, int position) {
         this.email = email;
@@ -144,7 +145,7 @@ public class HonestAgent {
                     + "gas=" + gas + "&"
                     + "nameOfOperation=" + nameOfOperation + "\" "
                     + "-H \"Authorization: " + authorization + "\" "
-                    + "-X POST http://" + ip + ":80/userCreation";
+                    + "-X POST http://" + ip + ":"+puerto+"/userCreation";
 
             SimpleDateFormat sdf3 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
             Date now3 = new Date();

@@ -49,6 +49,7 @@ public class DishonestAgentA {
     private JTextArea caja;
     private String dp;
     private String gas;
+    private String puerto = "80";
 
     public DishonestAgentA(String email, String password, String typeU, String addressU, String authorization, String fatherS, String name, String motherS, int nRequest, int aHonest, int aDishonest, String typeConsult, String ip, JTextArea caja, String dp, String gas, int position) {
         this.email = email;
@@ -149,7 +150,7 @@ public class DishonestAgentA {
                     + "gas=" + gas + "&"
                     + "nameOfOperation=" + nameOfOperation + "\" "
                     + "-H \"Authorization: " + authorization + "\" "
-                    + "-X POST http://" + ip + ":80/userCreation";
+                    + "-X POST http://" + ip + ":" + puerto + "/userCreation";
 
             SimpleDateFormat sdf3 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
             Date now3 = new Date();
@@ -158,7 +159,7 @@ public class DishonestAgentA {
             String response = "Crear Usuario/Dishonest agent A --> Date: " + strDate3 + "; CURL: " + rootCreation;
             System.out.println(response);
             caja.append(response + "\n");
-            
+
             if (position != -1) {
                 Respuesta.setConsultaUC(response + "\n", position);
             }
@@ -183,7 +184,7 @@ public class DishonestAgentA {
                         response = "Crear Usuario/Dishonest agent A <-- Date: " + strDate4 + "; Response: " + line;
                         System.out.println(response);
                         caja.append(response + "\n \n");
-                        
+
                         if (position != -1) {
                             Respuesta.setConsultaUC(response + "\n", position);
                         }

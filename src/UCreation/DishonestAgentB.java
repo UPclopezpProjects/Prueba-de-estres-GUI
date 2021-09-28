@@ -49,6 +49,7 @@ public class DishonestAgentB {
     private JTextArea caja;
     private String dp;
     private String gas;
+    private String puerto = "80";
 
     public DishonestAgentB(String email, String password, String typeU, String addressU, String authorization, String fatherS, String name, String motherS, int nRequest, int aHonest, int aDishonest, String typeConsult, String ip, JTextArea caja, String dp, String gas, int position) {
         this.email = email;
@@ -146,7 +147,7 @@ public class DishonestAgentB {
                     + "gas=" + gas + "&"
                     + "nameOfOperation=" + nameOfOperation + "\" "
                     + "-H \"Authorization: " + authorization + "\" "
-                    + "-X POST http://" + ip + ":80/userCreation";
+                    + "-X POST http://" + ip + ":" + puerto + "/userCreation";
 
             SimpleDateFormat sdf3 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
             Date now3 = new Date();
@@ -155,7 +156,9 @@ public class DishonestAgentB {
             String response = "Crear Usuario/Dishonest agent B --> Date: " + strDate3 + "; CURL: " + rootCreation;
             System.out.println(response);
             caja.append(response + "\n");
-            if(position != -1) Respuesta.setConsultaUC(response+"\n", position);
+            if (position != -1) {
+                Respuesta.setConsultaUC(response + "\n", position);
+            }
 
             Runtime rt = Runtime.getRuntime();
             Process proc = rt.exec(rootCreation);
@@ -177,8 +180,10 @@ public class DishonestAgentB {
                         response = "Crear Usuario/Dishonest agent B <-- Date: " + strDate4 + "; Response: " + line;
                         System.out.println(response);
                         caja.append(response + "\n \n");
-                        
-                        if(position != -1) Respuesta.setConsultaUC(response+"\n", position);
+
+                        if (position != -1) {
+                            Respuesta.setConsultaUC(response + "\n", position);
+                        }
                     }
                     intentar = false;
                 }
