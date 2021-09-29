@@ -16,6 +16,7 @@ import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 import UCreation.hiloUC;
 import UCreation.hiloUCA;
+import com.sun.awt.AWTUtilities;
 import companyName.HiloCN;
 import java.awt.Image;
 import java.io.BufferedReader;
@@ -44,6 +45,7 @@ public class InterfazG extends javax.swing.JFrame {
 
     public InterfazG() {
         initComponents();
+        AWTUtilities.setWindowOpaque(jDialog4, false);
         Respuesta.setVentanaCarga(jDialog4);
         setLocationRelativeTo(null);
         jDialog5.setLocationRelativeTo(null);
@@ -974,7 +976,6 @@ public class InterfazG extends javax.swing.JFrame {
         jLabel48 = new javax.swing.JLabel();
         jLabel56 = new javax.swing.JLabel();
         jDialog4 = new javax.swing.JDialog();
-        jPanel7 = new javax.swing.JPanel();
         jLabel50 = new javax.swing.JLabel();
         jDialog5 = new javax.swing.JDialog();
         jLabel58 = new javax.swing.JLabel();
@@ -1285,36 +1286,22 @@ public class InterfazG extends javax.swing.JFrame {
         );
 
         jDialog4.setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+        jDialog4.setBackground(new java.awt.Color(0, 0, 0));
         jDialog4.setLocation(new java.awt.Point(0, 0));
-        jDialog4.setMinimumSize(new java.awt.Dimension(180, 100));
+        jDialog4.setMinimumSize(new java.awt.Dimension(400, 300));
         jDialog4.setUndecorated(true);
 
-        jPanel7.setBackground(new java.awt.Color(255, 255, 255));
-
-        jLabel50.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Interfaz/loading-11.gif"))); // NOI18N
-
-        javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
-        jPanel7.setLayout(jPanel7Layout);
-        jPanel7Layout.setHorizontalGroup(
-            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel50, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        jPanel7Layout.setVerticalGroup(
-            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel7Layout.createSequentialGroup()
-                .addComponent(jLabel50)
-                .addGap(0, 0, Short.MAX_VALUE))
-        );
+        jLabel50.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Interfaz/loading-circular.gif"))); // NOI18N
 
         javax.swing.GroupLayout jDialog4Layout = new javax.swing.GroupLayout(jDialog4.getContentPane());
         jDialog4.getContentPane().setLayout(jDialog4Layout);
         jDialog4Layout.setHorizontalGroup(
             jDialog4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jLabel50, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         jDialog4Layout.setVerticalGroup(
             jDialog4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jLabel50, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         jDialog5.setMinimumSize(new java.awt.Dimension(500, 150));
@@ -3522,7 +3509,6 @@ public class InterfazG extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
-    private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane1;
