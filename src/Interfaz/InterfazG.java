@@ -16,6 +16,7 @@ import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 import UCreation.hiloUC;
 import UCreation.hiloUCA;
+import companyName.HiloCN;
 import java.awt.Image;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -31,6 +32,7 @@ import javax.swing.JFileChooser;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.filechooser.FileNameExtensionFilter;
+import javax.swing.filechooser.FileSystemView;
 import javax.swing.table.DefaultTableModel;
 
 public class InterfazG extends javax.swing.JFrame {
@@ -53,6 +55,7 @@ public class InterfazG extends javax.swing.JFrame {
         generateCBR();
         generateCBCU();
         generateCBAS();
+        generateCBAC();
     }
 
     public void crearB(int n, int aHonesto, int aEnviarA) {
@@ -938,6 +941,16 @@ public class InterfazG extends javax.swing.JFrame {
         }
     }
 
+    private void generateCBAC() {
+        LecEscTXT object = new LecEscTXT();
+        DefaultTableModel m = object.leer();
+        CBServerAC.removeAllItems();
+
+        for (int x = 0; x < m.getRowCount(); x++) {
+            CBServerAC.addItem((String) m.getValueAt(x, 0));
+        }
+    }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -1059,6 +1072,19 @@ public class InterfazG extends javax.swing.JFrame {
         jLabel57 = new javax.swing.JLabel();
         TFGasUC = new javax.swing.JTextField();
         RBRequestAUC = new javax.swing.JRadioButton();
+        jPanel11 = new javax.swing.JPanel();
+        jLabel67 = new javax.swing.JLabel();
+        CBCurrentSAC = new javax.swing.JComboBox<>();
+        jButton1 = new javax.swing.JButton();
+        RBAutomaticRAC = new javax.swing.JRadioButton();
+        jLabel68 = new javax.swing.JLabel();
+        TFTokenAC = new javax.swing.JTextField();
+        jLabel69 = new javax.swing.JLabel();
+        CBNumberRAC = new javax.swing.JSpinner();
+        jLabel65 = new javax.swing.JLabel();
+        CBServerAC = new javax.swing.JComboBox<>();
+        jScrollPane7 = new javax.swing.JScrollPane();
+        jPanel13 = new javax.swing.JPanel();
         jPanel5 = new javax.swing.JPanel();
         jLabel30 = new javax.swing.JLabel();
         jLabel46 = new javax.swing.JLabel();
@@ -1357,7 +1383,7 @@ public class InterfazG extends javax.swing.JFrame {
         setResizable(false);
 
         BIniciar.setBackground(new java.awt.Color(0, 153, 0));
-        BIniciar.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        BIniciar.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         BIniciar.setForeground(new java.awt.Color(255, 255, 255));
         BIniciar.setText("Start");
         BIniciar.setMaximumSize(new java.awt.Dimension(720, 31));
@@ -2122,11 +2148,109 @@ public class InterfazG extends javax.swing.JFrame {
                         .addComponent(BAyuda2))
                     .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 389, Short.MAX_VALUE)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 392, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
         jTabbedPane1.addTab("Crear Usuario", jPanel3);
+
+        jLabel67.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        jLabel67.setText("Current stage:");
+
+        CBCurrentSAC.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        CBCurrentSAC.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Productor", "Carrier", "Acopio", "Merchant" }));
+
+        jButton1.setBackground(new java.awt.Color(0, 153, 0));
+        jButton1.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(255, 255, 255));
+        jButton1.setText("Start");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        RBAutomaticRAC.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        RBAutomaticRAC.setText("Automatic requests");
+
+        jLabel68.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        jLabel68.setText("Token:");
+
+        jLabel69.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        jLabel69.setText("Number of requests:");
+
+        CBNumberRAC.setModel(new javax.swing.SpinnerNumberModel(5, 1, 100, 1));
+
+        jLabel65.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        jLabel65.setText("Server:");
+
+        CBServerAC.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CBServerACActionPerformed(evt);
+            }
+        });
+
+        jScrollPane7.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
+        jPanel13.setLayout(new java.awt.GridLayout(0, 1));
+        jScrollPane7.setViewportView(jPanel13);
+
+        javax.swing.GroupLayout jPanel11Layout = new javax.swing.GroupLayout(jPanel11);
+        jPanel11.setLayout(jPanel11Layout);
+        jPanel11Layout.setHorizontalGroup(
+            jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel11Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel11Layout.createSequentialGroup()
+                        .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(jPanel11Layout.createSequentialGroup()
+                                .addComponent(jLabel68)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(TFTokenAC, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel11Layout.createSequentialGroup()
+                                .addComponent(jLabel65)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(CBServerAC, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel67)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(CBCurrentSAC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel69)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(CBNumberRAC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(RBAutomaticRAC)
+                        .addGap(0, 42, Short.MAX_VALUE))
+                    .addComponent(jScrollPane7))
+                .addContainerGap())
+        );
+        jPanel11Layout.setVerticalGroup(
+            jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel11Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel68)
+                    .addComponent(TFTokenAC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel67)
+                    .addComponent(CBCurrentSAC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel69)
+                    .addComponent(CBNumberRAC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(RBAutomaticRAC))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(CBServerAC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel65))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 599, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        jTabbedPane1.addTab("Add company", jPanel11);
 
         jLabel30.setFont(new java.awt.Font("Arial", 1, 20)); // NOI18N
         jLabel30.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -2143,7 +2267,7 @@ public class InterfazG extends javax.swing.JFrame {
         CBCodeNP.setSelectedIndex(4);
 
         jButton2.setBackground(new java.awt.Color(0, 153, 0));
-        jButton2.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        jButton2.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         jButton2.setForeground(new java.awt.Color(255, 255, 255));
         jButton2.setText("Start");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -2363,7 +2487,7 @@ public class InterfazG extends javax.swing.JFrame {
                         .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 262, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 260, Short.MAX_VALUE))
                     .addComponent(jScrollPane4))
                 .addContainerGap())
         );
@@ -2427,7 +2551,7 @@ public class InterfazG extends javax.swing.JFrame {
             .addGroup(jPanel10Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 725, Short.MAX_VALUE)
+                    .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 715, Short.MAX_VALUE)
                     .addGroup(jPanel10Layout.createSequentialGroup()
                         .addComponent(TFConfiguration, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
@@ -2435,8 +2559,7 @@ public class InterfazG extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(BTEliminar)
                         .addGap(18, 18, 18)
-                        .addComponent(BTModificar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(BTModificar)))
                 .addContainerGap())
         );
         jPanel10Layout.setVerticalGroup(
@@ -2449,7 +2572,7 @@ public class InterfazG extends javax.swing.JFrame {
                     .addComponent(BTAgregar)
                     .addComponent(BTModificar))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 662, Short.MAX_VALUE)
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 666, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -3055,6 +3178,7 @@ public class InterfazG extends javax.swing.JFrame {
                 generateCBR();
                 generateCBCU();
                 generateCBAS();
+                generateCBAC();
             }
         } catch (IOException ex) {
             Logger.getLogger(InterfazG.class.getName()).log(Level.SEVERE, null, ex);
@@ -3065,7 +3189,7 @@ public class InterfazG extends javax.swing.JFrame {
         try {
             LecEscTXT objeto = new LecEscTXT();
 
-            File archivo = new File("C:\\Users\\frank\\Documents\\archivo.txt");
+            File archivo = new File(obtenerCarpeta()+"archivo.txt");
             FileReader fr = new FileReader(archivo);
             BufferedReader br = new BufferedReader(fr);
             String linea = "";
@@ -3085,6 +3209,11 @@ public class InterfazG extends javax.swing.JFrame {
             objeto.modificar(model);
             TFConfiguration.setText("");
             TBDirecciones.setModel(objeto.leer());
+
+            generateCBR();
+            generateCBCU();
+            generateCBAS();
+            generateCBAC();
         } catch (Exception e) {
 
         }
@@ -3097,7 +3226,7 @@ public class InterfazG extends javax.swing.JFrame {
             } else {
                 LecEscTXT objeto = new LecEscTXT();
 
-                File archivo = new File("C:\\Users\\frank\\Documents\\archivo.txt");
+                File archivo = new File(obtenerCarpeta()+"archivo.txt");
                 FileReader fr = new FileReader(archivo);
                 BufferedReader br = new BufferedReader(fr);
                 String linea = "";
@@ -3118,6 +3247,11 @@ public class InterfazG extends javax.swing.JFrame {
                 objeto.modificar(model);
                 TFConfiguration.setText("");
                 TBDirecciones.setModel(objeto.leer());
+
+                generateCBR();
+                generateCBCU();
+                generateCBAS();
+                generateCBAC();
             }
 
         } catch (Exception e) {
@@ -3125,6 +3259,75 @@ public class InterfazG extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_BTModificarActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        try {
+            jPanel13.removeAll();
+            jPanel13.updateUI();
+
+            String token = TFTokenAC.getText();
+            int nSolicitudes = (Integer) CBNumberRAC.getValue();
+            String currentS = (String) CBCurrentSAC.getSelectedItem();
+            String ip = (String) CBServerAC.getSelectedItem();
+
+            if (RBAutomaticRAC.isSelected()) {
+                
+            } else {
+                if (!token.isEmpty()) {
+                    if (!ip.isEmpty()) {
+                        for (int x = 0; x < nSolicitudes; x++) {
+                            JButton boton = new JButton("Compliant agent");
+                            boton.setPreferredSize(new Dimension(30, 70));
+                            boton.setBackground(Color.GREEN);
+                            jPanel13.add(boton);
+
+                            boton.addActionListener(new ActionListener() {
+                                @Override
+                                public void actionPerformed(ActionEvent ae) {
+                                    consultaAC(-1);
+                                }
+                            });
+                        }
+                    } else {
+                        JOptionPane.showMessageDialog(this, "Set a ip in configuration tabbed");
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(this, "Set a token in token field");
+                }
+            }
+        } catch (java.lang.NullPointerException e) {
+            JOptionPane.showMessageDialog(this, "Set a ip in configuration tabbed");
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void consultaAC(int position) {
+        areaTexto.setText("");
+        String token = TFTokenAC.getText();
+        int nSolicitudes = (Integer) CBNumberRAC.getValue();
+        String currentS = (String) CBCurrentSAC.getSelectedItem();
+        String ip = (String) CBServerAC.getSelectedItem();
+
+        jDialog2.setVisible(true);
+        HiloCN objeto = new HiloCN();
+
+        objeto.setToken(token);
+        objeto.setStage(currentS);
+        objeto.setIp(ip);
+        objeto.setPosition(position);
+        objeto.setCaja(areaTexto);
+
+        new Thread(objeto).start();
+    }
+    private void CBServerACActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CBServerACActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_CBServerACActionPerformed
+
+    public String obtenerCarpeta(){
+        JFileChooser fr = new JFileChooser();
+        FileSystemView fw = fr.getFileSystemView();
+        //System.out.println("LecEscTXT/obtenerCarpeta: "+fw.getDefaultDirectory());
+        return String.valueOf(fw.getDefaultDirectory());
+    }
+    
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -3175,6 +3378,7 @@ public class InterfazG extends javax.swing.JFrame {
     private javax.swing.JButton BTEliminar;
     private javax.swing.JButton BTModificar;
     private javax.swing.JComboBox<String> CBCodeNP;
+    private javax.swing.JComboBox<String> CBCurrentSAC;
     private javax.swing.JComboBox<String> CBCurrentSNP;
     private javax.swing.JComboBox<String> CBDescriptionNP;
     private javax.swing.JComboBox<String> CBEmail;
@@ -3188,12 +3392,15 @@ public class InterfazG extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> CBName;
     private javax.swing.JComboBox<String> CBNameNP;
     private javax.swing.JComboBox<String> CBNameUC;
+    private javax.swing.JSpinner CBNumberRAC;
     private javax.swing.JComboBox<String> CBPassword;
     private javax.swing.JComboBox<String> CBPasswordUC;
     private javax.swing.JComboBox<String> CBPreviousSNP;
     private javax.swing.JComboBox<String> CBServer;
     private javax.swing.JComboBox<String> CBServer1;
+    private javax.swing.JComboBox<String> CBServerAC;
     private javax.swing.JComboBox<String> CBTypeUserUC;
+    private javax.swing.JRadioButton RBAutomaticRAC;
     private javax.swing.JRadioButton RBCreateA;
     private javax.swing.JRadioButton RBCreateD;
     private javax.swing.JRadioButton RBCreateTU;
@@ -3226,8 +3433,10 @@ public class InterfazG extends javax.swing.JFrame {
     private javax.swing.JTextField TFConfiguration;
     private javax.swing.JTextField TFGasUC;
     private javax.swing.JTextField TFPublicK;
+    private javax.swing.JTextField TFTokenAC;
     private javax.swing.JTextField TFTokenNP;
     private javax.swing.JTextArea areaTexto;
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JDialog jDialog1;
     private javax.swing.JDialog jDialog2;
@@ -3295,6 +3504,10 @@ public class InterfazG extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel62;
     private javax.swing.JLabel jLabel63;
     private javax.swing.JLabel jLabel64;
+    private javax.swing.JLabel jLabel65;
+    private javax.swing.JLabel jLabel67;
+    private javax.swing.JLabel jLabel68;
+    private javax.swing.JLabel jLabel69;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
@@ -3302,6 +3515,8 @@ public class InterfazG extends javax.swing.JFrame {
     private javax.swing.JLayeredPane jLayeredPane2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
+    private javax.swing.JPanel jPanel11;
+    private javax.swing.JPanel jPanel13;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
@@ -3316,6 +3531,7 @@ public class InterfazG extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
+    private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JScrollPane jScrollPane8;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JSpinner sAgenteH;

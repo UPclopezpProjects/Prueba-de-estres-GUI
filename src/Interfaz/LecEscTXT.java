@@ -14,6 +14,8 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import javax.swing.JFileChooser;
+import javax.swing.filechooser.FileSystemView;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -23,11 +25,14 @@ import javax.swing.table.DefaultTableModel;
 public class LecEscTXT {
 
     DefaultTableModel model;
-    String ruta = "C:\\Users\\frank\\Documents\\archivo.txt";
+    //String ruta = "C:\\Users\\frank\\Documents\\archivo.txt";
+    String ruta = obtenerCarpeta()+"archivo.txt";
 
     public DefaultTableModel leer() {
         try {
+            
             File archivo = new File(ruta);
+            //System.out.println("LecEscTXT/leer/ruta: "+ruta);
 
             if (!archivo.exists()) {
                 archivo.createNewFile();
@@ -130,5 +135,11 @@ public class LecEscTXT {
                 e2.printStackTrace();
             }
         }
+    }
+    
+    public String obtenerCarpeta(){
+        JFileChooser fr = new JFileChooser();
+        FileSystemView fw = fr.getFileSystemView();
+        return String.valueOf(fw.getDefaultDirectory());
     }
 }
