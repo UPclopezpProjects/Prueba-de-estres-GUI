@@ -1074,8 +1074,6 @@ public class InterfazG extends javax.swing.JFrame {
         TFGasUC = new javax.swing.JTextField();
         RBRequestAUC = new javax.swing.JRadioButton();
         jPanel11 = new javax.swing.JPanel();
-        jLabel67 = new javax.swing.JLabel();
-        CBCurrentSAC = new javax.swing.JComboBox<>();
         jButton1 = new javax.swing.JButton();
         RBAutomaticRAC = new javax.swing.JRadioButton();
         jLabel68 = new javax.swing.JLabel();
@@ -1086,6 +1084,8 @@ public class InterfazG extends javax.swing.JFrame {
         CBServerAC = new javax.swing.JComboBox<>();
         jScrollPane7 = new javax.swing.JScrollPane();
         jPanel13 = new javax.swing.JPanel();
+        jLabel70 = new javax.swing.JLabel();
+        TFEmailAC = new javax.swing.JTextField();
         jPanel5 = new javax.swing.JPanel();
         jLabel30 = new javax.swing.JLabel();
         jLabel46 = new javax.swing.JLabel();
@@ -2141,12 +2141,6 @@ public class InterfazG extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Crear Usuario", jPanel3);
 
-        jLabel67.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        jLabel67.setText("Current stage:");
-
-        CBCurrentSAC.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        CBCurrentSAC.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Productor", "Carrier", "Acopio", "Merchant" }));
-
         jButton1.setBackground(new java.awt.Color(0, 153, 0));
         jButton1.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
@@ -2182,6 +2176,9 @@ public class InterfazG extends javax.swing.JFrame {
         jPanel13.setLayout(new java.awt.GridLayout(0, 1));
         jScrollPane7.setViewportView(jPanel13);
 
+        jLabel70.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        jLabel70.setText("Email:");
+
         javax.swing.GroupLayout jPanel11Layout = new javax.swing.GroupLayout(jPanel11);
         jPanel11.setLayout(jPanel11Layout);
         jPanel11Layout.setHorizontalGroup(
@@ -2200,17 +2197,17 @@ public class InterfazG extends javax.swing.JFrame {
                                 .addComponent(jLabel65)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(CBServerAC, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel67)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel70)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(CBCurrentSAC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(TFEmailAC, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jLabel69)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(CBNumberRAC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(RBAutomaticRAC)
-                        .addGap(0, 42, Short.MAX_VALUE))
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addComponent(jScrollPane7))
                 .addContainerGap())
         );
@@ -2221,11 +2218,11 @@ public class InterfazG extends javax.swing.JFrame {
                 .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel68)
                     .addComponent(TFTokenAC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel67)
-                    .addComponent(CBCurrentSAC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel69)
                     .addComponent(CBNumberRAC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(RBAutomaticRAC))
+                    .addComponent(RBAutomaticRAC)
+                    .addComponent(jLabel70)
+                    .addComponent(TFEmailAC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(CBServerAC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -2233,7 +2230,7 @@ public class InterfazG extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 599, Short.MAX_VALUE)
+                .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 600, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -3176,7 +3173,7 @@ public class InterfazG extends javax.swing.JFrame {
         try {
             LecEscTXT objeto = new LecEscTXT();
 
-            File archivo = new File(obtenerCarpeta()+"archivo.txt");
+            File archivo = new File(obtenerCarpeta() + "archivo.txt");
             FileReader fr = new FileReader(archivo);
             BufferedReader br = new BufferedReader(fr);
             String linea = "";
@@ -3213,7 +3210,7 @@ public class InterfazG extends javax.swing.JFrame {
             } else {
                 LecEscTXT objeto = new LecEscTXT();
 
-                File archivo = new File(obtenerCarpeta()+"archivo.txt");
+                File archivo = new File(obtenerCarpeta() + "archivo.txt");
                 FileReader fr = new FileReader(archivo);
                 BufferedReader br = new BufferedReader(fr);
                 String linea = "";
@@ -3253,26 +3250,72 @@ public class InterfazG extends javax.swing.JFrame {
 
             String token = TFTokenAC.getText();
             int nSolicitudes = (Integer) CBNumberRAC.getValue();
-            String currentS = (String) CBCurrentSAC.getSelectedItem();
+            String email = (String) TFEmailAC.getText();
             String ip = (String) CBServerAC.getSelectedItem();
 
             if (RBAutomaticRAC.isSelected()) {
-                
+                Respuesta.setTamanioCompany(nSolicitudes);
+                if (!token.isEmpty()) {
+                    if (!ip.isEmpty()) {
+                        if (!email.isEmpty()) {
+                            jDialog4.setVisible(true);
+                            Respuesta.setInterfazG(this);
+                            
+                            for (int x = 0; x < nSolicitudes; x++) {
+                                int position = x;
+                                HiloCN objetoCN = new HiloCN();
+                                objetoCN.setToken(token);
+                                objetoCN.setEmail(email);
+                                objetoCN.setIp(ip);
+                                objetoCN.setPosition(position);
+                                objetoCN.setCaja(areaTexto);
+                                new Thread(objetoCN).start();
+                                System.out.println("n= " + x);
+
+                                JButton boton = new JButton("Compliant agent");
+                                boton.setPreferredSize(new Dimension(30, 70));
+                                boton.setBackground(Color.GREEN);
+                                jPanel13.add(boton);
+
+                                boton.addActionListener(new ActionListener() {
+                                    @Override
+                                    public void actionPerformed(ActionEvent ae) {
+                                        jDialog2.setVisible(true);
+                                        areaTexto.setText(Respuesta.getConsultaCompany(position).replace("null", ""));
+                                    }
+                                });
+                            }
+                            System.out.println("Termina el for");
+                            
+                        } else {
+                            JOptionPane.showMessageDialog(this, "Set one email in email field");
+                        }
+                    } else {
+                        JOptionPane.showMessageDialog(this, "Set a ip in configuration tabbed");
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(this, "Set a token in token field");
+                }
+
             } else {
                 if (!token.isEmpty()) {
                     if (!ip.isEmpty()) {
-                        for (int x = 0; x < nSolicitudes; x++) {
-                            JButton boton = new JButton("Compliant agent");
-                            boton.setPreferredSize(new Dimension(30, 70));
-                            boton.setBackground(Color.GREEN);
-                            jPanel13.add(boton);
+                        if (!email.isEmpty()) {
+                            for (int x = 0; x < nSolicitudes; x++) {
+                                JButton boton = new JButton("Compliant agent");
+                                boton.setPreferredSize(new Dimension(30, 70));
+                                boton.setBackground(Color.GREEN);
+                                jPanel13.add(boton);
 
-                            boton.addActionListener(new ActionListener() {
-                                @Override
-                                public void actionPerformed(ActionEvent ae) {
-                                    consultaAC(-1);
-                                }
-                            });
+                                boton.addActionListener(new ActionListener() {
+                                    @Override
+                                    public void actionPerformed(ActionEvent ae) {
+                                        consultaAC(-1);
+                                    }
+                                });
+                            }
+                        } else {
+                            JOptionPane.showMessageDialog(this, "Set one email in email field");
                         }
                     } else {
                         JOptionPane.showMessageDialog(this, "Set a ip in configuration tabbed");
@@ -3290,14 +3333,15 @@ public class InterfazG extends javax.swing.JFrame {
         areaTexto.setText("");
         String token = TFTokenAC.getText();
         int nSolicitudes = (Integer) CBNumberRAC.getValue();
-        String currentS = (String) CBCurrentSAC.getSelectedItem();
+        String email = (String) TFEmailAC.getText();
+
         String ip = (String) CBServerAC.getSelectedItem();
 
         jDialog2.setVisible(true);
         HiloCN objeto = new HiloCN();
 
         objeto.setToken(token);
-        objeto.setStage(currentS);
+        objeto.setEmail(email);
         objeto.setIp(ip);
         objeto.setPosition(position);
         objeto.setCaja(areaTexto);
@@ -3308,13 +3352,13 @@ public class InterfazG extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_CBServerACActionPerformed
 
-    public String obtenerCarpeta(){
+    public String obtenerCarpeta() {
         JFileChooser fr = new JFileChooser();
         FileSystemView fw = fr.getFileSystemView();
         //System.out.println("LecEscTXT/obtenerCarpeta: "+fw.getDefaultDirectory());
         return String.valueOf(fw.getDefaultDirectory());
     }
-    
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -3365,7 +3409,6 @@ public class InterfazG extends javax.swing.JFrame {
     private javax.swing.JButton BTEliminar;
     private javax.swing.JButton BTModificar;
     private javax.swing.JComboBox<String> CBCodeNP;
-    private javax.swing.JComboBox<String> CBCurrentSAC;
     private javax.swing.JComboBox<String> CBCurrentSNP;
     private javax.swing.JComboBox<String> CBDescriptionNP;
     private javax.swing.JComboBox<String> CBEmail;
@@ -3418,6 +3461,7 @@ public class InterfazG extends javax.swing.JFrame {
     private javax.swing.JTextField TFAdressUUC;
     private javax.swing.JTextField TFAuthorizationUC;
     private javax.swing.JTextField TFConfiguration;
+    private javax.swing.JTextField TFEmailAC;
     private javax.swing.JTextField TFGasUC;
     private javax.swing.JTextField TFPublicK;
     private javax.swing.JTextField TFTokenAC;
@@ -3492,10 +3536,10 @@ public class InterfazG extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel63;
     private javax.swing.JLabel jLabel64;
     private javax.swing.JLabel jLabel65;
-    private javax.swing.JLabel jLabel67;
     private javax.swing.JLabel jLabel68;
     private javax.swing.JLabel jLabel69;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel70;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JLayeredPane jLayeredPane1;

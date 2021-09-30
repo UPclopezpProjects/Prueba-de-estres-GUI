@@ -71,7 +71,7 @@ public class Company {
             if (position == -1) {
                 caja.append(response + "\n");
             } else {
-                
+                Respuesta.setConsultaCompany(response+"\n", position);
             }
 
             //hace la petición como en CMD
@@ -95,7 +95,7 @@ public class Company {
                         if (position == -1) {
                             caja.append(response + "\n \n");
                         } else {
-                            
+                            Respuesta.setConsultaCompany(response, position);
                         }
 
                     }

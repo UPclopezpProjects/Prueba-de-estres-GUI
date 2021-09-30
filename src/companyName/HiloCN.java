@@ -5,6 +5,7 @@
  */
 package companyName;
 
+import Interfaz.Respuesta;
 import java.util.Random;
 import javax.swing.JTextArea;
 
@@ -12,53 +13,71 @@ import javax.swing.JTextArea;
  *
  * @author frank
  */
-public class HiloCN implements Runnable{
-    
-    private String stage;
+public class HiloCN implements Runnable {
+
     private String token;
+    private String email;
     private String ip;
     private int position;
     private JTextArea caja;
 
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
     public void setCaja(JTextArea caja) {
         this.caja = caja;
-        System.out.println("setCaja");
+        //System.out.println("setCaja");
     }
 
     public void setPosition(int position) {
         this.position = position;
-        System.out.println("setPosition: "+position);
+        //System.out.println("setPosition: " + position);
     }
 
     public void setIp(String ip) {
         this.ip = ip;
-        System.out.println("setIp: "+ip);
-    }
-    
-    public void setStage(String stage) {
-        this.stage = stage;
-        System.out.println("setStage: "+stage);
+        //System.out.println("setIp: " + ip);
     }
 
     public void setToken(String token) {
         this.token = token;
-        System.out.println("setToken: "+token);
+        //System.out.println("setToken: " + token);
     }
-    
-    public void loop(){  
-        Company c = new Company(email(), companyName(), token, ip, stage, position, caja);
+
+    public void loop() {
+        Company c = new Company(email(), companyName(), token, ip, generateStage(), position, caja);
+        Respuesta.setNumeroCompany();
     }
-    
-    private String email(){
+
+    private String email() {
         String email = "";
-        email = letter()+"_"+LETTER()+number()+"@"+letter()+letter()+letter()+letter()+".com";
-        System.out.println(email);
+        email = letter() + "_" + LETTER() + number() + "@" + letter() + letter() + letter() + letter() + ".com";
+        //System.out.println(email);
         return email;
     }
-    
-    private String companyName(){
-        String company="";
-        company = String.valueOf(LETTER()+letter()+letter()+letter()+letter()+letter());
+
+    private String generateStage() {
+        int i = (int) Math.floor(Math.random() * 3);
+        switch (i) {
+            case 0:
+                return "Productor";
+
+            case 1:
+                return "Carrier";
+            case 2:
+                return "Acopio";
+            case 3:
+                return "Merchant";
+            default:
+                return "Productor";
+        }
+    }
+
+    private String companyName() {
+        String company = "";
+        company = String.valueOf(LETTER()) + String.valueOf(letter()) + String.valueOf(letter()) + String.valueOf(letter()) + String.valueOf(letter()) + String.valueOf(letter());
+        //System.out.println("HiloCN/companyName: " + company);
         return company;
     }
 
@@ -67,7 +86,7 @@ public class HiloCN implements Runnable{
         char c = (char) (r.nextInt(26) + 'a');
         return c;
     }
-    
+
     private char LETTER() {
         Random r = new Random();
         char c = (char) (r.nextInt(26) + 'A');
@@ -78,7 +97,7 @@ public class HiloCN implements Runnable{
         int numero = (int) (Math.random() * 10 + 1);
         return numero;
     }
-    
+
     @Override
     public void run() {
         loop();
