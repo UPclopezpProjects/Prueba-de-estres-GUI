@@ -17,7 +17,7 @@ public final class AgentsHonest extends Hilo {
 
     String line;
     String n;
-    private JTextArea caja;
+    //private JTextArea caja;
     String email;
     String password;
     String nombre;
@@ -31,8 +31,7 @@ public final class AgentsHonest extends Hilo {
     String puerto = "80";
     //Respuesta mensaje;
 
-    public AgentsHonest(JTextArea caja, String email, String password, String nombre, String apellidoP, String apellidoM, String tipoU, String ip, String publicK, String dp, int position) {
-        this.caja = caja;
+    public AgentsHonest(String email, String password, String nombre, String apellidoP, String apellidoM, String tipoU, String ip, String publicK, String dp, int position) {
         this.email = email;
         this.password = password;
         this.nombre = nombre;
@@ -49,19 +48,14 @@ public final class AgentsHonest extends Hilo {
     public void getInitialNonce(int position) {
         double randomNumber = Math.random();
         try {
-            String getInitialNonce = "curl -d na=" + randomNumber + " -X POST http://" + ip + ":"+puerto+"/getInitialNonce";
+            String getInitialNonce = "curl -d na=" + randomNumber + " -X POST http://" + ip + ":" + puerto + "/getInitialNonce";
             SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
             Date now1 = new Date();
             String strDate1 = sdf1.format(now1);
             response = "Root/AgentHonest/getInitialNonce --> Date: " + strDate1 + "; CURL: " + getInitialNonce;
             //System.out.println(response + ", " + position);
-            
 
-            if (position != -1) {
-                Respuesta.setConsultaRoot(response + "\n", position);
-            } else {
-                caja.append(response + "\n");
-            }
+            Respuesta.setConsultaRoot(response + "\n", position);
 
             Runtime rt = Runtime.getRuntime();
             Process proc = rt.exec(getInitialNonce);
@@ -82,12 +76,9 @@ public final class AgentsHonest extends Hilo {
 
                         response = "Root/AgentHonest/getInitialNonce <-- Date: " + strDate2 + "; Response: " + line;
                         //System.out.println(response + ", " + position);
-                        
-                        if (position != -1) {
-                            Respuesta.setConsultaRoot(response + "\n", position);
-                        } else {
-                            caja.append(response + "\n");
-                        }
+
+                        Respuesta.setConsultaRoot(response + "\n", position);
+
                         String session = jsonObject.get("A").toString();
                         String na = jsonObject.get("NA").toString();
                         String nb = jsonObject.get("NB").toString();
@@ -149,20 +140,15 @@ public final class AgentsHonest extends Hilo {
                     + "nameOfOperation=" + nameOfOperation + "\" "
                     + "-H \"Session: " + session + "\" "
                     + "-H \"Authorization: " + token + "\" "
-                    + "-X POST http://" + ip +":"+puerto+"/userCreation";
+                    + "-X POST http://" + ip + ":" + puerto + "/userCreation";
 
             SimpleDateFormat sdf3 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
             Date now3 = new Date();
             String strDate3 = sdf3.format(now3);
             response = "Root/AgentHonest/userCreation --> Date: " + strDate3 + "; Token: " + token + "; NA: " + randomNumber + "; CURL1: " + rootCreation;
             //System.out.println(response + ", " + position);
-            
 
-            if (position != -1) {
-                Respuesta.setConsultaRoot(response + "\n", position);
-            } else {
-                caja.append(response + "\n");
-            }
+            Respuesta.setConsultaRoot(response + "\n", position);
 
             Runtime rt = Runtime.getRuntime();
             Process proc = rt.exec(rootCreation);
@@ -181,12 +167,9 @@ public final class AgentsHonest extends Hilo {
                         String strDate4 = sdf4.format(now4);
                         response = "Root/AgentHonest/userCreation <-- Date: " + strDate4 + "; Response: " + line;
                         //System.out.println(response + ", " + position);
-                        
-                        if (position != -1) {
-                            Respuesta.setConsultaRoot(response + "\n", position);
-                        } else {
-                            caja.append(response + "\n");
-                        }
+
+                        Respuesta.setConsultaRoot(response + "\n", position);
+
                     }
                     intentar = false;
                 }

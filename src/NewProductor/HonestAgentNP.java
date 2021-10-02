@@ -33,7 +33,7 @@ public class HonestAgentNP {
     private String code;
     private String image;
     private String ip;
-    private JTextArea caja;
+    //private JTextArea caja;
     private String token;
     //exclusivo de carrier
     private String origin;
@@ -54,7 +54,7 @@ public class HonestAgentNP {
     private String puerto = "80";
 
     public HonestAgentNP(String ubication, String harvestD, String caducationD, String description, String fId,
-            String nameProductor, String previousS, String currentS, String code, String image, String ip, JTextArea caja,
+            String nameProductor, String previousS, String currentS, String code, String image, String ip, /*JTextArea caja,*/
             String token, int position) {
         this.ubication = ubication;
         this.harvestD = harvestD;
@@ -67,14 +67,14 @@ public class HonestAgentNP {
         this.code = code;
         this.image = image;
         this.ip = ip;
-        this.caja = caja;
+        //this.caja = caja;
         this.token = token;
         userCreation(position);
     }
 
     public HonestAgentNP(String fId, String ubication, String nameProduction, String previousStage, String currentStage,
             String image, String description, String code, String driverName, String origin, String destination, String plates,
-            String productPhotos, String vehiclePhotos, String tracking, String token, String ip, JTextArea caja, int position) {
+            String productPhotos, String vehiclePhotos, String tracking, String token, String ip, /*JTextArea caja,*/ int position) {
         this.fId = fId;
         this.ubication = ubication;
         this.nameProduction = nameProduction;
@@ -92,12 +92,12 @@ public class HonestAgentNP {
         this.tracking = tracking;
         this.token = token;
         this.ip = ip;
-        this.caja = caja;
+        //this.caja = caja;
         userCreationCarrier(position);
     }
 
     public HonestAgentNP(String fId, String ubication, String nameAcopio, String previousStage, String currentStage, String image, String description, String code,
-            String arrivalDate, String quantity, String measure, String whoReceives, String token, String ip, JTextArea caja, int position) {
+            String arrivalDate, String quantity, String measure, String whoReceives, String token, String ip, /*JTextArea caja,*/ int position) {
         this.fId = fId;
         this.ubication = ubication;
         this.nameAcopio = nameAcopio;
@@ -112,12 +112,12 @@ public class HonestAgentNP {
         this.whoReceives = whoReceives;
         this.token = token;
         this.ip = ip;
-        this.caja = caja;
+        //this.caja = caja;
         userCreationAcopio(position);
     }
 
-    public HonestAgentNP(String fId, String ubication, String nameMerchant, String previousS, String currentS, String image, String description, String code, String arrivalDate,
-            String quantity, String token, String ip, JTextArea caja, int position) {
+    public HonestAgentNP(String fId, String ubication, String nameMerchant, String previousS, String currentS, String image, String description, String code, 
+            String arrivalDate, String quantity, String token, String ip, JTextArea caja, int position) {
         this.fId = fId;
         this.ubication = ubication;
         this.nameMerchant = nameMerchant;
@@ -130,7 +130,7 @@ public class HonestAgentNP {
         this.quantity = quantity;
         this.token = token;
         this.ip = ip;
-        this.caja = caja;
+        //this.caja = caja;
         userCreationMerchant(position);
     }
 
@@ -166,11 +166,11 @@ public class HonestAgentNP {
             Date now3 = new Date();
             String strDate3 = sdf3.format(now3);
             String response = "New Productor/AgentHonest --> Date: " + strDate3 + "; CURL: " + rootCreation2;
-            if (position == -1) {
+            /*if (position == -1) {
                 caja.append(response + "\n");
-            } else {
+            } else {*/
                 Respuesta.setConsultaS(response + "\n", position);
-            }
+            //}
 
             //hace la petición como en CMD
             Runtime rt = Runtime.getRuntime();
@@ -190,11 +190,11 @@ public class HonestAgentNP {
                         String strDate4 = sdf4.format(now4);
                         //System.out.println("<-- Date: " + strDate4 + "; Response: " + line);
                         response = "New Productor/AgentHonest <-- Date: " + strDate4 + "; Response: " + line;
-                        if (position == -1) {
+                        /*if (position == -1) {
                             caja.append(response + "\n \n");
-                        } else {
+                        } else {*/
                             Respuesta.setConsultaS(response + "\n", position);
-                        }
+                        //}
 
                     }
                     intentar = false;
@@ -227,11 +227,11 @@ public class HonestAgentNP {
             Date now3 = new Date();
             String strDate3 = sdf3.format(now3);
             String response = "New Productor/AgentHonest Carrier --> Date: " + strDate3 + "; CURL: " + rootCreation2;
-            if (position == -1) {
+            /*if (position == -1) {
                 caja.append(response + "\n");
-            } else {
+            } else {*/
                 Respuesta.setConsultaS(response + "\n", position);
-            }
+            //}
 
             //hace la petición como en CMD
             Runtime rt = Runtime.getRuntime();
@@ -251,11 +251,11 @@ public class HonestAgentNP {
                         String strDate4 = sdf4.format(now4);
                         //System.out.println("<-- Date: " + strDate4 + "; Response: " + line);
                         response = "New Productor/AgentHonest Carrier <-- Date: " + strDate4 + "; Response: " + line;
-                        if (position == -1) {
+                        /*if (position == -1) {
                             caja.append(response + "\n \n");
-                        } else {
+                        } else {*/
                             Respuesta.setConsultaS(response + "\n", position);
-                        }
+                        //}
 
                     }
                     intentar = false;
@@ -288,12 +288,12 @@ public class HonestAgentNP {
             Date now3 = new Date();
             String strDate3 = sdf3.format(now3);
             String response = "New Acopio/AgentHonest Acopio --> Date: " + strDate3 + "; CURL: " + rootCreation2;
-            if (position == -1) {
+            /*if (position == -1) {
                 caja.append(response + "\n");
-            } else {
+            } else {*/
                 System.out.println("HonestAgentNP/userCreationAcopio/ response 1:" + response + ", position:" + position);
                 Respuesta.setConsultaS(response + "\n", position);
-            }
+            //}
 
             //hace la petición como en CMD
             Runtime rt = Runtime.getRuntime();
@@ -313,12 +313,12 @@ public class HonestAgentNP {
                         String strDate4 = sdf4.format(now4);
                         //System.out.println("<-- Date: " + strDate4 + "; Response: " + line);
                         response = "New Acopio/AgentHonest Acopio <-- Date: " + strDate4 + "; Response: " + line;
-                        if (position == -1) {
+                        /*if (position == -1) {
                             caja.append(response + "\n \n");
-                        } else {
+                        } else {*/
                             System.out.println("HonestAgentNP/userCreationAcopio/ response 1:" + response + ", position:" + position);
                             Respuesta.setConsultaS(response + "\n", position);
-                        }
+                        //}
 
                     }
                     intentar = false;
@@ -351,11 +351,11 @@ public class HonestAgentNP {
             Date now3 = new Date();
             String strDate3 = sdf3.format(now3);
             String response = "New Acopio/AgentHonest Acopio --> Date: " + strDate3 + "; CURL: " + rootCreation2;
-            if (position == -1) {
+            /*if (position == -1) {
                 caja.append(response + "\n");
-            } else {
+            } else {*/
                 Respuesta.setConsultaS(response + "\n", position);
-            }
+            //}
 
             //hace la petición como en CMD
             Runtime rt = Runtime.getRuntime();
@@ -375,11 +375,11 @@ public class HonestAgentNP {
                         String strDate4 = sdf4.format(now4);
                         //System.out.println("<-- Date: " + strDate4 + "; Response: " + line);
                         response = "New Acopio/AgentHonest Acopio <-- Date: " + strDate4 + "; Response: " + line;
-                        if (position == -1) {
+                        /*if (position == -1) {
                             caja.append(response + "\n \n");
-                        } else {
+                        } else {*/
                             Respuesta.setConsultaS(response + "\n", position);
-                        }
+                        //}
 
                     }
                     intentar = false;

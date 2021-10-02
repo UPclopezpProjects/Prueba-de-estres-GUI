@@ -46,12 +46,12 @@ public class DishonestAgentB {
     private int aDishonest;
     private String typeConsult;
     private String ip;
-    private JTextArea caja;
+    //private JTextArea caja;
     private String dp;
     private String gas;
     private String puerto = "80";
 
-    public DishonestAgentB(String email, String password, String typeU, String addressU, String authorization, String fatherS, String name, String motherS, int nRequest, int aHonest, int aDishonest, String typeConsult, String ip, JTextArea caja, String dp, String gas, int position) {
+    public DishonestAgentB(String email, String password, String typeU, String addressU, String authorization, String fatherS, String name, String motherS, int nRequest, int aHonest, int aDishonest, String typeConsult, String ip, /*JTextArea caja, */String dp, String gas, int position) {
         this.email = email;
         this.password = password;
         this.typeU = typeU;
@@ -65,7 +65,7 @@ public class DishonestAgentB {
         this.aDishonest = aDishonest;
         this.typeConsult = typeConsult;
         this.ip = ip;
-        this.caja = caja;
+        //this.caja = caja;
         this.dp = dp;
         this.gas = gas;
         userCreation(position);
@@ -94,7 +94,7 @@ public class DishonestAgentB {
             String hashX = MD5.getMd5(jsonData);
             //System.out.println("hashX: " + hashX);
 
-            caja.append("EMAIL: " + email + "\n");
+            /*caja.append("EMAIL: " + email + "\n");
             caja.append("PASSWORD: " + password + "\n");
             caja.append("SURNAME A: " + surnameA + "\n");
             caja.append("SURNAME B: " + surnameB + "\n");
@@ -110,9 +110,9 @@ public class DishonestAgentB {
             caja.append("HASH X: " + hashX + "\n");
             caja.append("NAME OF OPERATION: " + nameOfOperation + "\n");
             caja.append("IP: " + ip + "\n");
-            caja.append("\n");
+            caja.append("\n");*/
 
-            if (position != -1) {
+            //if (position != -1) {
                 Respuesta.setConsultaUC("EMAIL: " + email + "\n", position);
                 Respuesta.setConsultaUC("PASSWORD: " + password + "\n", position);
                 Respuesta.setConsultaUC("SURNAME A: " + surnameA + "\n", position);
@@ -130,7 +130,7 @@ public class DishonestAgentB {
                 Respuesta.setConsultaUC("NAME OF OPERATION: " + nameOfOperation + "\n", position);
                 Respuesta.setConsultaUC("IP: " + ip + "\n", position);
                 Respuesta.setConsultaUC("\n", position);
-            }
+            //}
 
             String rootCreation = "curl -d \"email=" + email + "&"
                     + "password=" + password + "&"
@@ -155,10 +155,10 @@ public class DishonestAgentB {
             //System.out.println("--> Date: " + strDate3 + "; Token: " + token + "; NA: " + randomNumber + "; CURL: " + rootCreation2);
             String response = "Crear Usuario/Dishonest agent B --> Date: " + strDate3 + "; CURL: " + rootCreation;
             System.out.println(response);
-            caja.append(response + "\n");
-            if (position != -1) {
+            //caja.append(response + "\n");
+            //if (position != -1) {
                 Respuesta.setConsultaUC(response + "\n", position);
-            }
+            //}
 
             Runtime rt = Runtime.getRuntime();
             Process proc = rt.exec(rootCreation);
@@ -179,11 +179,11 @@ public class DishonestAgentB {
                         //System.out.println("<-- Date: " + strDate4 + "; Response: " + line);
                         response = "Crear Usuario/Dishonest agent B <-- Date: " + strDate4 + "; Response: " + line;
                         System.out.println(response);
-                        caja.append(response + "\n \n");
+                        //caja.append(response + "\n \n");
 
-                        if (position != -1) {
+                        //if (position != -1) {
                             Respuesta.setConsultaUC(response + "\n", position);
-                        }
+                        //}
                     }
                     intentar = false;
                 }

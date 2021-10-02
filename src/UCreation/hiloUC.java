@@ -5,9 +5,12 @@
  */
 package UCreation;
 
+import Interfaz.Respuesta;
 import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JDialog;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JTextArea;
 
@@ -33,7 +36,22 @@ public class hiloUC implements Runnable {
     private JTextArea caja;
     private String dp;
     private String gas;
+    private JFrame interfaz;
+    private JDialog carga;
     private int position;
+    private JDialog dialogoCaja;
+
+    public void setDialogoCaja(JDialog dialogoCaja) {
+        this.dialogoCaja = dialogoCaja;
+    }
+
+    public void setCarga(JDialog carga) {
+        this.carga = carga;
+    }
+
+    public void setInterfaz(JFrame interfaz) {
+        this.interfaz = interfaz;
+    }
 
     public void setPosition(int position) {
         this.position = position;
@@ -42,7 +60,7 @@ public class hiloUC implements Runnable {
     public void setGas(String gas) {
         this.gas = gas;
     }
-    
+
     public void setDp(String dp) {
         this.dp = dp;
     }
@@ -68,21 +86,21 @@ public class hiloUC implements Runnable {
     }
 
     public void setFatherS(int fatherS) {
-        System.out.println("hilo UC/fatherS recibe " + fatherS);
+        //System.out.println("hilo UC/fatherS recibe " + fatherS);
         this.fatherS = nombres(fatherS);
-        System.out.println("hilo UC/fatherS" + this.fatherS);
+        //System.out.println("hilo UC/fatherS" + this.fatherS);
     }
 
     public void setName(int name) {
-        System.out.println("hilo UC/setName" + name);
+        //System.out.println("hilo UC/setName" + name);
         this.name = nombres(name);
-        System.out.println("hilo UC/name" + this.name);
+        //System.out.println("hilo UC/name" + this.name);
     }
 
     public void setMotherS(int motherS) {
-        System.out.println("hilo UC/motherS recibe " + motherS);
+        //System.out.println("hilo UC/motherS recibe " + motherS);
         this.motherS = nombres(motherS);
-        System.out.println("hilo UC/motherS" + this.fatherS);
+        //System.out.println("hilo UC/motherS" + this.fatherS);
     }
 
     public void setnRequest(int nRequest) {
@@ -111,13 +129,46 @@ public class hiloUC implements Runnable {
 
     public void loop1() throws InterruptedException {
         if (typeConsult == "Honest") {
-            HonestAgent h = new HonestAgent(email, password, typeU, adressU, authorization, fatherS, name, motherS, nRequest, aHonest, aDishonest, typeConsult, ip, caja, dp, gas, -1);
+            if (Respuesta.getConsultaUC(position) != null) {
+                caja.setText(Respuesta.getConsultaUC(position).replace("null", ""));
+                dialogoCaja.setVisible(true);
+            } else {
+                interfaz.setEnabled(false);
+                carga.setVisible(true);
+                HonestAgent h = new HonestAgent(email, password, typeU, adressU, authorization, fatherS, name, motherS, nRequest, aHonest, aDishonest, typeConsult, ip, /*caja,*/ dp, gas, position);
+                interfaz.setEnabled(true);
+                carga.setVisible(false);
+                caja.setText(Respuesta.getConsultaUC(position).replace("null", ""));
+                dialogoCaja.setVisible(true);
+            }
         } else {
             if (typeConsult == "Dishonest A") {
-                DishonestAgentA d = new DishonestAgentA(email, password, typeU, adressU, authorization, fatherS, name, motherS, nRequest, aHonest, aDishonest, typeConsult, ip, caja, dp, gas, -1);
+                if (Respuesta.getConsultaUC(position) != null) {
+                    caja.setText(Respuesta.getConsultaUC(position).replace("null", ""));
+                    dialogoCaja.setVisible(true);
+                } else {
+                    interfaz.setEnabled(false);
+                    carga.setVisible(true);
+                    DishonestAgentA d = new DishonestAgentA(email, password, typeU, adressU, authorization, fatherS, name, motherS, nRequest, aHonest, aDishonest, typeConsult, ip, /*caja, */ dp, gas, position);
+                    interfaz.setEnabled(true);
+                    carga.setVisible(false);
+                    caja.setText(Respuesta.getConsultaUC(position).replace("null", ""));
+                    dialogoCaja.setVisible(true);
+                }
             } else {
-                if (typeConsult == "Dishonest B") {
-                    DishonestAgentB d = new DishonestAgentB(email, password, typeU, adressU, authorization, fatherS, name, motherS, nRequest, aHonest, aDishonest, typeConsult, ip, caja, dp, gas, -1);
+                if (Respuesta.getConsultaUC(position) != null) {
+                    caja.setText(Respuesta.getConsultaUC(position).replace("null", ""));
+                    dialogoCaja.setVisible(true);
+                } else {
+                    if (typeConsult == "Dishonest B") {
+                        interfaz.setEnabled(false);
+                        carga.setVisible(true);
+                        DishonestAgentB d = new DishonestAgentB(email, password, typeU, adressU, authorization, fatherS, name, motherS, nRequest, aHonest, aDishonest, typeConsult, ip, /*caja, */ dp, gas, position);
+                        interfaz.setEnabled(true);
+                        carga.setVisible(false);
+                        caja.setText(Respuesta.getConsultaUC(position).replace("null", ""));
+                        dialogoCaja.setVisible(true);
+                    }
                 }
             }
         }
@@ -180,7 +231,7 @@ public class hiloUC implements Runnable {
     private char letter() {
         Random r = new Random();
         char c = (char) (r.nextInt(26) + 'a');
-        System.out.println("hiloUC/letra: " + c);
+        //System.out.println("hiloUC/letra: " + c);
         return c;
 
     }

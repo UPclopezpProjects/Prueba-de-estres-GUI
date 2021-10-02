@@ -7,6 +7,8 @@ package companyName;
 
 import Interfaz.Respuesta;
 import java.util.Random;
+import javax.swing.JDialog;
+import javax.swing.JFrame;
 import javax.swing.JTextArea;
 
 /**
@@ -20,6 +22,26 @@ public class HiloCN implements Runnable {
     private String ip;
     private int position;
     private JTextArea caja;
+    private JFrame interfaz;
+    private JDialog carga;
+    private JDialog dialogoCaja;
+    private String typeConsulta;
+
+    public void setTypeConsulta(String typeConsulta) {
+        this.typeConsulta = typeConsulta;
+    }
+
+    public void setInterfaz(JFrame interfaz) {
+        this.interfaz = interfaz;
+    }
+
+    public void setCarga(JDialog carga) {
+        this.carga = carga;
+    }
+
+    public void setDialogoCaja(JDialog dialogoCaja) {
+        this.dialogoCaja = dialogoCaja;
+    }
 
     public void setEmail(String email) {
         this.email = email;
@@ -46,8 +68,25 @@ public class HiloCN implements Runnable {
     }
 
     public void loop() {
-        Company c = new Company(email(), companyName(), token, ip, generateStage(), position, caja);
-        Respuesta.setNumeroCompany();
+
+        if (typeConsulta == "Auto") {
+            Company c = new Company(email(), companyName(), token, ip, generateStage(), position/*, caja*/);
+            Respuesta.setNumeroCompany();
+        } else {
+            if (Respuesta.getConsultaCompany(position) != null) {
+                caja.setText(Respuesta.getConsultaCompany(position).replace("null", ""));
+                dialogoCaja.setVisible(true);
+            } else {
+                interfaz.setEnabled(false);
+                carga.setVisible(true);
+                Company c = new Company(email(), companyName(), token, ip, generateStage(), position/*, caja*/);
+                carga.setVisible(false);
+                interfaz.setEnabled(true);
+                caja.setText(Respuesta.getConsultaCompany(position).replace("null", ""));
+                dialogoCaja.setVisible(true);
+
+            }
+        }
     }
 
     private String email() {

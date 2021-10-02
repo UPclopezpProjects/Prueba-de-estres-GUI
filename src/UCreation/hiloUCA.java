@@ -111,15 +111,15 @@ public class hiloUCA implements Runnable{
     public void loop1() throws InterruptedException {
         if (typeConsult == "Honest") {
             //System.out.println();
-            HonestAgent h = new HonestAgent(email, password, typeU, adressU, authorization, fatherS, name, motherS, nRequest, aHonest, aDishonest, typeConsult, ip, caja, dp, gas, position);
+            HonestAgent h = new HonestAgent(email, password, typeU, adressU, authorization, fatherS, name, motherS, nRequest, aHonest, aDishonest, typeConsult, ip, /*caja, */dp, gas, position);
             Respuesta.setNumeroCU();
         } else {
             if (typeConsult == "Dishonest A") {
-                DishonestAgentA d = new DishonestAgentA(email, password, typeU, adressU, authorization, fatherS, name, motherS, nRequest, aHonest, aDishonest, typeConsult, ip, caja, dp, gas, position);
+                DishonestAgentA d = new DishonestAgentA(email, password, typeU, adressU, authorization, fatherS, name, motherS, nRequest, aHonest, aDishonest, typeConsult, ip, /*caja, */dp, gas, position);
                 Respuesta.setNumeroCU();
             } else {
                 if (typeConsult == "Dishonest B") {
-                    DishonestAgentB d = new DishonestAgentB(email, password, typeU, adressU, authorization, fatherS, name, motherS, nRequest, aHonest, aDishonest, typeConsult, ip, caja, dp, gas, position);
+                    DishonestAgentB d = new DishonestAgentB(email, password, typeU, adressU, authorization, fatherS, name, motherS, nRequest, aHonest, aDishonest, typeConsult, ip, /*caja, */dp, gas, position);
                     Respuesta.setNumeroCU();
                 }
             }

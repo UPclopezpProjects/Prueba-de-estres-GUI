@@ -26,19 +26,19 @@ public class Company {
     private String token;
     private String ip;
     private int position;
-    private JTextArea caja;
+    //private JTextArea caja;
     private String puerto = "80";
     private String rootCreation2;
     private String stage;
 
-    public Company(String email, String companyName, String token, String ip, String stage, int position, JTextArea caja) {
+    public Company(String email, String companyName, String token, String ip, String stage, int position/*, JTextArea caja*/) {
         this.email = email;
         this.companyName = companyName;
         this.token = token;
         this.ip = ip;
         this.stage = stage;
         this.position = position;
-        this.caja = caja;
+        //this.caja = caja;
         createCompanyName();
     }
 
@@ -68,11 +68,11 @@ public class Company {
             String strDate3 = sdf3.format(now3);
             String response = "New Company --> Date: " + strDate3 + "; CURL: " + rootCreation2;
             System.out.println(response);
-            if (position == -1) {
+            /*if (position == -1) {
                 caja.append(response + "\n");
-            } else {
+            } else {*/
                 Respuesta.setConsultaCompany(response+"\n", position);
-            }
+            //}
 
             //hace la petición como en CMD
             Runtime rt = Runtime.getRuntime();
@@ -92,11 +92,11 @@ public class Company {
                         String strDate4 = sdf4.format(now4);
                         //System.out.println("<-- Date: " + strDate4 + "; Response: " + line);
                         response = "New Company <-- Date: " + strDate4 + "; Response: " + line;
-                        if (position == -1) {
+                        /*if (position == -1) {
                             caja.append(response + "\n \n");
-                        } else {
+                        } else {*/
                             Respuesta.setConsultaCompany(response, position);
-                        }
+                        //}
 
                     }
                     intentar = false;

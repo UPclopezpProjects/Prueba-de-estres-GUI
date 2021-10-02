@@ -12,11 +12,10 @@ import org.json.*;
 import java.util.Random;
 import javax.swing.JTextArea;
 
-public final class AgentsStartAnyStep extends Hilo{
+public final class AgentsStartAnyStep extends Hilo {
 
     String line;
     String n;
-    private JTextArea caja;
     String email;
     String password;
     String nombre;
@@ -28,10 +27,9 @@ public final class AgentsStartAnyStep extends Hilo{
     String publicK;
     String dp;
     Respuesta mensaje;
-    String puerto ="80";
+    String puerto = "80";
 
-    public AgentsStartAnyStep(JTextArea caja, String email, String password, String nombre, String apellidoP, String apellidoM, String tipoU, int numberRequest, String ip, String publicK, String dp, int position) {
-        this.caja = caja;
+    public AgentsStartAnyStep(String email, String password, String nombre, String apellidoP, String apellidoM, String tipoU, int numberRequest, String ip, String publicK, String dp, int position) {
         this.email = email;
         this.password = password;
         this.nombre = nombre;
@@ -41,7 +39,7 @@ public final class AgentsStartAnyStep extends Hilo{
         this.ip = ip;
         this.publicK = publicK;
         this.dp = dp;
-        
+
         double randomNumber = Math.random();
         Random rand = new Random();
         int randomNum = rand.nextInt(numberRequest);
@@ -55,14 +53,14 @@ public final class AgentsStartAnyStep extends Hilo{
     public void getInitialNonce(int position) {
         double randomNumber = Math.random();
         try {
-            String getInitialNonce = "curl -d na=" + randomNumber + " -X POST http://"+ip+":"+puerto+"/getInitialNonce";
+            String getInitialNonce = "curl -d na=" + randomNumber + " -X POST http://" + ip + ":" + puerto + "/getInitialNonce";
             SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
             Date now1 = new Date();
             String strDate1 = sdf1.format(now1);
             response = "Root/AgentsStartAnyStep/getInitialNonce --> Date: " + strDate1 + "; CURL: " + getInitialNonce;
             //System.out.println(response+", "+position);
-            caja.append(response+ "\n");
-            if (position != -1) Respuesta.setConsultaRoot(response+ "\n", position); 
+
+            Respuesta.setConsultaRoot(response + "\n", position);
 
             Runtime rt = Runtime.getRuntime();
             Process proc = rt.exec(getInitialNonce);
@@ -83,8 +81,7 @@ public final class AgentsStartAnyStep extends Hilo{
                         String strDate2 = sdf2.format(now2);
                         response = "Root/AgentsStartAnyStep/getInitialNonce <-- Date: " + strDate2 + "; Response: " + line;
                         //System.out.println(response+", "+position);
-                        caja.append(response+ "\n");
-                        if (position != -1) Respuesta.setConsultaRoot(response+ "\n", position); 
+                        Respuesta.setConsultaRoot(response + "\n", position);
                         String session = jsonObject.get("A").toString();
                         String na = jsonObject.get("NA").toString();
                         String nb = jsonObject.get("NB").toString();
@@ -130,7 +127,7 @@ public final class AgentsStartAnyStep extends Hilo{
             String dpHashX = "{\\\"createAdministrator\\\":true,\\\"createTUser\\\":true,\\\"updateMe\\\":true,\\\"updateAdministrator\\\":true,\\\"updateTUser\\\":true,\\\"deleteMe\\\":true,\\\"deleteAdministrator\\\":true,\\\"deleteTUser\\\":true,\\\"readMe\\\":true,\\\"readAdministrator\\\":true,\\\"readTUser\\\":true,\\\"loginUser\\\":true}";
             //String dp = "{\"\"createAdministrator\"\":true,\"\"createTUser\"\":true,\"\"updateMe\"\":true,\"\"updateAdministrator\"\":true,\"\"updateTUser\"\":true,\"\"deleteMe\"\":true,\"\"deleteAdministrator\"\":true,\"\"deleteTUser\"\":true,\"\"readMe\"\":true,\"\"readAdministrator\"\":true,\"\"readTUser\"\":true,\"\"loginUser\"\":true}";
             String dp = this.dp;
-            String jsonData = "{\"email\":\"" + email + "\",\"password\":\"" + password + "\",\"surnameA\":\"" + surnameA + "\",\"surnameB\":\"" + surnameB + "\",\"nameOfUser\":\"" + nameOfUser + "\",\"typeOfUser\":\"" + typeOfUser + "\",\"status\":\"" + status + "\",\"creationDate\":\"" + creationDate + "\",\"addressU\":\"" + publicK + "\",\"gas\":\"" + "900000" +"\",\"typeOfOperation\":\"" + typeOfOperation + "\",\"nameOfOperation\":\"" + nameOfOperation + "\",\"dp\":\"" + dpHashX + "\"}";
+            String jsonData = "{\"email\":\"" + email + "\",\"password\":\"" + password + "\",\"surnameA\":\"" + surnameA + "\",\"surnameB\":\"" + surnameB + "\",\"nameOfUser\":\"" + nameOfUser + "\",\"typeOfUser\":\"" + typeOfUser + "\",\"status\":\"" + status + "\",\"creationDate\":\"" + creationDate + "\",\"addressU\":\"" + publicK + "\",\"gas\":\"" + "900000" + "\",\"typeOfOperation\":\"" + typeOfOperation + "\",\"nameOfOperation\":\"" + nameOfOperation + "\",\"dp\":\"" + dpHashX + "\"}";
             //System.out.println("Root/AgentsStartAnyStep"+jsonData);
             String hashX = MD5.getMd5(jsonData);
             //System.out.println(jsonData);
@@ -150,15 +147,14 @@ public final class AgentsStartAnyStep extends Hilo{
                     + "nameOfOperation=" + nameOfOperation + "\" "
                     + "-H \"Session: " + session + "\" "
                     + "-H \"Authorization: " + token + "\" "
-                    + "-X POST http://"+ip+":"+puerto+"/userCreation";
-            
+                    + "-X POST http://" + ip + ":" + puerto + "/userCreation";
+
             SimpleDateFormat sdf3 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
             Date now3 = new Date();
             String strDate3 = sdf3.format(now3);
             response = "Root/AgentsStartAnyStep/userCreation --> Date: " + strDate3 + "; Token: " + token + "; NA: " + randomNumber + "; CURL: " + rootCreation;
             //System.out.println(response+", "+position);
-            caja.append(response+ "\n");
-            if (position != -1) Respuesta.setConsultaRoot(response+ "\n", position);
+            Respuesta.setConsultaRoot(response + "\n", position);
 
             Runtime rt = Runtime.getRuntime();
             Process proc = rt.exec(rootCreation);
@@ -178,8 +174,7 @@ public final class AgentsStartAnyStep extends Hilo{
                         String strDate4 = sdf4.format(now4);
                         response = "Root/AgentsStartAnyStep/userCreation <-- Date: " + strDate4 + "; Response: " + line;
                         //System.out.println(response+", "+position);
-                        caja.append(response+ "\n");
-                        if (position != -1) Respuesta.setConsultaRoot(response+ "\n", position); 
+                        Respuesta.setConsultaRoot(response + "\n", position);
                     }
                     intentar = false;
                 }

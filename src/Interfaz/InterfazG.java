@@ -67,6 +67,7 @@ public class InterfazG extends javax.swing.JFrame {
             System.out.println("el random interfaz = " + i);
             int desonesto = aHonesto + aEnviarA;
             if (i <= aHonesto) {
+                int position = x;
                 //AgentsHonest a = new AgentsHonest(caja, generateEmail(), generatePassword(), nombreU, apellidoP, apellidoM, typeU, ip, publicKey);
                 JButton boton = new JButton("Compliant agent");
                 boton.setPreferredSize(new Dimension(30, 70));
@@ -77,16 +78,17 @@ public class InterfazG extends javax.swing.JFrame {
                 boton.addActionListener(new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent ae) {
-                        jDialog2.setVisible(true);
-                        int aHonesto = (Integer) sAgenteH.getValue();
-                        int aEnviarA = (Integer) sEnvianA.getValue();
-                        int aEmpieza = (Integer) sEmpieza.getValue();
-                        int pTotal = aHonesto + aEnviarA + aEmpieza;
-                        consultaHonesta();
+                        boolean estado = false;
+                        consultaHonesta(position);
+                        if (estado == false) {
+                            boton.setBackground(Color.GRAY);
+                            estado = true;
+                        }
                     }
                 });
             } else {
                 if (i <= desonesto) {
+                    int position = x;
                     //AgentsSendAnything b = new AgentsSendAnything(caja, generateEmail(), generatePassword(), nombreU, apellidoP, apellidoM, typeU, ip, publicKey);
                     JButton boton = new JButton("Non compliant agent, send something");
                     boton.setPreferredSize(new Dimension(30, 70));
@@ -97,10 +99,16 @@ public class InterfazG extends javax.swing.JFrame {
                     boton.addActionListener(new ActionListener() {
                         @Override
                         public void actionPerformed(ActionEvent ae) {
-                            consultaEnviar();
+                            boolean estado = false;
+                            consultaEnviar(position);
+                            if (estado == false) {
+                                boton.setBackground(Color.GRAY);
+                                estado = true;
+                            }
                         }
                     });
                 } else {
+                    int position = x;
                     //AgentsStartAnyStep c = new AgentsStartAnyStep(caja, generateEmail(), generatePassword(), nombreU, apellidoP, apellidoM, typeU, numberRequest, ip, publicKey);
                     JButton boton = new JButton("Non compliant agent, begin any step");
                     boton.setPreferredSize(new Dimension(30, 70));
@@ -111,7 +119,12 @@ public class InterfazG extends javax.swing.JFrame {
                     boton.addActionListener(new ActionListener() {
                         @Override
                         public void actionPerformed(ActionEvent ae) {
-                            consultaEmpezarA();
+                            boolean estado = false;
+                            consultaEmpezarA(position);
+                            if (estado == false) {
+                                boton.setBackground(Color.GRAY);
+                                estado = true;
+                            }
                         }
                     });
                 }
@@ -127,8 +140,10 @@ public class InterfazG extends javax.swing.JFrame {
         for (int x = 0; x < nSolicitudes; x++) {
             double i = Math.floor(Math.random() * 101);
             System.out.println("el random interfaz = " + i);
+
             if (i < aHonesto) {
-                //AgentsHonest a = new AgentsHonest(caja, generateEmail(), generatePassword(), nombreU, apellidoP, apellidoM, typeU, ip, publicKey);
+                int position = x;
+
                 JButton boton = new JButton("Compliant agent");
                 boton.setPreferredSize(new Dimension(30, 70));
                 boton.setBackground(Color.GREEN);
@@ -138,14 +153,20 @@ public class InterfazG extends javax.swing.JFrame {
                 boton.addActionListener(new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent ae) {
+                        boolean estado = false;
                         //JOptionPane.showMessageDialog(null, "Agente honesto");
-                        consultaHonestaUC("Honest");
+                        consultaHonestaUC("Honest", position);
+                        if (estado == false) {
+                            boton.setBackground(Color.GRAY);
+                            estado = true;
+                        }
                     }
                 });
             } else {
                 double a = Math.floor(Math.random() * 101);
                 if (a < 50) {
-                    //AgentsHonest a = new AgentsHonest(caja, generateEmail(), generatePassword(), nombreU, apellidoP, apellidoM, typeU, ip, publicKey);
+                    int position = x;
+
                     JButton boton = new JButton("Non compliant agent A");
                     boton.setPreferredSize(new Dimension(30, 70));
                     boton.setBackground(Color.YELLOW);
@@ -155,12 +176,18 @@ public class InterfazG extends javax.swing.JFrame {
                     boton.addActionListener(new ActionListener() {
                         @Override
                         public void actionPerformed(ActionEvent ae) {
+                            boolean estado = false;
                             //JOptionPane.showMessageDialog(null, "Agente deshonesto");
-                            consultaHonestaUC("Dishonest A");
+                            consultaHonestaUC("Dishonest A", position);
+                            if (estado == false) {
+                                boton.setBackground(Color.GRAY);
+                                estado = true;
+                            }
                         }
                     });
                 } else {
-                    //AgentsHonest a = new AgentsHonest(caja, generateEmail(), generatePassword(), nombreU, apellidoP, apellidoM, typeU, ip, publicKey);
+                    int position = x;
+
                     JButton boton = new JButton("Non compliant agent B");
                     boton.setPreferredSize(new Dimension(30, 70));
                     boton.setBackground(Color.ORANGE);
@@ -170,8 +197,13 @@ public class InterfazG extends javax.swing.JFrame {
                     boton.addActionListener(new ActionListener() {
                         @Override
                         public void actionPerformed(ActionEvent ae) {
+                            boolean estado = false;
                             //JOptionPane.showMessageDialog(null, "Agente deshonesto");
-                            consultaHonestaUC("Dishonest B");
+                            consultaHonestaUC("Dishonest B", position);
+                            if (estado == false) {
+                                boton.setBackground(Color.GRAY);
+                                estado = true;
+                            }
                         }
                     });
                 }
@@ -187,6 +219,7 @@ public class InterfazG extends javax.swing.JFrame {
             double i = Math.floor(Math.random() * 101);
             //System.out.println("el random interfaz = " + i);
             if (i < aHonesto) {
+                int position = x;
                 //AgentsHonest a = new AgentsHonest(caja, generateEmail(), generatePassword(), nombreU, apellidoP, apellidoM, typeU, ip, publicKey);
                 JButton boton = new JButton("Compliant agent");
                 boton.setPreferredSize(new Dimension(30, 70));
@@ -197,12 +230,18 @@ public class InterfazG extends javax.swing.JFrame {
                 boton.addActionListener(new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent ae) {
+                        boolean estado = false;
                         //JOptionPane.showMessageDialog(null, "Agente honesto");
-                        consultaHonestaNP("Honest");
+                        consultaHonestaNP("Honest", position);
+                        if (estado == false) {
+                            boton.setBackground(Color.GRAY);
+                            estado = true;
+                        }
                     }
 
                 });
             } else {
+                int position = x;
                 JButton boton = new JButton("Non compliant agent");
                 boton.setPreferredSize(new Dimension(30, 70));
                 boton.setBackground(Color.ORANGE);
@@ -212,7 +251,12 @@ public class InterfazG extends javax.swing.JFrame {
                 boton.addActionListener(new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent ae) {
-                        consultaHonestaNP("Dishonest");
+                        boolean estado = false;
+                        consultaHonestaNP("Dishonest", position);
+                        if (estado == false) {
+                            boton.setBackground(Color.GRAY);
+                            estado = true;
+                        }
                     }
                 });
             }
@@ -221,7 +265,7 @@ public class InterfazG extends javax.swing.JFrame {
         jPanel6.updateUI();
     }
 
-    private void consultaHonestaNP(String honest) {
+    private void consultaHonestaNP(String honest, int position) {
         areaTexto.setText("");
         String ubication = getUbication();
         String harvestD = getHarvestDate();
@@ -254,7 +298,8 @@ public class InterfazG extends javax.swing.JFrame {
                 if (!caducationD.isEmpty()) {
                     if (totalP == 100) {
                         if (currentS != "Carrier") {
-                            jDialog2.setVisible(true);
+                            //jDialog2.setVisible(true);
+                            hNP.setType("Manual");
                             hNP.setUbication(ubication);
                             hNP.setHarvestD(harvestD);
                             hNP.setCaducationD(caducationD);
@@ -269,11 +314,15 @@ public class InterfazG extends javax.swing.JFrame {
                             hNP.setIp(ip);
                             hNP.setCaja(caja);
                             hNP.setToken(token);
-                            hNP.setPosition(-1);
+                            hNP.setPosition(position);
+                            hNP.setInterfaz(this);
+                            hNP.setCarga(jDialog4);
+                            hNP.setDialogoCaja(jDialog2);
                             new Thread(hNP).start();
                         } else {
                             //fId,ubication, nameProduction, previousS, currentS, image, description, code, driverName, origin, destination, plates, productPhotos, vehiclePhotos, tracking, token, ip, caja
-                            jDialog2.setVisible(true);
+                            //jDialog2.setVisible(true);
+                            hNP.setType("Manual");
                             hNP.setfId(fId);
                             hNP.setUbication(ubication);
                             hNP.setPreviousS(previousS);
@@ -293,7 +342,10 @@ public class InterfazG extends javax.swing.JFrame {
                             hNP.setCaja(caja);
                             hNP.setTypeConsult(typeConsult);
                             hNP.setNameProduction(nameProduction);
-                            hNP.setPosition(-1);
+                            hNP.setPosition(position);
+                            hNP.setInterfaz(this);
+                            hNP.setCarga(jDialog4);
+                            hNP.setDialogoCaja(jDialog2);
                             new Thread(hNP).start();
 
                         }
@@ -313,7 +365,7 @@ public class InterfazG extends javax.swing.JFrame {
 
     }
 
-    private void consultaHonestaUC(String typeConsult) {
+    private void consultaHonestaUC(String typeConsult, int position) {
         areaTexto.setText("");
 
         h = new hiloUC();
@@ -338,7 +390,7 @@ public class InterfazG extends javax.swing.JFrame {
             if (!adressU.isEmpty()) {
                 if (!authorization.isEmpty()) {
                     if (!gas.isEmpty()) {
-                        jDialog2.setVisible(true);
+                        //jDialog2.setVisible(true);
                         h.setEmail(email);
                         h.setPassword(password);
                         h.setTypeU(typeU);
@@ -352,9 +404,13 @@ public class InterfazG extends javax.swing.JFrame {
                         h.setaDishonest(aDishonest);
                         h.setTypeConsult(typeConsult);
                         h.setIp(ip);
-                        h.setCaja(areaTexto);
                         h.setDp(dp);
                         h.setGas(gas);
+                        h.setInterfaz(this);
+                        h.setCarga(jDialog4);
+                        h.setPosition(position);
+                        h.setDialogoCaja(jDialog2);
+                        h.setCaja(areaTexto);
 
                         //hiloUC h = new hiloUC(email, password, typeU, adressU, authorization, fatherS, name, motherS, nRequest, aHonest, aDishonest, typeConsult, ip, areaTexto);
                         new Thread(h).start();
@@ -372,7 +428,7 @@ public class InterfazG extends javax.swing.JFrame {
         }
     }
 
-    private void consultaHonesta() {
+    private void consultaHonesta(int position) {
         areaTexto.setText("");
         objetoH = new Hilo();
         int email = CBEmail.getSelectedIndex();
@@ -394,14 +450,13 @@ public class InterfazG extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Set the public key");
         } else {
             if (pTotal == 100) {
-                jDialog2.setVisible(true);
+                //jDialog2.setVisible(true);
                 objetoH.setEmail(email);
                 objetoH.setPassword(password);
                 objetoH.setApellidoP(apellidoP);
                 objetoH.setApellidoM(apellidoM);
                 objetoH.setNombreU(nombreU);
                 objetoH.setTypeU(tipoU);
-                //objetoH.setRequestFS(sPorSegundo);
                 objetoH.setNumberRequest(nSolicitudes);
                 objetoH.setaHonesto(aHonesto);
                 objetoH.setaEnviarA(aEnviarA);
@@ -410,6 +465,10 @@ public class InterfazG extends javax.swing.JFrame {
                 objetoH.setIp(ip);
                 objetoH.setPublicKey(publicK);
                 objetoH.setTipoConsulta(tipoConsulta);
+                objetoH.setInterfaz(this);
+                objetoH.setCarga(jDialog4);
+                objetoH.setPosition(position);
+                objetoH.setDialogoCaja(jDialog2);
                 objetoH.setDp(dp);
                 new Thread(objetoH).start();
             } else {
@@ -418,7 +477,7 @@ public class InterfazG extends javax.swing.JFrame {
         }
     }
 
-    private void consultaEnviar() {
+    private void consultaEnviar(int position) {
         areaTexto.setText("");
         objetoH = new Hilo();
         int email = CBEmail.getSelectedIndex();
@@ -439,14 +498,16 @@ public class InterfazG extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Set the public key");
         } else {
             if (pTotal == 100) {
-                jDialog2.setVisible(true);
+                //jDialog2.setVisible(true);
                 objetoH.setEmail(email);
                 objetoH.setPassword(password);
                 objetoH.setApellidoP(apellidoP);
                 objetoH.setApellidoM(apellidoM);
                 objetoH.setNombreU(nombreU);
                 objetoH.setTypeU(tipoU);
-                //objetoH.setRequestFS(sPorSegundo);
+                objetoH.setPosition(position);
+                objetoH.setInterfaz(this);
+                objetoH.setCarga(jDialog4);
                 objetoH.setNumberRequest(nSolicitudes);
                 objetoH.setaHonesto(aHonesto);
                 objetoH.setaEnviarA(aEnviarA);
@@ -455,6 +516,10 @@ public class InterfazG extends javax.swing.JFrame {
                 objetoH.setIp(ip);
                 objetoH.setPublicKey(publicK);
                 objetoH.setTipoConsulta(tipoConsulta);
+                objetoH.setInterfaz(this);
+                objetoH.setCarga(jDialog4);
+                objetoH.setPosition(position);
+                objetoH.setDialogoCaja(jDialog2);
                 new Thread(objetoH).start();
             } else {
                 JOptionPane.showMessageDialog(null, "The addition of porcentages must be 100%");
@@ -462,7 +527,7 @@ public class InterfazG extends javax.swing.JFrame {
         }
     }
 
-    private void consultaEmpezarA() {
+    private void consultaEmpezarA(int position) {
         areaTexto.setText("");
         objetoH = new Hilo();
 
@@ -487,14 +552,16 @@ public class InterfazG extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Set the public key");
         } else {
             if (pTotal == 100) {
-                jDialog2.setVisible(true);
+                //jDialog2.setVisible(true);
                 objetoH.setEmail(email);
                 objetoH.setPassword(password);
                 objetoH.setApellidoP(apellidoP);
                 objetoH.setApellidoM(apellidoM);
                 objetoH.setNombreU(nombreU);
                 objetoH.setTypeU(tipoU);
-                //objetoH.setRequestFS(sPorSegundo);
+                objetoH.setPosition(position);
+                objetoH.setInterfaz(this);
+                objetoH.setCarga(jDialog4);
                 objetoH.setNumberRequest(nSolicitudes);
                 objetoH.setaHonesto(aHonesto);
                 objetoH.setaEnviarA(aEnviarA);
@@ -503,6 +570,10 @@ public class InterfazG extends javax.swing.JFrame {
                 objetoH.setIp(ip);
                 objetoH.setPublicKey(publicK);
                 objetoH.setTipoConsulta(tipoConsulta);
+                objetoH.setInterfaz(this);
+                objetoH.setCarga(jDialog4);
+                objetoH.setPosition(position);
+                objetoH.setDialogoCaja(jDialog2);
                 new Thread(objetoH).start();
             } else {
                 JOptionPane.showMessageDialog(null, "The addition of porcentages must be 100%");
@@ -2617,6 +2688,7 @@ public class InterfazG extends javax.swing.JFrame {
                         if (i <= 50) {
                             int position = x;
 
+                            hNP.setType("Auto");
                             hNP.setUbication(ubication);
                             hNP.setHarvestD(harvestD);
                             hNP.setCaducationD(caducationD);
@@ -2632,6 +2704,8 @@ public class InterfazG extends javax.swing.JFrame {
                             hNP.setCaja(caja);
                             hNP.setToken(token);
                             hNP.setPosition(position);
+                            hNP.setInterfaz(this);
+                            hNP.setCarga(jDialog4);
                             new Thread(hNP).start();
 
                             JButton boton = new JButton("Compliant agent");
@@ -2643,8 +2717,13 @@ public class InterfazG extends javax.swing.JFrame {
                             boton.addActionListener(new ActionListener() {
                                 @Override
                                 public void actionPerformed(ActionEvent ae) {
+                                    boolean estado = false;
                                     jDialog2.setVisible(true);
                                     areaTexto.setText(Respuesta.getConsultaS(position).replace("null", ""));
+                                    if (estado == false) {
+                                        boton.setBackground(Color.GRAY);
+                                        estado = true;
+                                    }
                                 }
 
                             });
@@ -2666,6 +2745,8 @@ public class InterfazG extends javax.swing.JFrame {
                             hNP.setCaja(caja);
                             hNP.setToken(token);
                             hNP.setPosition(position);
+                            hNP.setInterfaz(this);
+                            hNP.setCarga(jDialog4);
                             new Thread(hNP).start();
 
                             JButton boton = new JButton("Non compliant agent");
@@ -2677,8 +2758,13 @@ public class InterfazG extends javax.swing.JFrame {
                             boton.addActionListener(new ActionListener() {
                                 @Override
                                 public void actionPerformed(ActionEvent ae) {
+                                    boolean estado = false;
                                     jDialog2.setVisible(true);
                                     areaTexto.setText(Respuesta.getConsultaS(position).replace("null", ""));
+                                    if (estado == false) {
+                                        boton.setBackground(Color.GRAY);
+                                        estado = true;
+                                    }
                                 }
 
                             });
@@ -2693,6 +2779,7 @@ public class InterfazG extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "The addition of porcentages must be 100%");
             }
         } else {
+            Respuesta.setTamanioS(numberR);
             if (totalP == 100) {
                 if (!token.isEmpty()) {
                     crearBNP(numberR, aHonest, aDishonest);
@@ -2801,8 +2888,9 @@ public class InterfazG extends javax.swing.JFrame {
                         if (!gas.isEmpty()) {
                             jDialog4.setVisible(true);
                             Respuesta.setInterfazG(this);
-                            hiloUCA objetoUCA = new hiloUCA();
+
                             for (int x = 0; x < nSolicitudes; x++) {
+                                hiloUCA objetoUCA = new hiloUCA();
                                 System.out.println("Solicitud automática: " + x);
                                 BIniciarUC.setEnabled(false);
                                 double i = Math.floor(Math.random() * 101);
@@ -2823,7 +2911,7 @@ public class InterfazG extends javax.swing.JFrame {
                                     objetoUCA.setaDishonest(aDishonest);
                                     objetoUCA.setTypeConsult("Honest");
                                     objetoUCA.setIp(ip);
-                                    objetoUCA.setCaja(areaTexto);
+                                    //objetoUCA.setCaja(areaTexto);
                                     objetoUCA.setDp(dp);
                                     objetoUCA.setGas(gas);
                                     objetoUCA.setPosition(position);
@@ -2840,8 +2928,14 @@ public class InterfazG extends javax.swing.JFrame {
                                         @Override
                                         public void actionPerformed(ActionEvent ae) {
                                             //JOptionPane.showMessageDialog(null, "Agente honesto");
+                                            boolean estado = false;
                                             jDialog2.setVisible(true);
                                             areaTexto.setText(Respuesta.getConsultaUC(position).replace("null", ""));
+
+                                            if (estado == false) {
+                                                boton.setBackground(Color.GRAY);
+                                                estado = true;
+                                            }
                                         }
                                     });
                                 } else {
@@ -2862,7 +2956,7 @@ public class InterfazG extends javax.swing.JFrame {
                                         objetoUCA.setaDishonest(aDishonest);
                                         objetoUCA.setTypeConsult("Dishonest A");
                                         objetoUCA.setIp(ip);
-                                        objetoUCA.setCaja(areaTexto);
+                                        //objetoUCA.setCaja(areaTexto);
                                         objetoUCA.setDp(dp);
                                         objetoUCA.setGas(gas);
                                         objetoUCA.setPosition(position);
@@ -2880,8 +2974,14 @@ public class InterfazG extends javax.swing.JFrame {
                                             @Override
                                             public void actionPerformed(ActionEvent ae) {
                                                 //JOptionPane.showMessageDialog(null, "Agente honesto");
+                                                boolean estado = false;
                                                 jDialog2.setVisible(true);
                                                 areaTexto.setText(Respuesta.getConsultaUC(position).replace("null", ""));
+
+                                                if (estado == false) {
+                                                    boton.setBackground(Color.GRAY);
+                                                    estado = true;
+                                                }
                                             }
                                         });
                                     } else {
@@ -2900,7 +3000,7 @@ public class InterfazG extends javax.swing.JFrame {
                                         objetoUCA.setaDishonest(aDishonest);
                                         objetoUCA.setTypeConsult("Dishonest B");
                                         objetoUCA.setIp(ip);
-                                        objetoUCA.setCaja(areaTexto);
+                                        //objetoUCA.setCaja(areaTexto);
                                         objetoUCA.setDp(dp);
                                         objetoUCA.setGas(gas);
                                         objetoUCA.setPosition(position);
@@ -2917,8 +3017,14 @@ public class InterfazG extends javax.swing.JFrame {
                                             @Override
                                             public void actionPerformed(ActionEvent ae) {
                                                 //JOptionPane.showMessageDialog(null, "Agente deshonesto");
+                                                boolean estado = false;
                                                 jDialog2.setVisible(true);
                                                 areaTexto.setText(Respuesta.getConsultaUC(position).replace("null", ""));
+
+                                                if (estado == false) {
+                                                    boton.setBackground(Color.GRAY);
+                                                    estado = true;
+                                                }
                                             }
                                         });
                                     }
@@ -2942,6 +3048,7 @@ public class InterfazG extends javax.swing.JFrame {
                 if (!adressU.isEmpty()) {
                     if (!authorization.isEmpty()) {
                         if (!gas.isEmpty()) {
+                            Respuesta.setTamanioUC(nSolicitudes);
                             crearBUC(nSolicitudes, aHonesto, aDeshonesto);
                         } else {
                             JOptionPane.showMessageDialog(null, "Refill the gas field");
@@ -3038,8 +3145,14 @@ public class InterfazG extends javax.swing.JFrame {
                             boton.addActionListener(new ActionListener() {
                                 @Override
                                 public void actionPerformed(ActionEvent ae) {
+                                    boolean estado = false;
                                     jDialog2.setVisible(true);
                                     areaTexto.setText(Respuesta.getConsultaRoot(position).replace("null", ""));
+
+                                    if (estado == false) {
+                                        boton.setBackground(Color.GRAY);
+                                        estado = true;
+                                    }
                                 }
                             });
                         } else {
@@ -3071,8 +3184,14 @@ public class InterfazG extends javax.swing.JFrame {
                                 boton.addActionListener(new ActionListener() {
                                     @Override
                                     public void actionPerformed(ActionEvent ae) {
+                                        boolean estado = false;
                                         jDialog2.setVisible(true);
                                         areaTexto.setText(Respuesta.getConsultaRoot(position).replace("null", ""));
+
+                                        if (estado == false) {
+                                            boton.setBackground(Color.GRAY);
+                                            estado = true;
+                                        }
                                     }
                                 });
 
@@ -3104,8 +3223,14 @@ public class InterfazG extends javax.swing.JFrame {
                                 boton.addActionListener(new ActionListener() {
                                     @Override
                                     public void actionPerformed(ActionEvent ae) {
+                                        boolean estado = false;
                                         jDialog2.setVisible(true);
                                         areaTexto.setText(Respuesta.getConsultaRoot(position).replace("null", ""));
+
+                                        if (estado == false) {
+                                            boton.setBackground(Color.GRAY);
+                                            estado = true;
+                                        }
                                     }
                                 });
                             }
@@ -3120,6 +3245,7 @@ public class InterfazG extends javax.swing.JFrame {
         } else {
             if (!publicK.isEmpty()) {
                 if (pTotal == 100) {
+                    Respuesta.setTamanio(nSolicitudes);
                     crearB(nSolicitudes, aHonesto, aEnviarA);
                 } else {
                     JOptionPane.showMessageDialog(null, "The addition of porcentages must be 100%");
@@ -3260,7 +3386,7 @@ public class InterfazG extends javax.swing.JFrame {
                         if (!email.isEmpty()) {
                             jDialog4.setVisible(true);
                             Respuesta.setInterfazG(this);
-                            
+
                             for (int x = 0; x < nSolicitudes; x++) {
                                 int position = x;
                                 HiloCN objetoCN = new HiloCN();
@@ -3269,6 +3395,7 @@ public class InterfazG extends javax.swing.JFrame {
                                 objetoCN.setIp(ip);
                                 objetoCN.setPosition(position);
                                 objetoCN.setCaja(areaTexto);
+                                objetoCN.setTypeConsulta("Auto");
                                 new Thread(objetoCN).start();
                                 System.out.println("n= " + x);
 
@@ -3280,13 +3407,18 @@ public class InterfazG extends javax.swing.JFrame {
                                 boton.addActionListener(new ActionListener() {
                                     @Override
                                     public void actionPerformed(ActionEvent ae) {
+                                        boolean estado = false;
                                         jDialog2.setVisible(true);
                                         areaTexto.setText(Respuesta.getConsultaCompany(position).replace("null", ""));
+                                        if (estado == false) {
+                                            boton.setBackground(Color.GRAY);
+                                            estado = true;
+                                        }
                                     }
                                 });
                             }
                             System.out.println("Termina el for");
-                            
+
                         } else {
                             JOptionPane.showMessageDialog(this, "Set one email in email field");
                         }
@@ -3298,10 +3430,12 @@ public class InterfazG extends javax.swing.JFrame {
                 }
 
             } else {
+                Respuesta.setTamanioCompany(nSolicitudes);
                 if (!token.isEmpty()) {
                     if (!ip.isEmpty()) {
                         if (!email.isEmpty()) {
                             for (int x = 0; x < nSolicitudes; x++) {
+                                int position = x;
                                 JButton boton = new JButton("Compliant agent");
                                 boton.setPreferredSize(new Dimension(30, 70));
                                 boton.setBackground(Color.GREEN);
@@ -3310,7 +3444,12 @@ public class InterfazG extends javax.swing.JFrame {
                                 boton.addActionListener(new ActionListener() {
                                     @Override
                                     public void actionPerformed(ActionEvent ae) {
-                                        consultaAC(-1);
+                                        boolean estado = false;
+                                        consultaAC(position);
+                                        if (estado == false) {
+                                            boton.setBackground(Color.GRAY);
+                                            estado = true;
+                                        }
                                     }
                                 });
                             }
@@ -3337,7 +3476,7 @@ public class InterfazG extends javax.swing.JFrame {
 
         String ip = (String) CBServerAC.getSelectedItem();
 
-        jDialog2.setVisible(true);
+        //jDialog2.setVisible(true);
         HiloCN objeto = new HiloCN();
 
         objeto.setToken(token);
@@ -3345,6 +3484,9 @@ public class InterfazG extends javax.swing.JFrame {
         objeto.setIp(ip);
         objeto.setPosition(position);
         objeto.setCaja(areaTexto);
+        objeto.setInterfaz(this);
+        objeto.setCarga(jDialog4);
+        objeto.setDialogoCaja(jDialog2);
 
         new Thread(objeto).start();
     }

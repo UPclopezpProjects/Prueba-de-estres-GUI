@@ -71,13 +71,14 @@ public class Respuesta {
     }
 
     public static void setConsultaUC(String consultaUC, int position) {
-        //System.out.println("Respuesta/setConsultaUC: "+consultaUC+", "+position);
+        System.out.println("Respuesta/setConsultaUC: "+position);
         Respuesta.consultaUC[position] += consultaUC;
     }
 
     public static void setTamanioUC(int tamanioUC) {
         Respuesta.tamanioUC = tamanioUC;
         Respuesta.consultaUC = new String[tamanioUC];
+        System.out.println("Respuesta/setTamanioUC: "+consultaUC.length);
     }
     
     public static void setNumeroCU() {

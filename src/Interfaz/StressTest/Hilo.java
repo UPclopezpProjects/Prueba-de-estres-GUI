@@ -5,12 +5,14 @@
  */
 package Interfaz.StressTest;
 
+import Interfaz.Respuesta;
 import static java.lang.Math.random;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JTextArea;
@@ -34,14 +36,30 @@ public class Hilo implements Runnable {
     private String publicKey;
     private String tipoConsulta;
     private String dp;
-    
-
+    private JFrame interfaz;
+    private JDialog carga;
+    private int position;
+    private JDialog dialogoCaja;
 
     private int aHonesto;
     private int aEnviarA;
     private int aEmpieza;
-    
-   
+
+    public void setDialogoCaja(JDialog dialogoCaja) {
+        this.dialogoCaja = dialogoCaja;
+    }
+
+    public void setPosition(int position) {
+        this.position = position;
+    }
+
+    public void setInterfaz(JFrame interfaz) {
+        this.interfaz = interfaz;
+    }
+
+    public void setCarga(JDialog carga) {
+        this.carga = carga;
+    }
 
     public void setDp(String dp) {
         this.dp = dp;
@@ -116,22 +134,56 @@ public class Hilo implements Runnable {
     }
 
     public void setNumberRequest(int numberRequest) {
-        
+
         this.numberRequest = numberRequest;
     }
-    
+
     public void loop1() throws InterruptedException {
         if (tipoConsulta == "honesto") {
-            System.out.println("Hilo/Honesto");
-            AgentsHonest a= new AgentsHonest(caja, generateEmail(), generatePassword(), nombreU, apellidoP, apellidoM, typeU, ip, publicKey, dp, -1);
+            if (Respuesta.getConsultaRoot(position) != null) {
+                caja.setText(Respuesta.getConsultaRoot(position).replace("null", ""));
+                dialogoCaja.setVisible(true);
+            } else {
+                System.out.println("Hilo/Honesto");
+                interfaz.setEnabled(false);
+                carga.setVisible(true);
+                AgentsHonest a = new AgentsHonest(generateEmail(), generatePassword(), nombreU, apellidoP, apellidoM, typeU, ip, publicKey, dp, position);
+                interfaz.setEnabled(true);
+                carga.setVisible(false);
+                caja.setText(Respuesta.getConsultaRoot(position).replace("null", ""));
+                dialogoCaja.setVisible(true);
+            }
+
         } else {
             if (tipoConsulta == "enviarAlgo") {
-                System.out.println("Hilo/enviarAlgo");
-                AgentsSendAnything b = new AgentsSendAnything(caja, generateEmail(), generatePassword(), nombreU, apellidoP, apellidoM, typeU, ip, publicKey, dp, -1);
+                if (Respuesta.getConsultaRoot(position) != null) {
+                    caja.setText(Respuesta.getConsultaRoot(position).replace("null", ""));
+                    dialogoCaja.setVisible(true);
+                } else {
+                    System.out.println("Hilo/enviarAlgo");
+                    interfaz.setEnabled(false);
+                    carga.setVisible(true);
+                    AgentsSendAnything b = new AgentsSendAnything(generateEmail(), generatePassword(), nombreU, apellidoP, apellidoM, typeU, ip, publicKey, dp, position);
+                    interfaz.setEnabled(true);
+                    carga.setVisible(false);
+                    caja.setText(Respuesta.getConsultaRoot(position).replace("null", ""));
+                    dialogoCaja.setVisible(true);
+                }
             } else {
                 if (tipoConsulta == "empiezaAlgun") {
-                    System.out.println("Hilo/Empieza en algún paso");
-                    AgentsStartAnyStep c = new AgentsStartAnyStep(caja, generateEmail(), generatePassword(), nombreU, apellidoP, apellidoM, typeU, numberRequest, ip, publicKey, dp, -1);
+                    if (Respuesta.getConsultaRoot(position) != null) {
+                        caja.setText(Respuesta.getConsultaRoot(position).replace("null", ""));
+                        dialogoCaja.setVisible(true);
+                    } else {
+                        System.out.println("Hilo/Empieza en algún paso");
+                        interfaz.setEnabled(false);
+                        carga.setVisible(true);
+                        AgentsStartAnyStep c = new AgentsStartAnyStep(generateEmail(), generatePassword(), nombreU, apellidoP, apellidoM, typeU, numberRequest, ip, publicKey, dp, position);
+                        interfaz.setEnabled(true);
+                        carga.setVisible(false);
+                        caja.setText(Respuesta.getConsultaRoot(position).replace("null", ""));
+                        dialogoCaja.setVisible(true);
+                    }
                 }
             }
         }

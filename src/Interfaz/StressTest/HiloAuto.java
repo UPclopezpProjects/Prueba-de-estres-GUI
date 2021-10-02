@@ -129,17 +129,17 @@ public class HiloAuto implements Runnable {
     public void loop1() throws InterruptedException {
         respuestas = new String[numberRequest];
         if (tipoConsulta == "honesto") {
-            AgentsHonest a = new AgentsHonest(caja, generateEmail(), generatePassword(), nombreU, apellidoP, apellidoM, typeU, ip, publicKey, dp, position);
+            AgentsHonest a = new AgentsHonest(/*caja, */generateEmail(), generatePassword(), nombreU, apellidoP, apellidoM, typeU, ip, publicKey, dp, position);
             Respuesta.setNumeroCR();
             System.out.println("HiloAuto/loop1: " + position);
         } else {
             if (tipoConsulta == "enviarAlgo") {
-                AgentsSendAnything b = new AgentsSendAnything(caja, generateEmail(), generatePassword(), nombreU, apellidoP, apellidoM, typeU, ip, publicKey, dp, position);
+                AgentsSendAnything b = new AgentsSendAnything(/*caja, */generateEmail(), generatePassword(), nombreU, apellidoP, apellidoM, typeU, ip, publicKey, dp, position);
                 Respuesta.setNumeroCR();
                 System.out.println("HiloAuto/loop1: " + position);
             } else {
                 if (tipoConsulta == "empiezaAlgun") {
-                    AgentsStartAnyStep c = new AgentsStartAnyStep(caja, generateEmail(), generatePassword(), nombreU, apellidoP, apellidoM, typeU, numberRequest, ip, publicKey, dp, position);
+                    AgentsStartAnyStep c = new AgentsStartAnyStep(/*caja, */generateEmail(), generatePassword(), nombreU, apellidoP, apellidoM, typeU, numberRequest, ip, publicKey, dp, position);
                     Respuesta.setNumeroCR();
                     System.out.println("HiloAuto/loop1: " + position);
                 }
