@@ -1317,7 +1317,7 @@ public class InterfazG extends javax.swing.JFrame {
         jLabel43.setText("Non compliant B:");
 
         jLabel48.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        jLabel48.setText("it follow the permissions with a wrong token");
+        jLabel48.setText("it follows the permissions with a wrong token");
 
         jLabel56.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLabel56.setText("it doesn't follow the permissions and use a correct token");
@@ -2547,7 +2547,7 @@ public class InterfazG extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jTabbedPane1.addTab("Add stage", jPanel5);
+        jTabbedPane1.addTab("Data to Stages", jPanel5);
 
         TFConfiguration.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

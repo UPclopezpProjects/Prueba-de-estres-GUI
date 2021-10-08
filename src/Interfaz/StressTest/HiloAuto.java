@@ -7,6 +7,7 @@ package Interfaz.StressTest;
 
 import Interfaz.InterfazG;
 import Interfaz.Respuesta;
+import java.util.Calendar;
 import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -38,8 +39,6 @@ public class HiloAuto implements Runnable {
     private int aHonesto;
     private int aEnviarA;
     private int aEmpieza;
-    
-    
 
     public String[] getRespuestas() {
         return respuestas;
@@ -128,20 +127,22 @@ public class HiloAuto implements Runnable {
 
     public void loop1() throws InterruptedException {
         respuestas = new String[numberRequest];
+        long t1, t2, dif;
+        String cad;
         if (tipoConsulta == "honesto") {
             AgentsHonest a = new AgentsHonest(/*caja, */generateEmail(), generatePassword(), nombreU, apellidoP, apellidoM, typeU, ip, publicKey, dp, position);
             Respuesta.setNumeroCR();
-            System.out.println("HiloAuto/loop1: " + position);
+            //System.out.println("HiloAuto/loop1: " + position);
         } else {
             if (tipoConsulta == "enviarAlgo") {
                 AgentsSendAnything b = new AgentsSendAnything(/*caja, */generateEmail(), generatePassword(), nombreU, apellidoP, apellidoM, typeU, ip, publicKey, dp, position);
                 Respuesta.setNumeroCR();
-                System.out.println("HiloAuto/loop1: " + position);
+                //System.out.println("HiloAuto/loop1: " + position);
             } else {
                 if (tipoConsulta == "empiezaAlgun") {
                     AgentsStartAnyStep c = new AgentsStartAnyStep(/*caja, */generateEmail(), generatePassword(), nombreU, apellidoP, apellidoM, typeU, numberRequest, ip, publicKey, dp, position);
                     Respuesta.setNumeroCR();
-                    System.out.println("HiloAuto/loop1: " + position);
+                    //System.out.println("HiloAuto/loop1: " + position);
                 }
             }
         }
@@ -202,6 +203,5 @@ public class HiloAuto implements Runnable {
             Logger.getLogger(HiloAuto.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
 
 }

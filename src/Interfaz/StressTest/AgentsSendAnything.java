@@ -7,6 +7,7 @@ import Interfaz.MD5;
 import Interfaz.Respuesta;
 import java.io.*;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import org.json.*;
 import java.util.Random;
@@ -35,6 +36,9 @@ public final class AgentsSendAnything extends Hilo {
     Respuesta mensaje;
     String puerto = "80";
 
+    long t1, t2, dif;
+    String cad;
+
     public AgentsSendAnything(String email, String password, String nombre, String apellidoP, String apellidoM, String tipoU, String ip, String publicK, String dp, int position) {
         this.email = email;
         this.password = password;
@@ -51,7 +55,8 @@ public final class AgentsSendAnything extends Hilo {
     public void getInitialNonce(int position) {
         double randomNumber = Math.random();
         try {
-            String getInitialNonce = "curl -d na=" + randomNumber + " -X POST http://" + ip + ":" + puerto + "/getInitialNonce";
+            //String getInitialNonce = "curl -d na=" + randomNumber + " & position=" + position + " -X POST http://" + ip + ":" + puerto + "/getInitialNonce";
+            String getInitialNonce = "curl -d \"na=" + randomNumber + "&position=" + position + "\" -X POST http://" + ip + ":" + puerto + "/getInitialNonce";
             SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
             Date now1 = new Date();
             String strDate1 = sdf1.format(now1);
@@ -62,6 +67,10 @@ public final class AgentsSendAnything extends Hilo {
 
             Runtime rt = Runtime.getRuntime();
             Process proc = rt.exec(getInitialNonce);
+            //empieza la consulta
+            Calendar ahora1 = Calendar.getInstance();
+            t1 = ahora1.getTimeInMillis();
+            System.out.println("El agente deshonesto número " + position + " envió algo empezó en: " + (t1/1000));
 
             InputStream stdIn = proc.getInputStream();
             InputStreamReader isr = new InputStreamReader(stdIn);
@@ -82,12 +91,20 @@ public final class AgentsSendAnything extends Hilo {
 
                         Respuesta.setConsultaRoot(response + "\n", position);
 
-                        String session = jsonObject.get("A").toString();
-                        String na = jsonObject.get("NA").toString();
-                        String nb = jsonObject.get("NB").toString();
-                        String nanb = na + nb;
-                        String token = MD5.getMd5('"' + nanb + '"');
-                        userCreation(anything[randomAnything1], anything[randomAnything2], randomNumber, position);
+                        String message = jsonObject.get("message").toString();
+                        //System.out.println("el tipo de dato del message es: "+((Object)message).getClass().getSimpleName());
+                        if (message.equals("deny")) {
+                            //System.out.println("AgentsSendAnything/getInitialNonce/message: "+message);
+                            userCreation(anything[randomAnything1], anything[randomAnything2], randomNumber, position);
+                        } else {
+                            String session = jsonObject.get("A").toString();
+                            String na = jsonObject.get("NA").toString();
+                            String nb = jsonObject.get("NB").toString();
+                            String nanb = na + nb;
+                            String token = MD5.getMd5('"' + nanb + '"');
+                            userCreation(anything[randomAnything1], anything[randomAnything2], randomNumber, position);
+                        }
+
                     }
                     intentar = false;
                 }
@@ -129,6 +146,7 @@ public final class AgentsSendAnything extends Hilo {
             String hashX = MD5.getMd5(jsonData);
             //System.out.println(jsonData);
             String rootCreation = "curl -d \"email=" + email + "&"
+                    + "position=" + position + "&"
                     + "password=" + password + "&"
                     + "surnameA=" + surnameA + "&"
                     + "surnameB=" + surnameB + "&"
@@ -160,6 +178,8 @@ public final class AgentsSendAnything extends Hilo {
             InputStream stdIn = proc.getInputStream();
             InputStreamReader isr = new InputStreamReader(stdIn);
             BufferedReader br = new BufferedReader(isr);
+            //System.out.println("AgentsSendAnything/Br: "+br);
+            
 
             Boolean intentar = true;
             String line;
@@ -177,6 +197,12 @@ public final class AgentsSendAnything extends Hilo {
                     intentar = false;
                 }
             }
+            //terminar la consulta
+            Calendar ahora2 = Calendar.getInstance();
+            t2 = ahora2.getTimeInMillis();
+            System.out.println("El agente deshonesto número " + position + " envió algo terminó en: " + (t2/1000));
+            dif = t2 - t1;
+            System.out.println("El agente deshonesto número " + position + " que envía algo ha tardado: " + dif + " milisegundos \n");
             //System.out.println("</OUTPUT2>");
             int exitVal = proc.waitFor();
             //System.out.println("Process exitValue: " + exitVal);

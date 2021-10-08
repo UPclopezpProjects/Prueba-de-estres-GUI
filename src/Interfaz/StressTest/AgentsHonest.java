@@ -10,6 +10,7 @@ import Interfaz.InterfazG;
 import Interfaz.MD5;
 import Interfaz.MD5;
 import Interfaz.Respuesta;
+import java.util.Calendar;
 import javax.swing.JDialog;
 import javax.swing.JTextArea;
 
@@ -29,7 +30,8 @@ public final class AgentsHonest extends Hilo {
     String publicK;
     String dp;
     String puerto = "80";
-    //Respuesta mensaje;
+    long t1, t2, dif;
+    String cad;
 
     public AgentsHonest(String email, String password, String nombre, String apellidoP, String apellidoM, String tipoU, String ip, String publicK, String dp, int position) {
         this.email = email;
@@ -48,17 +50,22 @@ public final class AgentsHonest extends Hilo {
     public void getInitialNonce(int position) {
         double randomNumber = Math.random();
         try {
-            String getInitialNonce = "curl -d na=" + randomNumber + " -X POST http://" + ip + ":" + puerto + "/getInitialNonce";
+            String getInitialNonce = "curl -d \"na=" + randomNumber + "&position=" + position + "\" -X POST http://" + ip + ":" + puerto + "/getInitialNonce";
             SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
             Date now1 = new Date();
             String strDate1 = sdf1.format(now1);
             response = "Root/AgentHonest/getInitialNonce --> Date: " + strDate1 + "; CURL: " + getInitialNonce;
-            //System.out.println(response + ", " + position);
+            //System.out.println(getInitialNonce);
 
             Respuesta.setConsultaRoot(response + "\n", position);
 
             Runtime rt = Runtime.getRuntime();
             Process proc = rt.exec(getInitialNonce);
+            //empieza la consulta al servidor
+            Calendar ahora1 = Calendar.getInstance();
+            ahora1.getTime();
+            t1 = ahora1.getTimeInMillis();
+            System.out.println("El agente honesto número " + position + " empezó en: " + (t1 / 1000));
 
             InputStream stdIn = proc.getInputStream();
             InputStreamReader isr = new InputStreamReader(stdIn);
@@ -78,13 +85,21 @@ public final class AgentsHonest extends Hilo {
                         //System.out.println(response + ", " + position);
 
                         Respuesta.setConsultaRoot(response + "\n", position);
+                        String message = jsonObject.get("message").toString();
 
-                        String session = jsonObject.get("A").toString();
-                        String na = jsonObject.get("NA").toString();
-                        String nb = jsonObject.get("NB").toString();
-                        String nanb = na + nb;
-                        String token = MD5.getMd5('"' + nanb + '"');
-                        userCreation(token, session, randomNumber, position);
+                        //System.out.println("el tipo de dato del message es: "+((Object)message).getClass().getSimpleName());
+                        if (message.equals("deny")) {
+                            //System.out.println("AgentsHonest/getInitialNonce/message: "+message);
+                            userCreation("null", "null", randomNumber, position);
+                        } else {
+                            String session = jsonObject.get("A").toString();
+                            String na = jsonObject.get("NA").toString();
+                            String nb = jsonObject.get("NB").toString();
+                            String nanb = na + nb;
+                            String token = MD5.getMd5('"' + nanb + '"');
+                            userCreation(token, session, randomNumber, position);
+                        }
+
                     }
                     intentar = false;
                 }
@@ -125,6 +140,7 @@ public final class AgentsHonest extends Hilo {
             String hashX = MD5.getMd5(jsonData);
             //System.out.println(jsonData);
             String rootCreation = "curl -d \"email=" + email + "&"
+                    + "position=" + position + "&"
                     + "password=" + password + "&"
                     + "surnameA=" + surnameA + "&"
                     + "surnameB=" + surnameB + "&"
@@ -157,6 +173,7 @@ public final class AgentsHonest extends Hilo {
             InputStreamReader isr = new InputStreamReader(stdIn);
             BufferedReader br = new BufferedReader(isr);
             //System.out.println("<OUTPUT2>");
+
             boolean intentar = true;
             String line;
             while (intentar) {
@@ -167,14 +184,19 @@ public final class AgentsHonest extends Hilo {
                         String strDate4 = sdf4.format(now4);
                         response = "Root/AgentHonest/userCreation <-- Date: " + strDate4 + "; Response: " + line;
                         //System.out.println(response + ", " + position);
-
                         Respuesta.setConsultaRoot(response + "\n", position);
-
                     }
                     intentar = false;
                 }
             }
-            //System.out.println("</OUTPUT2>");
+
+            //terminan las dos consultas
+            Calendar ahora2 = Calendar.getInstance();
+            t2 = ahora2.getTimeInMillis();
+            System.out.println("El agente honesto número " + position + " terminó en: " + (t2 / 1000));
+            dif = t2 - t1;
+            System.out.println("El agente honesto número " + position + " ha tardado: " + dif + " milisegundos \n");
+            System.out.println("</OUTPUT2>");
             int exitVal = proc.waitFor();
             //System.out.println("AgentHonest/acumulado: "+acumulado.replace("null", ""));
             //System.out.println("Process exitValue: " + exitVal);
