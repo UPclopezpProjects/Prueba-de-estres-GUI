@@ -101,7 +101,6 @@ public class HiloCN implements Runnable {
         switch (i) {
             case 0:
                 return "Productor";
-
             case 1:
                 return "Carrier";
             case 2:

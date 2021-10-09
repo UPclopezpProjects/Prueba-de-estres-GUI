@@ -148,22 +148,10 @@ public class Hilo implements Runnable {
                 caja.setText(Respuesta.getConsultaRoot(position).replace("null", ""));
                 dialogoCaja.setVisible(true);
             } else {
-                Calendar ahora1 = Calendar.getInstance();
-                ahora1.getTime();
-                t1 = ahora1.getTimeInMillis();
-                System.out.println("El agente honesto empezó en: " + (t1 / 1000));
-
                 System.out.println("Hilo/Honesto");
                 interfaz.setEnabled(false);
                 carga.setVisible(true);
                 AgentsHonest a = new AgentsHonest(generateEmail(), generatePassword(), nombreU, apellidoP, apellidoM, typeU, ip, publicKey, dp, position);
-
-                Calendar ahora2 = Calendar.getInstance();
-                t2 = ahora2.getTimeInMillis();
-                System.out.println("El agente honesto terminó en: " + (t2 / 1000));
-                dif = t2 - t1;
-                System.out.println("El agente honesto ha tardado: " + dif + " milisegundos \n");
-
                 interfaz.setEnabled(true);
                 carga.setVisible(false);
                 caja.setText(Respuesta.getConsultaRoot(position).replace("null", ""));
@@ -176,21 +164,10 @@ public class Hilo implements Runnable {
                     caja.setText(Respuesta.getConsultaRoot(position).replace("null", ""));
                     dialogoCaja.setVisible(true);
                 } else {
-                    Calendar ahora1 = Calendar.getInstance();
-                    t1 = ahora1.getTimeInMillis();
-                    System.out.println("El agente deshonesto envió algo empezó en: " + (t1 / 1000));
-
                     System.out.println("Hilo/enviarAlgo");
                     interfaz.setEnabled(false);
                     carga.setVisible(true);
                     AgentsSendAnything b = new AgentsSendAnything(generateEmail(), generatePassword(), nombreU, apellidoP, apellidoM, typeU, ip, publicKey, dp, position);
-
-                    Calendar ahora2 = Calendar.getInstance();
-                    t2 = ahora2.getTimeInMillis();
-                    System.out.println("El agente deshonesto envió algo terminó en: " + (t2 / 1000));
-                    dif = t2 - t1;
-                    System.out.println("El agente deshonesto que envía algo ha tardado: " + dif + " milisegundos \n");
-
                     interfaz.setEnabled(true);
                     carga.setVisible(false);
                     caja.setText(Respuesta.getConsultaRoot(position).replace("null", ""));
@@ -202,22 +179,10 @@ public class Hilo implements Runnable {
                         caja.setText(Respuesta.getConsultaRoot(position).replace("null", ""));
                         dialogoCaja.setVisible(true);
                     } else {
-                        Calendar ahora1 = Calendar.getInstance();
-                        t1 = ahora1.getTimeInMillis();
-                        System.out.println("El agente deshonesto empieza en algún paso empezó en: " + (t1 / 1000));
-
                         System.out.println("Hilo/Empieza en algún paso");
                         interfaz.setEnabled(false);
                         carga.setVisible(true);
-
                         AgentsStartAnyStep c = new AgentsStartAnyStep(generateEmail(), generatePassword(), nombreU, apellidoP, apellidoM, typeU, numberRequest, ip, publicKey, dp, position);
-
-                        Calendar ahora2 = Calendar.getInstance();
-                        t2 = ahora2.getTimeInMillis();
-                        System.out.println("El agente deshonesto empieza en algún paso terminó en: " + (t2 / 1000));
-                        dif = t2 - t1;
-                        System.out.println("El agente deshonesto que empieza en algún paso ha tardado: " + dif + " milisegundos \n");
-
                         interfaz.setEnabled(true);
                         carga.setVisible(false);
                         caja.setText(Respuesta.getConsultaRoot(position).replace("null", ""));
