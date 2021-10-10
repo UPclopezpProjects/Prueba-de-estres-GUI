@@ -15,7 +15,7 @@ public class Respuesta {
     }
 
     public static void setVentanaCarga(JDialog ventanaCarga) {
-        System.out.println("Respuesta/setVentanaCarga: recibió la ventana");
+        //System.out.println("Respuesta/setVentanaCarga: recibió la ventana");
         Respuesta.ventanaCarga = ventanaCarga;
     }
 
@@ -29,12 +29,12 @@ public class Respuesta {
     }
 
     public static void setNumeroCR() {
-        System.out.println("Respuesta/setNumeroCR: hago la autosuma");
+        //System.out.println("Respuesta/setNumeroCR: hago la autosuma");
         numeroCR++;
 
         if (numeroCR == tamanio) {
-            System.out.println("Respuesta/setNumeroCR: SE TERMINARON LAS CONSULTAS");
-            System.out.println("Respuesta/setNumeroCR: " + numeroCR);
+            //System.out.println("Respuesta/setNumeroCR: SE TERMINARON LAS CONSULTAS");
+            //System.out.println("Respuesta/setNumeroCR: " + numeroCR);
             ventanaCarga.setVisible(false);
             interfazG.setEnabled(true);
             numeroCR = 0;
@@ -42,11 +42,13 @@ public class Respuesta {
     }
     
     public static void setConsultaRoot(String consultaRoot, int position) {
+        //
         //System.out.println("Respuesta/setConsultaRoot: "+consultaRoot+", "+position);
         Respuesta.consultaRoot[position] += consultaRoot;
     }
 
     public static String getConsultaRoot(int position) {
+        //
         //System.out.println("Respuesta/getConsultaRoot: "+Respuesta.consultaRoot[position]);
         return Respuesta.consultaRoot[position];
     }
@@ -56,6 +58,7 @@ public class Respuesta {
     }
 
     public static void setTamanio(int tamanio) {
+        //
         //System.out.println("Respuesta/setTamanio: "+tamanio);
         Respuesta.tamanio = tamanio;
         Respuesta.consultaRoot = new String[tamanio];
@@ -71,23 +74,23 @@ public class Respuesta {
     }
 
     public static void setConsultaUC(String consultaUC, int position) {
-        System.out.println("Respuesta/setConsultaUC: "+position);
+        //System.out.println("Respuesta/setConsultaUC: "+position);
         Respuesta.consultaUC[position] += consultaUC;
     }
 
     public static void setTamanioUC(int tamanioUC) {
         Respuesta.tamanioUC = tamanioUC;
         Respuesta.consultaUC = new String[tamanioUC];
-        System.out.println("Respuesta/setTamanioUC: "+consultaUC.length);
+        //System.out.println("Respuesta/setTamanioUC: "+consultaUC.length);
     }
     
     public static void setNumeroCU() {
-        System.out.println("Respuesta/setNumeroCU: hago la autosuma");
+        //System.out.println("Respuesta/setNumeroCU: hago la autosuma");
         numeroCU++;
 
         if (numeroCU == tamanioUC) {
-            System.out.println("Respuesta/setNumeroCU: SE TERMINARON LAS CONSULTAS");
-            System.out.println("Respuesta/setNumeroCU: " + numeroCR);
+            //System.out.println("Respuesta/setNumeroCU: SE TERMINARON LAS CONSULTAS");
+            //System.out.println("Respuesta/setNumeroCU: " + numeroCR);
             ventanaCarga.setVisible(false);
             interfazG.setEnabled(true);
             numeroCU = 0;
@@ -113,12 +116,12 @@ public class Respuesta {
     }
     
     public static void setNumeroNP() {
-        System.out.println("Respuesta/setNumeroNP: hago la autosuma");
+        //System.out.println("Respuesta/setNumeroNP: hago la autosuma");
         numeroNP++;
 
         if (numeroNP == tamanioS) {
-            System.out.println("Respuesta/setNumeroNP: SE TERMINARON LAS CONSULTAS");
-            System.out.println("Respuesta/setNumeroNP: " + numeroNP);
+            //System.out.println("Respuesta/setNumeroNP: SE TERMINARON LAS CONSULTAS");
+            //System.out.println("Respuesta/setNumeroNP: " + numeroNP);
             ventanaCarga.setVisible(false);
             interfazG.setEnabled(true);
             numeroNP = 0;
@@ -131,12 +134,12 @@ public class Respuesta {
     public static int numeroCompany = 0;
 
     public static void setNumeroCompany() {
-        System.out.println("Respuesta/setNumeroCompany: hago la autosuma");
+        //System.out.println("Respuesta/setNumeroCompany: hago la autosuma");
         numeroCompany++;
 
         if (numeroCompany == tamanioCompany) {
-            System.out.println("Respuesta/setNumeroCompany: SE TERMINARON LAS CONSULTAS");
-            System.out.println("Respuesta/setNumeroCompany: " + numeroCompany);
+            //System.out.println("Respuesta/setNumeroCompany: SE TERMINARON LAS CONSULTAS");
+            //System.out.println("Respuesta/setNumeroCompany: " + numeroCompany);
             ventanaCarga.setVisible(false);
             interfazG.setEnabled(true);
             numeroCompany = 0;
@@ -148,15 +151,15 @@ public class Respuesta {
     }
 
     public static void setConsultaCompany(String consultaCompany, int position) {
-        System.out.println();
+        //System.out.println();
         Respuesta.consultaCompany[position] += consultaCompany;
-        System.out.println("Respuesta/setConsultaCompany");
+        //System.out.println("Respuesta/setConsultaCompany");
     }
 
     public static void setTamanioCompany(int tamanioCompany) {
-        System.out.println("Respuesta/setTamanioCompany");
+        //System.out.println("Respuesta/setTamanioCompany");
         Respuesta.tamanioCompany = tamanioCompany;
         Respuesta.consultaCompany = new String[tamanioCompany];
-        System.out.println("Respuesta/setTamanioCompany/tamanio consulta company= "+Respuesta.consultaCompany.length);
+        //System.out.println("Respuesta/setTamanioCompany/tamanio consulta company= "+Respuesta.consultaCompany.length);
     }
 }

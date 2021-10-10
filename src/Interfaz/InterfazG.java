@@ -26,6 +26,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Timer;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JDialog;
@@ -48,8 +49,16 @@ public class InterfazG extends javax.swing.JFrame {
         AWTUtilities.setWindowOpaque(jDialog4, false);
         Respuesta.setVentanaCarga(jDialog4);
         setLocationRelativeTo(null);
-        jDialog5.setLocationRelativeTo(null);
+
+        jDialog1.setLocationRelativeTo(null);
+        jDialog2.setLocationRelativeTo(null);
+        jDialog3.setLocationRelativeTo(null);
         jDialog4.setLocationRelativeTo(null);
+        jDialog5.setLocationRelativeTo(null);
+        CreateUAdrU.setLocationRelativeTo(null);
+        CreateUAutho.setLocationRelativeTo(null);
+        AddCompanyToken.setLocationRelativeTo(null);
+        
         jDialog4.setTitle("Cargando...");
         habilitarCB(String.valueOf(CBTypeUserUC.getSelectedItem()));
         LecEscTXT objeto = new LecEscTXT();
@@ -1064,6 +1073,9 @@ public class InterfazG extends javax.swing.JFrame {
         CreateUAutho = new javax.swing.JDialog();
         jLabel76 = new javax.swing.JLabel();
         jLabel77 = new javax.swing.JLabel();
+        AddCompanyToken = new javax.swing.JDialog();
+        jLabel78 = new javax.swing.JLabel();
+        jLabel79 = new javax.swing.JLabel();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
         BIniciar = new javax.swing.JButton();
@@ -1167,6 +1179,7 @@ public class InterfazG extends javax.swing.JFrame {
         jPanel13 = new javax.swing.JPanel();
         jLabel70 = new javax.swing.JLabel();
         TFEmailAC = new javax.swing.JTextField();
+        jButton5 = new javax.swing.JButton();
         jPanel5 = new javax.swing.JPanel();
         jLabel30 = new javax.swing.JLabel();
         jLabel46 = new javax.swing.JLabel();
@@ -1375,6 +1388,7 @@ public class InterfazG extends javax.swing.JFrame {
         jDialog4.setLocation(new java.awt.Point(0, 0));
         jDialog4.setMinimumSize(new java.awt.Dimension(400, 300));
         jDialog4.setUndecorated(true);
+        jDialog4.setResizable(false);
 
         jLabel50.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Interfaz/loading-circular.gif"))); // NOI18N
 
@@ -1390,6 +1404,7 @@ public class InterfazG extends javax.swing.JFrame {
         );
 
         jDialog5.setMinimumSize(new java.awt.Dimension(500, 150));
+        jDialog5.setResizable(false);
 
         jLabel58.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jLabel58.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -1452,6 +1467,7 @@ public class InterfazG extends javax.swing.JFrame {
         );
 
         CreateUAdrU.setMinimumSize(new java.awt.Dimension(630, 350));
+        CreateUAdrU.setResizable(false);
 
         jLabel72.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         jLabel72.setText("AddressU");
@@ -1502,6 +1518,7 @@ public class InterfazG extends javax.swing.JFrame {
         );
 
         CreateUAutho.setMinimumSize(new java.awt.Dimension(400, 150));
+        CreateUAutho.setResizable(false);
 
         jLabel76.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         jLabel76.setText("Authorization");
@@ -1530,6 +1547,37 @@ public class InterfazG extends javax.swing.JFrame {
                 .addComponent(jLabel76)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel77, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        AddCompanyToken.setMinimumSize(new java.awt.Dimension(410, 140));
+        AddCompanyToken.setResizable(false);
+
+        jLabel78.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        jLabel78.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel78.setText("Token");
+
+        jLabel79.setFont(new java.awt.Font("Arial", 0, 20)); // NOI18N
+        jLabel79.setText("<html>\n<body>\nThe token is generated after create a user \n<br>(Productor, Acopio, Carrier, Marchant)\n</body>\n</html>");
+
+        javax.swing.GroupLayout AddCompanyTokenLayout = new javax.swing.GroupLayout(AddCompanyToken.getContentPane());
+        AddCompanyToken.getContentPane().setLayout(AddCompanyTokenLayout);
+        AddCompanyTokenLayout.setHorizontalGroup(
+            AddCompanyTokenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, AddCompanyTokenLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(AddCompanyTokenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel78, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel79))
+                .addContainerGap())
+        );
+        AddCompanyTokenLayout.setVerticalGroup(
+            AddCompanyTokenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(AddCompanyTokenLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel78)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel79, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -2373,6 +2421,13 @@ public class InterfazG extends javax.swing.JFrame {
         jLabel70.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel70.setText("Email:");
 
+        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Interfaz/informacion.png"))); // NOI18N
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel11Layout = new javax.swing.GroupLayout(jPanel11);
         jPanel11.setLayout(jPanel11Layout);
         jPanel11Layout.setHorizontalGroup(
@@ -2391,6 +2446,8 @@ public class InterfazG extends javax.swing.JFrame {
                                 .addComponent(jLabel65)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(CBServerAC, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jLabel70)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -2401,7 +2458,7 @@ public class InterfazG extends javax.swing.JFrame {
                         .addComponent(CBNumberRAC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(RBAutomaticRAC)
-                        .addGap(0, 0, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 56, Short.MAX_VALUE))
                     .addComponent(jScrollPane7))
                 .addContainerGap())
         );
@@ -2414,9 +2471,10 @@ public class InterfazG extends javax.swing.JFrame {
                     .addComponent(TFTokenAC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel69)
                     .addComponent(CBNumberRAC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(RBAutomaticRAC)
                     .addComponent(jLabel70)
-                    .addComponent(TFEmailAC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(TFEmailAC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(RBAutomaticRAC)
+                    .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(CBServerAC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -2424,7 +2482,7 @@ public class InterfazG extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 603, Short.MAX_VALUE)
+                .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 601, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -2611,7 +2669,7 @@ public class InterfazG extends javax.swing.JFrame {
                                     .addComponent(SNumberRequestNP, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addComponent(RBRequestsANS, javax.swing.GroupLayout.Alignment.TRAILING))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 509, Short.MAX_VALUE)))
+                        .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 535, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel5Layout.setVerticalGroup(
@@ -2729,7 +2787,7 @@ public class InterfazG extends javax.swing.JFrame {
             .addGroup(jPanel10Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 734, Short.MAX_VALUE)
+                    .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 760, Short.MAX_VALUE)
                     .addGroup(jPanel10Layout.createSequentialGroup()
                         .addComponent(TFConfiguration, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
@@ -2756,6 +2814,7 @@ public class InterfazG extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Configuration", jPanel10);
 
+        jLabel67.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel67.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/gray button.png"))); // NOI18N
 
         jLabel66.setFont(new java.awt.Font("Arial", 1, 20)); // NOI18N
@@ -3284,7 +3343,8 @@ public class InterfazG extends javax.swing.JFrame {
                         if (i <= aHonesto) {
                             int position = x;
                             //consultaHonestaAuto("honesto", position);
-                            System.out.println("InterfazG/Inicia el hilo: "+position);
+                            //System.out.println("InterfazG/Inicia el hilo: "+position);
+
                             objetoA.setApellidoM(ApellidoM);
                             objetoA.setApellidoP(ApellidoP);
                             objetoA.setCaja(areaTexto);
@@ -3302,9 +3362,8 @@ public class InterfazG extends javax.swing.JFrame {
                             objetoA.setaEnviarA(aEnviarA);
                             objetoA.setaHonesto(aHonesto);
                             new Thread(objetoA).start();
-                            
-                            System.out.println("InterfazG/Termina el hilo: "+position);
 
+                            //System.out.println("InterfazG/Termina el hilo: "+position);
                             JButton boton = new JButton("Compliant agent");
                             boton.setPreferredSize(new Dimension(30, 70));
                             boton.setBackground(Color.GREEN);
@@ -3556,6 +3615,13 @@ public class InterfazG extends javax.swing.JFrame {
 
                             for (int x = 0; x < nSolicitudes; x++) {
                                 int position = x;
+                                double i = Math.floor(Math.random() * 101);
+                                
+                                if(i<=50){
+                                    
+                                } else{
+                                
+                                }
                                 HiloCN objetoCN = new HiloCN();
                                 objetoCN.setToken(token);
                                 objetoCN.setEmail(email);
@@ -3669,6 +3735,10 @@ public class InterfazG extends javax.swing.JFrame {
         CreateUAutho.setVisible(true);
     }//GEN-LAST:event_jButton4ActionPerformed
 
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        AddCompanyToken.setVisible(true);
+    }//GEN-LAST:event_jButton5ActionPerformed
+
     public String obtenerCarpeta() {
         JFileChooser fr = new JFileChooser();
         FileSystemView fw = fr.getFileSystemView();
@@ -3716,6 +3786,7 @@ public class InterfazG extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JDialog AddCompanyToken;
     private javax.swing.JButton BAyuda;
     private javax.swing.JButton BAyuda1;
     private javax.swing.JButton BAyuda2;
@@ -3790,6 +3861,7 @@ public class InterfazG extends javax.swing.JFrame {
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
     private javax.swing.JDialog jDialog1;
     private javax.swing.JDialog jDialog2;
     private javax.swing.JDialog jDialog3;
@@ -3870,6 +3942,8 @@ public class InterfazG extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel75;
     private javax.swing.JLabel jLabel76;
     private javax.swing.JLabel jLabel77;
+    private javax.swing.JLabel jLabel78;
+    private javax.swing.JLabel jLabel79;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JLayeredPane jLayeredPane1;

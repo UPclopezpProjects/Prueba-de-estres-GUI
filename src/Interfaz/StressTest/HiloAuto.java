@@ -9,8 +9,15 @@ import Interfaz.InterfazG;
 import Interfaz.Respuesta;
 import java.util.Calendar;
 import java.util.Random;
+import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeoutException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.concurrent.Task;
 import javax.swing.JDialog;
 import javax.swing.JTextArea;
 
@@ -125,6 +132,7 @@ public class HiloAuto implements Runnable {
         this.numberRequest = numberRequest;
     }
 
+    
     public void loop1() throws InterruptedException {
         respuestas = new String[numberRequest];
         long t1, t2, dif;
@@ -199,9 +207,9 @@ public class HiloAuto implements Runnable {
     public void run() {
         try {
             loop1();
+            System.out.println("HiloAuto/run: fuera del while");
         } catch (InterruptedException ex) {
             Logger.getLogger(HiloAuto.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
 }
