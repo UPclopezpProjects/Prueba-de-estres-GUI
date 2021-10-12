@@ -65,7 +65,7 @@ public final class AgentsHonest extends Hilo {
             Calendar ahora1 = Calendar.getInstance();
             ahora1.getTime();
             t1 = ahora1.getTimeInMillis();
-            System.out.println("El agente honesto número " + position + " empezó en: " + (t1 / 1000));
+            System.out.println("El agente honesto número " + position + " empezó en: " + t1);
 
             InputStream stdIn = proc.getInputStream();
             InputStreamReader isr = new InputStreamReader(stdIn);
@@ -193,7 +193,7 @@ public final class AgentsHonest extends Hilo {
             //terminan las dos consultas
             Calendar ahora2 = Calendar.getInstance();
             t2 = ahora2.getTimeInMillis();
-            System.out.println("El agente honesto número " + position + " terminó en: " + (t2 / 1000));
+            System.out.println("El agente honesto número " + position + " terminó en: " + t2);
             dif = t2 - t1;
             System.out.println("El agente honesto número " + position + " ha tardado: " + dif + " milisegundos \n");
             System.out.println("</OUTPUT2>");

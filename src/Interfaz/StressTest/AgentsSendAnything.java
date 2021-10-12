@@ -70,7 +70,7 @@ public final class AgentsSendAnything extends Hilo {
             //empieza la consulta
             Calendar ahora1 = Calendar.getInstance();
             t1 = ahora1.getTimeInMillis();
-            System.out.println("El agente deshonesto número " + position + " envió algo empezó en: " + (t1/1000));
+            System.out.println("El agente deshonesto número " + position + " envió algo empezó en: " + t1);
 
             InputStream stdIn = proc.getInputStream();
             InputStreamReader isr = new InputStreamReader(stdIn);
@@ -200,7 +200,7 @@ public final class AgentsSendAnything extends Hilo {
             //terminar la consulta
             Calendar ahora2 = Calendar.getInstance();
             t2 = ahora2.getTimeInMillis();
-            System.out.println("El agente deshonesto número " + position + " envió algo terminó en: " + (t2/1000));
+            System.out.println("El agente deshonesto número " + position + " envió algo terminó en: " + t2);
             dif = t2 - t1;
             System.out.println("El agente deshonesto número " + position + " que envía algo ha tardado: " + dif + " milisegundos \n");
             //System.out.println("</OUTPUT2>");

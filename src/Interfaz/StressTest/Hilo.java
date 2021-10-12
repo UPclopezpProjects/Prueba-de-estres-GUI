@@ -10,7 +10,12 @@ import static java.lang.Math.random;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Random;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
 import java.util.concurrent.TimeUnit;
+import java.util.concurrent.TimeoutException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JDialog;
@@ -241,11 +246,34 @@ public class Hilo implements Runnable {
     }
 
     public void run() {
+        System.out.println("Hilo/antes del loop");
+        //loop1();
+
+        ExecutorService executor = Executors.newSingleThreadExecutor();
+        Future future = executor.submit(() -> {
+            try {
+                loop1();
+            } catch (InterruptedException ex) {
+                Logger.getLogger(Hilo.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        });
         try {
-            //caja.append("lalo");
-            loop1();
+            future.get(30, TimeUnit.SECONDS);
         } catch (InterruptedException ex) {
-            Logger.getLogger(Hilo.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(HiloAuto.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ExecutionException ex) {
+            Logger.getLogger(HiloAuto.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (TimeoutException ex) {
+            future.cancel(true);
+            interfaz.setEnabled(true);
+            carga.setVisible(false);
+            Respuesta.setConsultaRoot("Hadn't response of server, perhaps the microservice is down" + "\n", position);
+            caja.setText(Respuesta.getConsultaRoot(position).replace("null", ""));
+            dialogoCaja.setVisible(true);
+        } finally {
+            executor.shutdown();
         }
+
+        System.out.println("HiloAuto/después del loop");
     }
 }

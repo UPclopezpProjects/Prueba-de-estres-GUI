@@ -6,7 +6,14 @@
 package UCreation;
 
 import Interfaz.Respuesta;
+import Interfaz.StressTest.HiloAuto;
 import java.util.Random;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.TimeoutException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JTextArea;
@@ -197,11 +204,32 @@ public class hiloUCA implements Runnable{
     
     @Override
     public void run() {
+        System.out.println("HiloAuto/antes del loop");
+        //loop1();
+
+            ExecutorService executor = Executors.newSingleThreadExecutor();
+            Future future = executor.submit(() -> {
         try {
             loop1();
         } catch (InterruptedException ex) {
             Logger.getLogger(hiloUCA.class.getName()).log(Level.SEVERE, null, ex);
         }
+        });
+        try {
+            future.get(30, TimeUnit.SECONDS);
+        } catch (InterruptedException ex) {
+            Logger.getLogger(HiloAuto.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ExecutionException ex) {
+            Logger.getLogger(HiloAuto.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (TimeoutException ex) {
+            future.cancel(true);
+            Respuesta.setNumeroCU();
+            Respuesta.setConsultaUC("Hadn't response of server, perhaps the microservice is down" + "\n", position);
+        } finally{
+            executor.shutdown();
+        }
+            
+        System.out.println("hiloUCA/después del loop");
     }
     
 }

@@ -9,11 +9,14 @@ import Interfaz.InterfazG;
 import Interfaz.Respuesta;
 import java.util.Calendar;
 import java.util.Random;
+import java.util.Timer;
 import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -132,7 +135,6 @@ public class HiloAuto implements Runnable {
         this.numberRequest = numberRequest;
     }
 
-    
     public void loop1() throws InterruptedException {
         respuestas = new String[numberRequest];
         long t1, t2, dif;
@@ -205,11 +207,31 @@ public class HiloAuto implements Runnable {
 
     @Override
     public void run() {
+        System.out.println("HiloAuto/antes del loop");
+        //loop1();
+
+            ExecutorService executor = Executors.newSingleThreadExecutor();
+            Future future = executor.submit(() -> {
+                try {
+                    loop1();
+                } catch (InterruptedException ex) {
+                    Logger.getLogger(HiloAuto.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            });
         try {
-            loop1();
-            System.out.println("HiloAuto/run: fuera del while");
+            future.get(30, TimeUnit.SECONDS);
         } catch (InterruptedException ex) {
             Logger.getLogger(HiloAuto.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ExecutionException ex) {
+            Logger.getLogger(HiloAuto.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (TimeoutException ex) {
+            future.cancel(true);
+            Respuesta.setNumeroCR();
+            Respuesta.setConsultaRoot("Hadn't response of server, perhaps the microservice is down" + "\n", position);
+        } finally{
+            executor.shutdown();
         }
+            
+        System.out.println("HiloAuto/después del loop");
     }
 }

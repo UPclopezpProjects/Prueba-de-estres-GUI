@@ -72,7 +72,7 @@ public final class AgentsStartAnyStep extends Hilo {
             //inició consulta
             Calendar ahora1 = Calendar.getInstance();
             t1 = ahora1.getTimeInMillis();
-            System.out.println("El agente deshonesto número " + position + " empieza en algún paso empezó en: " + (t1/1000));
+            System.out.println("El agente deshonesto número " + position + " empieza en algún paso empezó en: " + t1);
 
             InputStream stdIn = proc.getInputStream();
             InputStreamReader isr = new InputStreamReader(stdIn);
@@ -178,7 +178,7 @@ public final class AgentsStartAnyStep extends Hilo {
             if (t1 == null) {
                 Calendar ahora1 = Calendar.getInstance();
                 t1 = ahora1.getTimeInMillis();
-                System.out.println("El agente deshonesto número " + position + " empieza en algún paso empezó(userCreation) en: " + (t1/1000));
+                System.out.println("El agente deshonesto número " + position + " empieza en algún paso empezó(userCreation) en: " + t1);
             }
 
             InputStream stdIn = proc.getInputStream();
@@ -206,7 +206,7 @@ public final class AgentsStartAnyStep extends Hilo {
             //termina la consulta
             Calendar ahora2 = Calendar.getInstance();
             t2 = ahora2.getTimeInMillis();
-            System.out.println("El agente deshonesto número " + position + " empieza en algún paso terminó(userCreation) en: " + (t2/1000));
+            System.out.println("El agente deshonesto número " + position + " empieza en algún paso terminó(userCreation) en: " + t2);
             dif = t2 - t1;
             System.out.println("El agente deshonesto número " + position + " que empieza en algún paso ha tardado: " + dif + " milisegundos \n");
             

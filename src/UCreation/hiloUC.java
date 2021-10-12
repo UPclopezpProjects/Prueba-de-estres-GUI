@@ -6,7 +6,14 @@
 package UCreation;
 
 import Interfaz.Respuesta;
+import Interfaz.StressTest.HiloAuto;
 import java.util.Random;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.TimeoutException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JDialog;
@@ -242,12 +249,36 @@ public class hiloUC implements Runnable {
     }
 
     public void run() {
+        System.out.println("hiloUC/antes del loop");
+        //loop1();
+
+        ExecutorService executor = Executors.newSingleThreadExecutor();
+        Future future = executor.submit(() -> {
+            try {
+                //caja.append("lalo");
+                loop1();
+            } catch (InterruptedException ex) {
+                Logger.getLogger(Interfaz.StressTest.Hilo.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        });
         try {
-            //caja.append("lalo");
-            loop1();
+            future.get(30, TimeUnit.SECONDS);
         } catch (InterruptedException ex) {
-            Logger.getLogger(Interfaz.StressTest.Hilo.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(HiloAuto.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ExecutionException ex) {
+            Logger.getLogger(HiloAuto.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (TimeoutException ex) {
+            future.cancel(true);
+            Respuesta.setConsultaUC("Hadn't response of server, perhaps the microservice is down" + "\n", position);
+            interfaz.setEnabled(true);
+            carga.setVisible(false);
+            caja.setText(Respuesta.getConsultaUC(position).replace("null", ""));
+            dialogoCaja.setVisible(true);
+        } finally {
+            executor.shutdown();
         }
+
+        System.out.println("hiloUC/después del loop");
     }
 
 }
