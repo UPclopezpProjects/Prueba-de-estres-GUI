@@ -6,6 +6,7 @@ import Interfaz.MD5;
 import Interfaz.MD5;
 import Interfaz.Respuesta;
 import java.io.*;
+import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -38,6 +39,7 @@ public final class AgentsSendAnything extends Hilo {
 
     long t1, t2, dif;
     String cad;
+    BigDecimal startTime, endTime;
 
     public AgentsSendAnything(String email, String password, String nombre, String apellidoP, String apellidoM, String tipoU, String ip, String publicK, String dp, int position) {
         this.email = email;
@@ -64,13 +66,15 @@ public final class AgentsSendAnything extends Hilo {
             //System.out.println(response + ", " + position);
 
             Respuesta.setConsultaRoot(response + "\n", position);
+            
 
             Runtime rt = Runtime.getRuntime();
             Process proc = rt.exec(getInitialNonce);
             //empieza la consulta
             Calendar ahora1 = Calendar.getInstance();
             t1 = ahora1.getTimeInMillis();
-            System.out.println("El agente deshonesto número " + position + " envió algo empezó en: " + t1);
+            //System.out.println("El agente deshonesto número " + position + " envió algo empezó en: " + t1);
+            Respuesta.setConsultaRoot("El agente deshonesto número " + position + " envió algo empezó en: " + t1+"\n",position);
 
             InputStream stdIn = proc.getInputStream();
             InputStreamReader isr = new InputStreamReader(stdIn);
@@ -90,6 +94,8 @@ public final class AgentsSendAnything extends Hilo {
                         //System.out.println(response + ", " + position);
 
                         Respuesta.setConsultaRoot(response + "\n", position);
+                        startTime = (BigDecimal) jsonObject.get("startTime");
+                        Respuesta.setConsultaRoot("El servidor empezó la consulta del agente deshonesto que envía algo número " + position + " en: " + startTime + "\n", position);
 
                         String message = jsonObject.get("message").toString();
                         //System.out.println("el tipo de dato del message es: "+((Object)message).getClass().getSimpleName());
@@ -186,6 +192,7 @@ public final class AgentsSendAnything extends Hilo {
             while (intentar) {
                 if (br.ready()) {
                     while ((line = br.readLine()) != null) {
+                        JSONObject jsonObject = new JSONObject(line);
                         SimpleDateFormat sdf4 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
                         Date now4 = new Date();
                         String strDate4 = sdf4.format(now4);
@@ -193,6 +200,10 @@ public final class AgentsSendAnything extends Hilo {
                         //System.out.println(response + ", " + position);
 
                         Respuesta.setConsultaRoot(response + "\n", position);
+                        endTime = (BigDecimal) jsonObject.get("endTime");
+                        BigDecimal duracion = endTime.subtract(startTime);
+                        Respuesta.setConsultaRoot("El servidor terminó la consulta del agente deshonesto que envía algo, número " + position + " en:" + endTime + "\n", position);
+                        Respuesta.setConsultaRoot("El tiempo que le tomó al servidor procesar la consulta fue: "+duracion+" milisegundos \n",position);
                     }
                     intentar = false;
                 }
@@ -200,9 +211,11 @@ public final class AgentsSendAnything extends Hilo {
             //terminar la consulta
             Calendar ahora2 = Calendar.getInstance();
             t2 = ahora2.getTimeInMillis();
-            System.out.println("El agente deshonesto número " + position + " envió algo terminó en: " + t2);
+            //System.out.println("El agente deshonesto número " + position + " envió algo terminó en: " + t2);
+            Respuesta.setConsultaRoot("El agente deshonesto número " + position + " envió algo terminó en: " + t2+"\n",position);
             dif = t2 - t1;
-            System.out.println("El agente deshonesto número " + position + " que envía algo ha tardado: " + dif + " milisegundos \n");
+            //System.out.println("El agente deshonesto número " + position + " que envía algo ha tardado: " + dif + " milisegundos \n");
+            Respuesta.setConsultaRoot("El agente deshonesto número " + position + " que envía algo ha tardado: " + dif + " milisegundos \n", position);
             //System.out.println("</OUTPUT2>");
             int exitVal = proc.waitFor();
             //System.out.println("Process exitValue: " + exitVal);

@@ -10,6 +10,7 @@ import Interfaz.InterfazG;
 import Interfaz.MD5;
 import Interfaz.MD5;
 import Interfaz.Respuesta;
+import java.math.BigDecimal;
 import java.util.Calendar;
 import javax.swing.JDialog;
 import javax.swing.JTextArea;
@@ -32,6 +33,7 @@ public final class AgentsHonest extends Hilo {
     String puerto = "80";
     long t1, t2, dif;
     String cad;
+    BigDecimal startTime, endTime;
 
     public AgentsHonest(String email, String password, String nombre, String apellidoP, String apellidoM, String tipoU, String ip, String publicK, String dp, int position) {
         this.email = email;
@@ -65,7 +67,8 @@ public final class AgentsHonest extends Hilo {
             Calendar ahora1 = Calendar.getInstance();
             ahora1.getTime();
             t1 = ahora1.getTimeInMillis();
-            System.out.println("El agente honesto número " + position + " empezó en: " + t1);
+            //System.out.println("El agente honesto número " + position + " empezó en: " + t1);
+            Respuesta.setConsultaRoot("El agente honesto número " + position + " empezó en: " + t1 + "\n", position);
 
             InputStream stdIn = proc.getInputStream();
             InputStreamReader isr = new InputStreamReader(stdIn);
@@ -85,6 +88,8 @@ public final class AgentsHonest extends Hilo {
                         //System.out.println(response + ", " + position);
 
                         Respuesta.setConsultaRoot(response + "\n", position);
+                        startTime = (BigDecimal) jsonObject.get("startTime");
+                        Respuesta.setConsultaRoot("El servidor empezó la consulta del agente honesto número " + position + " en: " + startTime + "\n", position);
                         String message = jsonObject.get("message").toString();
 
                         //System.out.println("el tipo de dato del message es: "+((Object)message).getClass().getSimpleName());
@@ -179,12 +184,17 @@ public final class AgentsHonest extends Hilo {
             while (intentar) {
                 if (br.ready()) {
                     while ((line = br.readLine()) != null) {
+                        JSONObject jsonObject = new JSONObject(line);
                         SimpleDateFormat sdf4 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
                         Date now4 = new Date();
                         String strDate4 = sdf4.format(now4);
                         response = "Root/AgentHonest/userCreation <-- Date: " + strDate4 + "; Response: " + line;
                         //System.out.println(response + ", " + position);
                         Respuesta.setConsultaRoot(response + "\n", position);
+                        endTime = (BigDecimal) jsonObject.get("endTime");
+                        BigDecimal duracion = endTime.subtract(startTime);
+                        Respuesta.setConsultaRoot("El servidor terminó la consulta del agente honesto número " + position + " en:" + endTime + "\n", position);
+                        Respuesta.setConsultaRoot("El tiempo que le tomó al servidor procesar la consulta fue: "+duracion+" milisegundos \n",position);
                     }
                     intentar = false;
                 }
@@ -193,10 +203,12 @@ public final class AgentsHonest extends Hilo {
             //terminan las dos consultas
             Calendar ahora2 = Calendar.getInstance();
             t2 = ahora2.getTimeInMillis();
-            System.out.println("El agente honesto número " + position + " terminó en: " + t2);
+            //System.out.println("El agente honesto número " + position + " terminó en: " + t2);
+            Respuesta.setConsultaRoot("El agente honesto número " + position + " terminó en: " + t2 + "\n", position);
             dif = t2 - t1;
-            System.out.println("El agente honesto número " + position + " ha tardado: " + dif + " milisegundos \n");
-            System.out.println("</OUTPUT2>");
+            //System.out.println("El agente honesto número " + position + " ha tardado: " + dif + " milisegundos \n");
+            Respuesta.setConsultaRoot("El agente honesto número " + position + " ha tardado: " + dif + " milisegundos \n", position);
+            //System.out.println("</OUTPUT2>");
             int exitVal = proc.waitFor();
             //System.out.println("AgentHonest/acumulado: "+acumulado.replace("null", ""));
             //System.out.println("Process exitValue: " + exitVal);

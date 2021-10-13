@@ -3662,13 +3662,7 @@ public class InterfazG extends javax.swing.JFrame {
 
                             for (int x = 0; x < nSolicitudes; x++) {
                                 int position = x;
-                                double i = Math.floor(Math.random() * 101);
                                 
-                                if(i<=50){
-                                    
-                                } else{
-                                
-                                }
                                 HiloCN objetoCN = new HiloCN();
                                 objetoCN.setToken(token);
                                 objetoCN.setEmail(email);
@@ -3748,7 +3742,7 @@ public class InterfazG extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void consultaAC(int position) {
+   private void consultaAC(int position) {
         areaTexto.setText("");
         String token = TFTokenAC.getText();
         int nSolicitudes = (Integer) CBNumberRAC.getValue();

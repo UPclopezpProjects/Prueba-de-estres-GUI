@@ -454,12 +454,16 @@ public class HiloNP implements Runnable {
             Logger.getLogger(HiloAuto.class.getName()).log(Level.SEVERE, null, ex);
         } catch (TimeoutException ex) {
             future.cancel(true);
-            /*carga.setVisible(false);
-            interfaz.setEnabled(true);
-            Respuesta.setNumeroCR();
-            Respuesta.setConsultaS("Hadn't response of server, perhaps the microservice is down" + "\n" + "\n", position);
-            caja.setText(Respuesta.getConsultaS(position).replace("null", ""));
-            dialogoCaja.setVisible(true);*/
+            if (type == "Auto") {
+                Respuesta.setNumeroNP();
+                Respuesta.setConsultaS("Hadn't response of server, perhaps the microservice is down" + "\n", position);
+            } else {
+                interfaz.setEnabled(true);
+                carga.setVisible(false);
+                Respuesta.setConsultaS("Hadn't response of server, perhaps the microservice is down" + "\n", position);
+                caja.setText(Respuesta.getConsultaS(position).replace("null", ""));
+                dialogoCaja.setVisible(true);
+            }
         } finally {
             executor.shutdown();
         }

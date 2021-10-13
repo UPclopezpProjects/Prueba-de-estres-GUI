@@ -6,7 +6,16 @@
 package companyName;
 
 import Interfaz.Respuesta;
+import Interfaz.StressTest.HiloAuto;
 import java.util.Random;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.TimeoutException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JTextArea;
@@ -67,7 +76,7 @@ public class HiloCN implements Runnable {
         //System.out.println("setToken: " + token);
     }
 
-    public void loop() {
+    public void loop() throws InterruptedException {
 
         if (typeConsulta == "Auto") {
             Company c = new Company(email(), companyName(), token, ip, generateStage(), position/*, caja*/);
@@ -138,6 +147,40 @@ public class HiloCN implements Runnable {
 
     @Override
     public void run() {
-        loop();
+        System.out.println("HiloAuto/antes del loop");
+        //loop1();
+
+        ExecutorService executor = Executors.newSingleThreadExecutor();
+        Future future = executor.submit(() -> {
+            try {
+                loop();
+            } catch (InterruptedException ex) {
+                Logger.getLogger(HiloAuto.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        });
+        try {
+            future.get(30, TimeUnit.SECONDS);
+        } catch (InterruptedException ex) {
+            Logger.getLogger(HiloAuto.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ExecutionException ex) {
+            Logger.getLogger(HiloAuto.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (TimeoutException ex) {
+            future.cancel(true);
+            if (typeConsulta == "Auto") {
+                Respuesta.setNumeroCompany();
+                Respuesta.setConsultaCompany("Hadn't response of server, perhaps the microservice is down" + "\n", position);
+            } else {
+                interfaz.setEnabled(true);
+                carga.setVisible(false);
+                Respuesta.setConsultaCompany("Hadn't response of server, perhaps the microservice is down" + "\n", position);
+                caja.setText(Respuesta.getConsultaCompany(position).replace("null", ""));
+                dialogoCaja.setVisible(true);
+            }
+
+        } finally {
+            executor.shutdown();
+        }
+
+        System.out.println("HiloAuto/después del loop");
     }
 }
