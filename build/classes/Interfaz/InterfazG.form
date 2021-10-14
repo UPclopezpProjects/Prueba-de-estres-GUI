@@ -578,7 +578,7 @@
               <Font name="Arial" size="20" style="0"/>
             </Property>
             <Property name="horizontalAlignment" type="int" value="0"/>
-            <Property name="text" type="java.lang.String" value="&lt;html&gt;&lt;body&gt;&#xa;The user gets the authorization code &lt;br&gt; after create a root user in root tab&#xa;&lt;/body&gt;&lt;/html&gt;"/>
+            <Property name="text" type="java.lang.String" value="&lt;html&gt;&lt;body&gt;&#xa;A token is required in this field. Token can be obtained requesting an authentication procedure in postman.&#xa;&lt;/body&gt;&lt;/html&gt;"/>
           </Properties>
         </Component>
       </SubComponents>
@@ -793,7 +793,7 @@
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="jLayeredPane1" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <Component id="BIniciar" alignment="1" pref="741" max="32767" attributes="0"/>
+                          <Component id="BIniciar" alignment="1" pref="748" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
@@ -863,7 +863,7 @@
                       <EmptySpace min="-2" max="-2" attributes="0"/>
                       <Component id="BIniciar" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jScrollPane2" pref="536" max="32767" attributes="0"/>
+                      <Component id="jScrollPane2" pref="540" max="32767" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -904,6 +904,9 @@
             </Component>
             <Component class="javax.swing.JComboBox" name="CBPassword">
               <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Arial" size="12" style="0"/>
+                </Property>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                   <StringArray count="2">
                     <StringItem index="0" value="[xx#x]"/>
@@ -920,6 +923,9 @@
             </Component>
             <Component class="javax.swing.JComboBox" name="CBServer">
               <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Arial" size="12" style="0"/>
+                </Property>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                   <StringArray count="0"/>
                 </Property>
@@ -981,6 +987,9 @@
             </Component>
             <Component class="javax.swing.JSpinner" name="SpinnerNS">
               <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Arial" size="12" style="0"/>
+                </Property>
                 <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
                   <SpinnerModel initial="5" maximum="100" minimum="1" numberType="java.lang.Integer" stepSize="1" type="number"/>
                 </Property>
@@ -996,6 +1005,9 @@
             </Component>
             <Component class="javax.swing.JComboBox" name="CBEmail">
               <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Arial" size="12" style="0"/>
+                </Property>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                   <StringArray count="2">
                     <StringItem index="0" value="[x]_[x]@[x].[x].com"/>
@@ -1098,6 +1110,9 @@
                 </Component>
                 <Component class="javax.swing.JSpinner" name="sAgenteH">
                   <Properties>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="Arial" size="12" style="0"/>
+                    </Property>
                     <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
                       <SpinnerModel initial="50" maximum="100" minimum="1" numberType="java.lang.Integer" stepSize="1" type="number"/>
                     </Property>
@@ -1122,6 +1137,9 @@
                 </Component>
                 <Component class="javax.swing.JSpinner" name="sEnvianA">
                   <Properties>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="Arial" size="12" style="0"/>
+                    </Property>
                     <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
                       <SpinnerModel initial="30" maximum="100" minimum="1" numberType="java.lang.Integer" stepSize="1" type="number"/>
                     </Property>
@@ -1137,6 +1155,9 @@
                 </Component>
                 <Component class="javax.swing.JSpinner" name="sEmpieza">
                   <Properties>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="Arial" size="12" style="0"/>
+                    </Property>
                     <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
                       <SpinnerModel initial="20" maximum="100" minimum="1" numberType="java.lang.Integer" stepSize="1" type="number"/>
                     </Property>
@@ -1166,9 +1187,17 @@
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="TFPublicK">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Arial" size="12" style="0"/>
+                </Property>
+              </Properties>
             </Component>
             <Component class="javax.swing.JComboBox" name="CBFatherS">
               <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Arial" size="12" style="0"/>
+                </Property>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                   <StringArray count="5">
                     <StringItem index="0" value="[x]"/>
@@ -1185,6 +1214,9 @@
             </Component>
             <Component class="javax.swing.JComboBox" name="CBMotherS">
               <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Arial" size="12" style="0"/>
+                </Property>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                   <StringArray count="5">
                     <StringItem index="0" value="[x]"/>
@@ -1201,6 +1233,9 @@
             </Component>
             <Component class="javax.swing.JComboBox" name="CBName">
               <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Arial" size="12" style="0"/>
+                </Property>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                   <StringArray count="5">
                     <StringItem index="0" value="[x]"/>
@@ -1321,19 +1356,9 @@
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" alignment="0" attributes="0">
-                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                          <Group type="102" attributes="0">
-                                              <Component id="jButton3" min="-2" pref="20" max="-2" attributes="0"/>
-                                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                                              <Component id="jLabel34" min="-2" max="-2" attributes="0"/>
-                                          </Group>
-                                          <Group type="102" attributes="0">
-                                              <Component id="jButton4" min="-2" pref="20" max="-2" attributes="0"/>
-                                              <EmptySpace max="32767" attributes="0"/>
-                                              <Component id="jLabel10" min="-2" max="-2" attributes="0"/>
-                                          </Group>
-                                      </Group>
-                                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                      <Component id="jButton4" min="-2" pref="20" max="-2" attributes="0"/>
+                                      <EmptySpace max="32767" attributes="0"/>
+                                      <Component id="jLabel10" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <Group type="102" alignment="1" attributes="0">
                                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
@@ -1342,6 +1367,11 @@
                                           <Component id="jLabel26" alignment="1" min="-2" max="-2" attributes="0"/>
                                           <Component id="jLabel28" alignment="1" min="-2" max="-2" attributes="0"/>
                                       </Group>
+                                  </Group>
+                                  <Group type="102" attributes="0">
+                                      <Component id="jButton3" min="-2" pref="20" max="-2" attributes="0"/>
+                                      <EmptySpace pref="52" max="32767" attributes="0"/>
+                                      <Component id="jLabel34" min="-2" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
@@ -1448,7 +1478,7 @@
                           <Component id="jScrollPane6" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jScrollPane3" pref="436" max="32767" attributes="0"/>
+                      <Component id="jScrollPane3" pref="445" max="32767" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -1819,6 +1849,9 @@
             </Component>
             <Component class="javax.swing.JComboBox" name="CBServer1">
               <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Arial" size="12" style="0"/>
+                </Property>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                   <StringArray count="0"/>
                 </Property>
@@ -2127,6 +2160,9 @@
             </Component>
             <Component class="javax.swing.JTextField" name="TFGasUC">
               <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Arial" size="12" style="0"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="900000"/>
               </Properties>
             </Component>
@@ -2238,7 +2274,7 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jButton1" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jScrollPane7" pref="635" max="32767" attributes="0"/>
+                      <Component id="jScrollPane7" pref="645" max="32767" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -2279,6 +2315,11 @@
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="TFTokenAC">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Arial" size="12" style="0"/>
+                </Property>
+              </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel69">
               <Properties>
@@ -2290,6 +2331,9 @@
             </Component>
             <Component class="javax.swing.JSpinner" name="CBNumberRAC">
               <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Arial" size="12" style="0"/>
+                </Property>
                 <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
                   <SpinnerModel initial="5" maximum="100" minimum="1" numberType="java.lang.Integer" stepSize="1" type="number"/>
                 </Property>
@@ -2305,6 +2349,9 @@
             </Component>
             <Component class="javax.swing.JComboBox" name="CBServerAC">
               <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Arial" size="12" style="0"/>
+                </Property>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                   <StringArray count="0"/>
                 </Property>
@@ -2345,6 +2392,11 @@
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="TFEmailAC">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Arial" size="12" style="0"/>
+                </Property>
+              </Properties>
             </Component>
             <Component class="javax.swing.JButton" name="jButton5">
               <Properties>
@@ -2358,6 +2410,9 @@
             </Component>
             <Component class="javax.swing.JButton" name="jButton6">
               <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Arial" size="12" style="0"/>
+                </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/Interfaz/informacion.png"/>
                 </Property>
@@ -2425,7 +2480,7 @@
                                   <Component id="RBRequestsANS" alignment="1" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jScrollPane4" pref="516" max="32767" attributes="0"/>
+                              <Component id="jScrollPane4" pref="523" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
@@ -2493,7 +2548,7 @@
                               <Component id="jScrollPane8" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="jButton2" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace pref="303" max="32767" attributes="0"/>
+                              <EmptySpace pref="309" max="32767" attributes="0"/>
                           </Group>
                           <Component id="jScrollPane4" max="32767" attributes="0"/>
                       </Group>
@@ -2655,6 +2710,9 @@
                     </Component>
                     <Component class="javax.swing.JSpinner" name="SHonestAgentNP">
                       <Properties>
+                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                          <Font name="Arial" size="12" style="0"/>
+                        </Property>
                         <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
                           <SpinnerModel initial="70" maximum="100" minimum="1" numberType="java.lang.Integer" stepSize="1" type="number"/>
                         </Property>
@@ -2662,6 +2720,9 @@
                     </Component>
                     <Component class="javax.swing.JSpinner" name="SDishonestAgentNP">
                       <Properties>
+                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                          <Font name="Arial" size="12" style="0"/>
+                        </Property>
                         <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
                           <SpinnerModel initial="30" maximum="100" minimum="1" numberType="java.lang.Integer" stepSize="1" type="number"/>
                         </Property>
@@ -2889,11 +2950,13 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
+                  <Group type="102" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jScrollPane5" pref="741" max="32767" attributes="0"/>
+                          <Component id="jScrollPane5" pref="748" max="32767" attributes="0"/>
                           <Group type="102" attributes="0">
+                              <Component id="jLabel83" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
                               <Component id="TFConfiguration" min="-2" pref="167" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Component id="BTAgregar" min="-2" max="-2" attributes="0"/>
@@ -2901,6 +2964,11 @@
                               <Component id="BTEliminar" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Component id="BTModificar" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="jLabel82" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="SPLimitT" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
@@ -2916,9 +2984,12 @@
                           <Component id="BTEliminar" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="BTAgregar" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="BTModificar" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel83" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel82" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="SPLimitT" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jScrollPane5" pref="709" max="32767" attributes="0"/>
+                      <Component id="jScrollPane5" pref="719" max="32767" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -2926,6 +2997,11 @@
           </Layout>
           <SubComponents>
             <Component class="javax.swing.JTextField" name="TFConfiguration">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Arial" size="12" style="0"/>
+                </Property>
+              </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="TFConfigurationActionPerformed"/>
               </Events>
@@ -2939,9 +3015,12 @@
               <SubComponents>
                 <Component class="javax.swing.JTable" name="TBDirecciones">
                   <Properties>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="Arial" size="12" style="0"/>
+                    </Property>
                     <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                       <Table columnCount="1" rowCount="1">
-                        <Column editable="true" title="Direcci&#xf3;n IP" type="java.lang.String"/>
+                        <Column editable="true" title="IP Address" type="java.lang.String"/>
                       </Table>
                     </Property>
                   </Properties>
@@ -2953,7 +3032,10 @@
             </Container>
             <Component class="javax.swing.JButton" name="BTEliminar">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Eliminar"/>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Arial" size="12" style="0"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Delete"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BTEliminarActionPerformed"/>
@@ -2961,7 +3043,10 @@
             </Component>
             <Component class="javax.swing.JButton" name="BTAgregar">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Agregar"/>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Arial" size="12" style="0"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Add"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BTAgregarActionPerformed"/>
@@ -2969,11 +3054,37 @@
             </Component>
             <Component class="javax.swing.JButton" name="BTModificar">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Modificar"/>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Arial" size="12" style="0"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Modify"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BTModificarActionPerformed"/>
               </Events>
+            </Component>
+            <Component class="javax.swing.JLabel" name="jLabel82">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Arial" size="12" style="0"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Limit time for request:"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="jLabel83">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Arial" size="12" style="0"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="New ip address:"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JSpinner" name="SPLimitT">
+              <Properties>
+                <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
+                  <SpinnerModel initial="60" maximum="200" minimum="1" numberType="java.lang.Integer" stepSize="1" type="number"/>
+                </Property>
+              </Properties>
             </Component>
           </SubComponents>
         </Container>
@@ -3020,7 +3131,7 @@
                       <Component id="jLabel71" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jLabel67" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="555" max="32767" attributes="0"/>
+                      <EmptySpace pref="565" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>

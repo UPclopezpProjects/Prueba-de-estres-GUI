@@ -94,9 +94,10 @@ public final class AgentsHonest extends Hilo {
 
                         //System.out.println("el tipo de dato del message es: "+((Object)message).getClass().getSimpleName());
                         if (message.equals("deny")) {
-                            //System.out.println("AgentsHonest/getInitialNonce/message: "+message);
+                            System.out.println("AgentsHonest/getInitialNonce/message: "+message);
                             userCreation("null", "null", randomNumber, position);
                         } else {
+                            System.out.println("AgentsHonest/getInitialNonce/message: "+message);
                             String session = jsonObject.get("A").toString();
                             String na = jsonObject.get("NA").toString();
                             String nb = jsonObject.get("NB").toString();
@@ -118,7 +119,7 @@ public final class AgentsHonest extends Hilo {
     }
 
     public void userCreation(String token, String session, double randomNumber, int position) {
-        //System.out.print(token);
+        System.out.print("Inició userCration()");
         String[] firstname = {"firstname1", "firstname2", "firstname3", "firstname4", "firstname5",
             "firstname6", "firstname7", "firstname8", "firstname9", "firstname10"};
         String[] lastname = {"lastname1", "lastname2", "lastname3", "lastname4", "lastname5",
@@ -194,7 +195,7 @@ public final class AgentsHonest extends Hilo {
                         endTime = (BigDecimal) jsonObject.get("endTime");
                         BigDecimal duracion = endTime.subtract(startTime);
                         Respuesta.setConsultaRoot("El servidor terminó la consulta del agente honesto número " + position + " en:" + endTime + "\n", position);
-                        Respuesta.setConsultaRoot("El tiempo que le tomó al servidor procesar la consulta fue: "+duracion+" milisegundos \n",position);
+                        Respuesta.setConsultaRoot("El tiempo que le tomó al servidor procesar la consulta fue: "+duracion+" segundos \n",position);
                     }
                     intentar = false;
                 }

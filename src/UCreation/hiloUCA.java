@@ -22,7 +22,8 @@ import javax.swing.JTextArea;
  *
  * @author frank
  */
-public class hiloUCA implements Runnable{
+public class hiloUCA implements Runnable {
+
     private String email;
     private String password;
     private String typeU;
@@ -40,6 +41,11 @@ public class hiloUCA implements Runnable{
     private String dp;
     private String gas;
     private int position;
+    private int tiempoL;
+
+    public void setTiempoL(int tiempoL) {
+        this.tiempoL = tiempoL;
+    }
 
     public void setPosition(int position) {
         this.position = position;
@@ -48,7 +54,7 @@ public class hiloUCA implements Runnable{
     public void setGas(String gas) {
         this.gas = gas;
     }
-    
+
     public void setDp(String dp) {
         this.dp = dp;
     }
@@ -118,20 +124,19 @@ public class hiloUCA implements Runnable{
     public void loop1() throws InterruptedException {
         if (typeConsult == "Honest") {
             //System.out.println();
-            HonestAgent h = new HonestAgent(email, password, typeU, adressU, authorization, fatherS, name, motherS, nRequest, aHonest, aDishonest, typeConsult, ip, /*caja, */dp, gas, position);
+            HonestAgent h = new HonestAgent(email, password, typeU, adressU, authorization, fatherS, name, motherS, nRequest, aHonest, aDishonest, typeConsult, ip, /*caja, */ dp, gas, position);
             Respuesta.setNumeroCU();
         } else {
             if (typeConsult == "Dishonest A") {
-                DishonestAgentA d = new DishonestAgentA(email, password, typeU, adressU, authorization, fatherS, name, motherS, nRequest, aHonest, aDishonest, typeConsult, ip, /*caja, */dp, gas, position);
+                DishonestAgentA d = new DishonestAgentA(email, password, typeU, adressU, authorization, fatherS, name, motherS, nRequest, aHonest, aDishonest, typeConsult, ip, /*caja, */ dp, gas, position);
                 Respuesta.setNumeroCU();
             } else {
                 if (typeConsult == "Dishonest B") {
-                    DishonestAgentB d = new DishonestAgentB(email, password, typeU, adressU, authorization, fatherS, name, motherS, nRequest, aHonest, aDishonest, typeConsult, ip, /*caja, */dp, gas, position);
+                    DishonestAgentB d = new DishonestAgentB(email, password, typeU, adressU, authorization, fatherS, name, motherS, nRequest, aHonest, aDishonest, typeConsult, ip, /*caja, */ dp, gas, position);
                     Respuesta.setNumeroCU();
                 }
             }
         }
-        
         System.out.println();
     }
 
@@ -201,22 +206,23 @@ public class hiloUCA implements Runnable{
         int numero = (int) (Math.random() * 10 + 1);
         return numero;
     }
-    
+
     @Override
     public void run() {
         System.out.println("HiloAuto/antes del loop");
         //loop1();
 
-            ExecutorService executor = Executors.newSingleThreadExecutor();
-            Future future = executor.submit(() -> {
-        try {
-            loop1();
-        } catch (InterruptedException ex) {
-            Logger.getLogger(hiloUCA.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        ExecutorService executor = Executors.newSingleThreadExecutor();
+        Future future = executor.submit(() -> {
+            try {
+                loop1();
+            } catch (InterruptedException ex) {
+                Logger.getLogger(hiloUCA.class.getName()).log(Level.SEVERE, null, ex);
+            }
         });
         try {
-            future.get(30, TimeUnit.SECONDS);
+            future.get(tiempoL, TimeUnit.SECONDS);
+            System.out.println(tiempoL);
         } catch (InterruptedException ex) {
             Logger.getLogger(HiloAuto.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ExecutionException ex) {
@@ -225,11 +231,11 @@ public class hiloUCA implements Runnable{
             future.cancel(true);
             Respuesta.setNumeroCU();
             Respuesta.setConsultaUC("Hadn't response of server, perhaps the microservice is down" + "\n", position);
-        } finally{
+        } finally {
             executor.shutdown();
         }
-            
+
         System.out.println("hiloUCA/después del loop");
     }
-    
+
 }

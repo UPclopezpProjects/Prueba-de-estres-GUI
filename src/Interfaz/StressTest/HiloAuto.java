@@ -45,10 +45,15 @@ public class HiloAuto implements Runnable {
     private String dp;
     private int position;
     private String respuestas[];
+    private int tiempoL;
 
     private int aHonesto;
     private int aEnviarA;
     private int aEmpieza;
+
+    public void setTiempoL(int tiempoL) {
+        this.tiempoL = tiempoL;
+    }
 
     public String[] getRespuestas() {
         return respuestas;
@@ -219,7 +224,7 @@ public class HiloAuto implements Runnable {
                 }
             });
         try {
-            future.get(30, TimeUnit.SECONDS);
+            future.get(tiempoL, TimeUnit.SECONDS);
         } catch (InterruptedException ex) {
             Logger.getLogger(HiloAuto.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ExecutionException ex) {

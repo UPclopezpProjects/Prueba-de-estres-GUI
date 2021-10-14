@@ -75,7 +75,7 @@ public final class AgentsStartAnyStep extends Hilo {
             Calendar ahora1 = Calendar.getInstance();
             t1 = ahora1.getTimeInMillis();
             //System.out.println("El agente deshonesto número " + position + " empieza en algún paso empezó en: " + t1);
-            Respuesta.setConsultaRoot("El agente deshonesto número " + position + " empieza en algún paso empezó en: " + t1+"\n", position);
+            Respuesta.setConsultaRoot("El agente deshonesto número " + position + " empieza en algún paso empezó en: " + t1 + "\n", position);
 
             InputStream stdIn = proc.getInputStream();
             InputStreamReader isr = new InputStreamReader(stdIn);
@@ -96,7 +96,7 @@ public final class AgentsStartAnyStep extends Hilo {
                         Respuesta.setConsultaRoot(response + "\n", position);
                         startTime = (BigDecimal) jsonObject.get("startTime");
                         Respuesta.setConsultaRoot("El servidor empezó la consulta del agente deshonesto que se salta algún paso, número " + position + " en: " + startTime + "\n", position);
-                        
+
                         String message = jsonObject.get("message").toString();
                         //System.out.println("el tipo de dato del message es: " + ((Object) message).getClass().getSimpleName());
                         if (message.equals("deny")) {
@@ -185,15 +185,13 @@ public final class AgentsStartAnyStep extends Hilo {
                 Calendar ahora1 = Calendar.getInstance();
                 t1 = ahora1.getTimeInMillis();
                 //System.out.println("El agente deshonesto número " + position + " empieza en algún paso empezó(userCreation) en: " + t1);
-                Respuesta.setConsultaRoot("El agente deshonesto número " + position + " empieza en algún paso empezó(userCreation) en: " + t1+"\n", position);
+                Respuesta.setConsultaRoot("El agente deshonesto número " + position + " empieza en algún paso empezó(userCreation) en: " + t1 + "\n", position);
             }
-            
-            //y si 
 
+            //y si 
             InputStream stdIn = proc.getInputStream();
             InputStreamReader isr = new InputStreamReader(stdIn);
             BufferedReader br = new BufferedReader(isr);
-            
 
             //System.out.println("<OUTPUT2>");
             Boolean intentar = true;
@@ -207,25 +205,29 @@ public final class AgentsStartAnyStep extends Hilo {
                         String strDate4 = sdf4.format(now4);
                         response = "Root/AgentsStartAnyStep/userCreation <-- Date: " + strDate4 + "; Response: " + line;
                         //System.out.println(response+", "+position);
+                        if (startTime == null) {
+                            startTime = (BigDecimal) jsonObject.get("startTime");
+                            Respuesta.setConsultaRoot("El servidor empezó la consulta del agente deshonesto que se salta algún paso, número " + position + " en: " + startTime + "\n", position);
+                        }
                         Respuesta.setConsultaRoot(response + "\n", position);
                         endTime = (BigDecimal) jsonObject.get("endTime");
                         BigDecimal duracion = endTime.subtract(startTime);
                         Respuesta.setConsultaRoot("El servidor terminó la consulta del agente deshonesto que se salta algún paso, número " + position + " en:" + endTime + "\n", position);
-                        Respuesta.setConsultaRoot("El tiempo que le tomó al servidor procesar la consulta fue: "+duracion+" milisegundos \n",position);
+                        Respuesta.setConsultaRoot("El tiempo que le tomó al servidor procesar la consulta fue: " + duracion + " segundos \n", position);
                     }
                     intentar = false;
                 }
             }
-            
+
             //termina la consulta
             Calendar ahora2 = Calendar.getInstance();
             t2 = ahora2.getTimeInMillis();
             //System.out.println("El agente deshonesto número " + position + " empieza en algún paso terminó(userCreation) en: " + t2);
-            Respuesta.setConsultaRoot("El agente deshonesto número " + position + " empieza en algún paso terminó(userCreation) en: " + t2+"\n", position);
+            Respuesta.setConsultaRoot("El agente deshonesto número " + position + " empieza en algún paso terminó(userCreation) en: " + t2 + "\n", position);
             dif = t2 - t1;
             //System.out.println("El agente deshonesto número " + position + " que empieza en algún paso ha tardado: " + dif + " milisegundos \n");
             Respuesta.setConsultaRoot("El agente deshonesto número " + position + " que empieza en algún paso ha tardado: " + dif + " milisegundos \n", position);
-            
+
             //System.out.println("</OUTPUT2>");
             int exitVal = proc.waitFor();
             //System.out.println("Process exitValue: " + exitVal);

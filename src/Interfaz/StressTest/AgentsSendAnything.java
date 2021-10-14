@@ -203,7 +203,7 @@ public final class AgentsSendAnything extends Hilo {
                         endTime = (BigDecimal) jsonObject.get("endTime");
                         BigDecimal duracion = endTime.subtract(startTime);
                         Respuesta.setConsultaRoot("El servidor terminó la consulta del agente deshonesto que envía algo, número " + position + " en:" + endTime + "\n", position);
-                        Respuesta.setConsultaRoot("El tiempo que le tomó al servidor procesar la consulta fue: "+duracion+" milisegundos \n",position);
+                        Respuesta.setConsultaRoot("El tiempo que le tomó al servidor procesar la consulta fue: "+duracion+" segundos \n",position);
                     }
                     intentar = false;
                 }

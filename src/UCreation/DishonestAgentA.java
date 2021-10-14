@@ -97,25 +97,7 @@ public class DishonestAgentA {
             String hashX = MD5.getMd5(jsonData);
             //System.out.println("hashX: " + hashX);
 
-            /*caja.append("EMAIL: " + email + "\n");
-            caja.append("PASSWORD: " + password + "\n");
-            caja.append("SURNAME A: " + surnameA + "\n");
-            caja.append("SURNAME B: " + surnameB + "\n");
-            caja.append("NAME OF USER: " + nameOfUser + "\n");
-            caja.append("TYPE OF USER: " + typeOfUser + "\n");
-            caja.append("ADRESS U: " + addressU + "\n");
-            caja.append("AUTHORIZATION: " + authorization + "\n");
-            caja.append("DP: " + dp + "\n");
-            caja.append("STATUS: " + status + "\n");
-            caja.append("CREATION DATE: " + creationDate + "\n");
-            caja.append("JSON DATA: " + jsonData + "\n");
-            caja.append("TYPE OF OPERATION: " + typeOfOperation + "\n");
-            caja.append("HASH X: " + hashX + "\n");
-            caja.append("NAME OF OPERATION: " + nameOfOperation + "\n");
-            caja.append("IP: " + ip + "\n");
-            caja.append("\n");*/
-
-            //if (position != -1) {
+            
                 Respuesta.setConsultaUC("EMAIL: " + email + "\n", position);
                 Respuesta.setConsultaUC("PASSWORD: " + password + "\n", position);
                 Respuesta.setConsultaUC("SURNAME A: " + surnameA + "\n", position);

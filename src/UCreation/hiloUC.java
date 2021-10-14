@@ -47,6 +47,11 @@ public class hiloUC implements Runnable {
     private JDialog carga;
     private int position;
     private JDialog dialogoCaja;
+    private int tiempoL;
+
+    public void setTiempoL(int tiempoL) {
+        this.tiempoL = tiempoL;
+    }
 
     public void setDialogoCaja(JDialog dialogoCaja) {
         this.dialogoCaja = dialogoCaja;
@@ -262,7 +267,7 @@ public class hiloUC implements Runnable {
             }
         });
         try {
-            future.get(30, TimeUnit.SECONDS);
+            future.get(tiempoL, TimeUnit.SECONDS);
         } catch (InterruptedException ex) {
             Logger.getLogger(HiloAuto.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ExecutionException ex) {

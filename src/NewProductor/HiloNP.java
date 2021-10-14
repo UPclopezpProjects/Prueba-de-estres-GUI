@@ -52,6 +52,11 @@ public class HiloNP implements Runnable {
     private JDialog carga;
     private int position;
     private JDialog dialogoCaja;
+    private int tiempoL;
+
+    public void setTiempoL(int tiempoL) {
+        this.tiempoL = tiempoL;
+    }
 
     public void setInterfaz(JFrame interfaz) {
         System.out.println("HiloNP/setInterfaz");
@@ -213,105 +218,111 @@ public class HiloNP implements Runnable {
                 }
             }
         } else {
-            if (typeConsult == "Honest") {
-
-                if (currentS == "Carrier") {
-                    System.out.println("HiloNP/Agente honesto 1");
-                    interfaz.setEnabled(false);
-                    carga.setVisible(true);
-                    HonestAgentNP honesto = new HonestAgentNP(fId, ubication, nameProduction, previousS, currentS, image, description, code, driverName, origin, destination, plates, productPhotos, vehiclePhotos, tracking, token, ip, /*caja, */ position);
-                    //Respuesta.setNumeroNP();
-                    carga.setVisible(false);
-                    interfaz.setEnabled(true);
-                    caja.setText(Respuesta.getConsultaS(position).replace("null", ""));
-                    dialogoCaja.setVisible(true);
-                }
-
-                if (currentS == "Productor") {
-                    System.out.println("HiloNP/Agente honesto 2");
-                    interfaz.setEnabled(false);
-                    carga.setVisible(true);
-                    HonestAgentNP honesto = new HonestAgentNP(ubication, harvestD, caducationD, description, fId, nameProduction, previousS, currentS, code, image, ip, /*caja, */ token, position);
-                    //Respuesta.setNumeroNP();
-                    carga.setVisible(false);
-                    interfaz.setEnabled(true);
-                    caja.setText(Respuesta.getConsultaS(position).replace("null", ""));
-                    dialogoCaja.setVisible(true);
-                }
-
-                if (currentS == "Acopio") {
-                    System.out.println("HiloNP/Agente honesto 3");
-                    interfaz.setEnabled(false);
-                    carga.setVisible(true);
-                    HonestAgentNP honesto = new HonestAgentNP(fId, ubication, nameAcopio(), previousS, currentS, image, description, code, arrivalDate(), quantity(), "KG", whoReceives(), token, ip, /*caja, */ position);
-                    //Respuesta.setNumeroNP();
-                    carga.setVisible(false);
-                    interfaz.setEnabled(true);
-                    caja.setText(Respuesta.getConsultaS(position).replace("null", ""));
-                    dialogoCaja.setVisible(true);
-                }
-
-                if (currentS == "Merchant") {
-                    System.out.println("HiloNP/Agente honesto 4");
-                    interfaz.setEnabled(false);
-                    carga.setVisible(true);
-                    HonestAgentNP honesto = new HonestAgentNP(fId, ubication, nameMerchant(), previousS, currentS, image, description, code, arrivalDate(), quantity(), token, ip, caja, position);
-                    //Respuesta.setNumeroNP();
-                    carga.setVisible(false);
-                    interfaz.setEnabled(true);
-                    caja.setText(Respuesta.getConsultaS(position).replace("null", ""));
-                    dialogoCaja.setVisible(true);
-                }
-
+            if (Respuesta.getConsultaS(position) != null) {
+                caja.setText(Respuesta.getConsultaS(position).replace("null", ""));
+                dialogoCaja.setVisible(true);
             } else {
-                if (currentS == "Carrier") {
-                    System.out.println("HiloNP/Agente deshonesto 1");
-                    interfaz.setEnabled(false);
-                    carga.setVisible(true);
-                    DishonestAgentNP dishonest = new DishonestAgentNP(fId, ubication, nameProduction, previousS, currentS, image, description, code, driverName, origin, destination, plates, productPhotos, vehiclePhotos, tracking, generateFakeToken(), ip, /*caja, */ position);
-                    //Respuesta.setNumeroNP();
-                    carga.setVisible(false);
-                    interfaz.setEnabled(true);
-                    caja.setText(Respuesta.getConsultaS(position).replace("null", ""));
-                    dialogoCaja.setVisible(true);
-                }
+                if (typeConsult == "Honest") {
 
-                if (currentS == "Productor") {
-                    System.out.println("HiloNP/Agente deshonesto 2");
-                    interfaz.setEnabled(false);
-                    carga.setVisible(true);
-                    DishonestAgentNP dishonest = new DishonestAgentNP(ubication, harvestD, caducationD, description, fId, nameProduction, previousS, currentS, code, image, ip, /*caja, */ generateFakeToken(), position);
-                    //Respuesta.setNumeroNP();
-                    carga.setVisible(false);
-                    interfaz.setEnabled(true);
-                    caja.setText(Respuesta.getConsultaS(position).replace("null", ""));
-                    dialogoCaja.setVisible(true);
-                }
+                    if (currentS == "Carrier") {
+                        System.out.println("HiloNP/Agente honesto 1");
+                        interfaz.setEnabled(false);
+                        carga.setVisible(true);
+                        HonestAgentNP honesto = new HonestAgentNP(fId, ubication, nameProduction, previousS, currentS, image, description, code, driverName, origin, destination, plates, productPhotos, vehiclePhotos, tracking, token, ip, /*caja, */ position);
+                        //Respuesta.setNumeroNP();
+                        carga.setVisible(false);
+                        interfaz.setEnabled(true);
+                        caja.setText(Respuesta.getConsultaS(position).replace("null", ""));
+                        dialogoCaja.setVisible(true);
+                    }
 
-                if (currentS == "Acopio") {
-                    System.out.println("HiloNP/Agente deshonesto 3");
-                    interfaz.setEnabled(false);
-                    carga.setVisible(true);
-                    DishonestAgentNP dishonesto = new DishonestAgentNP(fId, ubication, nameAcopio(), previousS, currentS, image, description, code, arrivalDate(), quantity(), "KG", whoReceives(), generateFakeToken(), ip, /*caja, */ position);
-                    //Respuesta.setNumeroNP();
-                    carga.setVisible(false);
-                    interfaz.setEnabled(true);
-                    caja.setText(Respuesta.getConsultaS(position).replace("null", ""));
-                    dialogoCaja.setVisible(true);
-                }
+                    if (currentS == "Productor") {
+                        System.out.println("HiloNP/Agente honesto 2");
+                        interfaz.setEnabled(false);
+                        carga.setVisible(true);
+                        HonestAgentNP honesto = new HonestAgentNP(ubication, harvestD, caducationD, description, fId, nameProduction, previousS, currentS, code, image, ip, /*caja, */ token, position);
+                        //Respuesta.setNumeroNP();
+                        carga.setVisible(false);
+                        interfaz.setEnabled(true);
+                        caja.setText(Respuesta.getConsultaS(position).replace("null", ""));
+                        dialogoCaja.setVisible(true);
+                    }
 
-                if (currentS == "Merchant") {
-                    System.out.println("HiloNP/Agente deshonesto 4");
-                    interfaz.setEnabled(false);
-                    carga.setVisible(true);
-                    DishonestAgentNP dishonesto = new DishonestAgentNP(fId, ubication, nameMerchant(), previousS, currentS, image, description, code, arrivalDate(), quantity(), generateFakeToken(), ip, caja, position);
-                    //Respuesta.setNumeroNP();
-                    carga.setVisible(false);
-                    interfaz.setEnabled(true);
-                    caja.setText(Respuesta.getConsultaS(position).replace("null", ""));
-                    dialogoCaja.setVisible(true);
+                    if (currentS == "Acopio") {
+                        System.out.println("HiloNP/Agente honesto 3");
+                        interfaz.setEnabled(false);
+                        carga.setVisible(true);
+                        HonestAgentNP honesto = new HonestAgentNP(fId, ubication, nameAcopio(), previousS, currentS, image, description, code, arrivalDate(), quantity(), "KG", whoReceives(), token, ip, /*caja, */ position);
+                        //Respuesta.setNumeroNP();
+                        carga.setVisible(false);
+                        interfaz.setEnabled(true);
+                        caja.setText(Respuesta.getConsultaS(position).replace("null", ""));
+                        dialogoCaja.setVisible(true);
+                    }
+
+                    if (currentS == "Merchant") {
+                        System.out.println("HiloNP/Agente honesto 4");
+                        interfaz.setEnabled(false);
+                        carga.setVisible(true);
+                        HonestAgentNP honesto = new HonestAgentNP(fId, ubication, nameMerchant(), previousS, currentS, image, description, code, arrivalDate(), quantity(), token, ip, caja, position);
+                        //Respuesta.setNumeroNP();
+                        carga.setVisible(false);
+                        interfaz.setEnabled(true);
+                        caja.setText(Respuesta.getConsultaS(position).replace("null", ""));
+                        dialogoCaja.setVisible(true);
+                    }
+
+                } else {
+                    if (currentS == "Carrier") {
+                        System.out.println("HiloNP/Agente deshonesto 1");
+                        interfaz.setEnabled(false);
+                        carga.setVisible(true);
+                        DishonestAgentNP dishonest = new DishonestAgentNP(fId, ubication, nameProduction, previousS, currentS, image, description, code, driverName, origin, destination, plates, productPhotos, vehiclePhotos, tracking, generateFakeToken(), ip, /*caja, */ position);
+                        //Respuesta.setNumeroNP();
+                        carga.setVisible(false);
+                        interfaz.setEnabled(true);
+                        caja.setText(Respuesta.getConsultaS(position).replace("null", ""));
+                        dialogoCaja.setVisible(true);
+                    }
+
+                    if (currentS == "Productor") {
+                        System.out.println("HiloNP/Agente deshonesto 2");
+                        interfaz.setEnabled(false);
+                        carga.setVisible(true);
+                        DishonestAgentNP dishonest = new DishonestAgentNP(ubication, harvestD, caducationD, description, fId, nameProduction, previousS, currentS, code, image, ip, /*caja, */ generateFakeToken(), position);
+                        //Respuesta.setNumeroNP();
+                        carga.setVisible(false);
+                        interfaz.setEnabled(true);
+                        caja.setText(Respuesta.getConsultaS(position).replace("null", ""));
+                        dialogoCaja.setVisible(true);
+                    }
+
+                    if (currentS == "Acopio") {
+                        System.out.println("HiloNP/Agente deshonesto 3");
+                        interfaz.setEnabled(false);
+                        carga.setVisible(true);
+                        DishonestAgentNP dishonesto = new DishonestAgentNP(fId, ubication, nameAcopio(), previousS, currentS, image, description, code, arrivalDate(), quantity(), "KG", whoReceives(), generateFakeToken(), ip, /*caja, */ position);
+                        //Respuesta.setNumeroNP();
+                        carga.setVisible(false);
+                        interfaz.setEnabled(true);
+                        caja.setText(Respuesta.getConsultaS(position).replace("null", ""));
+                        dialogoCaja.setVisible(true);
+                    }
+
+                    if (currentS == "Merchant") {
+                        System.out.println("HiloNP/Agente deshonesto 4");
+                        interfaz.setEnabled(false);
+                        carga.setVisible(true);
+                        DishonestAgentNP dishonesto = new DishonestAgentNP(fId, ubication, nameMerchant(), previousS, currentS, image, description, code, arrivalDate(), quantity(), generateFakeToken(), ip, caja, position);
+                        //Respuesta.setNumeroNP();
+                        carga.setVisible(false);
+                        interfaz.setEnabled(true);
+                        caja.setText(Respuesta.getConsultaS(position).replace("null", ""));
+                        dialogoCaja.setVisible(true);
+                    }
                 }
             }
+
         }
 
     }
@@ -447,7 +458,7 @@ public class HiloNP implements Runnable {
             }
         });
         try {
-            future.get(30, TimeUnit.SECONDS);
+            future.get(tiempoL, TimeUnit.SECONDS);
         } catch (InterruptedException ex) {
             Logger.getLogger(HiloAuto.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ExecutionException ex) {
@@ -470,5 +481,4 @@ public class HiloNP implements Runnable {
 
         System.out.println("HiloAuto/después del loop");
     }
-
 }

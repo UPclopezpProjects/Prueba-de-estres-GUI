@@ -23,10 +23,6 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JTextArea;
 
-/**
- *
- * @author frank
- */
 public class Hilo implements Runnable {
 
     private int email;
@@ -46,10 +42,15 @@ public class Hilo implements Runnable {
     private JDialog carga;
     private int position;
     private JDialog dialogoCaja;
+    private int tiempoL;
 
     private int aHonesto;
     private int aEnviarA;
     private int aEmpieza;
+
+    public void setTiempoL(int tiempoL) {
+        this.tiempoL = tiempoL;
+    }
 
     public void setDialogoCaja(JDialog dialogoCaja) {
         this.dialogoCaja = dialogoCaja;
@@ -145,6 +146,7 @@ public class Hilo implements Runnable {
     }
 
     public void loop1() throws InterruptedException {
+        System.out.println("Hilo/loop1");
         long t1, t2, dif;
         String cad;
 
@@ -244,11 +246,11 @@ public class Hilo implements Runnable {
         int numero = (int) (Math.random() * 10 + 1);
         return numero;
     }
-
+    
+    @Override
     public void run() {
         System.out.println("Hilo/antes del loop");
         //loop1();
-
         ExecutorService executor = Executors.newSingleThreadExecutor();
         Future future = executor.submit(() -> {
             try {
@@ -258,7 +260,7 @@ public class Hilo implements Runnable {
             }
         });
         try {
-            future.get(30, TimeUnit.SECONDS);
+            future.get(tiempoL, TimeUnit.SECONDS);
         } catch (InterruptedException ex) {
             Logger.getLogger(HiloAuto.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ExecutionException ex) {
@@ -274,6 +276,6 @@ public class Hilo implements Runnable {
             executor.shutdown();
         }
 
-        System.out.println("HiloAuto/después del loop");
+        System.out.println("Hilo/después del loop");
     }
 }

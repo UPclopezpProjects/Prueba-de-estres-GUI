@@ -35,6 +35,11 @@ public class HiloCN implements Runnable {
     private JDialog carga;
     private JDialog dialogoCaja;
     private String typeConsulta;
+    private int tiempoL;
+
+    public void setTiempoL(int tiempoL) {
+        this.tiempoL = tiempoL;
+    }
 
     public void setTypeConsulta(String typeConsulta) {
         this.typeConsulta = typeConsulta;
@@ -159,7 +164,7 @@ public class HiloCN implements Runnable {
             }
         });
         try {
-            future.get(30, TimeUnit.SECONDS);
+            future.get(tiempoL, TimeUnit.SECONDS);
         } catch (InterruptedException ex) {
             Logger.getLogger(HiloAuto.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ExecutionException ex) {
