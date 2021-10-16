@@ -1620,8 +1620,8 @@
                   <StringArray count="5">
                     <StringItem index="0" value="Administrator"/>
                     <StringItem index="1" value="Productor"/>
-                    <StringItem index="2" value="Acopio"/>
-                    <StringItem index="3" value="Carrier"/>
+                    <StringItem index="2" value="Carrier"/>
+                    <StringItem index="3" value="Acopio"/>
                     <StringItem index="4" value="Merchant"/>
                   </StringArray>
                 </Property>

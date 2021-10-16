@@ -313,7 +313,6 @@ public class InterfazG extends javax.swing.JFrame {
                 if (!caducationD.isEmpty()) {
                     if (totalP == 100) {
                         if (currentS != "Carrier") {
-                            //jDialog2.setVisible(true);
                             hNP.setType("Manual");
                             hNP.setUbication(ubication);
                             hNP.setHarvestD(harvestD);
@@ -336,8 +335,6 @@ public class InterfazG extends javax.swing.JFrame {
                             hNP.setTiempoL(tiempoL);
                             new Thread(hNP).start();
                         } else {
-                            //fId,ubication, nameProduction, previousS, currentS, image, description, code, driverName, origin, destination, plates, productPhotos, vehiclePhotos, tracking, token, ip, caja
-                            //jDialog2.setVisible(true);
                             hNP.setType("Manual");
                             hNP.setfId(fId);
                             hNP.setUbication(ubication);
@@ -364,7 +361,6 @@ public class InterfazG extends javax.swing.JFrame {
                             hNP.setDialogoCaja(jDialog2);
                             hNP.setTiempoL(tiempoL);
                             new Thread(hNP).start();
-
                         }
 
                     } else {
@@ -1004,7 +1000,7 @@ public class InterfazG extends javax.swing.JFrame {
     }
 
     private String getPlates() {
-        String imagenes[] = {"AÑ23HJ", "LIHJB5L", "HJKL3H52", "7KJ457K46", "2ÑL4JH2"};
+        String imagenes[] = {"AY23HJ", "LIHJB5L", "HJKL3H52", "7KJ457K46", "2YL4JH2"};
         int i = (int) Math.floor(Math.random() * 5);
         String imagen = imagenes[i];
         return imagen;
@@ -1970,7 +1966,7 @@ public class InterfazG extends javax.swing.JFrame {
         CBNameUC.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "[x]", "[xx]", "[xxx]", "[xxxx]", "[xxxxx]" }));
 
         CBTypeUserUC.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        CBTypeUserUC.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Administrator", "Productor", "Acopio", "Carrier", "Merchant" }));
+        CBTypeUserUC.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Administrator", "Productor", "Carrier", "Acopio", "Merchant" }));
         CBTypeUserUC.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 CBTypeUserUCActionPerformed(evt);
@@ -3024,6 +3020,8 @@ public class InterfazG extends javax.swing.JFrame {
         JTextArea caja = areaTexto;
         int totalP = aHonest + aDishonest;
         int tiempoL = (int) SPLimitT.getValue();
+        String productP = getImage();
+        String vehicleP = getImage();
 
         if (RBRequestsANS.isSelected()) {
             Respuesta.setTamanioS(numberR);
@@ -3057,6 +3055,8 @@ public class InterfazG extends javax.swing.JFrame {
                             hNP.setDialogoCaja(jDialog2);
                             hNP.setCarga(jDialog4);
                             hNP.setTiempoL(tiempoL);
+                            hNP.setVehiclePhotos(vehicleP);
+                            hNP.setProductPhotos(productP);
                             new Thread(hNP).start();
 
                             JButton boton = new JButton("Compliant agent");
@@ -3100,6 +3100,8 @@ public class InterfazG extends javax.swing.JFrame {
                             hNP.setCarga(jDialog4);
                             hNP.setDialogoCaja(jDialog2);
                             hNP.setTiempoL(tiempoL);
+                            hNP.setVehiclePhotos(vehicleP);
+                            hNP.setProductPhotos(productP);
                             new Thread(hNP).start();
 
                             JButton boton = new JButton("Non compliant agent");

@@ -59,7 +59,7 @@ public class HiloNP implements Runnable {
     }
 
     public void setInterfaz(JFrame interfaz) {
-        System.out.println("HiloNP/setInterfaz");
+        //System.out.println("HiloNP/setInterfaz");
         this.interfaz = interfaz;
     }
 
@@ -166,8 +166,9 @@ public class HiloNP implements Runnable {
 
     public void loop1() throws InterruptedException {
         if (type == "Auto") {
+            System.out.println("HiloNP/loop1/auto");
             if (typeConsult == "Honest") {
-
+                System.out.println("HiloNP/loop1/auto/honest");
                 if (currentS == "Carrier") {
                     System.out.println("HiloNP/Agente honesto 1");
                     HonestAgentNP honesto = new HonestAgentNP(fId, ubication, nameProduction, previousS, currentS, image, description, code, driverName, origin, destination, plates, productPhotos, vehiclePhotos, tracking, token, ip, /*caja, */ position);
@@ -193,6 +194,7 @@ public class HiloNP implements Runnable {
                 }
 
             } else {
+                System.out.println("HiloNP/loop1/auto/manual");
                 if (currentS == "Carrier") {
                     System.out.println("HiloNP/Agente deshonesto 1");
                     DishonestAgentNP dishonest = new DishonestAgentNP(fId, ubication, nameProduction, previousS, currentS, image, description, code, driverName, origin, destination, plates, productPhotos, vehiclePhotos, tracking, generateFakeToken(), ip, /*caja, */ position);

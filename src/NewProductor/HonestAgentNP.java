@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package NewProductor;
 
 import Interfaz.MD5;
@@ -75,6 +70,7 @@ public class HonestAgentNP {
     public HonestAgentNP(String fId, String ubication, String nameProduction, String previousStage, String currentStage,
             String image, String description, String code, String driverName, String origin, String destination, String plates,
             String productPhotos, String vehiclePhotos, String tracking, String token, String ip, /*JTextArea caja,*/ int position) {
+        System.out.println("HonestAgentNP/constructor de carrier");
         this.fId = fId;
         this.ubication = ubication;
         this.nameProduction = nameProduction;
@@ -216,6 +212,8 @@ public class HonestAgentNP {
 
             //String rootCreation2 = "curl -F \"fid=" + fId + "\" -F \"ubication=" + ubication + "\" -F \"name=" + nameProduction + "\" -F \"previousStage=" + previousS + "\" -F \"currentStage=" + currentS + "\" -F \"nameOfCompany=Transportadora de aguacates 3 S.A. de C.V." + "\" -F \"image=@" + image + "\" -F \"description=" + description + "\" -F \"code=" + code + "\" -F \"driverName=" + driverName + "\" -F \"origin=" + origin + "\" -F \"destination=" + destination + "\" -F \"plates=" + plates + "\" -F \"productPhotos=@" + productPhotos + "\" -F \"vehiclePhotos=@" + vehiclePhotos + "\" -F \"tracking=" + tracking + "\" -H \"Authorization:" + token + "\" -X POST http://" + ip + ":" + puerto + "/carriersData";
             String rootCreation2 = "curl -F \"fid=" + fId + "\" -F \"ubication=" + ubication + "\" -F \"name=" + nameProduction + "\" -F \"previousStage=" + previousS + "\" -F \"currentStage=" + currentS + "\" -F \"image=@" + image + "\" -F \"description=" + description + "\" -F \"code=" + code + "\" -F \"driverName=" + driverName + "\" -F \"origin=" + origin + "\" -F \"destination=" + destination + "\" -F \"plates=" + plates + "\" -F \"productPhotos=@" + productPhotos + "\" -F \"vehiclePhotos=@" + vehiclePhotos + "\" -F \"tracking=" + tracking + "\" -F \"hashX=" + hashX + "\" -H \"Authorization:" + token + "\" -X POST http://" + ip + ":" + puerto + "/carriersData";
+            System.out.println("HonestAgentNP/userCreationCarrier/request:"+rootCreation2);
+            
 
             SimpleDateFormat sdf3 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
             Date now3 = new Date();
