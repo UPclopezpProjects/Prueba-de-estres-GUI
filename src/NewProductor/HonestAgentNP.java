@@ -116,7 +116,7 @@ public class HonestAgentNP {
         userCreationAcopio(position);
     }
 
-    public HonestAgentNP(String fId, String ubication, String nameMerchant, String previousS, String currentS, String image, String description, String code, 
+    public HonestAgentNP(String fId, String ubication, String nameMerchant, String previousS, String currentS, String image, String description, String code,
             String arrivalDate, String quantity, String token, String ip, JTextArea caja, int position) {
         this.fId = fId;
         this.ubication = ubication;
@@ -146,22 +146,12 @@ public class HonestAgentNP {
             int randomNum2 = rand.nextInt(firstname.length);
             String documentation = "document.pdf";
 
-            String rootCreation = "curl -d \"fid=" + fId + "&"
-                    + "ubication=" + ubication + "&"
-                    + "name=" + nameProduction + "&"
-                    + "harvestDate=" + harvestD + "&"
-                    + "caducationDate=" + caducationD + "&"
-                    + "previousStage=" + previousS + "&"
-                    + "currentStage=" + currentS + "&"
-                    + "description=" + description + "&"
-                    + "documentation=" + documentation + "&"
-                    + "code=" + code + "\" "
-                    + "-F \"image=@" + image + "\" "
-                    + "-X POST http://" + ip + ":" + puerto + "/productorsData";
+            String jsonData = "{\"fid\":\"" + fId + "\",\"code\":\"" + code + "\",\"ubication\":\"" + ubication + "\",\"name\":\"" + nameProduction + "\",\"harvestDate\":\"" + harvestD + "\",\"caducationDate\":\"" + caducationD + "\",\"previousStage\":\"" + previousS + "\",\"currentStage\":\"" + currentS + "\",\"description\":\"" + description + "\",\"documentation\":\"" + documentation + "\"}";
+            String hashX = MD5.getMd5(jsonData);
 
-            //String rootCreation2 = "curl -F \"fid="+fId+"\" -F \"ubication="+ubication+"\" -F \"name="+nameProduction+"\" -F \"harvestDate="+harvestD+"\" -F \"caducationDate="+caducationD+"\" -F \"previousStage="+previousS+"\" -F \"currentStage="+currentS+"\" -F \"description="+description+"\" -F \"image=@"+image+"\" -F \"documentation=document.pdf\" -F \"nameOfCompany=Productora de aguacates 3 S.A. de C.V.\" -F \"code="+code+"\" -X POST http://"+ip+":80/productorsData";
-            String rootCreation2 = "curl -F \"fid=" + fId + "\" -F \"ubication=" + ubication + "\" -F \"name=" + nameProduction + "\" -F \"harvestDate=" + harvestD + "\" -F \"caducationDate=" + caducationD + "\" -F \"previousStage=" + previousS + "\" -F \"currentStage=" + currentS + "\" -F \"description=" + description + "\" -F \"image=@" + image + "\" -F \"documentation=document.pdf\" -F \"nameOfCompany=Productora de aguacates 3 S.A. de C.V.\" -F \"code=" + code + "\" -H \"Authorization:" + token + "\" -X POST http://" + ip + ":80/productorsData";
-
+            //String rootCreation2 = "curl -F \"fid=" + fId + "\" -F \"ubication=" + ubication + "\" -F \"name=" + nameProduction + "\" -F \"harvestDate=" + harvestD + "\" -F \"caducationDate=" + caducationD + "\" -F \"previousStage=" + previousS + "\" -F \"currentStage=" + currentS + "\" -F \"description=" + description + "\" -F \"image=@" + image + "\" -F \"documentation=document.pdf\" -F \"nameOfCompany=Productora de aguacates 3 S.A. de C.V.\" -F \"code=" + code + "\" -H \"Authorization:" + token + "\" -X POST http://" + ip + ":80/productorsData";
+            String rootCreation2 = "curl -F \"fid=" + fId + "\" -F \"ubication=" + ubication + "\" -F \"name=" + nameProduction + "\" -F \"harvestDate=" + harvestD + "\" -F \"caducationDate=" + caducationD + "\" -F \"previousStage=" + previousS + "\" -F \"currentStage=" + currentS + "\" -F \"description=" + description + "\" -F \"image=@" + image + "\" -F \"documentation=document.pdf\" -F \"code=" + code + "\" -F \"hashX=" + hashX + "\" -H \"Authorization:" + token + "\" -X POST http://" + ip + ":80/productorsData";
+            // 
             SimpleDateFormat sdf3 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
             Date now3 = new Date();
             String strDate3 = sdf3.format(now3);
@@ -169,7 +159,7 @@ public class HonestAgentNP {
             /*if (position == -1) {
                 caja.append(response + "\n");
             } else {*/
-                Respuesta.setConsultaS(response + "\n", position);
+            Respuesta.setConsultaS(response + "\n", position);
             //}
 
             //hace la petición como en CMD
@@ -193,7 +183,7 @@ public class HonestAgentNP {
                         /*if (position == -1) {
                             caja.append(response + "\n \n");
                         } else {*/
-                            Respuesta.setConsultaS(response + "\n", position);
+                        Respuesta.setConsultaS(response + "\n", position);
                         //}
 
                     }
@@ -218,10 +208,14 @@ public class HonestAgentNP {
             Random rand = new Random();
             int randomNum1 = rand.nextInt(firstname.length);
             int randomNum2 = rand.nextInt(firstname.length);
-            String documentation = "document.pdf";
 
-            //String rootCreation2 = "curl -F \"fid="+fId+"\" -F \"name="+nameProduction+"\" -F \"harvestDate="+harvestD+"\" -F \"caducationDate="+caducationD+"\" -F \"previousStage="+previousS+"\" -F \"currentStage="+currentS+"\" -F \"description="+description+"\" -F \"image=@"+image+"\" -F \"documentation=document.pdf\" -F \"nameOfCompany=Productora de aguacates 3 S.A. de C.V.\" -F \"code="+code+"\" -F \"origin="+origin+"\" -F \"destination="+destination+"\" -H \"Authorization:"+token+"\" -X POST http://"+ip+":80/productorsData";
-            String rootCreation2 = "curl -F \"fid=" + fId + "\" -F \"ubication=" + ubication + "\" -F \"name=" + nameProduction + "\" -F \"previousStage=" + previousS + "\" -F \"currentStage=" + currentS + "\" -F \"nameOfCompany=Transportadora de aguacates 3 S.A. de C.V." + "\" -F \"image=@" + image + "\" -F \"description=" + description + "\" -F \"code=" + code + "\" -F \"driverName=" + driverName + "\" -F \"origin=" + origin + "\" -F \"destination=" + destination + "\" -F \"plates=" + plates + "\" -F \"productPhotos=@" + productPhotos + "\" -F \"vehiclePhotos=@" + vehiclePhotos + "\" -F \"tracking=" + tracking + "\" -H \"Authorization:" + token + "\" -X POST http://" + ip + ":" + puerto + "/carriersData";
+            String jsonData = "{\"fid\":\"" + fId + "\",\"code\":\"" + code + "\",\"name\":\"" + nameProduction + "\",\"previousStage\":\"" + previousS + "\",\"currentStage\":\"" + currentS + "\",\"description\":\"" + description + "\",\"driverName\":\"" + driverName + "\",\"origin\":\"" + origin + "\",\"destination\":\"" + destination + "\",\"plates\":\"" + plates + "\",\"tracking\":\"" + tracking + "\"}";
+            System.out.println("NewPhase/jsonData: " + jsonData);
+            String hashX = MD5.getMd5(jsonData);
+            System.out.println("NewPhase/hash: " + hashX);
+
+            //String rootCreation2 = "curl -F \"fid=" + fId + "\" -F \"ubication=" + ubication + "\" -F \"name=" + nameProduction + "\" -F \"previousStage=" + previousS + "\" -F \"currentStage=" + currentS + "\" -F \"nameOfCompany=Transportadora de aguacates 3 S.A. de C.V." + "\" -F \"image=@" + image + "\" -F \"description=" + description + "\" -F \"code=" + code + "\" -F \"driverName=" + driverName + "\" -F \"origin=" + origin + "\" -F \"destination=" + destination + "\" -F \"plates=" + plates + "\" -F \"productPhotos=@" + productPhotos + "\" -F \"vehiclePhotos=@" + vehiclePhotos + "\" -F \"tracking=" + tracking + "\" -H \"Authorization:" + token + "\" -X POST http://" + ip + ":" + puerto + "/carriersData";
+            String rootCreation2 = "curl -F \"fid=" + fId + "\" -F \"ubication=" + ubication + "\" -F \"name=" + nameProduction + "\" -F \"previousStage=" + previousS + "\" -F \"currentStage=" + currentS + "\" -F \"image=@" + image + "\" -F \"description=" + description + "\" -F \"code=" + code + "\" -F \"driverName=" + driverName + "\" -F \"origin=" + origin + "\" -F \"destination=" + destination + "\" -F \"plates=" + plates + "\" -F \"productPhotos=@" + productPhotos + "\" -F \"vehiclePhotos=@" + vehiclePhotos + "\" -F \"tracking=" + tracking + "\" -F \"hashX=" + hashX + "\" -H \"Authorization:" + token + "\" -X POST http://" + ip + ":" + puerto + "/carriersData";
 
             SimpleDateFormat sdf3 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
             Date now3 = new Date();
@@ -230,7 +224,7 @@ public class HonestAgentNP {
             /*if (position == -1) {
                 caja.append(response + "\n");
             } else {*/
-                Respuesta.setConsultaS(response + "\n", position);
+            Respuesta.setConsultaS(response + "\n", position);
             //}
 
             //hace la petición como en CMD
@@ -254,7 +248,7 @@ public class HonestAgentNP {
                         /*if (position == -1) {
                             caja.append(response + "\n \n");
                         } else {*/
-                            Respuesta.setConsultaS(response + "\n", position);
+                        Respuesta.setConsultaS(response + "\n", position);
                         //}
 
                     }
@@ -281,8 +275,12 @@ public class HonestAgentNP {
             int randomNum2 = rand.nextInt(firstname.length);
             String documentation = "document.pdf";
 
-            //String rootCreation2 = "curl -F \"fid="+fId+"\" -F \"name="+nameProduction+"\" -F \"harvestDate="+harvestD+"\" -F \"caducationDate="+caducationD+"\" -F \"previousStage="+previousS+"\" -F \"currentStage="+currentS+"\" -F \"description="+description+"\" -F \"image=@"+image+"\" -F \"documentation=document.pdf\" -F \"nameOfCompany=Productora de aguacates 3 S.A. de C.V.\" -F \"code="+code+"\" -F \"origin="+origin+"\" -F \"destination="+destination+"\" -H \"Authorization:"+token+"\" -X POST http://"+ip+":80/productorsData";
-            String rootCreation2 = "curl -F \"fid=" + fId + "\" -F \"ubication=" + ubication + "\" -F \"name=" + nameAcopio + "\" -F \"previousStage=" + previousS + "\" -F \"currentStage=" + currentS + "\" -F \"nameOfCompany=Empresa Acopio" + "\" -F \"image=@" + image + "\" -F \"description=" + description + "\" -F \"code=" + code + "\" -F \"arrivalDate=" + arrivalDate + "\" -F \"clasification=Hass" + "\" -F \"quantity=" + quantity + "\" -F \"measure=" + measure + "\" -F \"whoReceives=" + whoReceives + "\" -H \"Authorization:" + token + "\" -X POST http://" + ip + ":" + puerto + "/acopiosDataIn";
+            String jsonData = "{\"fid\":\"" + fId + "\",\"code\":\"" + code + "\",\"ubication\":\"" + ubication + "\",\"name\":\"" + nameAcopio + "\",\"previousStage\":\"" + previousS + "\",\"currentStage\":\"" + currentS + "\",\"description\":\"" + description + "\",\"arrivalDate\":\"" + arrivalDate + "\",\"clasification\":\"" + "Hass" + "\",\"quantity\":\"" + quantity + "\",\"measure\":\"" + measure + "\",\"whoReceives\":\"" + whoReceives + "\"}";
+            System.out.println("NewPhase/userCreationAcopio/jsonData: " + jsonData);
+            String hashX = MD5.getMd5(jsonData);
+
+            //String rootCreation2 = "curl -F \"fid=" + fId + "\" -F \"ubication=" + ubication + "\" -F \"name=" + nameAcopio + "\" -F \"previousStage=" + previousS + "\" -F \"currentStage=" + currentS + "\" -F \"nameOfCompany=Empresa Acopio" + "\" -F \"image=@" + image + "\" -F \"description=" + description + "\" -F \"code=" + code + "\" -F \"arrivalDate=" + arrivalDate + "\" -F \"clasification=Hass" + "\" -F \"quantity=" + quantity + "\" -F \"measure=" + measure + "\" -F \"whoReceives=" + whoReceives + "\" -H \"Authorization:" + token + "\" -X POST http://" + ip + ":" + puerto + "/acopiosDataIn";
+            String rootCreation2 = "curl -F \"fid=" + fId + "\" -F \"ubication=" + ubication + "\" -F \"name=" + nameAcopio + "\" -F \"previousStage=" + previousS + "\" -F \"currentStage=" + currentS + "\" -F \"image=@" + image + "\" -F \"description=" + description + "\" -F \"code=" + code + "\" -F \"arrivalDate=" + arrivalDate + "\" -F \"clasification=Hass" + "\" -F \"quantity=" + quantity + "\" -F \"measure=" + measure + "\" -F \"whoReceives=" + whoReceives + "\" -F \"hashX=" + hashX + "\" -H \"Authorization:" + token + "\" -X POST http://" + ip + ":" + puerto + "/acopiosDataIn";
 
             SimpleDateFormat sdf3 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
             Date now3 = new Date();
@@ -291,8 +289,8 @@ public class HonestAgentNP {
             /*if (position == -1) {
                 caja.append(response + "\n");
             } else {*/
-                System.out.println("HonestAgentNP/userCreationAcopio/ response 1:" + response + ", position:" + position);
-                Respuesta.setConsultaS(response + "\n", position);
+            System.out.println("HonestAgentNP/userCreationAcopio/ response 1:" + response + ", position:" + position);
+            Respuesta.setConsultaS(response + "\n", position);
             //}
 
             //hace la petición como en CMD
@@ -316,8 +314,8 @@ public class HonestAgentNP {
                         /*if (position == -1) {
                             caja.append(response + "\n \n");
                         } else {*/
-                            System.out.println("HonestAgentNP/userCreationAcopio/ response 1:" + response + ", position:" + position);
-                            Respuesta.setConsultaS(response + "\n", position);
+                        System.out.println("HonestAgentNP/userCreationAcopio/ response 1:" + response + ", position:" + position);
+                        Respuesta.setConsultaS(response + "\n", position);
                         //}
 
                     }
@@ -343,9 +341,13 @@ public class HonestAgentNP {
             int randomNum1 = rand.nextInt(firstname.length);
             int randomNum2 = rand.nextInt(firstname.length);
             String documentation = "document.pdf";
+            
+            String jsonData = "{\"fid\":\"" + fId + "\",\"code\":\"" + code + "\",\"ubication\":\"" + ubication + "\",\"name\":\"" + nameMerchant + "\",\"previousStage\":\"" + previousS + "\",\"currentStage\":\"" + currentS + "\",\"description\":\"" + description + "\",\"arrivalDate\":\"" + arrivalDate + "\",\"quantity\":\"" + quantity + "\"}";
+            System.out.println("NewPhase/userCreationMerchant/jsonData: " + jsonData);
+            String hashX = MD5.getMd5(jsonData);
 
             //String rootCreation2 = "curl -F \"fid="+fId+"\" -F \"name="+nameProduction+"\" -F \"harvestDate="+harvestD+"\" -F \"caducationDate="+caducationD+"\" -F \"previousStage="+previousS+"\" -F \"currentStage="+currentS+"\" -F \"description="+description+"\" -F \"image=@"+image+"\" -F \"documentation=document.pdf\" -F \"nameOfCompany=Productora de aguacates 3 S.A. de C.V.\" -F \"code="+code+"\" -F \"origin="+origin+"\" -F \"destination="+destination+"\" -H \"Authorization:"+token+"\" -X POST http://"+ip+":80/productorsData";
-            String rootCreation2 = "curl -F \"fid=" + fId + "\" -F \"ubication=" + ubication + "\" -F \"name=" + nameMerchant + "\" -F \"previousStage=" + previousS + "\" -F \"currentStage=" + currentS + "\" -F \"image=@" + image + "\" -F \"description=" + description + "\" -F \"code=" + code + "\" -F \"arrivalDate=" + arrivalDate + "\" -F \"quantity=" + quantity + "\" -H \"Authorization:" + token + "\" -X POST http://" + ip +":"+puerto+ "/merchantsDataIn";
+            String rootCreation2 = "curl -F \"fid=" + fId + "\" -F \"ubication=" + ubication + "\" -F \"name=" + nameMerchant + "\" -F \"previousStage=" + previousS + "\" -F \"currentStage=" + currentS + "\" -F \"image=@" + image + "\" -F \"description=" + description + "\" -F \"code=" + code + "\" -F \"arrivalDate=" + arrivalDate + "\" -F \"quantity=" + quantity + "\" -F \"hashX=" + hashX + "\" -H \"Authorization:" + token + "\" -X POST http://" + ip + ":" + puerto + "/merchantsDataIn";
 
             SimpleDateFormat sdf3 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
             Date now3 = new Date();
@@ -354,7 +356,7 @@ public class HonestAgentNP {
             /*if (position == -1) {
                 caja.append(response + "\n");
             } else {*/
-                Respuesta.setConsultaS(response + "\n", position);
+            Respuesta.setConsultaS(response + "\n", position);
             //}
 
             //hace la petición como en CMD
@@ -378,7 +380,7 @@ public class HonestAgentNP {
                         /*if (position == -1) {
                             caja.append(response + "\n \n");
                         } else {*/
-                            Respuesta.setConsultaS(response + "\n", position);
+                        Respuesta.setConsultaS(response + "\n", position);
                         //}
 
                     }

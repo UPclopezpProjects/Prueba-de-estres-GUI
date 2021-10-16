@@ -328,7 +328,7 @@ public class HiloNP implements Runnable {
     }
 
     private String whoReceives() {
-        String date[] = {"Javier", "José Manuel", "Andrés", "Sergio", "Antonio"};
+        String date[] = {"Javier", "Jose Manuel", "Andres", "Sergio", "Antonio"};
         int i = (int) Math.floor(Math.random() * 5);
         String dateR = date[i];
         return dateR;

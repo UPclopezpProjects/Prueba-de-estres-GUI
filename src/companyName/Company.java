@@ -67,7 +67,7 @@ public class Company {
             Date now3 = new Date();
             String strDate3 = sdf3.format(now3);
             String response = "New Company --> Date: " + strDate3 + "; CURL: " + rootCreation2;
-            System.out.println(response);
+            //System.out.println(response);
             /*if (position == -1) {
                 caja.append(response + "\n");
             } else {*/

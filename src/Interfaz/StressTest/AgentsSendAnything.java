@@ -21,9 +21,9 @@ public final class AgentsSendAnything extends Hilo {
     Random r = new Random();
     int randomAnything1 = r.nextInt(anything.length);
     int randomAnything2 = r.nextInt(anything.length);
-    int randomAnything3 = r.nextInt(anything.length);
-    int randomAnything4 = r.nextInt(anything.length);
-    int randomAnything5 = r.nextInt(anything.length);
+    //int randomAnything3 = r.nextInt(anything.length);
+    //int randomAnything4 = r.nextInt(anything.length);
+    //int randomAnything5 = r.nextInt(anything.length);
     String email;
     String password;
     String nombre;

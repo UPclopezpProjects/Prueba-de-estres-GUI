@@ -36,13 +36,27 @@ public class HiloCN implements Runnable {
     private JDialog dialogoCaja;
     private String typeConsulta;
     private int tiempoL;
+    private String typeAgent;
+    private String typeStage;
+
+    public void setTypeStage(String typeStage) {
+        this.typeStage = typeStage;
+        //System.out.println("HiloCN/typeStage: "+typeStage);
+    }
+
+    public void setTypeAgent(String typeAgent) {
+        this.typeAgent = typeAgent;
+        //System.out.println("HiloCN/typeAgent: "+typeAgent);
+    }
 
     public void setTiempoL(int tiempoL) {
         this.tiempoL = tiempoL;
+        //System.out.println("HiloCN/tiempoL: "+tiempoL);
     }
 
     public void setTypeConsulta(String typeConsulta) {
         this.typeConsulta = typeConsulta;
+        //System.out.println("HiloCN/typeConsulta: "+typeConsulta);
     }
 
     public void setInterfaz(JFrame interfaz) {
@@ -59,6 +73,7 @@ public class HiloCN implements Runnable {
 
     public void setEmail(String email) {
         this.email = email;
+        //System.out.println("HiloCN/email: "+email);
     }
 
     public void setCaja(JTextArea caja) {
@@ -68,39 +83,63 @@ public class HiloCN implements Runnable {
 
     public void setPosition(int position) {
         this.position = position;
-        //System.out.println("setPosition: " + position);
+        //System.out.println("HiloCN/setPosition: " + position);
     }
 
     public void setIp(String ip) {
         this.ip = ip;
-        //System.out.println("setIp: " + ip);
+        //System.out.println("HiloCN/setIp: " + ip);
     }
 
     public void setToken(String token) {
         this.token = token;
-        //System.out.println("setToken: " + token);
+        //System.out.println("HiloCN/setToken: " + token);
     }
 
     public void loop() throws InterruptedException {
 
-        if (typeConsulta == "Auto") {
-            Company c = new Company(email(), companyName(), token, ip, generateStage(), position/*, caja*/);
-            Respuesta.setNumeroCompany();
-        } else {
-            if (Respuesta.getConsultaCompany(position) != null) {
-                caja.setText(Respuesta.getConsultaCompany(position).replace("null", ""));
-                dialogoCaja.setVisible(true);
+        if (typeAgent == "Honest") {
+            if (typeConsulta == "Auto") {
+                Company c = new Company(email, companyName(), token, ip, typeStage, position/*, caja*/);
+                Respuesta.setNumeroCompany();
             } else {
-                interfaz.setEnabled(false);
-                carga.setVisible(true);
-                Company c = new Company(email(), companyName(), token, ip, generateStage(), position/*, caja*/);
-                carga.setVisible(false);
-                interfaz.setEnabled(true);
-                caja.setText(Respuesta.getConsultaCompany(position).replace("null", ""));
-                dialogoCaja.setVisible(true);
+                if (Respuesta.getConsultaCompany(position) != null) {
+                    caja.setText(Respuesta.getConsultaCompany(position).replace("null", ""));
+                    dialogoCaja.setVisible(true);
+                } else {
+                    interfaz.setEnabled(false);
+                    carga.setVisible(true);
+                    Company c = new Company(email, companyName(), token, ip, typeStage, position/*, caja*/);
+                    carga.setVisible(false);
+                    interfaz.setEnabled(true);
+                    caja.setText(Respuesta.getConsultaCompany(position).replace("null", ""));
+                    dialogoCaja.setVisible(true);
 
+                }
+            }
+        } else {
+            if (typeAgent == "Dishonest") {
+                if (typeConsulta == "Auto") {
+                    Company c = new Company(email, companyName(), token, ip, generateStage(), position/*, caja*/);
+                    Respuesta.setNumeroCompany();
+                } else {
+                    if (Respuesta.getConsultaCompany(position) != null) {
+                        caja.setText(Respuesta.getConsultaCompany(position).replace("null", ""));
+                        dialogoCaja.setVisible(true);
+                    } else {
+                        interfaz.setEnabled(false);
+                        carga.setVisible(true);
+                        Company c = new Company(email, companyName(), token, ip, generateStage(), position/*, caja*/);
+                        carga.setVisible(false);
+                        interfaz.setEnabled(true);
+                        caja.setText(Respuesta.getConsultaCompany(position).replace("null", ""));
+                        dialogoCaja.setVisible(true);
+
+                    }
+                }
             }
         }
+
     }
 
     private String email() {
