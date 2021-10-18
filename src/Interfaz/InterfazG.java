@@ -989,14 +989,34 @@ public class InterfazG extends javax.swing.JFrame {
     }
 
     private String getCurrentStageI(String stage) {
-        return "C:/imagenes/" + stage + "1.jpg";
+        File imagen = null;
+        if(stage=="Acopio"){
+            imagen=new File(".\\src\\imagenes\\Acopio1.jpg");
+        }
+        
+        if(stage=="Carrier"){
+            imagen=new File(".\\src\\imagenes\\Carrier1.jpg");
+        }
+        
+        if(stage=="Merchant"){
+            imagen=new File(".\\src\\imagenes\\Merchant1.jpg");
+        }
+        
+        if(stage=="Productor"){
+            imagen=new File(".\\src\\imagenes\\Productor1.jpg");
+        }
+        
+        System.out.println("InterfazG/getcurrentStageI: "+imagen.getAbsolutePath().replace("\\.", ""));
+        return imagen.getAbsolutePath();
     }
 
     private String getImage() {
-        String imagenes[] = {"C:/imagenes/1.png", "C:/imagenes/2.png", "C:/imagenes/3.png", "C:/imagenes/4.png", "C:/imagenes/5.png"};
+        String imagenes[] = {".\\src\\imagenes\\1.png", ".\\src\\imagenes\\2.png", ".\\src\\imagenes\\3.png", ".\\src\\imagenes\\4.png", ".\\src\\imagenes\\5.png"};
         int i = (int) Math.floor(Math.random() * 5);
         String imagen = imagenes[i];
-        return imagen;
+        File archivo= new File(imagen);
+        System.out.println("InterfazG/getImage: "+archivo.getAbsolutePath().replace("\\.", ""));
+        return archivo.getAbsolutePath().replace("\\.", "");
     }
 
     private String getPlates() {
@@ -3032,7 +3052,7 @@ public class InterfazG extends javax.swing.JFrame {
                     for (int x = 0; x < numberR; x++) {
                         double i = Math.floor(Math.random() * 101);
                         HiloNP hNP = new HiloNP();
-                        if (i <= 50) {
+                        if (i <= aHonest) {
                             int position = x;
 
                             hNP.setType("Auto");
