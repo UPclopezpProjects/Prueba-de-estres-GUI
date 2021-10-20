@@ -2903,7 +2903,7 @@ public class InterfazG extends javax.swing.JFrame {
         });
 
         jLabel82.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        jLabel82.setText("Limit time for request:");
+        jLabel82.setText("Limit seconds for request:");
 
         jLabel83.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel83.setText("New ip address:");

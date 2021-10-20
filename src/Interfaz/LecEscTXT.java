@@ -25,16 +25,18 @@ import javax.swing.table.DefaultTableModel;
 public class LecEscTXT {
 
     DefaultTableModel model;
-    //String ruta = "C:\\Users\\frank\\Documents\\archivo.txt";
-    String ruta = obtenerCarpeta()+"archivo.txt";
+    getOS objeto = new getOS();
+    String ruta = obtenerCarpeta()+objeto.getSisOpe()+"archivo.txt";
 
     public DefaultTableModel leer() {
         try {
             
             File archivo = new File(ruta);
+            System.out.println("LecEscTXT/leer/la ubicación del archivo es: "+archivo.getAbsolutePath());
             //System.out.println("LecEscTXT/leer/ruta: "+ruta);
 
             if (!archivo.exists()) {
+                System.out.println("LecEscTXT/leer/No existe el archivo");
                 archivo.createNewFile();
             }
 
