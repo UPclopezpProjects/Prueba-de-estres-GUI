@@ -74,6 +74,7 @@ public class InterfazG extends javax.swing.JFrame {
         generateCBAC();
     }
 
+    //
     public void crearB(int n, int aHonesto, int aEnviarA) {
 
         for (int x = 0; x < n; x++) {
@@ -443,6 +444,7 @@ public class InterfazG extends javax.swing.JFrame {
         }
     }
 
+    //
     private void consultaHonesta(int position) {
         areaTexto.setText("");
         objetoH = new Hilo();
@@ -494,6 +496,7 @@ public class InterfazG extends javax.swing.JFrame {
         }
     }
 
+    //
     private void consultaEnviar(int position) {
         areaTexto.setText("");
         objetoH = new Hilo();
@@ -547,6 +550,7 @@ public class InterfazG extends javax.swing.JFrame {
         }
     }
 
+    //
     private void consultaEmpezarA(int position) {
         areaTexto.setText("");
         objetoH = new Hilo();
