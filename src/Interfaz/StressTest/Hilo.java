@@ -7,6 +7,7 @@ package Interfaz.StressTest;
 
 import Interfaz.Respuesta;
 import static java.lang.Math.random;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Random;
@@ -152,7 +153,7 @@ public class Hilo implements Runnable {
 
         if (tipoConsulta == "honesto") {
             if (Respuesta.getConsultaRoot(position) != null) {
-                caja.setText(Respuesta.getConsultaRoot(position).replace("null", ""));
+                caja.setText(Respuesta.getConsultaRoot(position).substring(4));
                 dialogoCaja.setVisible(true);
             } else {
                 System.out.println("Hilo/Honesto");
@@ -161,14 +162,14 @@ public class Hilo implements Runnable {
                 AgentsHonest a = new AgentsHonest(generateEmail(), generatePassword(), nombreU, apellidoP, apellidoM, typeU, ip, publicKey, dp, position);
                 interfaz.setEnabled(true);
                 carga.setVisible(false);
-                caja.setText(Respuesta.getConsultaRoot(position).replace("null", ""));
+                caja.setText(Respuesta.getConsultaRoot(position).substring(4));
                 dialogoCaja.setVisible(true);
             }
 
         } else {
             if (tipoConsulta == "enviarAlgo") {
                 if (Respuesta.getConsultaRoot(position) != null) {
-                    caja.setText(Respuesta.getConsultaRoot(position).replace("null", ""));
+                    caja.setText(Respuesta.getConsultaRoot(position).substring(4));
                     dialogoCaja.setVisible(true);
                 } else {
                     System.out.println("Hilo/enviarAlgo");
@@ -177,13 +178,13 @@ public class Hilo implements Runnable {
                     AgentsSendAnything b = new AgentsSendAnything(generateEmail(), generatePassword(), nombreU, apellidoP, apellidoM, typeU, ip, publicKey, dp, position);
                     interfaz.setEnabled(true);
                     carga.setVisible(false);
-                    caja.setText(Respuesta.getConsultaRoot(position).replace("null", ""));
+                    caja.setText(Respuesta.getConsultaRoot(position).substring(4));
                     dialogoCaja.setVisible(true);
                 }
             } else {
                 if (tipoConsulta == "empiezaAlgun") {
                     if (Respuesta.getConsultaRoot(position) != null) {
-                        caja.setText(Respuesta.getConsultaRoot(position).replace("null", ""));
+                        caja.setText(Respuesta.getConsultaRoot(position).substring(4));
                         dialogoCaja.setVisible(true);
                     } else {
                         System.out.println("Hilo/Empieza en algún paso");
@@ -192,7 +193,7 @@ public class Hilo implements Runnable {
                         AgentsStartAnyStep c = new AgentsStartAnyStep(generateEmail(), generatePassword(), nombreU, apellidoP, apellidoM, typeU, numberRequest, ip, publicKey, dp, position);
                         interfaz.setEnabled(true);
                         carga.setVisible(false);
-                        caja.setText(Respuesta.getConsultaRoot(position).replace("null", ""));
+                        caja.setText(Respuesta.getConsultaRoot(position).substring(4));
                         dialogoCaja.setVisible(true);
                     }
                 }
@@ -270,7 +271,7 @@ public class Hilo implements Runnable {
             interfaz.setEnabled(true);
             carga.setVisible(false);
             Respuesta.setConsultaRoot("Hadn't response of server, perhaps the microservice is down" + "\n", position);
-            caja.setText(Respuesta.getConsultaRoot(position).replace("null", ""));
+            caja.setText(Respuesta.getConsultaRoot(position).substring(4));
             dialogoCaja.setVisible(true);
         } finally {
             executor.shutdown();

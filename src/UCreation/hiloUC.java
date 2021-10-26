@@ -142,7 +142,7 @@ public class hiloUC implements Runnable {
     public void loop1() throws InterruptedException {
         if (typeConsult == "Honest") {
             if (Respuesta.getConsultaUC(position) != null) {
-                caja.setText(Respuesta.getConsultaUC(position).replace("null", ""));
+                caja.setText(Respuesta.getConsultaUC(position).substring(4));
                 dialogoCaja.setVisible(true);
             } else {
                 interfaz.setEnabled(false);
@@ -150,13 +150,13 @@ public class hiloUC implements Runnable {
                 HonestAgent h = new HonestAgent(email, password, typeU, adressU, authorization, fatherS, name, motherS, nRequest, aHonest, aDishonest, typeConsult, ip, /*caja,*/ dp, gas, position);
                 interfaz.setEnabled(true);
                 carga.setVisible(false);
-                caja.setText(Respuesta.getConsultaUC(position).replace("null", ""));
+                caja.setText(Respuesta.getConsultaUC(position).substring(4));
                 dialogoCaja.setVisible(true);
             }
         } else {
             if (typeConsult == "Dishonest A") {
                 if (Respuesta.getConsultaUC(position) != null) {
-                    caja.setText(Respuesta.getConsultaUC(position).replace("null", ""));
+                    caja.setText(Respuesta.getConsultaUC(position).substring(4));
                     dialogoCaja.setVisible(true);
                 } else {
                     interfaz.setEnabled(false);
@@ -164,12 +164,12 @@ public class hiloUC implements Runnable {
                     DishonestAgentA d = new DishonestAgentA(email, password, typeU, adressU, authorization, fatherS, name, motherS, nRequest, aHonest, aDishonest, typeConsult, ip, /*caja, */ dp, gas, position);
                     interfaz.setEnabled(true);
                     carga.setVisible(false);
-                    caja.setText(Respuesta.getConsultaUC(position).replace("null", ""));
+                    caja.setText(Respuesta.getConsultaUC(position).substring(4));
                     dialogoCaja.setVisible(true);
                 }
             } else {
                 if (Respuesta.getConsultaUC(position) != null) {
-                    caja.setText(Respuesta.getConsultaUC(position).replace("null", ""));
+                    caja.setText(Respuesta.getConsultaUC(position).substring(4));
                     dialogoCaja.setVisible(true);
                 } else {
                     if (typeConsult == "Dishonest B") {
@@ -178,7 +178,7 @@ public class hiloUC implements Runnable {
                         DishonestAgentB d = new DishonestAgentB(email, password, typeU, adressU, authorization, fatherS, name, motherS, nRequest, aHonest, aDishonest, typeConsult, ip, /*caja, */ dp, gas, position);
                         interfaz.setEnabled(true);
                         carga.setVisible(false);
-                        caja.setText(Respuesta.getConsultaUC(position).replace("null", ""));
+                        caja.setText(Respuesta.getConsultaUC(position).substring(4));
                         dialogoCaja.setVisible(true);
                     }
                 }
@@ -277,7 +277,7 @@ public class hiloUC implements Runnable {
             Respuesta.setConsultaUC("Hadn't response of server, perhaps the microservice is down" + "\n", position);
             interfaz.setEnabled(true);
             carga.setVisible(false);
-            caja.setText(Respuesta.getConsultaUC(position).replace("null", ""));
+            caja.setText(Respuesta.getConsultaUC(position).substring(4));
             dialogoCaja.setVisible(true);
         } finally {
             executor.shutdown();

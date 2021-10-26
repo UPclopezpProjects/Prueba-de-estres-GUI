@@ -16,7 +16,7 @@ import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 import UCreation.hiloUC;
 import UCreation.hiloUCA;
-import com.sun.awt.AWTUtilities;
+//import com.sun.awt.AWTUtilities;
 import companyName.HiloCN;
 import java.awt.Image;
 import java.io.BufferedReader;
@@ -50,7 +50,8 @@ public class InterfazG extends javax.swing.JFrame {
 
     public InterfazG() {
         initComponents();
-        AWTUtilities.setWindowOpaque(jDialog4, false);
+       
+        //AWTUtilities.setWindowOpaque(jDialog4, false);
         Respuesta.setVentanaCarga(jDialog4);
         setLocationRelativeTo(null);
 
@@ -74,7 +75,6 @@ public class InterfazG extends javax.swing.JFrame {
         generateCBAC();
     }
 
-    //
     public void crearB(int n, int aHonesto, int aEnviarA) {
 
         for (int x = 0; x < n; x++) {
@@ -444,7 +444,6 @@ public class InterfazG extends javax.swing.JFrame {
         }
     }
 
-    //
     private void consultaHonesta(int position) {
         areaTexto.setText("");
         objetoH = new Hilo();
@@ -496,7 +495,6 @@ public class InterfazG extends javax.swing.JFrame {
         }
     }
 
-    //
     private void consultaEnviar(int position) {
         areaTexto.setText("");
         objetoH = new Hilo();
@@ -550,7 +548,6 @@ public class InterfazG extends javax.swing.JFrame {
         }
     }
 
-    //
     private void consultaEmpezarA(int position) {
         areaTexto.setText("");
         objetoH = new Hilo();
@@ -930,7 +927,7 @@ public class InterfazG extends javax.swing.JFrame {
         //boolean borrarI;
 
         //System.out.println("getRadioBCU= {\"\"createAdministrator\"\":" + String.valueOf(crearA) + ",\"\"createTUser\"\":" + String.valueOf(crearTU) + ",\"\"updateMe\"\":" + String.valueOf(actualizarM) + ",\"\"updateAdministrator\"\":" + String.valueOf(actualizarA) + ",\"\"updateTUser\"\":" + String.valueOf(actualizarTU) + ",\"\"deleteMe\"\":" + String.valueOf(eliminarM) + ",\"\"deleteAdministrator\"\":" + String.valueOf(eliminarA) + ",\"\"deleteTUser\"\":" + String.valueOf(eliminarTU) + ",\"\"readMe\"\":" + String.valueOf(leerM) + ",\"\"readAdministrator\"\":" + String.valueOf(leerA) + ",\"\"readTUser\"\":" + String.valueOf(leerTU) + ",\"\"loginUser\"\":" + String.valueOf(loginU) + "}");
-        return "{\"\"createAdministrator\"\":" + String.valueOf(crearA) + ",\"\"createTUser\"\":" + String.valueOf(crearTU) + ",\"\"updateMe\"\":" + String.valueOf(actualizarM) + ",\"\"updateAdministrator\"\":" + String.valueOf(actualizarA) + ",\"\"updateTUser\"\":" + String.valueOf(actualizarTU) + ",\"\"deleteMe\"\":" + String.valueOf(eliminarM) + ",\"\"deleteAdministrator\"\":" + String.valueOf(eliminarA) + ",\"\"deleteTUser\"\":" + String.valueOf(eliminarTU) + ",\"\"readMe\"\":" + String.valueOf(leerM) + ",\"\"readAdministrator\"\":" + String.valueOf(leerA) + ",\"\"readTUser\"\":" + String.valueOf(leerTU) + ",\"\"loginUser\"\":" + String.valueOf(loginU) + ",\"\"readData\"\":" + String.valueOf(leerI) + ",\"\"updateData\"\":" + String.valueOf(actualizarI) + ",\"\"createData\"\":" + String.valueOf(crearI) + ",\"\"deleteData\"\":" + String.valueOf(borrarI) + "}";
+        return "{\"createAdministrator\":" + String.valueOf(crearA) + ",\"createTUser\":" + String.valueOf(crearTU) + ",\"updateMe\":" + String.valueOf(actualizarM) + ",\"updateAdministrator\":" + String.valueOf(actualizarA) + ",\"updateTUser\":" + String.valueOf(actualizarTU) + ",\"deleteMe\":" + String.valueOf(eliminarM) + ",\"deleteAdministrator\":" + String.valueOf(eliminarA) + ",\"deleteTUser\":" + String.valueOf(eliminarTU) + ",\"readMe\":" + String.valueOf(leerM) + ",\"readAdministrator\":" + String.valueOf(leerA) + ",\"readTUser\":" + String.valueOf(leerTU) + ",\"loginUser\"\":" + String.valueOf(loginU) + ",\"readData\":" + String.valueOf(leerI) + ",\"updateData\":" + String.valueOf(actualizarI) + ",\"createData\":" + String.valueOf(crearI) + ",\"deleteData\":" + String.valueOf(borrarI) + "}";
     }
 
     private String getRadioB() {
@@ -947,7 +944,7 @@ public class InterfazG extends javax.swing.JFrame {
         boolean crearTU;
         boolean loginU;
 
-        return "{\"\"createAdministrator\"\":" + true + ",\"\"createTUser\"\":" + true + ",\"\"updateMe\"\":" + true + ",\"\"updateAdministrator\"\":" + true + ",\"\"updateTUser\"\":" + true + ",\"\"deleteMe\"\":" + true + ",\"\"deleteAdministrator\"\":" + true + ",\"\"deleteTUser\"\":" + true + ",\"\"readMe\"\":" + true + ",\"\"readAdministrator\"\":" + true + ",\"\"readTUser\"\":" + true + ",\"\"loginUser\"\":" + true + "}";
+        return "{\"createAdministrator\":" + true + ",\"createTUser\":" + true + ",\"updateMe\":" + true + ",\"updateAdministrator\":" + true + ",\"updateTUser\":" + true + ",\"deleteMe\":" + true + ",\"deleteAdministrator\":" + true + ",\"deleteTUser\":" + true + ",\"readMe\":" + true + ",\"readAdministrator\":" + true + ",\"readTUser\":" + true + ",\"loginUser\":" + true + "}";
     }
 
     private String getUbication() {
@@ -3094,7 +3091,7 @@ public class InterfazG extends javax.swing.JFrame {
                                 public void actionPerformed(ActionEvent ae) {
                                     boolean estado = false;
                                     jDialog2.setVisible(true);
-                                    areaTexto.setText(Respuesta.getConsultaS(position).replace("null", ""));
+                                    areaTexto.setText(Respuesta.getConsultaS(position).substring(4));
                                     if (estado == false) {
                                         boton.setBackground(Color.GRAY);
                                         estado = true;
@@ -3139,7 +3136,7 @@ public class InterfazG extends javax.swing.JFrame {
                                 public void actionPerformed(ActionEvent ae) {
                                     boolean estado = false;
                                     jDialog2.setVisible(true);
-                                    areaTexto.setText(Respuesta.getConsultaS(position).replace("null", ""));
+                                    areaTexto.setText(Respuesta.getConsultaS(position).substring(4));
                                     if (estado == false) {
                                         boton.setBackground(Color.GRAY);
                                         estado = true;
@@ -3310,7 +3307,7 @@ public class InterfazG extends javax.swing.JFrame {
                                             //JOptionPane.showMessageDialog(null, "Agente honesto");
                                             boolean estado = false;
                                             jDialog2.setVisible(true);
-                                            areaTexto.setText(Respuesta.getConsultaUC(position).replace("null", ""));
+                                            areaTexto.setText(Respuesta.getConsultaUC(position).substring(4));
 
                                             if (estado == false) {
                                                 boton.setBackground(Color.GRAY);
@@ -3357,7 +3354,7 @@ public class InterfazG extends javax.swing.JFrame {
                                                 //JOptionPane.showMessageDialog(null, "Agente honesto");
                                                 boolean estado = false;
                                                 jDialog2.setVisible(true);
-                                                areaTexto.setText(Respuesta.getConsultaUC(position).replace("null", ""));
+                                                areaTexto.setText(Respuesta.getConsultaUC(position).substring(4));
 
                                                 if (estado == false) {
                                                     boton.setBackground(Color.GRAY);
@@ -3401,7 +3398,7 @@ public class InterfazG extends javax.swing.JFrame {
                                                 //JOptionPane.showMessageDialog(null, "Agente deshonesto");
                                                 boolean estado = false;
                                                 jDialog2.setVisible(true);
-                                                areaTexto.setText(Respuesta.getConsultaUC(position).replace("null", ""));
+                                                areaTexto.setText(Respuesta.getConsultaUC(position).substring(4));
 
                                                 if (estado == false) {
                                                     boton.setBackground(Color.GRAY);
@@ -3535,7 +3532,7 @@ public class InterfazG extends javax.swing.JFrame {
                                 public void actionPerformed(ActionEvent ae) {
                                     boolean estado = false;
                                     jDialog2.setVisible(true);
-                                    areaTexto.setText(Respuesta.getConsultaRoot(position).replace("null", ""));
+                                    areaTexto.setText(Respuesta.getConsultaRoot(position).substring(4));
 
                                     if (estado == false) {
                                         boton.setBackground(Color.GRAY);
@@ -3575,7 +3572,7 @@ public class InterfazG extends javax.swing.JFrame {
                                     public void actionPerformed(ActionEvent ae) {
                                         boolean estado = false;
                                         jDialog2.setVisible(true);
-                                        areaTexto.setText(Respuesta.getConsultaRoot(position).replace("null", ""));
+                                        areaTexto.setText(Respuesta.getConsultaRoot(position).substring(4));
 
                                         if (estado == false) {
                                             boton.setBackground(Color.GRAY);
@@ -3615,7 +3612,7 @@ public class InterfazG extends javax.swing.JFrame {
                                     public void actionPerformed(ActionEvent ae) {
                                         boolean estado = false;
                                         jDialog2.setVisible(true);
-                                        areaTexto.setText(Respuesta.getConsultaRoot(position).replace("null", ""));
+                                        areaTexto.setText(Respuesta.getConsultaRoot(position).substring(4));
 
                                         if (estado == false) {
                                             boton.setBackground(Color.GRAY);
@@ -3806,7 +3803,7 @@ public class InterfazG extends javax.swing.JFrame {
                                         public void actionPerformed(ActionEvent ae) {
                                             boolean estado = false;
                                             jDialog2.setVisible(true);
-                                            areaTexto.setText(Respuesta.getConsultaCompany(position).replace("null", ""));
+                                            areaTexto.setText(Respuesta.getConsultaCompany(position).substring(4));
                                             if (estado == false) {
                                                 boton.setBackground(Color.GRAY);
                                                 estado = true;
@@ -3837,7 +3834,7 @@ public class InterfazG extends javax.swing.JFrame {
                                         public void actionPerformed(ActionEvent ae) {
                                             boolean estado = false;
                                             jDialog2.setVisible(true);
-                                            areaTexto.setText(Respuesta.getConsultaCompany(position).replace("null", ""));
+                                            areaTexto.setText(Respuesta.getConsultaCompany(position).substring(4));
                                             if (estado == false) {
                                                 boton.setBackground(Color.GRAY);
                                                 estado = true;
