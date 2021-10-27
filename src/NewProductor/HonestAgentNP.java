@@ -2,14 +2,23 @@ package NewProductor;
 
 import Interfaz.MD5;
 import Interfaz.Respuesta;
+import UCreation.HonestAgent;
 import java.io.BufferedReader;
+import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.nio.charset.StandardCharsets;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Random;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JTextArea;
+import org.json.JSONObject;
+import sun.net.www.http.HttpClient;
 
 /**
  *
@@ -47,6 +56,7 @@ public class HonestAgentNP {
     //exclusivo merchant
     private String nameMerchant;
     private String puerto = "80";
+    String response;
 
     public HonestAgentNP(String ubication, String harvestD, String caducationD, String description, String fId,
             String nameProductor, String previousS, String currentS, String code, String image, String ip, /*JTextArea caja,*/
@@ -62,7 +72,6 @@ public class HonestAgentNP {
         this.code = code;
         this.image = image;
         this.ip = ip;
-        //this.caja = caja;
         this.token = token;
         userCreation(position);
     }
@@ -212,8 +221,7 @@ public class HonestAgentNP {
 
             //String rootCreation2 = "curl -F \"fid=" + fId + "\" -F \"ubication=" + ubication + "\" -F \"name=" + nameProduction + "\" -F \"previousStage=" + previousS + "\" -F \"currentStage=" + currentS + "\" -F \"nameOfCompany=Transportadora de aguacates 3 S.A. de C.V." + "\" -F \"image=@" + image + "\" -F \"description=" + description + "\" -F \"code=" + code + "\" -F \"driverName=" + driverName + "\" -F \"origin=" + origin + "\" -F \"destination=" + destination + "\" -F \"plates=" + plates + "\" -F \"productPhotos=@" + productPhotos + "\" -F \"vehiclePhotos=@" + vehiclePhotos + "\" -F \"tracking=" + tracking + "\" -H \"Authorization:" + token + "\" -X POST http://" + ip + ":" + puerto + "/carriersData";
             String rootCreation2 = "curl -F \"fid=" + fId + "\" -F \"ubication=" + ubication + "\" -F \"name=" + nameProduction + "\" -F \"previousStage=" + previousS + "\" -F \"currentStage=" + currentS + "\" -F \"image=@" + image + "\" -F \"description=" + description + "\" -F \"code=" + code + "\" -F \"driverName=" + driverName + "\" -F \"origin=" + origin + "\" -F \"destination=" + destination + "\" -F \"plates=" + plates + "\" -F \"productPhotos=@" + productPhotos + "\" -F \"vehiclePhotos=@" + vehiclePhotos + "\" -F \"tracking=" + tracking + "\" -F \"hashX=" + hashX + "\" -H \"Authorization:" + token + "\" -X POST http://" + ip + ":" + puerto + "/carriersData";
-            System.out.println("HonestAgentNP/userCreationCarrier/request:"+rootCreation2);
-            
+            System.out.println("HonestAgentNP/userCreationCarrier/request:" + rootCreation2);
 
             SimpleDateFormat sdf3 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
             Date now3 = new Date();
@@ -339,7 +347,7 @@ public class HonestAgentNP {
             int randomNum1 = rand.nextInt(firstname.length);
             int randomNum2 = rand.nextInt(firstname.length);
             String documentation = "document.pdf";
-            
+
             String jsonData = "{\"fid\":\"" + fId + "\",\"code\":\"" + code + "\",\"ubication\":\"" + ubication + "\",\"name\":\"" + nameMerchant + "\",\"previousStage\":\"" + previousS + "\",\"currentStage\":\"" + currentS + "\",\"description\":\"" + description + "\",\"arrivalDate\":\"" + arrivalDate + "\",\"quantity\":\"" + quantity + "\"}";
             System.out.println("NewPhase/userCreationMerchant/jsonData: " + jsonData);
             String hashX = MD5.getMd5(jsonData);

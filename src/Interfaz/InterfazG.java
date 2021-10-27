@@ -50,7 +50,7 @@ public class InterfazG extends javax.swing.JFrame {
 
     public InterfazG() {
         initComponents();
-       
+
         //AWTUtilities.setWindowOpaque(jDialog4, false);
         Respuesta.setVentanaCarga(jDialog4);
         setLocationRelativeTo(null);
@@ -991,33 +991,63 @@ public class InterfazG extends javax.swing.JFrame {
 
     private String getCurrentStageI(String stage) {
         File imagen = null;
-        if(stage=="Acopio"){
-            imagen=new File(".\\src\\imagenes\\Acopio1.jpg");
+        getOS sistemaO = new getOS();
+        String separador = sistemaO.getSisOpe();
+        if (separador == "\\") {
+            if (stage == "Acopio") {
+                imagen = new File(".\\src\\imagenes\\Acopio1.jpg");
+            }
+
+            if (stage == "Carrier") {
+                imagen = new File(".\\src\\imagenes\\Carrier1.jpg");
+            }
+
+            if (stage == "Merchant") {
+                imagen = new File(".\\src\\imagenes\\Merchant1.jpg");
+            }
+
+            if (stage == "Productor") {
+                imagen = new File(".\\src\\imagenes\\Productor1.jpg");
+            }
+        } else {
+            if (stage == "Acopio") {
+                imagen = new File("./src/imagenes/Acopio1.jpg");
+            }
+
+            if (stage == "Carrier") {
+                imagen = new File("./src/imagenes/Carrier1.jpg");
+            }
+
+            if (stage == "Merchant") {
+                imagen = new File("./src/imagenes/Merchant1.jpg");
+            }
+
+            if (stage == "Productor") {
+                imagen = new File("./src/imagenes/Productor1.jpg");
+            }
         }
-        
-        if(stage=="Carrier"){
-            imagen=new File(".\\src\\imagenes\\Carrier1.jpg");
-        }
-        
-        if(stage=="Merchant"){
-            imagen=new File(".\\src\\imagenes\\Merchant1.jpg");
-        }
-        
-        if(stage=="Productor"){
-            imagen=new File(".\\src\\imagenes\\Productor1.jpg");
-        }
-        
-        System.out.println("InterfazG/getcurrentStageI: "+imagen.getAbsolutePath().replace("\\.", ""));
-        return imagen.getAbsolutePath();
+
+        System.out.println("InterfazG/getcurrentStageI: " + imagen.getAbsolutePath().replace("\\.", "").replace("/.", ""));
+
+        return imagen.getAbsolutePath().replace("\\.", "").replace("/.", "");
     }
 
     private String getImage() {
         String imagenes[] = {".\\src\\imagenes\\1.png", ".\\src\\imagenes\\2.png", ".\\src\\imagenes\\3.png", ".\\src\\imagenes\\4.png", ".\\src\\imagenes\\5.png"};
+        String imagenesL[] = {"./src/imagenes/1.png", "./src/imagenes/2.png", "./src/imagenes/3.png", "./src/imagenes/4.png", "./src/imagenes/5.png"};
         int i = (int) Math.floor(Math.random() * 5);
-        String imagen = imagenes[i];
-        File archivo= new File(imagen);
-        System.out.println("InterfazG/getImage: "+archivo.getAbsolutePath().replace("\\.", ""));
-        return archivo.getAbsolutePath().replace("\\.", "");
+        String imagen;
+        getOS sistemaO = new getOS();
+        String separador = sistemaO.getSisOpe();
+        if (separador == "\\") {
+            imagen = imagenes[i];
+        } else {
+            imagen = imagenesL[i];
+        }
+
+        File archivo = new File(imagen);
+        System.out.println("InterfazG/getImage: " + archivo.getAbsolutePath().replace("\\.", "").replace("/.", ""));
+        return archivo.getAbsolutePath().replace("\\.", "").replace("/.", "");
     }
 
     private String getPlates() {

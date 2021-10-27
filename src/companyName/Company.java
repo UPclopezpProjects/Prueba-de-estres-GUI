@@ -50,10 +50,10 @@ public class Company {
         this.stage = stage;
         this.position = position;
         //this.caja = caja;
-        userCreation2();
+        companyCreation();
     }
 
-    public void userCreation2() {
+    public void companyCreation() {
         HttpURLConnection connection = null;
         String rootCreation = "email=" + email + "&nameOfCompany=" + companyName;
         byte[] postData = rootCreation.getBytes(StandardCharsets.UTF_8);
