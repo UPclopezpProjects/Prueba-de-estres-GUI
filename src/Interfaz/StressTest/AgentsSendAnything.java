@@ -24,9 +24,9 @@ public final class AgentsSendAnything extends Hilo {
     Random r = new Random();
     int randomAnything1 = r.nextInt(anything.length);
     int randomAnything2 = r.nextInt(anything.length);
-    //int randomAnything3 = r.nextInt(anything.length);
-    //int randomAnything4 = r.nextInt(anything.length);
-    //int randomAnything5 = r.nextInt(anything.length);
+    int randomAnything3 = r.nextInt(anything.length);
+    int randomAnything4 = r.nextInt(anything.length);
+    int randomAnything5 = r.nextInt(anything.length);
     String email;
     String password;
     String nombre;
@@ -124,7 +124,7 @@ public final class AgentsSendAnything extends Hilo {
                     String token = MD5.getMd5('"' + nanb + '"');
                     System.out.println("AgentsSendAnything/getInitialNonce/token: " + token);
                     //userCreation(token, session, randomNumber, position);
-                    userCreation2(token, session, randomNumber, position);
+                    userCreation2(anything[randomAnything1], anything[randomAnything2], randomNumber, position);
                 }
                 response.append('\r');
             }
@@ -136,11 +136,11 @@ public final class AgentsSendAnything extends Hilo {
     }
     
     public void userCreation2(String token, String session, double randomNumber, int position) {
-        String email = this.email;
-        String password = this.password;
+        String email = anything[randomAnything3];
+        String password = anything[randomAnything4];
         String surnameA = this.apellidoP;
         String surnameB = this.apellidoM;
-        String nameOfUser = this.nombre;
+        String nameOfUser = anything[randomAnything5];
         String typeOfUser = this.tipoU;
         String status = "true";
         String creationDate = "xx/xx/xxxx";
@@ -230,7 +230,7 @@ public final class AgentsSendAnything extends Hilo {
         }
     }
     
-    public void getInitialNonce(int position) {
+    /*public void getInitialNonce(int position) {
         double randomNumber = Math.random();
         try {
             //String getInitialNonce = "curl -d na=" + randomNumber + " & position=" + position + " -X POST http://" + ip + ":" + puerto + "/getInitialNonce";
@@ -398,5 +398,5 @@ public final class AgentsSendAnything extends Hilo {
         } catch (IOException | InterruptedException t) {
             //System.out.println(t);
         }
-    }
+    }*/
 }

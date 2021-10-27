@@ -927,7 +927,7 @@ public class InterfazG extends javax.swing.JFrame {
         //boolean borrarI;
 
         //System.out.println("getRadioBCU= {\"\"createAdministrator\"\":" + String.valueOf(crearA) + ",\"\"createTUser\"\":" + String.valueOf(crearTU) + ",\"\"updateMe\"\":" + String.valueOf(actualizarM) + ",\"\"updateAdministrator\"\":" + String.valueOf(actualizarA) + ",\"\"updateTUser\"\":" + String.valueOf(actualizarTU) + ",\"\"deleteMe\"\":" + String.valueOf(eliminarM) + ",\"\"deleteAdministrator\"\":" + String.valueOf(eliminarA) + ",\"\"deleteTUser\"\":" + String.valueOf(eliminarTU) + ",\"\"readMe\"\":" + String.valueOf(leerM) + ",\"\"readAdministrator\"\":" + String.valueOf(leerA) + ",\"\"readTUser\"\":" + String.valueOf(leerTU) + ",\"\"loginUser\"\":" + String.valueOf(loginU) + "}");
-        return "{\"createAdministrator\":" + String.valueOf(crearA) + ",\"createTUser\":" + String.valueOf(crearTU) + ",\"updateMe\":" + String.valueOf(actualizarM) + ",\"updateAdministrator\":" + String.valueOf(actualizarA) + ",\"updateTUser\":" + String.valueOf(actualizarTU) + ",\"deleteMe\":" + String.valueOf(eliminarM) + ",\"deleteAdministrator\":" + String.valueOf(eliminarA) + ",\"deleteTUser\":" + String.valueOf(eliminarTU) + ",\"readMe\":" + String.valueOf(leerM) + ",\"readAdministrator\":" + String.valueOf(leerA) + ",\"readTUser\":" + String.valueOf(leerTU) + ",\"loginUser\"\":" + String.valueOf(loginU) + ",\"readData\":" + String.valueOf(leerI) + ",\"updateData\":" + String.valueOf(actualizarI) + ",\"createData\":" + String.valueOf(crearI) + ",\"deleteData\":" + String.valueOf(borrarI) + "}";
+        return "{\"createAdministrator\":" + String.valueOf(crearA) + ",\"createTUser\":" + String.valueOf(crearTU) + ",\"updateMe\":" + String.valueOf(actualizarM) + ",\"updateAdministrator\":" + String.valueOf(actualizarA) + ",\"updateTUser\":" + String.valueOf(actualizarTU) + ",\"deleteMe\":" + String.valueOf(eliminarM) + ",\"deleteAdministrator\":" + String.valueOf(eliminarA) + ",\"deleteTUser\":" + String.valueOf(eliminarTU) + ",\"readMe\":" + String.valueOf(leerM) + ",\"readAdministrator\":" + String.valueOf(leerA) + ",\"readTUser\":" + String.valueOf(leerTU) + ",\"loginUser\":" + String.valueOf(loginU) + ",\"readData\":" + String.valueOf(leerI) + ",\"updateData\":" + String.valueOf(actualizarI) + ",\"createData\":" + String.valueOf(crearI) + ",\"deleteData\":" + String.valueOf(borrarI) + "}";
     }
 
     private String getRadioB() {
@@ -2285,7 +2285,7 @@ public class InterfazG extends javax.swing.JFrame {
                     .addComponent(RBUpdateD)
                     .addComponent(RBCreateD)
                     .addComponent(RBDeleteD))
-                .addContainerGap(8, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jScrollPane6.setViewportView(jPanel8);
@@ -2909,7 +2909,7 @@ public class InterfazG extends javax.swing.JFrame {
         jLabel83.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel83.setText("New ip address:");
 
-        SPLimitT.setModel(new javax.swing.SpinnerNumberModel(100, 1, 200, 1));
+        SPLimitT.setModel(new javax.swing.SpinnerNumberModel(60, 1, 200, 1));
 
         javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
         jPanel10.setLayout(jPanel10Layout);

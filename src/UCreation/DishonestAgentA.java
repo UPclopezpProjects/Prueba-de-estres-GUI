@@ -95,7 +95,8 @@ public class DishonestAgentA {
         String dpHashX = "{\\\"createAdministrator\\\":true,\\\"createTUser\\\":true,\\\"updateMe\\\":true,\\\"updateAdministrator\\\":true,\\\"updateTUser\\\":true,\\\"deleteMe\\\":true,\\\"deleteAdministrator\\\":true,\\\"deleteTUser\\\":true,\\\"readMe\\\":true,\\\"readAdministrator\\\":true,\\\"readTUser\\\":true,\\\"loginUser\\\":true}";
         String dp = this.dp;
         authorization = "n";
-        String jsonData = "{\"email\":\"" + email + "\",\"password\":\"" + password + "\",\"surnameA\":\"" + surnameA + "\",\"surnameB\":\"" + surnameB + "\",\"nameOfUser\":\"" + nameOfUser + "\",\"typeOfUser\":\"" + typeOfUser + "\",\"status\":\"" + status + "\",\"creationDate\":\"" + creationDate + "\",\"addressU\":\"" + addressU + "\",\"gas\":\"" + "900000" + "\",\"typeOfOperation\":\"" + typeOfOperation + "\",\"nameOfOperation\":\"" + nameOfOperation + "\",\"dp\":\"" + dpHashX + "\"}";
+        //String jsonData = "{\"email\":\"" + email + "\",\"password\":\"" + password + "\",\"surnameA\":\"" + surnameA + "\",\"surnameB\":\"" + surnameB + "\",\"nameOfUser\":\"" + nameOfUser + "\",\"typeOfUser\":\"" + typeOfUser + "\",\"status\":\"" + status + "\",\"creationDate\":\"" + creationDate + "\",\"addressU\":\"" + addressU + "\",\"gas\":\"" + "900000" + "\",\"typeOfOperation\":\"" + typeOfOperation + "\",\"nameOfOperation\":\"" + nameOfOperation + "\",\"dp\":\"" + dpHashX + "\"}";
+        String jsonData = "{\"email\":\"" + email + "\",\"password\":\"" + password + "\",\"surnameA\":\"" + surnameA + "\",\"surnameB\":\"" + surnameB + "\",\"nameOfUser\":\"" + nameOfUser + "\",\"typeOfUser\":\"" + typeOfUser + "\",\"status\":\"" + status + "\",\"creationDate\":\"" + creationDate + "\",\"initialToken\":\"" + authorization + "\",\"addressU\":\"" + addressU + "\",\"gas\":\"" + gas + "\",\"typeOfOperation\":\"" + typeOfOperation + "\",\"nameOfOperation\":\"" + nameOfOperation + /*"\",\"dp\":\"" + dpHashX + */ "\"}";
         String hashX = MD5.getMd5(jsonData);
         HttpURLConnection connection = null;
         String rootCreation = "email=" + email + "&"
@@ -294,7 +295,14 @@ public class DishonestAgentA {
             //System.out.println("</OUTPUT2>");
             int exitVal = proc.waitFor();
             //System.out.println("Process exitValue: " + exitVal);
-        } catch (IOException | InterruptedException t) {
+        } catch (java.net.ConnectException e) {
+            System.out.println("DishonestAgentA/userCreation2/java.net.ConnectException: " + e);
+            Respuesta.setConsultaUC("No se pudo contactar con el servidor", position);
+        } catch (java.net.SocketException e) {
+            System.out.println("DishonestAgentA/userCreation2/java.net.SocketException: " + e);
+            Respuesta.setConsultaUC("Algo salión mal en el servidor", position);
+        }
+        catch (IOException | InterruptedException t) {
             //System.out.println(t);
         }
     }
