@@ -37,9 +37,7 @@ public class HonestAgentNP {
     private String code;
     private String image;
     private String ip;
-    //private JTextArea caja;
     private String token;
-    //exclusivo de carrier
     private String origin;
     private String destination;
     private String driverName;
@@ -47,7 +45,6 @@ public class HonestAgentNP {
     private String productPhotos;
     private String vehiclePhotos;
     private String tracking;
-    //exclusivo para acopio
     private String nameAcopio;
     private String arrivalDate;
     private String quantity;
@@ -73,7 +70,8 @@ public class HonestAgentNP {
         this.image = image;
         this.ip = ip;
         this.token = token;
-        userCreation(position);
+        //userCreation(position);
+        dataProductorC(position);
     }
 
     public HonestAgentNP(String fId, String ubication, String nameProduction, String previousStage, String currentStage,
@@ -97,8 +95,8 @@ public class HonestAgentNP {
         this.tracking = tracking;
         this.token = token;
         this.ip = ip;
-        //this.caja = caja;
-        userCreationCarrier(position);
+        //userCreationCarrier(position);
+        dataCarrierC(position);
     }
 
     public HonestAgentNP(String fId, String ubication, String nameAcopio, String previousStage, String currentStage, String image, String description, String code,
@@ -117,8 +115,8 @@ public class HonestAgentNP {
         this.whoReceives = whoReceives;
         this.token = token;
         this.ip = ip;
-        //this.caja = caja;
-        userCreationAcopio(position);
+        //userCreationAcopio(position);
+        dataAcopioC(position);
     }
 
     public HonestAgentNP(String fId, String ubication, String nameMerchant, String previousS, String currentS, String image, String description, String code,
@@ -135,8 +133,340 @@ public class HonestAgentNP {
         this.quantity = quantity;
         this.token = token;
         this.ip = ip;
-        //this.caja = caja;
-        userCreationMerchant(position);
+        //userCreationMerchant(position);
+        dataMerchantC(position);
+    }
+
+    public void dataProductorC(int position) {
+        HttpURLConnection connection = null;
+        String documentation = "document.pdf";
+        String jsonData = "{\"fid\":\"" + fId + "\",\"code\":\"" + code + "\",\"ubication\":\"" + ubication + "\",\"name\":\"" + nameProduction + "\",\"harvestDate\":\"" + harvestD + "\",\"caducationDate\":\"" + caducationD + "\",\"previousStage\":\"" + previousS + "\",\"currentStage\":\"" + currentS + "\",\"description\":\"" + description + "\",\"documentation\":\"" + documentation + "\"}";
+        String hashX = MD5.getMd5(jsonData);
+        String rootCreation = "fid=" + fId + "&ubication=" + ubication + "&name=" + nameProduction + "&harvestDate=" + harvestD + "&caducationDate=" + caducationD + "&previousStage=" + previousS + "&currentStage=" + currentS + "&description=" + description + "&image=" + image + "&documentation=document.pdf&code=" + code + "&hashX=" + hashX;
+        byte[] postData = rootCreation.getBytes(StandardCharsets.UTF_8);
+        int postDataLength = postData.length;
+        URL url = null;
+        try {
+            url = new URL("http://" + this.ip + "/productorsData");
+
+            connection = (HttpURLConnection) url.openConnection();
+            connection.setRequestMethod("POST");
+            connection.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
+            connection.setRequestProperty("Content-Length", Integer.toString(postDataLength));
+
+            connection.setRequestProperty("Authorization", token);
+
+            connection.setUseCaches(false);
+            connection.setDoOutput(true);
+
+            SimpleDateFormat sdf3 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
+            Date now3 = new Date();
+            String strDate3 = sdf3.format(now3);
+            response = "HonestAgent/dataProductor --> Date: " + strDate3 + "; Request: {" + rootCreation + "}";
+            //System.out.println(response + ", " + position);
+
+            Respuesta.setConsultaS(response + "\n", position);
+
+            //Send request
+            DataOutputStream wr = new DataOutputStream(connection.getOutputStream());
+            wr.writeBytes(rootCreation);
+            wr.close();
+
+            if (connection.getResponseCode() >= 300 && connection.getResponseCode() < 600) {
+                System.out.println("HonestAgent/dataProductor/error Stream: " + connection.getErrorStream());
+                InputStream is = connection.getErrorStream();
+                BufferedReader rd = new BufferedReader(new InputStreamReader(is));
+                StringBuilder response = new StringBuilder(); // or StringBuffer if Java version 5+
+                String line;
+                while ((line = rd.readLine()) != null) {
+                    JSONObject jsonObject = new JSONObject(line);
+                    SimpleDateFormat sdf2 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
+                    Date now2 = new Date();
+                    String strDate2 = sdf2.format(now2);
+
+                    //response = "Root/AgentHonest/getInitialNonce <-- Date: " + strDate2 + "; Response: " + line;
+                    response.append(line);
+                    Respuesta.setConsultaS("HonestAgent/dataProductor <-- Date: " + strDate2 + "; Response: " + line + "\n", position);
+                    response.append('\r');
+
+                }
+
+            } else {
+                //Get Response
+                InputStream is = connection.getInputStream();
+                BufferedReader rd = new BufferedReader(new InputStreamReader(is));
+                StringBuilder response = new StringBuilder(); // or StringBuffer if Java version 5+
+                String line;
+
+                while ((line = rd.readLine()) != null) {
+                    JSONObject jsonObject = new JSONObject(line);
+                    SimpleDateFormat sdf2 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
+                    Date now2 = new Date();
+                    String strDate2 = sdf2.format(now2);
+                    response.append(line);
+                    //System.out.println("Crear usuario/HonestAgent/line: "+line);
+                    Respuesta.setConsultaS("HonestAgent/dataProductor <-- Date: " + strDate2 + "; Response: " + line + " \n", position);
+                    response.append('\r');
+                }
+                rd.close();
+                //return response.toString();
+            }
+
+        } catch (java.net.ConnectException e) {
+            System.out.println("HonestAgent/dataProductor/Exception: " + e);
+            Respuesta.setConsultaS("No se pudo contactar con el servidor", position);
+        } catch (IOException ex) {
+            Logger.getLogger(HonestAgent.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
+
+    public void dataCarrierC(int position) {
+        HttpURLConnection connection = null;
+        String jsonData = "{\"fid\":\"" + fId + "\",\"code\":\"" + code + "\",\"name\":\"" + nameProduction + "\",\"previousStage\":\"" + previousS + "\",\"currentStage\":\"" + currentS + "\",\"description\":\"" + description + "\",\"driverName\":\"" + driverName + "\",\"origin\":\"" + origin + "\",\"destination\":\"" + destination + "\",\"plates\":\"" + plates + "\",\"tracking\":\"" + tracking + "\"}";
+        String hashX = MD5.getMd5(jsonData);
+        String rootCreation = "fid=" + fId + "&ubication=" + ubication + "&name=" + nameProduction + "&previousStage=" + previousS + "&currentStage=" + currentS + "&image=" + image + "&description=" + description + "&code=" + code + "&driverName=" + driverName + "&origin=" + origin + "&destination=" + destination + "&plates=" + plates + "&productPhotos=" + productPhotos + "&vehiclePhotos=" + vehiclePhotos + "&tracking=" + tracking + "&hashX=" + hashX;
+        byte[] postData = rootCreation.getBytes(StandardCharsets.UTF_8);
+        int postDataLength = postData.length;
+        URL url = null;
+        try {
+            url = new URL("http://" + this.ip + "/carriersData");
+
+            connection = (HttpURLConnection) url.openConnection();
+            connection.setRequestMethod("POST");
+            connection.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
+            connection.setRequestProperty("Content-Length", Integer.toString(postDataLength));
+
+            connection.setRequestProperty("Authorization", token);
+
+            connection.setUseCaches(false);
+            connection.setDoOutput(true);
+
+            SimpleDateFormat sdf3 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
+            Date now3 = new Date();
+            String strDate3 = sdf3.format(now3);
+            response = "HonestAgent/dataCarrier --> Date: " + strDate3 + "; Request: {" + rootCreation + "}";
+            //System.out.println(response + ", " + position);
+
+            Respuesta.setConsultaS(response + "\n", position);
+
+            //Send request
+            DataOutputStream wr = new DataOutputStream(connection.getOutputStream());
+            wr.writeBytes(rootCreation);
+            wr.close();
+
+            if (connection.getResponseCode() >= 300 && connection.getResponseCode() < 600) {
+                System.out.println("HonestAgent/dataCarrier/error Stream: " + connection.getErrorStream());
+                InputStream is = connection.getErrorStream();
+                BufferedReader rd = new BufferedReader(new InputStreamReader(is));
+                StringBuilder response = new StringBuilder(); // or StringBuffer if Java version 5+
+                String line;
+                while ((line = rd.readLine()) != null) {
+                    JSONObject jsonObject = new JSONObject(line);
+                    SimpleDateFormat sdf2 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
+                    Date now2 = new Date();
+                    String strDate2 = sdf2.format(now2);
+
+                    //response = "Root/AgentHonest/getInitialNonce <-- Date: " + strDate2 + "; Response: " + line;
+                    response.append(line);
+                    Respuesta.setConsultaS("HonestAgent/dataCarrier <-- Date: " + strDate2 + "; Response: " + line + "\n", position);
+                    response.append('\r');
+
+                }
+
+            } else {
+                //Get Response
+                InputStream is = connection.getInputStream();
+                BufferedReader rd = new BufferedReader(new InputStreamReader(is));
+                StringBuilder response = new StringBuilder(); // or StringBuffer if Java version 5+
+                String line;
+
+                while ((line = rd.readLine()) != null) {
+                    JSONObject jsonObject = new JSONObject(line);
+                    SimpleDateFormat sdf2 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
+                    Date now2 = new Date();
+                    String strDate2 = sdf2.format(now2);
+                    response.append(line);
+                    //System.out.println("Crear usuario/HonestAgent/line: "+line);
+                    Respuesta.setConsultaS("HonestAgent/dataCarrier <-- Date: " + strDate2 + "; Response: " + line + " \n", position);
+                    response.append('\r');
+                }
+                rd.close();
+                //return response.toString();
+            }
+
+        } catch (java.net.ConnectException e) {
+            System.out.println("HonestAgent/dataCarrier/Exception: " + e);
+            Respuesta.setConsultaS("No se pudo contactar con el servidor", position);
+        } catch (IOException ex) {
+            Logger.getLogger(HonestAgent.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    public void dataAcopioC(int position) {
+        HttpURLConnection connection = null;
+        String documentation = "document.pdf";
+        String jsonData = "{\"fid\":\"" + fId + "\",\"code\":\"" + code + "\",\"ubication\":\"" + ubication + "\",\"name\":\"" + nameAcopio + "\",\"previousStage\":\"" + previousS + "\",\"currentStage\":\"" + currentS + "\",\"description\":\"" + description + "\",\"arrivalDate\":\"" + arrivalDate + "\",\"clasification\":\"" + "Hass" + "\",\"quantity\":\"" + quantity + "\",\"measure\":\"" + measure + "\",\"whoReceives\":\"" + whoReceives + "\"}";
+        String hashX = MD5.getMd5(jsonData);
+        String rootCreation = "fid=" + fId + "&ubication=" + ubication + "&name=" + nameAcopio + "&previousStage=" + previousS + "&currentStage=" + currentS + "&image=" + image + "&description=" + description + "&code=" + code + "&arrivalDate=" + arrivalDate + "&clasification=Hass" + "&quantity=" + quantity + "&measure=" + measure + "&whoReceives=" + whoReceives + "&hashX=" + hashX;
+        byte[] postData = rootCreation.getBytes(StandardCharsets.UTF_8);
+        int postDataLength = postData.length;
+        URL url = null;
+        try {
+            url = new URL("http://" + this.ip + "/acopiosDataIn");
+
+            connection = (HttpURLConnection) url.openConnection();
+            connection.setRequestMethod("POST");
+            connection.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
+            connection.setRequestProperty("Content-Length", Integer.toString(postDataLength));
+
+            connection.setRequestProperty("Authorization", token);
+
+            connection.setUseCaches(false);
+            connection.setDoOutput(true);
+
+            SimpleDateFormat sdf3 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
+            Date now3 = new Date();
+            String strDate3 = sdf3.format(now3);
+            response = "HonestAgent/dataAcopio --> Date: " + strDate3 + "; Request: {" + rootCreation + "}";
+            //System.out.println(response + ", " + position);
+
+            Respuesta.setConsultaS(response + "\n", position);
+
+            //Send request
+            DataOutputStream wr = new DataOutputStream(connection.getOutputStream());
+            wr.writeBytes(rootCreation);
+            wr.close();
+
+            if (connection.getResponseCode() >= 300 && connection.getResponseCode() < 600) {
+                System.out.println("HonestAgent/dataAcopio/error Stream: " + connection.getErrorStream());
+                InputStream is = connection.getErrorStream();
+                BufferedReader rd = new BufferedReader(new InputStreamReader(is));
+                StringBuilder response = new StringBuilder(); // or StringBuffer if Java version 5+
+                String line;
+                while ((line = rd.readLine()) != null) {
+                    JSONObject jsonObject = new JSONObject(line);
+                    SimpleDateFormat sdf2 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
+                    Date now2 = new Date();
+                    String strDate2 = sdf2.format(now2);
+
+                    //response = "Root/AgentHonest/getInitialNonce <-- Date: " + strDate2 + "; Response: " + line;
+                    response.append(line);
+                    Respuesta.setConsultaS("HonestAgent/dataAcopio <-- Date: " + strDate2 + "; Response: " + line + "\n", position);
+                    response.append('\r');
+
+                }
+
+            } else {
+                //Get Response
+                InputStream is = connection.getInputStream();
+                BufferedReader rd = new BufferedReader(new InputStreamReader(is));
+                StringBuilder response = new StringBuilder(); // or StringBuffer if Java version 5+
+                String line;
+
+                while ((line = rd.readLine()) != null) {
+                    JSONObject jsonObject = new JSONObject(line);
+                    SimpleDateFormat sdf2 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
+                    Date now2 = new Date();
+                    String strDate2 = sdf2.format(now2);
+                    response.append(line);
+                    //System.out.println("Crear usuario/HonestAgent/line: "+line);
+                    Respuesta.setConsultaS("HonestAgent/dataAcopio <-- Date: " + strDate2 + "; Response: " + line + " \n", position);
+                    response.append('\r');
+                }
+                rd.close();
+                //return response.toString();
+            }
+
+        } catch (java.net.ConnectException e) {
+            System.out.println("HonestAgent/dataAcopio/Exception: " + e);
+            Respuesta.setConsultaS("No se pudo contactar con el servidor", position);
+        } catch (IOException ex) {
+            Logger.getLogger(HonestAgent.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    public void dataMerchantC(int position) {
+        HttpURLConnection connection = null;
+        String documentation = "document.pdf";
+        String jsonData = "{\"fid\":\"" + fId + "\",\"code\":\"" + code + "\",\"ubication\":\"" + ubication + "\",\"name\":\"" + nameMerchant + "\",\"previousStage\":\"" + previousS + "\",\"currentStage\":\"" + currentS + "\",\"description\":\"" + description + "\",\"arrivalDate\":\"" + arrivalDate + "\",\"quantity\":\"" + quantity + "\"}";
+        String hashX = MD5.getMd5(jsonData);
+        String rootCreation = "fid=" + fId + "&ubication=" + ubication + "&name=" + nameMerchant + "&previousStage=" + previousS + "&currentStage=" + currentS + "&image=" + image + "&description=" + description + "&code=" + code + "&arrivalDate=" + arrivalDate + "&quantity=" + quantity + "&hashX=" + hashX;
+        byte[] postData = rootCreation.getBytes(StandardCharsets.UTF_8);
+        int postDataLength = postData.length;
+        URL url = null;
+        try {
+            url = new URL("http://" + this.ip + "/merchantsDataIn");
+
+            connection = (HttpURLConnection) url.openConnection();
+            connection.setRequestMethod("POST");
+            connection.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
+            connection.setRequestProperty("Content-Length", Integer.toString(postDataLength));
+
+            connection.setRequestProperty("Authorization", token);
+
+            connection.setUseCaches(false);
+            connection.setDoOutput(true);
+
+            SimpleDateFormat sdf3 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
+            Date now3 = new Date();
+            String strDate3 = sdf3.format(now3);
+            response = "HonestAgent/dataMerchant --> Date: " + strDate3 + "; Request: {" + rootCreation + "}";
+            //System.out.println(response + ", " + position);
+
+            Respuesta.setConsultaS(response + "\n", position);
+
+            //Send request
+            DataOutputStream wr = new DataOutputStream(connection.getOutputStream());
+            wr.writeBytes(rootCreation);
+            wr.close();
+
+            if (connection.getResponseCode() >= 300 && connection.getResponseCode() < 600) {
+                System.out.println("HonestAgent/dataMerchant/error Stream: " + connection.getErrorStream());
+                InputStream is = connection.getErrorStream();
+                BufferedReader rd = new BufferedReader(new InputStreamReader(is));
+                StringBuilder response = new StringBuilder(); // or StringBuffer if Java version 5+
+                String line;
+                while ((line = rd.readLine()) != null) {
+                    JSONObject jsonObject = new JSONObject(line);
+                    SimpleDateFormat sdf2 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
+                    Date now2 = new Date();
+                    String strDate2 = sdf2.format(now2);
+
+                    //response = "Root/AgentHonest/getInitialNonce <-- Date: " + strDate2 + "; Response: " + line;
+                    response.append(line);
+                    Respuesta.setConsultaS("HonestAgent/dataMerchant <-- Date: " + strDate2 + "; Response: " + line + "\n", position);
+                    response.append('\r');
+
+                }
+
+            } else {
+                //Get Response
+                InputStream is = connection.getInputStream();
+                BufferedReader rd = new BufferedReader(new InputStreamReader(is));
+                StringBuilder response = new StringBuilder(); // or StringBuffer if Java version 5+
+                String line;
+
+                while ((line = rd.readLine()) != null) {
+                    JSONObject jsonObject = new JSONObject(line);
+                    SimpleDateFormat sdf2 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
+                    Date now2 = new Date();
+                    String strDate2 = sdf2.format(now2);
+                    response.append(line);
+                    //System.out.println("Crear usuario/HonestAgent/line: "+line);
+                    Respuesta.setConsultaS("HonestAgent/dataMerchant <-- Date: " + strDate2 + "; Response: " + line + " \n", position);
+                    response.append('\r');
+                }
+                rd.close();
+                //return response.toString();
+            }
+
+        } catch (java.net.ConnectException e) {
+            System.out.println("HonestAgent/dataMerchant/Exception: " + e);
+            Respuesta.setConsultaS("No se pudo contactar con el servidor", position);
+        } catch (IOException ex) {
+            Logger.getLogger(HonestAgent.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     public void userCreation(int position) {
@@ -155,12 +485,12 @@ public class HonestAgentNP {
             String hashX = MD5.getMd5(jsonData);
 
             //String rootCreation2 = "curl -F \"fid=" + fId + "\" -F \"ubication=" + ubication + "\" -F \"name=" + nameProduction + "\" -F \"harvestDate=" + harvestD + "\" -F \"caducationDate=" + caducationD + "\" -F \"previousStage=" + previousS + "\" -F \"currentStage=" + currentS + "\" -F \"description=" + description + "\" -F \"image=@" + image + "\" -F \"documentation=document.pdf\" -F \"nameOfCompany=Productora de aguacates 3 S.A. de C.V.\" -F \"code=" + code + "\" -H \"Authorization:" + token + "\" -X POST http://" + ip + ":80/productorsData";
-            String rootCreation2 = "curl -F \"fid=" + fId + "\" -F \"ubication=" + ubication + "\" -F \"name=" + nameProduction + "\" -F \"harvestDate=" + harvestD + "\" -F \"caducationDate=" + caducationD + "\" -F \"previousStage=" + previousS + "\" -F \"currentStage=" + currentS + "\" -F \"description=" + description + "\" -F \"image=@" + image + "\" -F \"documentation=document.pdf\" -F \"code=" + code + "\" -F \"hashX=" + hashX + "\" -H \"Authorization:" + token + "\" -X POST http://" + ip + ":80/productorsData";
+            String rootCreation2 = "curl -F \"fid=" + fId + "\" -F \"ubication=" + ubication + "\" -F \"name=" + nameProduction + "\" -F \"harvestDate=" + harvestD + "\" -F \"caducationDate=" + caducationD + "\" -F \"previousStage=" + previousS + "\" -F \"currentStage=" + currentS + "\" -F \"description=" + description + "\" -F \"image=" + image + "\" -F \"documentation=document.pdf\" -F \"code=" + code + "\" -F \"hashX=" + hashX + "\" -H \"Authorization:" + token + "\" -X POST http://" + ip + ":80/productorsData";
             // 
             SimpleDateFormat sdf3 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
             Date now3 = new Date();
             String strDate3 = sdf3.format(now3);
-            String response = "New Productor/AgentHonest --> Date: " + strDate3 + "; CURL: " + rootCreation2;
+            String response = "HonestAgent/New Productor/AgentHonest --> Date: " + strDate3 + "; CURL: " + rootCreation2;
             /*if (position == -1) {
                 caja.append(response + "\n");
             } else {*/
@@ -220,7 +550,7 @@ public class HonestAgentNP {
             System.out.println("NewPhase/hash: " + hashX);
 
             //String rootCreation2 = "curl -F \"fid=" + fId + "\" -F \"ubication=" + ubication + "\" -F \"name=" + nameProduction + "\" -F \"previousStage=" + previousS + "\" -F \"currentStage=" + currentS + "\" -F \"nameOfCompany=Transportadora de aguacates 3 S.A. de C.V." + "\" -F \"image=@" + image + "\" -F \"description=" + description + "\" -F \"code=" + code + "\" -F \"driverName=" + driverName + "\" -F \"origin=" + origin + "\" -F \"destination=" + destination + "\" -F \"plates=" + plates + "\" -F \"productPhotos=@" + productPhotos + "\" -F \"vehiclePhotos=@" + vehiclePhotos + "\" -F \"tracking=" + tracking + "\" -H \"Authorization:" + token + "\" -X POST http://" + ip + ":" + puerto + "/carriersData";
-            String rootCreation2 = "curl -F \"fid=" + fId + "\" -F \"ubication=" + ubication + "\" -F \"name=" + nameProduction + "\" -F \"previousStage=" + previousS + "\" -F \"currentStage=" + currentS + "\" -F \"image=@" + image + "\" -F \"description=" + description + "\" -F \"code=" + code + "\" -F \"driverName=" + driverName + "\" -F \"origin=" + origin + "\" -F \"destination=" + destination + "\" -F \"plates=" + plates + "\" -F \"productPhotos=@" + productPhotos + "\" -F \"vehiclePhotos=@" + vehiclePhotos + "\" -F \"tracking=" + tracking + "\" -F \"hashX=" + hashX + "\" -H \"Authorization:" + token + "\" -X POST http://" + ip + ":" + puerto + "/carriersData";
+            String rootCreation2 = "curl -F \"fid=" + fId + "\" -F \"ubication=" + ubication + "\" -F \"name=" + nameProduction + "\" -F \"previousStage=" + previousS + "\" -F \"currentStage=" + currentS + "\" -F \"image=" + image + "\" -F \"description=" + description + "\" -F \"code=" + code + "\" -F \"driverName=" + driverName + "\" -F \"origin=" + origin + "\" -F \"destination=" + destination + "\" -F \"plates=" + plates + "\" -F \"productPhotos=" + productPhotos + "\" -F \"vehiclePhotos=" + vehiclePhotos + "\" -F \"tracking=" + tracking + "\" -F \"hashX=" + hashX + "\" -H \"Authorization:" + token + "\" -X POST http://" + ip + ":" + puerto + "/carriersData";
             System.out.println("HonestAgentNP/userCreationCarrier/request:" + rootCreation2);
 
             SimpleDateFormat sdf3 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
@@ -286,7 +616,7 @@ public class HonestAgentNP {
             String hashX = MD5.getMd5(jsonData);
 
             //String rootCreation2 = "curl -F \"fid=" + fId + "\" -F \"ubication=" + ubication + "\" -F \"name=" + nameAcopio + "\" -F \"previousStage=" + previousS + "\" -F \"currentStage=" + currentS + "\" -F \"nameOfCompany=Empresa Acopio" + "\" -F \"image=@" + image + "\" -F \"description=" + description + "\" -F \"code=" + code + "\" -F \"arrivalDate=" + arrivalDate + "\" -F \"clasification=Hass" + "\" -F \"quantity=" + quantity + "\" -F \"measure=" + measure + "\" -F \"whoReceives=" + whoReceives + "\" -H \"Authorization:" + token + "\" -X POST http://" + ip + ":" + puerto + "/acopiosDataIn";
-            String rootCreation2 = "curl -F \"fid=" + fId + "\" -F \"ubication=" + ubication + "\" -F \"name=" + nameAcopio + "\" -F \"previousStage=" + previousS + "\" -F \"currentStage=" + currentS + "\" -F \"image=@" + image + "\" -F \"description=" + description + "\" -F \"code=" + code + "\" -F \"arrivalDate=" + arrivalDate + "\" -F \"clasification=Hass" + "\" -F \"quantity=" + quantity + "\" -F \"measure=" + measure + "\" -F \"whoReceives=" + whoReceives + "\" -F \"hashX=" + hashX + "\" -H \"Authorization:" + token + "\" -X POST http://" + ip + ":" + puerto + "/acopiosDataIn";
+            String rootCreation2 = "curl -F \"fid=" + fId + "\" -F \"ubication=" + ubication + "\" -F \"name=" + nameAcopio + "\" -F \"previousStage=" + previousS + "\" -F \"currentStage=" + currentS + "\" -F \"image=" + image + "\" -F \"description=" + description + "\" -F \"code=" + code + "\" -F \"arrivalDate=" + arrivalDate + "\" -F \"clasification=Hass" + "\" -F \"quantity=" + quantity + "\" -F \"measure=" + measure + "\" -F \"whoReceives=" + whoReceives + "\" -F \"hashX=" + hashX + "\" -H \"Authorization:" + token + "\" -X POST http://" + ip + ":" + puerto + "/acopiosDataIn";
 
             SimpleDateFormat sdf3 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
             Date now3 = new Date();
@@ -353,7 +683,7 @@ public class HonestAgentNP {
             String hashX = MD5.getMd5(jsonData);
 
             //String rootCreation2 = "curl -F \"fid="+fId+"\" -F \"name="+nameProduction+"\" -F \"harvestDate="+harvestD+"\" -F \"caducationDate="+caducationD+"\" -F \"previousStage="+previousS+"\" -F \"currentStage="+currentS+"\" -F \"description="+description+"\" -F \"image=@"+image+"\" -F \"documentation=document.pdf\" -F \"nameOfCompany=Productora de aguacates 3 S.A. de C.V.\" -F \"code="+code+"\" -F \"origin="+origin+"\" -F \"destination="+destination+"\" -H \"Authorization:"+token+"\" -X POST http://"+ip+":80/productorsData";
-            String rootCreation2 = "curl -F \"fid=" + fId + "\" -F \"ubication=" + ubication + "\" -F \"name=" + nameMerchant + "\" -F \"previousStage=" + previousS + "\" -F \"currentStage=" + currentS + "\" -F \"image=@" + image + "\" -F \"description=" + description + "\" -F \"code=" + code + "\" -F \"arrivalDate=" + arrivalDate + "\" -F \"quantity=" + quantity + "\" -F \"hashX=" + hashX + "\" -H \"Authorization:" + token + "\" -X POST http://" + ip + ":" + puerto + "/merchantsDataIn";
+            String rootCreation2 = "curl -F \"fid=" + fId + "\" -F \"ubication=" + ubication + "\" -F \"name=" + nameMerchant + "\" -F \"previousStage=" + previousS + "\" -F \"currentStage=" + currentS + "\" -F \"image=" + image + "\" -F \"description=" + description + "\" -F \"code=" + code + "\" -F \"arrivalDate=" + arrivalDate + "\" -F \"quantity=" + quantity + "\" -F \"hashX=" + hashX + "\" -H \"Authorization:" + token + "\" -X POST http://" + ip + ":" + puerto + "/merchantsDataIn";
 
             SimpleDateFormat sdf3 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
             Date now3 = new Date();

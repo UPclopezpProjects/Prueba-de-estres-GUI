@@ -22,6 +22,8 @@ import java.awt.Image;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -31,6 +33,7 @@ import java.util.Timer;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
+import java.util.Base64;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JDialog;
@@ -990,49 +993,65 @@ public class InterfazG extends javax.swing.JFrame {
     }
 
     private String getCurrentStageI(String stage) {
+        String base64Image = "";
+
         File imagen = null;
         getOS sistemaO = new getOS();
         String separador = sistemaO.getSisOpe();
         if (separador == "\\") {
-            if (stage == "Acopio") {
+            if (stage.equals("Acopio")) {
                 imagen = new File(".\\src\\imagenes\\Acopio1.jpg");
             }
 
-            if (stage == "Carrier") {
+            if (stage.equals("Carrier")) {
                 imagen = new File(".\\src\\imagenes\\Carrier1.jpg");
             }
 
-            if (stage == "Merchant") {
+            if (stage.equals("Merchant")) {
                 imagen = new File(".\\src\\imagenes\\Merchant1.jpg");
             }
 
-            if (stage == "Productor") {
+            if (stage.equals("Productor")) {
                 imagen = new File(".\\src\\imagenes\\Productor1.jpg");
             }
         } else {
-            if (stage == "Acopio") {
+            if (stage.equals("Acopio")) {
                 imagen = new File("./src/imagenes/Acopio1.jpg");
             }
 
-            if (stage == "Carrier") {
+            if (stage.equals("Carrier")) {
                 imagen = new File("./src/imagenes/Carrier1.jpg");
             }
 
-            if (stage == "Merchant") {
+            if (stage.equals("Merchant")) {
                 imagen = new File("./src/imagenes/Merchant1.jpg");
             }
 
-            if (stage == "Productor") {
+            if (stage.equals("Productor")) {
                 imagen = new File("./src/imagenes/Productor1.jpg");
             }
         }
 
         System.out.println("InterfazG/getcurrentStageI: " + imagen.getAbsolutePath().replace("\\.", "").replace("/.", ""));
 
-        return imagen.getAbsolutePath().replace("\\.", "").replace("/.", "");
+        File file = new File(imagen.getAbsolutePath().replace("\\.", "").replace("/.", ""));
+        try (FileInputStream imageInFile = new FileInputStream(imagen)) {
+            // Reading a Image file from file system
+            byte imageData[] = new byte[(int) file.length()];
+            imageInFile.read(imageData);
+            base64Image = Base64.getEncoder().encodeToString(imageData);
+        } catch (FileNotFoundException e) {
+            System.out.println("Image not found" + e);
+        } catch (IOException ioe) {
+            System.out.println("Exception while reading the Image " + ioe);
+        }
+        System.out.println("InterfazG/base64Image: " + base64Image);
+        return base64Image;
     }
 
     private String getImage() {
+        String base64Image = "";
+        
         String imagenes[] = {".\\src\\imagenes\\1.png", ".\\src\\imagenes\\2.png", ".\\src\\imagenes\\3.png", ".\\src\\imagenes\\4.png", ".\\src\\imagenes\\5.png"};
         String imagenesL[] = {"./src/imagenes/1.png", "./src/imagenes/2.png", "./src/imagenes/3.png", "./src/imagenes/4.png", "./src/imagenes/5.png"};
         int i = (int) Math.floor(Math.random() * 5);
@@ -1044,10 +1063,23 @@ public class InterfazG extends javax.swing.JFrame {
         } else {
             imagen = imagenesL[i];
         }
+        File file = new File(imagen);
+        //File archivo = new File(imagen);
+        System.out.println("InterfazG/getImage: " + file.getAbsolutePath().replace("\\.", "").replace("/.", ""));
+        //return archivo.getAbsolutePath().replace("\\.", "").replace("/.", "");
 
-        File archivo = new File(imagen);
-        System.out.println("InterfazG/getImage: " + archivo.getAbsolutePath().replace("\\.", "").replace("/.", ""));
-        return archivo.getAbsolutePath().replace("\\.", "").replace("/.", "");
+        try (FileInputStream imageInFile = new FileInputStream(imagen)) {
+            // Reading a Image file from file system
+            byte imageData[] = new byte[(int) file.length()];
+            imageInFile.read(imageData);
+            base64Image = Base64.getEncoder().encodeToString(imageData);
+        } catch (FileNotFoundException e) {
+            System.out.println("Image not found" + e);
+        } catch (IOException ioe) {
+            System.out.println("Exception while reading the Image " + ioe);
+        }
+        //System.out.println("InterfazG/base64Image: " + base64Image);
+        return base64Image;
     }
 
     private String getPlates() {
@@ -2784,38 +2816,39 @@ public class InterfazG extends javax.swing.JFrame {
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel30, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jScrollPane8, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(jPanel5Layout.createSequentialGroup()
-                                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addGroup(jPanel5Layout.createSequentialGroup()
-                                        .addGap(18, 18, 18)
-                                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(jLabel46)
-                                            .addComponent(jLabel41)
-                                            .addComponent(jLabel44)
-                                            .addComponent(jLabel45)
-                                            .addComponent(jLabel47)
-                                            .addComponent(jLabel49)
-                                            .addComponent(jLabel55)
-                                            .addComponent(jLabel54, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                    .addGroup(jPanel5Layout.createSequentialGroup()
-                                        .addComponent(BAyuda1)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jLabel37)))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(CBPreviousSNP, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(CBDescriptionNP, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(CBCurrentSNP, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(CBNameNP, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(CBFIdNP, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(CBCodeNP, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(CBIpNP, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(TFTokenNP, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(SNumberRequestNP, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addComponent(RBRequestsANS, javax.swing.GroupLayout.Alignment.TRAILING))
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(jScrollPane8, javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addGroup(jPanel5Layout.createSequentialGroup()
+                                    .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addGroup(jPanel5Layout.createSequentialGroup()
+                                            .addGap(18, 18, 18)
+                                            .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                                .addComponent(jLabel46)
+                                                .addComponent(jLabel41)
+                                                .addComponent(jLabel44)
+                                                .addComponent(jLabel45)
+                                                .addComponent(jLabel47)
+                                                .addComponent(jLabel49)
+                                                .addComponent(jLabel55)
+                                                .addComponent(jLabel54, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addGroup(jPanel5Layout.createSequentialGroup()
+                                            .addComponent(BAyuda1)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(jLabel37)))
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addComponent(CBPreviousSNP, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(CBDescriptionNP, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(CBCurrentSNP, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(CBNameNP, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(CBFIdNP, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(CBCodeNP, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(CBIpNP, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(TFTokenNP, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(SNumberRequestNP, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(RBRequestsANS, javax.swing.GroupLayout.Alignment.TRAILING))
+                            .addComponent(jButton2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 523, Short.MAX_VALUE)))
                 .addContainerGap())
