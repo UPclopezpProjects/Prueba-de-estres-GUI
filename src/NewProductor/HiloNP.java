@@ -45,7 +45,9 @@ public class HiloNP implements Runnable {
     private String driverName;
     private String plates;
     private String productPhotos;
+    private String productPhotosName;
     private String vehiclePhotos;
+    private String vehiclePhotosName;
     private String tracking;
     private String type;
     private JFrame interfaz;
@@ -84,11 +86,17 @@ public class HiloNP implements Runnable {
     }
 
     public void setVehiclePhotos(String vehiclePhotos) {
-        this.vehiclePhotos = vehiclePhotos;
+        String parts [] = vehiclePhotos.split(",");
+        this.vehiclePhotosName=parts[1];
+        this.vehiclePhotos = parts[0];
+        System.out.println("HiloNP/setVehiclePhotos/vehiclePhotosName: "+parts[1]);
     }
 
     public void setProductPhotos(String productPhotos) {
-        this.productPhotos = productPhotos;
+        String parts [] = productPhotos.split(",");
+        this.productPhotosName=parts[1];
+        this.productPhotos = parts[0];
+        System.out.println("HiloNP/setVehiclePhotos/productPhotosName: "+parts[1]);
     }
 
     public void setPlates(String plates) {
@@ -171,7 +179,7 @@ public class HiloNP implements Runnable {
                 System.out.println("HiloNP/loop1/auto/honest");
                 if (currentS == "Carrier") {
                     System.out.println("HiloNP/Agente honesto 1");
-                    HonestAgentNP honesto = new HonestAgentNP(fId, ubication, nameProduction, previousS, currentS, image, description, code, driverName, origin, destination, plates, productPhotos, vehiclePhotos, tracking, token, ip, /*caja, */ position);
+                    HonestAgentNP honesto = new HonestAgentNP(fId, ubication, nameProduction, previousS, currentS, image, description, code, driverName, origin, destination, plates, productPhotos, vehiclePhotos, tracking, token, ip, position, vehiclePhotosName, productPhotosName);
                     Respuesta.setNumeroNP();
                 }
 
@@ -197,7 +205,7 @@ public class HiloNP implements Runnable {
                 System.out.println("HiloNP/loop1/auto/manual");
                 if (currentS == "Carrier") {
                     System.out.println("HiloNP/Agente deshonesto 1");
-                    DishonestAgentNP dishonest = new DishonestAgentNP(fId, ubication, nameProduction, previousS, currentS, image, description, code, driverName, origin, destination, plates, productPhotos, vehiclePhotos, tracking, generateFakeToken(), ip, /*caja, */ position);
+                    DishonestAgentNP dishonest = new DishonestAgentNP(fId, ubication, nameProduction, previousS, currentS, image, description, code, driverName, origin, destination, plates, productPhotos, vehiclePhotos, tracking, generateFakeToken(), ip,position, vehiclePhotosName, productPhotosName);
                     Respuesta.setNumeroNP();
                 }
 
@@ -230,7 +238,7 @@ public class HiloNP implements Runnable {
                         System.out.println("HiloNP/Agente honesto 1");
                         interfaz.setEnabled(false);
                         carga.setVisible(true);
-                        HonestAgentNP honesto = new HonestAgentNP(fId, ubication, nameProduction, previousS, currentS, image, description, code, driverName, origin, destination, plates, productPhotos, vehiclePhotos, tracking, token, ip, /*caja, */ position);
+                        HonestAgentNP honesto = new HonestAgentNP(fId, ubication, nameProduction, previousS, currentS, image, description, code, driverName, origin, destination, plates, productPhotos, vehiclePhotos, tracking, token, ip, position, vehiclePhotosName, productPhotosName);
                         //Respuesta.setNumeroNP();
                         carga.setVisible(false);
                         interfaz.setEnabled(true);
@@ -279,7 +287,7 @@ public class HiloNP implements Runnable {
                         System.out.println("HiloNP/Agente deshonesto 1");
                         interfaz.setEnabled(false);
                         carga.setVisible(true);
-                        DishonestAgentNP dishonest = new DishonestAgentNP(fId, ubication, nameProduction, previousS, currentS, image, description, code, driverName, origin, destination, plates, productPhotos, vehiclePhotos, tracking, generateFakeToken(), ip, /*caja, */ position);
+                        DishonestAgentNP dishonest = new DishonestAgentNP(fId, ubication, nameProduction, previousS, currentS, image, description, code, driverName, origin, destination, plates, productPhotos, vehiclePhotos, tracking, generateFakeToken(), ip, position, vehiclePhotosName, productPhotosName);
                         //Respuesta.setNumeroNP();
                         carga.setVisible(false);
                         interfaz.setEnabled(true);

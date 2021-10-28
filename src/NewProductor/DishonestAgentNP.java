@@ -55,6 +55,8 @@ public class DishonestAgentNP {
     //exclusivo merchant
     private String nameMerchant;
     private String puerto = "80";
+    private String vehicleName;
+    private String productName;
     String response;
 
     public DishonestAgentNP(String ubication, String harvestD, String caducationD, String description, String fId,
@@ -78,7 +80,8 @@ public class DishonestAgentNP {
 
     public DishonestAgentNP(String fId, String ubication, String nameProduction, String previousStage, String currentStage,
             String image, String description, String code, String driverName, String origin, String destination, String plates,
-            String productPhotos, String vehiclePhotos, String tracking, String token, String ip, /*JTextArea caja, */ int position) {
+            String productPhotos, String vehiclePhotos, String tracking, String token, String ip, /*JTextArea caja, */ int position, String vehicleName,
+            String productName) {
         System.out.println("DishonestAgentNP/constructor de carrier");
         this.fId = fId;
         this.ubication = ubication;
@@ -97,6 +100,8 @@ public class DishonestAgentNP {
         this.tracking = tracking;
         this.token = token;
         this.ip = ip;
+        this.vehicleName= vehicleName;
+        this.productName= productName;
         //userCreationCarrier(position);
         dataCarrierC(position);
     }
@@ -145,7 +150,8 @@ public class DishonestAgentNP {
 
         String jsonData = "{\"fid\":\"" + fId + "\",\"code\":\"" + code + "\",\"ubication\":\"" + ubication + "\",\"name\":\"" + nameProduction + "\",\"harvestDate\":\"" + harvestD + "\",\"caducationDate\":\"" + caducationD + "\",\"previousStage\":\"" + previousS + "\",\"currentStage\":\"" + currentS + "\",\"description\":\"" + description + "\",\"documentation\":\"" + documentation + "\"}";
         String hashX = MD5.getMd5(jsonData);
-        String rootCreation = "fid=" + fId + "&ubication=" + ubication + "&name=" + nameProduction + "&harvestDate=" + harvestD + "&caducationDate=" + caducationD + "&previousStage=" + previousS + "&currentStage=" + currentS + "&description=" + description + "&image=" + image + "&documentation=document.pdf&code=" + code + "&hashX=" + hashX;
+        //String rootCreation = "fid=" + fId + "&ubication=" + ubication + "&name=" + nameProduction + "&harvestDate=" + harvestD + "&caducationDate=" + caducationD + "&previousStage=" + previousS + "&currentStage=" + currentS + "&description=" + description + "&image=" + image + "&documentation=document.pdf&code=" + code + "&hashX=" + hashX;
+          String rootCreation = "fid=" + fId + "&ubication=" + ubication + "&name=" + nameProduction + "&harvestDate=" + harvestD + "&caducationDate=" + caducationD + "&previousStage=" + previousS + "&currentStage=" + currentS + "&description=" + description+ "&originalname=Productor1.jpg" + "&image=" + image + "&documentation=document.pdf&code=" + code + "&hashX=" + hashX;
         byte[] postData = rootCreation.getBytes(StandardCharsets.UTF_8);
         int postDataLength = postData.length;
         URL url = null;
@@ -228,8 +234,9 @@ public class DishonestAgentNP {
         HttpURLConnection connection = null;
         String jsonData = "{\"fid\":\"" + fId + "\",\"code\":\"" + code + "\",\"name\":\"" + nameProduction + "\",\"previousStage\":\"" + previousS + "\",\"currentStage\":\"" + currentS + "\",\"description\":\"" + description + "\",\"driverName\":\"" + driverName + "\",\"origin\":\"" + origin + "\",\"destination\":\"" + destination + "\",\"plates\":\"" + plates + "\",\"tracking\":\"" + tracking + "\"}";
         String hashX = MD5.getMd5(jsonData);
-        String rootCreation = "fid=" + fId + "&ubication=" + ubication + "&name=" + nameProduction + "&previousStage=" + previousS + "&currentStage=" + currentS + "&image=" + image + "&description=" + description + "&code=" + code + "&driverName=" + driverName + "&origin=" + origin + "&destination=" + destination + "&plates=" + plates + "&productPhotos=" + productPhotos + "&vehiclePhotos=" + vehiclePhotos + "&tracking=" + tracking + "&hashX=" + hashX;
-
+        //String rootCreation = "fid=" + fId + "&ubication=" + ubication + "&name=" + nameProduction + "&previousStage=" + previousS + "&currentStage=" + currentS + "&image=" + image + "&description=" + description + "&code=" + code + "&driverName=" + driverName + "&origin=" + origin + "&destination=" + destination + "&plates=" + plates + "&productPhotos=" + productPhotos + "&vehiclePhotos=" + vehiclePhotos + "&tracking=" + tracking + "&hashX=" + hashX;
+        String rootCreation = "fid=" + fId + "&ubication=" + ubication + "&name=" + nameProduction + "&previousStage=" + previousS + "&currentStage=" + currentS + "&originalnameImage=Carrier1.jpg" + "&bufferImage=" + image + "&originalnameProductPhotos=" + productName + "&bufferProductPhotos=" + productPhotos + "&description=" + description + "&code=" + code + "&driverName=" + driverName + "&origin=" + origin + "&destination=" + destination + "&plates=" + plates  + "&bufferVehiclePhotos=" + vehiclePhotos + "&originalnameVehiclePhotos="+ vehicleName + "&tracking=" + tracking + "&hashX=" + hashX;
+        
         byte[] postData = rootCreation.getBytes(StandardCharsets.UTF_8);
         int postDataLength = postData.length;
         URL url = null;

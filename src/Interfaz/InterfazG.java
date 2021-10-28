@@ -995,57 +995,44 @@ public class InterfazG extends javax.swing.JFrame {
     private String getCurrentStageI(String stage) {
         String base64Image = "";
 
-        File imagen = null;
+        String imagen = null;
         getOS sistemaO = new getOS();
         String separador = sistemaO.getSisOpe();
         if (separador == "\\") {
             if (stage.equals("Acopio")) {
-                imagen = new File(".\\src\\imagenes\\Acopio1.jpg");
+                imagen = ".\\src\\imagenes\\Acopio1.jpg";
             }
 
             if (stage.equals("Carrier")) {
-                imagen = new File(".\\src\\imagenes\\Carrier1.jpg");
+                imagen = ".\\src\\imagenes\\Carrier1.jpg";
             }
 
             if (stage.equals("Merchant")) {
-                imagen = new File(".\\src\\imagenes\\Merchant1.jpg");
+                imagen = ".\\src\\imagenes\\Merchant1.jpg";
             }
 
             if (stage.equals("Productor")) {
-                imagen = new File(".\\src\\imagenes\\Productor1.jpg");
+                imagen = ".\\src\\imagenes\\Productor1.jpg";
             }
         } else {
             if (stage.equals("Acopio")) {
-                imagen = new File("./src/imagenes/Acopio1.jpg");
+                imagen = "./src/imagenes/Acopio1.jpg";
             }
 
             if (stage.equals("Carrier")) {
-                imagen = new File("./src/imagenes/Carrier1.jpg");
+                imagen = "./src/imagenes/Carrier1.jpg";
             }
 
             if (stage.equals("Merchant")) {
-                imagen = new File("./src/imagenes/Merchant1.jpg");
+                imagen = "./src/imagenes/Merchant1.jpg";
             }
 
             if (stage.equals("Productor")) {
-                imagen = new File("./src/imagenes/Productor1.jpg");
+                imagen = "./src/imagenes/Productor1.jpg";
             }
         }
-
-        System.out.println("InterfazG/getcurrentStageI: " + imagen.getAbsolutePath().replace("\\.", "").replace("/.", ""));
-
-        File file = new File(imagen.getAbsolutePath().replace("\\.", "").replace("/.", ""));
-        try (FileInputStream imageInFile = new FileInputStream(imagen)) {
-            // Reading a Image file from file system
-            byte imageData[] = new byte[(int) file.length()];
-            imageInFile.read(imageData);
-            base64Image = Base64.getEncoder().encodeToString(imageData);
-        } catch (FileNotFoundException e) {
-            System.out.println("Image not found" + e);
-        } catch (IOException ioe) {
-            System.out.println("Exception while reading the Image " + ioe);
-        }
-        System.out.println("InterfazG/base64Image: " + base64Image);
+        System.out.println("InterfazG/getcurrentStageI: " + imagen);
+        base64Image = Encoder.encoder(imagen);
         return base64Image;
     }
 
@@ -1063,23 +1050,8 @@ public class InterfazG extends javax.swing.JFrame {
         } else {
             imagen = imagenesL[i];
         }
-        File file = new File(imagen);
-        //File archivo = new File(imagen);
-        System.out.println("InterfazG/getImage: " + file.getAbsolutePath().replace("\\.", "").replace("/.", ""));
-        //return archivo.getAbsolutePath().replace("\\.", "").replace("/.", "");
-
-        try (FileInputStream imageInFile = new FileInputStream(imagen)) {
-            // Reading a Image file from file system
-            byte imageData[] = new byte[(int) file.length()];
-            imageInFile.read(imageData);
-            base64Image = Base64.getEncoder().encodeToString(imageData);
-        } catch (FileNotFoundException e) {
-            System.out.println("Image not found" + e);
-        } catch (IOException ioe) {
-            System.out.println("Exception while reading the Image " + ioe);
-        }
-        //System.out.println("InterfazG/base64Image: " + base64Image);
-        return base64Image;
+        base64Image = Encoder.encoder(imagen);
+        return base64Image+","+imagen.substring(imagen.length()-5);
     }
 
     private String getPlates() {
@@ -1153,6 +1125,7 @@ public class InterfazG extends javax.swing.JFrame {
         jLabel56 = new javax.swing.JLabel();
         jDialog4 = new javax.swing.JDialog();
         jLabel50 = new javax.swing.JLabel();
+        jLabel86 = new javax.swing.JLabel();
         jDialog5 = new javax.swing.JDialog();
         jLabel58 = new javax.swing.JLabel();
         jLabel59 = new javax.swing.JLabel();
@@ -1498,15 +1471,27 @@ public class InterfazG extends javax.swing.JFrame {
 
         jLabel50.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Interfaz/loading-circular.gif"))); // NOI18N
 
+        jLabel86.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        jLabel86.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel86.setText("Cargando...");
+
         javax.swing.GroupLayout jDialog4Layout = new javax.swing.GroupLayout(jDialog4.getContentPane());
         jDialog4.getContentPane().setLayout(jDialog4Layout);
         jDialog4Layout.setHorizontalGroup(
             jDialog4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel50, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(jDialog4Layout.createSequentialGroup()
+                .addGroup(jDialog4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel50, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel86, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jDialog4Layout.setVerticalGroup(
             jDialog4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel50, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDialog4Layout.createSequentialGroup()
+                .addGap(0, 28, Short.MAX_VALUE)
+                .addComponent(jLabel86)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel50, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         jDialog5.setMinimumSize(new java.awt.Dimension(500, 150));
@@ -4241,6 +4226,7 @@ public class InterfazG extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel83;
     private javax.swing.JLabel jLabel84;
     private javax.swing.JLabel jLabel85;
+    private javax.swing.JLabel jLabel86;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JLayeredPane jLayeredPane1;
     private javax.swing.JLayeredPane jLayeredPane2;
