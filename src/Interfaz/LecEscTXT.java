@@ -60,7 +60,7 @@ public class LecEscTXT {
         return model;
     }
 
-    public void escribir() {
+    /*public void escribir() {
         FileWriter fichero = null;
         PrintWriter pw = null;
         File archivo = new File(ruta);
@@ -89,7 +89,7 @@ public class LecEscTXT {
                 e2.printStackTrace();
             }
         }
-    }
+    }*/
 
     public void agregar(String valor) throws IOException {
         File archivo = new File(ruta);

@@ -159,8 +159,23 @@ public class DishonestAgentA {
             wr.writeBytes(rootCreation);
             wr.close();
 
-            if (connection.getErrorStream() != null) {
-                System.out.println("Crear Usuario/AgentHonest/error Stream: " + connection.getErrorStream());
+           if (connection.getResponseCode() >= 300 && connection.getResponseCode() < 600) {
+                System.out.println("Crear Usuario/Agente deshonesto A/error Stream: " + connection.getErrorStream());
+                InputStream is = connection.getErrorStream();
+                BufferedReader rd = new BufferedReader(new InputStreamReader(is));
+                StringBuilder response = new StringBuilder(); // or StringBuffer if Java version 5+
+                String line;
+                while ((line = rd.readLine()) != null) {
+                    JSONObject jsonObject = new JSONObject(line);
+                    SimpleDateFormat sdf2 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
+                    Date now2 = new Date();
+                    String strDate2 = sdf2.format(now2);
+
+                    //response = "Root/AgentHonest/getInitialNonce <-- Date: " + strDate2 + "; Response: " + line;
+                    response.append(line);
+                    Respuesta.setConsultaUC("Crear Usuario/Agente deshonesto A <-- Date: " + strDate2 + "; Response: " + line + "\n", position);
+                    response.append('\r');
+                }
             } else {
                 //Get Response
                 InputStream is = connection.getInputStream();
@@ -191,7 +206,7 @@ public class DishonestAgentA {
 
     }
 
-    public void userCreation(int position) {
+    /*public void userCreation(int position) {
         try {
             //Thread.sleep(500);
             Random rand = new Random();
@@ -210,7 +225,7 @@ public class DishonestAgentA {
             //String dp = "{\"\"createAdministrator\"\":false,\"\"createTUser\"\":false,\"\"updateMe\"\":false,\"\"updateAdministrator\"\":false,\"\"updateTUser\"\":false,\"\"deleteMe\"\":false,\"\"deleteAdministrator\"\":false,\"\"deleteTUser\"\":false,\"\"readMe\"\":false,\"\"readAdministrator\"\":false,\"\"readTUser\"\":false,\"\"loginUser\"\":false}";
             String dp = this.dp;
             authorization = "n";
-            String jsonData = "{\"email\":\"" + email + "\",\"password\":\"" + password + "\",\"surnameA\":\"" + surnameA + "\",\"surnameB\":\"" + surnameB + "\",\"nameOfUser\":\"" + nameOfUser + "\",\"typeOfUser\":\"" + typeOfUser + "\",\"status\":\"" + status + "\",\"creationDate\":\"" + creationDate + "\",\"initialToken\":\"" + authorization + "\",\"addressU\":\"" + addressU + "\",\"gas\":\"" + gas + "\",\"typeOfOperation\":\"" + typeOfOperation + "\",\"nameOfOperation\":\"" + nameOfOperation + /*"\",\"dp\":\"" + dpHashX + */ "\"}";
+            String jsonData = "{\"email\":\"" + email + "\",\"password\":\"" + password + "\",\"surnameA\":\"" + surnameA + "\",\"surnameB\":\"" + surnameB + "\",\"nameOfUser\":\"" + nameOfUser + "\",\"typeOfUser\":\"" + typeOfUser + "\",\"status\":\"" + status + "\",\"creationDate\":\"" + creationDate + "\",\"initialToken\":\"" + authorization + "\",\"addressU\":\"" + addressU + "\",\"gas\":\"" + gas + "\",\"typeOfOperation\":\"" + typeOfOperation + "\",\"nameOfOperation\":\"" + nameOfOperation + "\"}";
             //System.out.println("jsonData: " + jsonData);
             String hashX = MD5.getMd5(jsonData);
             //System.out.println("hashX: " + hashX);
@@ -305,7 +320,7 @@ public class DishonestAgentA {
         catch (IOException | InterruptedException t) {
             //System.out.println(t);
         }
-    }
+    }*/
 
     public String nameOperation() {
         if (typeU == "Administrator") {

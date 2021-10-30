@@ -149,7 +149,7 @@ public class Company {
 
     }
 
-    public void createCompanyName() {
+    /*public void createCompanyName() {
         try {
             if (stage == "Productor") {
                 rootCreation2 = "curl -F \"email=" + email + "\" -F \"nameOfCompany=" + companyName + "\" -H \"Authorization:" + token + "\" -X POST http://" + ip + ":" + puerto + "/productorsCompany";
@@ -192,9 +192,6 @@ public class Company {
                         String strDate4 = sdf4.format(now4);
                         //System.out.println("<-- Date: " + strDate4 + "; Response: " + line);
                         response = "New Company <-- Date: " + strDate4 + "; Response: " + line;
-                        /*if (position == -1) {
-                            caja.append(response + "\n \n");
-                        } else {*/
                         Respuesta.setConsultaCompany(response, position);
                         //}
 
@@ -208,5 +205,5 @@ public class Company {
         } catch (IOException | InterruptedException t) {
             //System.out.println(t);
         }
-    }
+    }*/
 }

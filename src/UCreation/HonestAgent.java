@@ -153,8 +153,23 @@ public class HonestAgent {
             wr.writeBytes(rootCreation);
             wr.close();
 
-            if (connection.getErrorStream() != null) {
-                System.out.println("Crear Usuario/AgentHonest/error Stream: " + connection.getErrorStream());
+            if (connection.getResponseCode() >= 300 && connection.getResponseCode() < 600) {
+                System.out.println("Crear Usuario/Agente honesto/error Stream: " + connection.getErrorStream());
+                InputStream is = connection.getErrorStream();
+                BufferedReader rd = new BufferedReader(new InputStreamReader(is));
+                StringBuilder response = new StringBuilder(); // or StringBuffer if Java version 5+
+                String line;
+                while ((line = rd.readLine()) != null) {
+                    JSONObject jsonObject = new JSONObject(line);
+                    SimpleDateFormat sdf2 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
+                    Date now2 = new Date();
+                    String strDate2 = sdf2.format(now2);
+
+                    //response = "Root/AgentHonest/getInitialNonce <-- Date: " + strDate2 + "; Response: " + line;
+                    response.append(line);
+                    Respuesta.setConsultaUC("Crear Usuario/AgentHonest <-- Date: " + strDate2 + "; Response: " + line + "\n", position);
+                    response.append('\r');
+                }
             } else {
                 //Get Response
                 InputStream is = connection.getInputStream();
@@ -185,7 +200,7 @@ public class HonestAgent {
 
     }
 
-    public void userCreation(int position) {
+    /*public void userCreation(int position) {
         //System.out.print(token);
         String[] firstname = {"firstname1", "firstname2", "firstname3", "firstname4", "firstname5",
             "firstname6", "firstname7", "firstname8", "firstname9", "firstname10"};
@@ -209,7 +224,7 @@ public class HonestAgent {
             //se utiliza en la función de jsonData 
             String dpHashX = "{\\\"createAdministrator\\\":true,\\\"createTUser\\\":true,\\\"updateMe\\\":true,\\\"updateAdministrator\\\":true,\\\"updateTUser\\\":true,\\\"deleteMe\\\":true,\\\"deleteAdministrator\\\":true,\\\"deleteTUser\\\":true,\\\"readMe\\\":true,\\\"readAdministrator\\\":true,\\\"readTUser\\\":true,\\\"loginUser\\\":true}";
             String dp = this.dp;
-            String jsonData = "{\"email\":\"" + email + "\",\"password\":\"" + password + "\",\"surnameA\":\"" + surnameA + "\",\"surnameB\":\"" + surnameB + "\",\"nameOfUser\":\"" + nameOfUser + "\",\"typeOfUser\":\"" + typeOfUser + "\",\"status\":\"" + status + "\",\"creationDate\":\"" + creationDate + "\",\"initialToken\":\"" + authorization + "\",\"addressU\":\"" + addressU + "\",\"gas\":\"" + gas + "\",\"typeOfOperation\":\"" + typeOfOperation + "\",\"nameOfOperation\":\"" + nameOfOperation + /*"\",\"dp\":\"" + dpHashX + */ "\"}";
+            String jsonData = "{\"email\":\"" + email + "\",\"password\":\"" + password + "\",\"surnameA\":\"" + surnameA + "\",\"surnameB\":\"" + surnameB + "\",\"nameOfUser\":\"" + nameOfUser + "\",\"typeOfUser\":\"" + typeOfUser + "\",\"status\":\"" + status + "\",\"creationDate\":\"" + creationDate + "\",\"initialToken\":\"" + authorization + "\",\"addressU\":\"" + addressU + "\",\"gas\":\"" + gas + "\",\"typeOfOperation\":\"" + typeOfOperation + "\",\"nameOfOperation\":\"" + nameOfOperation + "\"}";
             //System.out.println("jsonData: " + jsonData);
             String hashX = MD5.getMd5(jsonData);
             //System.out.println("hashX: " + hashX);
@@ -295,7 +310,7 @@ public class HonestAgent {
         } catch (IOException | InterruptedException t) {
             //System.out.println(t);
         }
-    }
+    }*/
 
     public String nameOperation() {
         switch (typeU) {

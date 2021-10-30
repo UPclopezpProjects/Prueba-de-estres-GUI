@@ -16,7 +16,6 @@ import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 import UCreation.hiloUC;
 import UCreation.hiloUCA;
-//import com.sun.awt.AWTUtilities;
 import companyName.HiloCN;
 import java.awt.Image;
 import java.io.BufferedReader;
