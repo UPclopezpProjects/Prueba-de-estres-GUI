@@ -1,8 +1,7 @@
 package Interfaz.StressTest;
 
-import Interfaz.InterfazG;
-import Interfaz.StressTest.Hilo;
-import Interfaz.MD5;
+//import Interfaz.InterfazG;
+//import Interfaz.StressTest.Hilo;
 import Interfaz.MD5;
 import Interfaz.Respuesta;
 import java.io.*;
@@ -15,7 +14,7 @@ import java.util.Calendar;
 import java.util.Date;
 import org.json.*;
 import java.util.Random;
-import javax.swing.JTextArea;
+//import javax.swing.JTextArea;
 
 public final class AgentsSendAnything extends Hilo {
 

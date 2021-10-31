@@ -60,37 +60,6 @@ public class LecEscTXT {
         return model;
     }
 
-    /*public void escribir() {
-        FileWriter fichero = null;
-        PrintWriter pw = null;
-        File archivo = new File(ruta);
-        try {
-            if (!archivo.exists()) {
-                archivo.createNewFile();
-            }
-
-            fichero = new FileWriter(ruta);
-            pw = new PrintWriter(fichero);
-
-            for (int i = 0; i < 10; i++) {
-                pw.println("Linea " + i);
-            }
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            try {
-                // Nuevamente aprovechamos el finally para 
-                // asegurarnos que se cierra el fichero.
-                if (null != fichero) {
-                    fichero.close();
-                }
-            } catch (Exception e2) {
-                e2.printStackTrace();
-            }
-        }
-    }*/
-
     public void agregar(String valor) throws IOException {
         File archivo = new File(ruta);
 

@@ -7,39 +7,19 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
-import javax.swing.SwingUtilities;
 import UCreation.hiloUC;
 import UCreation.hiloUCA;
 import companyName.HiloCN;
-import java.awt.Image;
 import java.io.BufferedReader;
-import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
-import java.io.FileWriter;
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.Arrays;
-import java.util.Timer;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.TimeUnit;
-import java.util.Base64;
-import javax.swing.Icon;
-import javax.swing.ImageIcon;
-import javax.swing.JDialog;
 import javax.swing.JFileChooser;
-import javax.swing.JPanel;
 import javax.swing.JTextArea;
-import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.filechooser.FileSystemView;
 import javax.swing.table.DefaultTableModel;
 
@@ -50,6 +30,7 @@ public class InterfazG extends javax.swing.JFrame {
     private HiloNP hNP;
     DefaultTableModel model;
 
+    //--------
     public InterfazG() {
         initComponents();
 
@@ -77,6 +58,7 @@ public class InterfazG extends javax.swing.JFrame {
         generateCBAC();
     }
 
+    //--------
     public void crearB(int n, int aHonesto, int aEnviarA) {
 
         for (int x = 0; x < n; x++) {
@@ -152,8 +134,8 @@ public class InterfazG extends javax.swing.JFrame {
         jPanel2.updateUI();
     }
 
+    //------
     public void crearBUC(int nSolicitudes, int aHonesto, int aDeshonesto) {
-        //JOptionPane.showMessageDialog(null, nSolicitudes+" "+aHonesto+" "+aDeshonesto);
         for (int x = 0; x < nSolicitudes; x++) {
             double i = Math.floor(Math.random() * 101);
             System.out.println("el random interfaz = " + i);
@@ -230,6 +212,7 @@ public class InterfazG extends javax.swing.JFrame {
         jPanel4.updateUI();
     }
 
+    //-------------
     public void crearBNP(int nSolicitudes, int aHonesto, int aDeshonesto) {
         //JOptionPane.showMessageDialog(null, nSolicitudes+" "+aHonesto+" "+aDeshonesto);
         for (int x = 0; x < nSolicitudes; x++) {
@@ -282,6 +265,7 @@ public class InterfazG extends javax.swing.JFrame {
         jPanel6.updateUI();
     }
 
+    //-----------
     private void consultaHonestaNP(String honest, int position) {
         areaTexto.setText("");
         String ubication = getUbication();
@@ -381,6 +365,7 @@ public class InterfazG extends javax.swing.JFrame {
 
     }
 
+    //----------
     private void consultaHonestaUC(String typeConsult, int position) {
         areaTexto.setText("");
 
@@ -446,6 +431,7 @@ public class InterfazG extends javax.swing.JFrame {
         }
     }
 
+    //--------
     private void consultaHonesta(int position) {
         areaTexto.setText("");
         objetoH = new Hilo();
@@ -497,6 +483,7 @@ public class InterfazG extends javax.swing.JFrame {
         }
     }
 
+    //---------
     private void consultaEnviar(int position) {
         areaTexto.setText("");
         objetoH = new Hilo();
@@ -550,6 +537,7 @@ public class InterfazG extends javax.swing.JFrame {
         }
     }
 
+    //--------
     private void consultaEmpezarA(int position) {
         areaTexto.setText("");
         objetoH = new Hilo();
@@ -810,6 +798,7 @@ public class InterfazG extends javax.swing.JFrame {
         }
     }
 
+    //---------
     private String getRadioBCU() {
         boolean leerA;
         boolean leerM;
@@ -932,6 +921,7 @@ public class InterfazG extends javax.swing.JFrame {
         return "{\"createAdministrator\":" + String.valueOf(crearA) + ",\"createTUser\":" + String.valueOf(crearTU) + ",\"updateMe\":" + String.valueOf(actualizarM) + ",\"updateAdministrator\":" + String.valueOf(actualizarA) + ",\"updateTUser\":" + String.valueOf(actualizarTU) + ",\"deleteMe\":" + String.valueOf(eliminarM) + ",\"deleteAdministrator\":" + String.valueOf(eliminarA) + ",\"deleteTUser\":" + String.valueOf(eliminarTU) + ",\"readMe\":" + String.valueOf(leerM) + ",\"readAdministrator\":" + String.valueOf(leerA) + ",\"readTUser\":" + String.valueOf(leerTU) + ",\"loginUser\":" + String.valueOf(loginU) + ",\"readData\":" + String.valueOf(leerI) + ",\"updateData\":" + String.valueOf(actualizarI) + ",\"createData\":" + String.valueOf(crearI) + ",\"deleteData\":" + String.valueOf(borrarI) + "}";
     }
 
+    //----------
     private String getRadioB() {
         boolean leerA;
         boolean leerM;
@@ -949,6 +939,7 @@ public class InterfazG extends javax.swing.JFrame {
         return "{\"createAdministrator\":" + true + ",\"createTUser\":" + true + ",\"updateMe\":" + true + ",\"updateAdministrator\":" + true + ",\"updateTUser\":" + true + ",\"deleteMe\":" + true + ",\"deleteAdministrator\":" + true + ",\"deleteTUser\":" + true + ",\"readMe\":" + true + ",\"readAdministrator\":" + true + ",\"readTUser\":" + true + ",\"loginUser\":" + true + "}";
     }
 
+    //-----------
     private String getUbication() {
         String ubicaciones[] = {"17.531220571705116, -99.54728275095816", "17.132791271521327, -96.7728431841885", "22.146749160456203, -97.79458054076693",
             "25.616705695203237, -100.31109896934211", "28.5929766805675, -106.06668768489162"};
@@ -958,6 +949,7 @@ public class InterfazG extends javax.swing.JFrame {
         return lugar;
     }
 
+    //----------
     private String getOrigin() {
         String ubicaciones[] = {"17.531220571705117, -99.54728275095817", "17.132791271521328, -96.7728431841886", "22.146749160456204, -97.79458054076694",
             "25.616705695203238, -100.31109896934212", "28.5929766805676, -106.06668768489163"};
@@ -967,6 +959,7 @@ public class InterfazG extends javax.swing.JFrame {
         return lugar;
     }
 
+    //------------
     private String getDestination() {
         String ubicaciones[] = {"17.531220571705115, -99.54728275095815", "17.132791271521326, -96.7728431841884", "22.146749160456202, -97.79458054076692",
             "25.616705695203236, -100.31109896934210", "28.5929766805674, -106.06668768489161"};
@@ -976,6 +969,7 @@ public class InterfazG extends javax.swing.JFrame {
         return lugar;
     }
 
+    //----------
     private String getHarvestDate() {
         String harvests[] = {"25/01/2021", "15/05/2021", "01/05/2021", "29/07/2021", "25/07/2021"};
         int i = (int) Math.floor(Math.random() * 5);
@@ -984,6 +978,7 @@ public class InterfazG extends javax.swing.JFrame {
         return fechaH;
     }
 
+    //----------
     private String getCaducationDate() {
         String fechas[] = {"25/02/2022", "15/06/2022", "01/06/2022", "29/08/2022", "25/08/2022"};
         int i = (int) Math.floor(Math.random() * 5);
@@ -991,6 +986,7 @@ public class InterfazG extends javax.swing.JFrame {
         return fechaCD;
     }
 
+    //---------
     private String getCurrentStageI(String stage) {
         String base64Image = "";
 
@@ -1030,11 +1026,13 @@ public class InterfazG extends javax.swing.JFrame {
                 imagen = "./src/imagenes/Productor1.jpg";
             }
         }
-        System.out.println("InterfazG/getcurrentStageI: " + imagen);
+        System.out.println("InterfazG/getcurrentStageI/imagen: " + imagen);
         base64Image = Encoder.encoder(imagen);
+        //System.out.println("InterfazG/getcurrentStageI/base64Image: " + base64Image);
         return base64Image;
     }
 
+    //-------------
     private String getImage() {
         String base64Image = "";
         
@@ -1050,9 +1048,11 @@ public class InterfazG extends javax.swing.JFrame {
             imagen = imagenesL[i];
         }
         base64Image = Encoder.encoder(imagen);
+        //System.out.println("InterfazG/getImage/base64Image: " + base64Image);
         return base64Image+","+imagen.substring(imagen.length()-5);
     }
 
+    //-------------
     private String getPlates() {
         String imagenes[] = {"AY23HJ", "LIHJB5L", "HJKL3H52", "7KJ457K46", "2YL4JH2"};
         int i = (int) Math.floor(Math.random() * 5);
@@ -1060,6 +1060,7 @@ public class InterfazG extends javax.swing.JFrame {
         return imagen;
     }
 
+    //-------------
     private void generateCBR() {
         LecEscTXT object = new LecEscTXT();
         DefaultTableModel m = object.leer();
@@ -1070,6 +1071,7 @@ public class InterfazG extends javax.swing.JFrame {
         }
     }
 
+    //--------------
     private void generateCBCU() {
         LecEscTXT object = new LecEscTXT();
         DefaultTableModel m = object.leer();
@@ -1080,6 +1082,7 @@ public class InterfazG extends javax.swing.JFrame {
         }
     }
 
+    //-------------
     private void generateCBAS() {
         LecEscTXT object = new LecEscTXT();
         DefaultTableModel m = object.leer();
@@ -1090,6 +1093,7 @@ public class InterfazG extends javax.swing.JFrame {
         }
     }
 
+    //------------
     private void generateCBAC() {
         LecEscTXT object = new LecEscTXT();
         DefaultTableModel m = object.leer();
@@ -3067,6 +3071,7 @@ public class InterfazG extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_CBPreviousSNPActionPerformed
 
+    //----------
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         jPanel6.removeAll();
         jPanel6.updateUI();
@@ -3707,7 +3712,7 @@ public class InterfazG extends javax.swing.JFrame {
         System.out.println("InterfazG/ModificarAction/seleccionaste: " + TBDirecciones.getSelectedRow() + ", " + TBDirecciones.getSelectedColumn());
         TFConfiguration.setText(String.valueOf(TBDirecciones.getValueAt(TBDirecciones.getSelectedRow(), TBDirecciones.getSelectedColumn())));
     }//GEN-LAST:event_TBDireccionesMousePressed
-
+//----------
     private void BTAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTAgregarActionPerformed
         try {
             if (TFConfiguration.getText().isEmpty()) {
@@ -3728,7 +3733,7 @@ public class InterfazG extends javax.swing.JFrame {
             Logger.getLogger(InterfazG.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_BTAgregarActionPerformed
-
+//-----------
     private void BTEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTEliminarActionPerformed
         try {
             LecEscTXT objeto = new LecEscTXT();
@@ -3762,7 +3767,7 @@ public class InterfazG extends javax.swing.JFrame {
 
         }
     }//GEN-LAST:event_BTEliminarActionPerformed
-
+//------------
     private void BTModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTModificarActionPerformed
         try {
             if (TFConfiguration.getText().isEmpty()) {
@@ -3803,6 +3808,7 @@ public class InterfazG extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_BTModificarActionPerformed
 
+    //-------------
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         try {
             jPanel13.removeAll();
@@ -3963,6 +3969,7 @@ public class InterfazG extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    //-------------
     private void consultaAC(int position, String typeAgent) {
         areaTexto.setText("");
         String token = TFTokenAC.getText();
@@ -4009,10 +4016,10 @@ public class InterfazG extends javax.swing.JFrame {
         AddCompanyEmail.setVisible(true);
     }//GEN-LAST:event_jButton6ActionPerformed
 
+    //-------------
     public String obtenerCarpeta() {
         JFileChooser fr = new JFileChooser();
         FileSystemView fw = fr.getFileSystemView();
-        //System.out.println("LecEscTXT/obtenerCarpeta: "+fw.getDefaultDirectory());
         return String.valueOf(fw.getDefaultDirectory());
     }
 

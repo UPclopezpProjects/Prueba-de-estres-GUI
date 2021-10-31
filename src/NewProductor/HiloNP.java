@@ -6,7 +6,6 @@
 package NewProductor;
 
 import Interfaz.Respuesta;
-import Interfaz.StressTest.HiloAuto;
 import java.util.Random;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
@@ -470,9 +469,9 @@ public class HiloNP implements Runnable {
         try {
             future.get(tiempoL, TimeUnit.SECONDS);
         } catch (InterruptedException ex) {
-            Logger.getLogger(HiloAuto.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("HiloNP/run/Interruptedexception: "+ex);
         } catch (ExecutionException ex) {
-            Logger.getLogger(HiloAuto.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("HiloNP/run/ExecutionException: "+ex);
         } catch (TimeoutException ex) {
             future.cancel(true);
             if (type == "Auto") {

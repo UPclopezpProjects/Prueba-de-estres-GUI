@@ -5,7 +5,7 @@
  */
 package Interfaz.StressTest;
 
-import Interfaz.InterfazG;
+//import Interfaz.InterfazG;
 import Interfaz.Respuesta;
 import java.util.Calendar;
 import java.util.Random;
@@ -20,7 +20,6 @@ import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-//import javafx.concurrent.Task;
 import javax.swing.JDialog;
 import javax.swing.JTextArea;
 

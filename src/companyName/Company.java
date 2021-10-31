@@ -5,24 +5,19 @@
  */
 package companyName;
 
-import Interfaz.MD5;
 import Interfaz.Respuesta;
-import UCreation.HonestAgent;
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.math.BigDecimal;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JTextArea;
 import org.json.JSONObject;
 
 /**
@@ -144,66 +139,7 @@ public class Company {
             System.out.println("New Company/Exception: " + e);
             Respuesta.setConsultaUC("No se pudo contactar con el servidor", position);
         } catch (IOException ex) {
-            Logger.getLogger(HonestAgent.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Company.class.getName()).log(Level.SEVERE, null, ex);
         }
-
     }
-
-    /*public void createCompanyName() {
-        try {
-            if (stage == "Productor") {
-                rootCreation2 = "curl -F \"email=" + email + "\" -F \"nameOfCompany=" + companyName + "\" -H \"Authorization:" + token + "\" -X POST http://" + ip + ":" + puerto + "/productorsCompany";
-            }
-
-            if (stage == "Carrier") {
-                rootCreation2 = "curl -F \"email=" + email + "\" -F \"nameOfCompany=" + companyName + "\" -H \"Authorization:" + token + "\" -X POST http://" + ip + ":" + puerto + "/carriersCompany";
-            }
-
-            if (stage == "Acopio") {
-                rootCreation2 = "curl -F \"email=" + email + "\" -F \"nameOfCompany=" + companyName + "\" -H \"Authorization:" + token + "\" -X POST http://" + ip + ":" + puerto + "/acopiosCompany";
-            }
-
-            if (stage == "Merchant") {
-                rootCreation2 = "curl -F \"email=" + email + "\" -F \"nameOfCompany=" + companyName + "\" -H \"Authorization:" + token + "\" -X POST http://" + ip + ":" + puerto + "/merchantsCompany";
-            }
-
-            SimpleDateFormat sdf3 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
-            Date now3 = new Date();
-            String strDate3 = sdf3.format(now3);
-            String response = "New Company --> Date: " + strDate3 + "; CURL: " + rootCreation2;
-
-            Respuesta.setConsultaCompany(response + "\n", position);
-
-            //hace la petición como en CMD
-            Runtime rt = Runtime.getRuntime();
-            Process proc = rt.exec(rootCreation2);
-
-            InputStream stdIn = proc.getInputStream();
-            InputStreamReader isr = new InputStreamReader(stdIn);
-            BufferedReader br = new BufferedReader(isr);
-            //System.out.println("<OUTPUT2>");
-            boolean intentar = true;
-            String line;
-            while (intentar) {
-                if (br.ready()) {
-                    while ((line = br.readLine()) != null) {
-                        SimpleDateFormat sdf4 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
-                        Date now4 = new Date();
-                        String strDate4 = sdf4.format(now4);
-                        //System.out.println("<-- Date: " + strDate4 + "; Response: " + line);
-                        response = "New Company <-- Date: " + strDate4 + "; Response: " + line;
-                        Respuesta.setConsultaCompany(response, position);
-                        //}
-
-                    }
-                    intentar = false;
-                }
-            }
-            //System.out.println("</OUTPUT2>");
-            int exitVal = proc.waitFor();
-            //System.out.println("Process exitValue: " + exitVal);
-        } catch (IOException | InterruptedException t) {
-            //System.out.println(t);
-        }
-    }*/
 }

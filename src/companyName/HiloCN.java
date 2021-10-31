@@ -6,7 +6,7 @@
 package companyName;
 
 import Interfaz.Respuesta;
-import Interfaz.StressTest.HiloAuto;
+//import Interfaz.StressTest.HiloAuto;
 import java.util.Random;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
@@ -199,15 +199,15 @@ public class HiloCN implements Runnable {
             try {
                 loop();
             } catch (InterruptedException ex) {
-                Logger.getLogger(HiloAuto.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(HiloCN.class.getName()).log(Level.SEVERE, null, ex);
             }
         });
         try {
             future.get(tiempoL, TimeUnit.SECONDS);
         } catch (InterruptedException ex) {
-            Logger.getLogger(HiloAuto.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(HiloCN.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ExecutionException ex) {
-            Logger.getLogger(HiloAuto.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(HiloCN.class.getName()).log(Level.SEVERE, null, ex);
         } catch (TimeoutException ex) {
             future.cancel(true);
             if (typeConsulta == "Auto") {

@@ -20,8 +20,8 @@ import java.util.Date;
 import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JTextArea;
-import org.json.JSONException;
+//import javax.swing.JTextArea;
+//import org.json.JSONException;
 import org.json.JSONObject;
 
 /**

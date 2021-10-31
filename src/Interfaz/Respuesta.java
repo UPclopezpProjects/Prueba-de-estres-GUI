@@ -2,7 +2,6 @@ package Interfaz;
 
 import javax.swing.JDialog;
 import javax.swing.JFrame;
-import javax.swing.JTabbedPane;
 
 public class Respuesta {
 
