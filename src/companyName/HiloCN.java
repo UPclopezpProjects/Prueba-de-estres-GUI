@@ -153,15 +153,35 @@ public class HiloCN implements Runnable {
         int i = (int) Math.floor(Math.random() * 3);
         switch (i) {
             case 0:
-                return "Productor";
+                if (typeStage == "Productor") {
+                    generateStage();
+                } else {
+                    System.out.println("HiloCN/generateStage: Productor, Position: "+position);
+                    return "Productor";
+                }
             case 1:
-                return "Carrier";
+                if (typeStage == "Carrier") {
+                    generateStage();
+                } else {
+                    System.out.println("HiloCN/generateStage: Carrier, Position: "+position);
+                    return "Carrier";
+                }
             case 2:
-                return "Acopio";
+                if (typeStage == "Acopio") {
+                    generateStage();
+                } else {
+                    System.out.println("HiloCN/generateStage: Acopio, Position: "+position);
+                    return "Acopio";
+                }
             case 3:
-                return "Merchant";
+                if (typeStage == "Merchant") {
+                    generateStage();
+                } else {
+                    System.out.println("HiloCN/generateStage: Merchant, Position: "+position);
+                    return "Merchant";
+                }
             default:
-                return "Productor";
+                return "HiloCN/generateStage/FALLA";
         }
     }
 

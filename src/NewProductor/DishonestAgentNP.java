@@ -75,7 +75,7 @@ public class DishonestAgentNP {
         this.token = token;
         //userCreation(position);
         dataProductorC(position);
-        System.out.println("HonestAgentNP/productor/image: "+image);
+        System.out.println("DishonestAgentNP/productor/image: "+image);
     }
 
     public DishonestAgentNP(String fId, String ubication, String nameProduction, String previousStage, String currentStage,
@@ -104,9 +104,9 @@ public class DishonestAgentNP {
         this.productName= productName;
         //userCreationCarrier(position);
         dataCarrierC(position);
-        System.out.println("HonestAgentNP/carrier/image: "+this.image);
-        System.out.println("HonestAgentNP/carrier/productPhotos: " + this.productPhotos);
-        System.out.println("HonestAgentNP/carrier/vehiclePhotos: " + this.vehiclePhotos);
+        System.out.println("DishonestAgentNP/carrier/image: "+this.image);
+        System.out.println("DishonestAgentNP/carrier/productPhotos: " + this.productPhotos);
+        System.out.println("DishonestAgentNP/carrier/vehiclePhotos: " + this.vehiclePhotos);
     }
 
     public DishonestAgentNP(String fId, String ubication, String nameAcopio, String previousStage, String currentStage, String image, String description, String code,
@@ -127,7 +127,7 @@ public class DishonestAgentNP {
         this.ip = ip;
         //userCreationAcopio(position);
         dataAcopioC(position);
-        System.out.println("HonestAgentNP/acopio/image: "+image);
+        System.out.println("DishonestAgentNP/acopio/image: "+image);
     }
 
     public DishonestAgentNP(String fId, String ubication, String nameMerchant, String previousS, String currentS, String image, String description, String code, String arrivalDate,
@@ -146,7 +146,7 @@ public class DishonestAgentNP {
         this.ip = ip;
         //userCreationMerchant(position);
         dataMerchantC(position);
-        System.out.println("HonestAgentNP/merchant/image: "+image);
+        System.out.println("DishonestAgentNP/merchant/image: "+image);
     }
 
     public void dataProductorC(int position) {
@@ -325,7 +325,7 @@ public class DishonestAgentNP {
         String documentation = "document.pdf";
         String jsonData = "{\"fid\":\"" + fId + "\",\"code\":\"" + code + "\",\"ubication\":\"" + ubication + "\",\"name\":\"" + nameAcopio + "\",\"previousStage\":\"" + previousS + "\",\"currentStage\":\"" + currentS + "\",\"description\":\"" + description + "\",\"arrivalDate\":\"" + arrivalDate + "\",\"clasification\":\"" + "Hass" + "\",\"quantity\":\"" + quantity + "\",\"measure\":\"" + measure + "\",\"whoReceives\":\"" + whoReceives + "\"}";
         String hashX = MD5.getMd5(jsonData);
-        String rootCreation = "fid=" + fId + "&ubication=" + ubication + "&name=" + nameAcopio + "&previousStage=" + previousS + "&currentStage=" + currentS + "&image=" + image + "&description=" + description + "&code=" + code + "&arrivalDate=" + arrivalDate + "&clasification=Hass" + "&quantity=" + quantity + "&measure=" + measure + "&whoReceives=" + whoReceives + "&hashX=" + hashX;
+        String rootCreation = "fid=" + fId + "&ubication=" + ubication + "&name=" + nameAcopio + "&previousStage=" + previousS + "&currentStage=" + currentS + "&originalname=Acopio1.jpg" + "&image=" + image + "&description=" + description + "&code=" + code + "&arrivalDate=" + arrivalDate + "&clasification=Hass" + "&quantity=" + quantity + "&measure=" + measure + "&whoReceives=" + whoReceives + "&hashX=" + hashX;
 
         byte[] postData = rootCreation.getBytes(StandardCharsets.UTF_8);
         int postDataLength = postData.length;
@@ -411,7 +411,7 @@ public class DishonestAgentNP {
         String jsonData = "{\"fid\":\"" + fId + "\",\"code\":\"" + code + "\",\"ubication\":\"" + ubication + "\",\"name\":\"" + nameMerchant + "\",\"previousStage\":\"" + previousS + "\",\"currentStage\":\"" + currentS + "\",\"description\":\"" + description + "\",\"arrivalDate\":\"" + arrivalDate + "\",\"quantity\":\"" + quantity + "\"}";
         System.out.println("NewPhase/userCreationMerchant/jsonData: " + jsonData);
         String hashX = MD5.getMd5(jsonData);
-        String rootCreation = "fid=" + fId + "&ubication=" + ubication + "&name=" + nameMerchant + "&previousStage=" + previousS + "&currentStage=" + currentS + "&image=" + image + "&description=" + description + "&code=" + code + "&arrivalDate=" + arrivalDate + "&quantity=" + quantity + "&hashX=" + hashX;
+        String rootCreation = "fid=" + fId + "&ubication=" + ubication + "&name=" + nameMerchant + "&previousStage=" + previousS + "&currentStage=" + currentS + "&originalname=Merchant1.jpg" + "&image=" + image + "&description=" + description + "&code=" + code + "&arrivalDate=" + arrivalDate + "&quantity=" + quantity + "&hashX=" + hashX;
         
         byte[] postData = rootCreation.getBytes(StandardCharsets.UTF_8);
         int postDataLength = postData.length;

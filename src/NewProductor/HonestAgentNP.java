@@ -153,7 +153,7 @@ public class HonestAgentNP {
 
             connection = (HttpURLConnection) url.openConnection();
             connection.setRequestMethod("POST");
-            connection.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
+            //connection.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
             connection.setRequestProperty("Content-Length", Integer.toString(postDataLength));
 
             connection.setRequestProperty("Authorization", token);
@@ -170,6 +170,8 @@ public class HonestAgentNP {
 
             Respuesta.setConsultaS(response + "\n", position);
 
+            System.out.println("HonestAgent/dataProductor/el cuerpo de la consulta: "+connection);
+            
             //Send request
             DataOutputStream wr = new DataOutputStream(connection.getOutputStream());
             wr.writeBytes(rootCreation);

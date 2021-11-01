@@ -34,7 +34,6 @@ public class InterfazG extends javax.swing.JFrame {
     public InterfazG() {
         initComponents();
 
-        //AWTUtilities.setWindowOpaque(jDialog4, false);
         Respuesta.setVentanaCarga(jDialog4);
         setLocationRelativeTo(null);
 
@@ -67,12 +66,10 @@ public class InterfazG extends javax.swing.JFrame {
             int desonesto = aHonesto + aEnviarA;
             if (i <= aHonesto) {
                 int position = x;
-                //AgentsHonest a = new AgentsHonest(caja, generateEmail(), generatePassword(), nombreU, apellidoP, apellidoM, typeU, ip, publicKey);
                 JButton boton = new JButton("Compliant agent");
                 boton.setPreferredSize(new Dimension(30, 70));
                 boton.setBackground(Color.GREEN);
                 jPanel2.add(boton);
-                //botones.add(boton); //agrego el boton
 
                 boton.addActionListener(new ActionListener() {
                     @Override
@@ -88,12 +85,10 @@ public class InterfazG extends javax.swing.JFrame {
             } else {
                 if (i <= desonesto) {
                     int position = x;
-                    //AgentsSendAnything b = new AgentsSendAnything(caja, generateEmail(), generatePassword(), nombreU, apellidoP, apellidoM, typeU, ip, publicKey);
                     JButton boton = new JButton("Non compliant agent, send something");
                     boton.setPreferredSize(new Dimension(30, 70));
                     boton.setBackground(Color.ORANGE);
                     jPanel2.add(boton);
-                    //botones.add(boton); //agrego el boton
 
                     boton.addActionListener(new ActionListener() {
                         @Override
@@ -108,12 +103,10 @@ public class InterfazG extends javax.swing.JFrame {
                     });
                 } else {
                     int position = x;
-                    //AgentsStartAnyStep c = new AgentsStartAnyStep(caja, generateEmail(), generatePassword(), nombreU, apellidoP, apellidoM, typeU, numberRequest, ip, publicKey);
                     JButton boton = new JButton("Non compliant agent, begin any step");
                     boton.setPreferredSize(new Dimension(30, 70));
                     boton.setBackground(Color.YELLOW);
                     jPanel2.add(boton);
-                    //botones.add(boton); //agrego el boton
 
                     boton.addActionListener(new ActionListener() {
                         @Override
@@ -455,7 +448,6 @@ public class InterfazG extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Set the public key");
         } else {
             if (pTotal == 100) {
-                //jDialog2.setVisible(true);
                 objetoH.setEmail(email);
                 objetoH.setPassword(password);
                 objetoH.setApellidoP(apellidoP);
@@ -923,19 +915,6 @@ public class InterfazG extends javax.swing.JFrame {
 
     //----------
     private String getRadioB() {
-        boolean leerA;
-        boolean leerM;
-        boolean leerTU;
-        boolean actualizarA;
-        boolean actualizarM;
-        boolean actualizarTU;
-        boolean eliminarA;
-        boolean eliminarTU;
-        boolean eliminarM;
-        boolean crearA;
-        boolean crearTU;
-        boolean loginU;
-
         return "{\"createAdministrator\":" + true + ",\"createTUser\":" + true + ",\"updateMe\":" + true + ",\"updateAdministrator\":" + true + ",\"updateTUser\":" + true + ",\"deleteMe\":" + true + ",\"deleteAdministrator\":" + true + ",\"deleteTUser\":" + true + ",\"readMe\":" + true + ",\"readAdministrator\":" + true + ",\"readTUser\":" + true + ",\"loginUser\":" + true + "}";
     }
 

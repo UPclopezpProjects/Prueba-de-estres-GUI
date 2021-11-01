@@ -37,7 +37,7 @@ public class Company {
     private String stage;
     String response;
 
-    public Company(String email, String companyName, String token, String ip, String stage, int position/*, JTextArea caja*/) {
+    public Company(String email, String companyName, String token, String ip, String stage, int position) {
         this.email = email;
         this.companyName = companyName;
         this.token = token;
