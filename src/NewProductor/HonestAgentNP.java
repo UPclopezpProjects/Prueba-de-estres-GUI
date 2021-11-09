@@ -221,6 +221,7 @@ public class HonestAgentNP {
             System.out.println("HonestAgent/dataProductor/Exception: " + e);
             Respuesta.setConsultaS("No se pudo contactar con el servidor", position);
         } catch (IOException ex) {
+            Respuesta.setConsultaRoot(ex.toString(), position);
             Logger.getLogger(HonestAgentNP.class.getName()).log(Level.SEVERE, null, ex);
         }
 
@@ -305,6 +306,7 @@ public class HonestAgentNP {
             System.out.println("HonestAgent/dataCarrier/Exception: " + e);
             Respuesta.setConsultaS("No se pudo contactar con el servidor", position);
         } catch (IOException ex) {
+            Respuesta.setConsultaRoot(ex.toString(), position);
             Logger.getLogger(HonestAgentNP.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
@@ -389,6 +391,7 @@ public class HonestAgentNP {
             System.out.println("HonestAgent/dataAcopio/Exception: " + e);
             Respuesta.setConsultaS("No se pudo contactar con el servidor", position);
         } catch (IOException ex) {
+            Respuesta.setConsultaRoot(ex.toString(), position);
             Logger.getLogger(HonestAgentNP.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
@@ -473,6 +476,7 @@ public class HonestAgentNP {
             System.out.println("HonestAgent/dataMerchant/Exception: " + e);
             Respuesta.setConsultaS("No se pudo contactar con el servidor", position);
         } catch (IOException ex) {
+            Respuesta.setConsultaRoot(ex.toString(), position);
             Logger.getLogger(HonestAgentNP.class.getName()).log(Level.SEVERE, null, ex);
         }
     }

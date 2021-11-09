@@ -141,6 +141,7 @@ public final class AgentsHonest extends Hilo {
             }
 
         } catch (Exception e) {
+            Respuesta.setConsultaRoot(e.toString(), position);
             System.out.println("AgentHonest/getInitialNonce2/Exception: " + e);
         }
     }
@@ -257,6 +258,7 @@ public final class AgentsHonest extends Hilo {
                 //return response.toString();
             }
         } catch (Exception e) {
+            Respuesta.setConsultaRoot(e.toString(), position);
             System.out.println("AgentHonest/userCreation2/Exception: " + e);
         }
     }

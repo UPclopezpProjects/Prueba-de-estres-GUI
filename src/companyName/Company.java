@@ -137,8 +137,9 @@ public class Company {
 
         } catch (java.net.ConnectException e) {
             System.out.println("New Company/Exception: " + e);
-            Respuesta.setConsultaUC("No se pudo contactar con el servidor", position);
+            Respuesta.setConsultaCompany("No se pudo contactar con el servidor", position);
         } catch (IOException ex) {
+            Respuesta.setConsultaCompany(ex.toString(), position);
             Logger.getLogger(Company.class.getName()).log(Level.SEVERE, null, ex);
         }
     }

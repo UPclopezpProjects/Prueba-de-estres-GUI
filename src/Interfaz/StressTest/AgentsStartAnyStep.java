@@ -1,7 +1,5 @@
 package Interfaz.StressTest;
 
-//import Interfaz.InterfazG;
-//import Interfaz.StressTest.Hilo;
 import Interfaz.MD5;
 import Interfaz.Respuesta;
 import java.io.*;
@@ -14,7 +12,6 @@ import java.util.Calendar;
 import java.util.Date;
 import org.json.*;
 import java.util.Random;
-//import javax.swing.JTextArea;
 
 public final class AgentsStartAnyStep extends Hilo {
 
@@ -52,10 +49,8 @@ public final class AgentsStartAnyStep extends Hilo {
         Random rand = new Random();
         int randomNum = rand.nextInt(numberRequest);
         if (randomNum >= 0 && randomNum < ((numberRequest) * .5)) {
-            //getInitialNonce(position);
             getInitialNonce2(position);
         } else {
-            //userCreation("token", "session", randomNumber, position);
             userCreation2("token", "session", randomNumber, position);
         }
     }
@@ -79,7 +74,6 @@ public final class AgentsStartAnyStep extends Hilo {
             connection.setRequestProperty("Session", "165");
             connection.setUseCaches(false);
             connection.setDoOutput(true);
-            //System.out.println(response + ", " + position);
 
             Respuesta.setConsultaRoot(response + "\n", position);
 
@@ -91,7 +85,6 @@ public final class AgentsStartAnyStep extends Hilo {
             Calendar ahora1 = Calendar.getInstance();
             ahora1.getTime();
             t1 = ahora1.getTimeInMillis();
-            //System.out.println("El agente honesto número " + position + " empezó en: " + t1);
             Respuesta.setConsultaRoot("El agente honesto número " + position + " empezó en: " + t1 + "\n", position);
 
             if (connection.getResponseCode() >= 300 && connection.getResponseCode() < 600) {
@@ -106,7 +99,6 @@ public final class AgentsStartAnyStep extends Hilo {
                     Date now2 = new Date();
                     String strDate2 = sdf2.format(now2);
 
-                    //response = "Root/AgentHonest/getInitialNonce <-- Date: " + strDate2 + "; Response: " + line;
                     response.append(line);
                     Respuesta.setConsultaRoot("Root/AgentsStartAnyStep/getInitialNonce <-- Date: " + strDate2 + "; Response: " + line + "\n", position);
                     response.append('\r');
@@ -126,16 +118,15 @@ public final class AgentsStartAnyStep extends Hilo {
                     Date now2 = new Date();
                     String strDate2 = sdf2.format(now2);
 
-                    //response = "Root/AgentHonest/getInitialNonce <-- Date: " + strDate2 + "; Response: " + line;
                     response.append(line);
                     Respuesta.setConsultaRoot("Root/AgentsStartAnyStep/getInitialNonce <-- Date: " + strDate2 + "; Response: " + line + "\n", position);
-                    startTime = (BigDecimal) jsonObject.get("startTime");
+                    
+
                     Respuesta.setConsultaRoot("El servidor empezó la consulta del agente honesto número " + position + " en: " + startTime + "\n", position);
                     String message = jsonObject.get("message").toString();
                     System.out.println("AgentsStartAnyStep/getInitialNonce/message: " + message);
                     if (message.equals("deny")) {
                         System.out.println("AgentsStartAnyStep/getInitialNonce/message: " + message);
-                        //userCreation("null", "null", randomNumber, position);
                         userCreation2("null", "null", randomNumber, position);
                     } else {
                         System.out.println("AgentsStartAnyStep/getInitialNonce/message: " + message);
@@ -146,7 +137,6 @@ public final class AgentsStartAnyStep extends Hilo {
                         String nanb = na + nb;
                         String token = MD5.getMd5('"' + nanb + '"');
                         System.out.println("AgentsStartAnyStep/getInitialNonce/token: " + token);
-                        //userCreation(token, session, randomNumber, position);
                         userCreation2(token, session, randomNumber, position);
                     }
                     response.append('\r');
@@ -155,6 +145,7 @@ public final class AgentsStartAnyStep extends Hilo {
             }
             //return response.toString();
         } catch (Exception e) {
+            Respuesta.setConsultaRoot(e.toString(), position);
             System.out.println("AgentStartAnyStep/getInitialNonce2/Exception: " + e);
         }
     }
@@ -259,11 +250,12 @@ public final class AgentsStartAnyStep extends Hilo {
                     Date now2 = new Date();
                     String strDate2 = sdf2.format(now2);
 
-                    //response = "Root/AgentHonest/getInitialNonce <-- Date: " + strDate2 + "; Response: " + line;
                     response.append(line);
                     Respuesta.setConsultaRoot("Root/AgentsStartAnyStep/userCreation <-- Date: " + strDate2 + "; Response: " + line + "\n", position);
-                    //startTime = (BigDecimal) jsonObject.get("startTime");
-                    //Respuesta.setConsultaRoot("El servidor empezó la consulta del agente honesto número " + position + " en: " + startTime + "\n", position);
+                    if (startTime == null) {
+                        startTime = (BigDecimal) jsonObject.get("startTime");
+                        Respuesta.setConsultaRoot("El servidor empezó la consulta del agente honesto número " + position + " en: " + startTime + "\n", position);
+                    }
                     endTime = (BigDecimal) jsonObject.get("endTime");
                     System.out.println("Root/AgentsStartAnyStep/userCreation/endTime: " + endTime);
                     System.out.println("Root/AgentsStartAnyStep/userCreation/startTime: " + startTime);
@@ -275,15 +267,14 @@ public final class AgentsStartAnyStep extends Hilo {
                 //terminan las dos consultas
                 Calendar ahora2 = Calendar.getInstance();
                 t2 = ahora2.getTimeInMillis();
-                //System.out.println("El agente honesto número " + position + " terminó en: " + t2);
                 Respuesta.setConsultaRoot("El agente honesto número " + position + " terminó en: " + t2 + "\n", position);
                 dif = t2 - t1;
-                //System.out.println("El agente honesto número " + position + " ha tardado: " + dif + " milisegundos \n");
                 Respuesta.setConsultaRoot("El agente honesto número " + position + " ha tardado: " + dif + " milisegundos \n", position);
                 rd.close();
             }
             //return response.toString();
         } catch (Exception e) {
+            Respuesta.setConsultaRoot(e.toString(), position);
             System.out.println("AgentStartAnyStep/userCreation2/Exception: " + e);
         }
     }

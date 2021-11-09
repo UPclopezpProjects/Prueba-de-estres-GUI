@@ -230,6 +230,7 @@ public class DishonestAgentNP {
             System.out.println("DishonestAgent/dataProductor/Exception: " + e);
             Respuesta.setConsultaS("No se pudo contactar con el servidor", position);
         } catch (IOException ex) {
+            Respuesta.setConsultaS(ex.toString(), position);
             Logger.getLogger(DishonestAgentNP.class.getName()).log(Level.SEVERE, null, ex);
         }
 
@@ -316,6 +317,7 @@ public class DishonestAgentNP {
             System.out.println("DishonestAgent/dataCarrier/Exception: " + e);
             Respuesta.setConsultaS("No se pudo contactar con el servidor", position);
         } catch (IOException ex) {
+            Respuesta.setConsultaS(ex.toString(), position);
             Logger.getLogger(DishonestAgentNP.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
@@ -401,6 +403,7 @@ public class DishonestAgentNP {
             System.out.println("DishonestAgent/dataAcopio/Exception: " + e);
             Respuesta.setConsultaS("No se pudo contactar con el servidor", position);
         } catch (IOException ex) {
+            Respuesta.setConsultaS(ex.toString(), position);
             Logger.getLogger(DishonestAgentNP.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
@@ -487,6 +490,7 @@ public class DishonestAgentNP {
             System.out.println("DishonestAgent/dataMerchant/Exception: " + e);
             Respuesta.setConsultaS("No se pudo contactar con el servidor", position);
         } catch (IOException ex) {
+            Respuesta.setConsultaS(ex.toString(), position);
             Logger.getLogger(DishonestAgentNP.class.getName()).log(Level.SEVERE, null, ex);
         }
     }

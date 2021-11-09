@@ -195,6 +195,7 @@ public class HonestAgent {
             System.out.println("AgentHonest/userCreation2/java.net.ConnectException: " + e);
             Respuesta.setConsultaUC("No se pudo contactar con el servidor", position);
         } catch (IOException ex) {
+            Respuesta.setConsultaUC(ex.toString(), position);
             Logger.getLogger(HonestAgent.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
