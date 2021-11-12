@@ -3309,7 +3309,7 @@
                           <Font name="Arial" size="20" style="0"/>
                         </Property>
                         <Property name="horizontalAlignment" type="int" value="0"/>
-                        <Property name="text" type="java.lang.String" value="&lt;html&gt;&#xa;&lt;body&gt;&#xa;&lt;center&gt;&#xa;Juan Carlos L&#xf3;pez Pimentel&#xa;&lt;br&gt;&#xa;jclopezpimentel@gmail.com&#xa;&lt;/center&gt;&#xa;&lt;/body&gt;&#xa;&lt;/html&gt;"/>
+                        <Property name="text" type="java.lang.String" value="&lt;html&gt;&#xa;&lt;body&gt;&#xa;&lt;center&gt;&#xa;Juan Carlos L&#xf3;pez Pimentel&#xa;&lt;br&gt;&#xa;clopezp@up.edu.mx&#xa;&lt;/center&gt;&#xa;&lt;/body&gt;&#xa;&lt;/html&gt;"/>
                       </Properties>
                     </Component>
                     <Component class="javax.swing.JLabel" name="jLabel92">

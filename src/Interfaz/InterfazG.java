@@ -3036,7 +3036,7 @@ public class InterfazG extends javax.swing.JFrame {
 
         jLabel91.setFont(new java.awt.Font("Arial", 0, 20)); // NOI18N
         jLabel91.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel91.setText("<html>\n<body>\n<center>\nJuan Carlos López Pimentel\n<br>\njclopezpimentel@gmail.com\n</center>\n</body>\n</html>");
+        jLabel91.setText("<html>\n<body>\n<center>\nJuan Carlos López Pimentel\n<br>\nclopezp@up.edu.mx\n</center>\n</body>\n</html>");
 
         jLabel92.setFont(new java.awt.Font("Arial", 0, 20)); // NOI18N
         jLabel92.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
