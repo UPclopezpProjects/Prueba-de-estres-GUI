@@ -1280,6 +1280,16 @@ public class InterfazG extends javax.swing.JFrame {
         jLabel82 = new javax.swing.JLabel();
         jLabel83 = new javax.swing.JLabel();
         SPLimitT = new javax.swing.JSpinner();
+        jPanel12 = new javax.swing.JPanel();
+        jTabbedPane2 = new javax.swing.JTabbedPane();
+        jPanel14 = new javax.swing.JPanel();
+        jLabel88 = new javax.swing.JLabel();
+        jLabel87 = new javax.swing.JLabel();
+        jPanel15 = new javax.swing.JPanel();
+        jLabel89 = new javax.swing.JLabel();
+        jLabel90 = new javax.swing.JLabel();
+        jLabel91 = new javax.swing.JLabel();
+        jLabel92 = new javax.swing.JLabel();
         jPanel7 = new javax.swing.JPanel();
         jLabel67 = new javax.swing.JLabel();
         jLabel66 = new javax.swing.JLabel();
@@ -2985,6 +2995,97 @@ public class InterfazG extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Configuration", jPanel10);
 
+        jLabel88.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/upLogo pequeño.png"))); // NOI18N
+
+        jLabel87.setFont(new java.awt.Font("Arial", 0, 20)); // NOI18N
+        jLabel87.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel87.setText("<html>\n<body>\nEste es un programa que fue desarrollado bajo la investigación del proyecto 8217-2019 emitido en convenio entre la Universidad Panamericana y COECyTJAL en la convocatoria FODECIJAL del Fondo de Desarrollo Científico de Jalisco para atender problemas estatales 2019.\n</body>\n</html>");
+
+        javax.swing.GroupLayout jPanel14Layout = new javax.swing.GroupLayout(jPanel14);
+        jPanel14.setLayout(jPanel14Layout);
+        jPanel14Layout.setHorizontalGroup(
+            jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel14Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel87, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel14Layout.createSequentialGroup()
+                .addContainerGap(132, Short.MAX_VALUE)
+                .addComponent(jLabel88)
+                .addGap(131, 131, 131))
+        );
+        jPanel14Layout.setVerticalGroup(
+            jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel14Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel87, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(69, 69, 69)
+                .addComponent(jLabel88)
+                .addContainerGap(134, Short.MAX_VALUE))
+        );
+
+        jTabbedPane2.addTab("Créditos", jPanel14);
+
+        jLabel89.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        jLabel89.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel89.setText("Desarrolladores:");
+
+        jLabel90.setFont(new java.awt.Font("Arial", 0, 20)); // NOI18N
+        jLabel90.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel90.setText("<html> <body>\n<center>\n Osman Vincenzo Alonso Hernández <br> oznnniv@gmail.com\n</center>\n</body> </html>");
+
+        jLabel91.setFont(new java.awt.Font("Arial", 0, 20)); // NOI18N
+        jLabel91.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel91.setText("<html>\n<body>\n<center>\nJuan Carlos López Pimentel\n<br>\njclopezpimentel@gmail.com\n</center>\n</body>\n</html>");
+
+        jLabel92.setFont(new java.awt.Font("Arial", 0, 20)); // NOI18N
+        jLabel92.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel92.setText("<html>\n<body>\n<center>\nJosé Francisco Jarquin Martínez\n<br>\nIng_JosFco_JarMtz_SD@outlook.es\n</center>\n</body>\n</html>");
+
+        javax.swing.GroupLayout jPanel15Layout = new javax.swing.GroupLayout(jPanel15);
+        jPanel15.setLayout(jPanel15Layout);
+        jPanel15Layout.setHorizontalGroup(
+            jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel15Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel91, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel89, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel90)
+                    .addComponent(jLabel92, javax.swing.GroupLayout.DEFAULT_SIZE, 743, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+        jPanel15Layout.setVerticalGroup(
+            jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel15Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel89, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(53, 53, 53)
+                .addComponent(jLabel92, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(58, 58, 58)
+                .addComponent(jLabel90, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(58, 58, 58)
+                .addComponent(jLabel91, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(314, Short.MAX_VALUE))
+        );
+
+        jTabbedPane2.addTab("Desarrolladores", jPanel15);
+
+        javax.swing.GroupLayout jPanel12Layout = new javax.swing.GroupLayout(jPanel12);
+        jPanel12.setLayout(jPanel12Layout);
+        jPanel12Layout.setHorizontalGroup(
+            jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jTabbedPane2)
+        );
+        jPanel12Layout.setVerticalGroup(
+            jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jTabbedPane2)
+        );
+
+        jTabbedPane2.getAccessibleContext().setAccessibleName("Créditos");
+
+        jTabbedPane1.addTab("Acerca de", jPanel12);
+
         jLabel67.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel67.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/gray button.png"))); // NOI18N
 
@@ -4212,13 +4313,22 @@ public class InterfazG extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel84;
     private javax.swing.JLabel jLabel85;
     private javax.swing.JLabel jLabel86;
+    private javax.swing.JLabel jLabel87;
+    private javax.swing.JLabel jLabel88;
+    private javax.swing.JLabel jLabel89;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JLabel jLabel90;
+    private javax.swing.JLabel jLabel91;
+    private javax.swing.JLabel jLabel92;
     private javax.swing.JLayeredPane jLayeredPane1;
     private javax.swing.JLayeredPane jLayeredPane2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel11;
+    private javax.swing.JPanel jPanel12;
     private javax.swing.JPanel jPanel13;
+    private javax.swing.JPanel jPanel14;
+    private javax.swing.JPanel jPanel15;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
@@ -4236,6 +4346,7 @@ public class InterfazG extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JScrollPane jScrollPane8;
     private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JTabbedPane jTabbedPane2;
     private javax.swing.JSpinner sAgenteH;
     private javax.swing.JSpinner sEmpieza;
     private javax.swing.JSpinner sEnvianA;
