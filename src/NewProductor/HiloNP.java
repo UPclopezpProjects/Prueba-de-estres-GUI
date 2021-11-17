@@ -19,10 +19,6 @@ import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JTextArea;
 
-/**
- *
- * @author frank
- */
 public class HiloNP implements Runnable {
 
     private String ubication;
@@ -238,11 +234,8 @@ public class HiloNP implements Runnable {
                         interfaz.setEnabled(false);
                         carga.setVisible(true);
                         HonestAgentNP honesto = new HonestAgentNP(fId, ubication, nameProduction, previousS, currentS, image, description, code, driverName, origin, destination, plates, productPhotos, vehiclePhotos, tracking, token, ip, position, vehiclePhotosName, productPhotosName);
-                        //Respuesta.setNumeroNP();
                         carga.setVisible(false);
                         interfaz.setEnabled(true);
-                        caja.setText(Respuesta.getConsultaS(position).replace("null", ""));
-                        dialogoCaja.setVisible(true);
                     }
 
                     if (currentS == "Productor") {
@@ -250,11 +243,8 @@ public class HiloNP implements Runnable {
                         interfaz.setEnabled(false);
                         carga.setVisible(true);
                         HonestAgentNP honesto = new HonestAgentNP(ubication, harvestD, caducationD, description, fId, nameProduction, previousS, currentS, code, image, ip, /*caja, */ token, position);
-                        //Respuesta.setNumeroNP();
                         carga.setVisible(false);
                         interfaz.setEnabled(true);
-                        caja.setText(Respuesta.getConsultaS(position).replace("null", ""));
-                        dialogoCaja.setVisible(true);
                     }
 
                     if (currentS == "Acopio") {
@@ -262,11 +252,8 @@ public class HiloNP implements Runnable {
                         interfaz.setEnabled(false);
                         carga.setVisible(true);
                         HonestAgentNP honesto = new HonestAgentNP(fId, ubication, nameAcopio(), previousS, currentS, image, description, code, arrivalDate(), quantity(), "KG", whoReceives(), token, ip, /*caja, */ position);
-                        //Respuesta.setNumeroNP();
                         carga.setVisible(false);
                         interfaz.setEnabled(true);
-                        caja.setText(Respuesta.getConsultaS(position).replace("null", ""));
-                        dialogoCaja.setVisible(true);
                     }
 
                     if (currentS == "Merchant") {
@@ -274,11 +261,8 @@ public class HiloNP implements Runnable {
                         interfaz.setEnabled(false);
                         carga.setVisible(true);
                         HonestAgentNP honesto = new HonestAgentNP(fId, ubication, nameMerchant(), previousS, currentS, image, description, code, arrivalDate(), quantity(), token, ip, caja, position);
-                        //Respuesta.setNumeroNP();
                         carga.setVisible(false);
                         interfaz.setEnabled(true);
-                        caja.setText(Respuesta.getConsultaS(position).replace("null", ""));
-                        dialogoCaja.setVisible(true);
                     }
 
                 } else {
@@ -287,11 +271,8 @@ public class HiloNP implements Runnable {
                         interfaz.setEnabled(false);
                         carga.setVisible(true);
                         DishonestAgentNP dishonest = new DishonestAgentNP(fId, ubication, nameProduction, previousS, currentS, image, description, code, driverName, origin, destination, plates, productPhotos, vehiclePhotos, tracking, generateFakeToken(), ip, position, vehiclePhotosName, productPhotosName);
-                        //Respuesta.setNumeroNP();
                         carga.setVisible(false);
                         interfaz.setEnabled(true);
-                        caja.setText(Respuesta.getConsultaS(position).replace("null", ""));
-                        dialogoCaja.setVisible(true);
                     }
 
                     if (currentS == "Productor") {
@@ -299,11 +280,8 @@ public class HiloNP implements Runnable {
                         interfaz.setEnabled(false);
                         carga.setVisible(true);
                         DishonestAgentNP dishonest = new DishonestAgentNP(ubication, harvestD, caducationD, description, fId, nameProduction, previousS, currentS, code, image, ip, /*caja, */ generateFakeToken(), position);
-                        //Respuesta.setNumeroNP();
                         carga.setVisible(false);
                         interfaz.setEnabled(true);
-                        caja.setText(Respuesta.getConsultaS(position).replace("null", ""));
-                        dialogoCaja.setVisible(true);
                     }
 
                     if (currentS == "Acopio") {
@@ -311,11 +289,8 @@ public class HiloNP implements Runnable {
                         interfaz.setEnabled(false);
                         carga.setVisible(true);
                         DishonestAgentNP dishonesto = new DishonestAgentNP(fId, ubication, nameAcopio(), previousS, currentS, image, description, code, arrivalDate(), quantity(), "KG", whoReceives(), generateFakeToken(), ip, /*caja, */ position);
-                        //Respuesta.setNumeroNP();
                         carga.setVisible(false);
                         interfaz.setEnabled(true);
-                        caja.setText(Respuesta.getConsultaS(position).replace("null", ""));
-                        dialogoCaja.setVisible(true);
                     }
 
                     if (currentS == "Merchant") {
@@ -323,11 +298,8 @@ public class HiloNP implements Runnable {
                         interfaz.setEnabled(false);
                         carga.setVisible(true);
                         DishonestAgentNP dishonesto = new DishonestAgentNP(fId, ubication, nameMerchant(), previousS, currentS, image, description, code, arrivalDate(), quantity(), generateFakeToken(), ip, caja, position);
-                        //Respuesta.setNumeroNP();
                         carga.setVisible(false);
                         interfaz.setEnabled(true);
-                        caja.setText(Respuesta.getConsultaS(position).replace("null", ""));
-                        dialogoCaja.setVisible(true);
                     }
                 }
             }
@@ -484,10 +456,10 @@ public class HiloNP implements Runnable {
                 caja.setText(Respuesta.getConsultaS(position).replace("null", ""));
                 dialogoCaja.setVisible(true);
             }
-        } finally {
             executor.shutdown();
-        }
-
+        } /*finally {
+            executor.shutdown();
+        }*/
         System.out.println("HiloAuto/después del loop");
     }
 }

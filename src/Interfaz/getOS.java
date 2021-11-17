@@ -15,19 +15,19 @@ public class getOS {
     public String getSisOpe(){
         String separator = null;
         if (isWindows()) {
-            System.out.println("getOS/getSysOpe: es windows");
+            //System.out.println("getOS/getSysOpe: es windows");
             separator = "\\";
         } else if (isMac()) {
-            System.out.println("getOS/getSysOpe: es Mac");
+            //System.out.println("getOS/getSysOpe: es Mac");
             separator = "/";            
         } else if (isUnix()) {
-            System.out.println("getOS/getSysOpe: es Unix");
+            //System.out.println("getOS/getSysOpe: es Unix");
             separator = "/";
         } else if (isSolaris()) {
-            System.out.println("getOS/getSysOpe: es Solaris");
+            //System.out.println("getOS/getSysOpe: es Solaris");
             separator = "/";
         } else {
-            System.out.println("Sistema operativo no reconocido!!");
+            //System.out.println("Sistema operativo no reconocido!!");
         }
         
         return separator;

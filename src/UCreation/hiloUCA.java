@@ -231,9 +231,10 @@ public class hiloUCA implements Runnable {
             future.cancel(true);
             Respuesta.setNumeroCU();
             Respuesta.setConsultaUC("Hadn't response of server, perhaps the microservice is down" + "\n", position);
-        } finally {
             executor.shutdown();
-        }
+        } /*finally {
+            executor.shutdown();
+        }*/
 
         System.out.println("hiloUCA/después del loop");
     }

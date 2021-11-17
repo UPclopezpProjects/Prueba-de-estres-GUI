@@ -232,9 +232,10 @@ public class HiloAuto implements Runnable {
             future.cancel(true);
             Respuesta.setNumeroCR();
             Respuesta.setConsultaRoot("Hadn't response of server, perhaps the microservice is down" + "\n", position);
-        } finally{
             executor.shutdown();
-        }
+        } /*finally{
+            executor.shutdown();
+        }*/
             
         System.out.println("HiloAuto/después del loop");
     }

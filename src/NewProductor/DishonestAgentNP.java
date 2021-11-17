@@ -35,7 +35,6 @@ public class DishonestAgentNP {
     private String code;
     private String image;
     private String ip;
-    //private JTextArea caja;
     private String token;
     //exclusivo de carrier
     private String origin;
@@ -75,7 +74,7 @@ public class DishonestAgentNP {
         this.token = token;
         //userCreation(position);
         dataProductorC(position);
-        System.out.println("DishonestAgentNP/productor/image: "+image);
+        System.out.println("DishonestAgentNP/productor/image: " + image);
     }
 
     public DishonestAgentNP(String fId, String ubication, String nameProduction, String previousStage, String currentStage,
@@ -100,11 +99,11 @@ public class DishonestAgentNP {
         this.tracking = tracking;
         this.token = token;
         this.ip = ip;
-        this.vehicleName= vehicleName;
-        this.productName= productName;
+        this.vehicleName = vehicleName;
+        this.productName = productName;
         //userCreationCarrier(position);
         dataCarrierC(position);
-        System.out.println("DishonestAgentNP/carrier/image: "+this.image);
+        System.out.println("DishonestAgentNP/carrier/image: " + this.image);
         System.out.println("DishonestAgentNP/carrier/productPhotos: " + this.productPhotos);
         System.out.println("DishonestAgentNP/carrier/vehiclePhotos: " + this.vehiclePhotos);
     }
@@ -127,7 +126,7 @@ public class DishonestAgentNP {
         this.ip = ip;
         //userCreationAcopio(position);
         dataAcopioC(position);
-        System.out.println("DishonestAgentNP/acopio/image: "+image);
+        System.out.println("DishonestAgentNP/acopio/image: " + image);
     }
 
     public DishonestAgentNP(String fId, String ubication, String nameMerchant, String previousS, String currentS, String image, String description, String code, String arrivalDate,
@@ -146,7 +145,7 @@ public class DishonestAgentNP {
         this.ip = ip;
         //userCreationMerchant(position);
         dataMerchantC(position);
-        System.out.println("DishonestAgentNP/merchant/image: "+image);
+        System.out.println("DishonestAgentNP/merchant/image: " + image);
     }
 
     public void dataProductorC(int position) {
@@ -155,7 +154,7 @@ public class DishonestAgentNP {
 
         String jsonData = "{\"fid\":\"" + fId + "\",\"code\":\"" + code + "\",\"ubication\":\"" + ubication + "\",\"name\":\"" + nameProduction + "\",\"harvestDate\":\"" + harvestD + "\",\"caducationDate\":\"" + caducationD + "\",\"previousStage\":\"" + previousS + "\",\"currentStage\":\"" + currentS + "\",\"description\":\"" + description + "\",\"documentation\":\"" + documentation + "\"}";
         String hashX = MD5.getMd5(jsonData);
-        String rootCreation = "fid=" + fId + "&ubication=" + ubication + "&name=" + nameProduction + "&harvestDate=" + harvestD + "&caducationDate=" + caducationD + "&previousStage=" + previousS + "&currentStage=" + currentS + "&description=" + description+ "&originalname=Productor1.jpg" + "&image=" + image + "&documentation=document.pdf&code=" + code + "&hashX=" + hashX;
+        String rootCreation = "fid=" + fId + "&ubication=" + ubication + "&name=" + nameProduction + "&harvestDate=" + harvestD + "&caducationDate=" + caducationD + "&previousStage=" + previousS + "&currentStage=" + currentS + "&description=" + description + "&originalname=Productor1.jpg" + "&image=" + image + "&documentation=document.pdf&code=" + code + "&hashX=" + hashX;
         byte[] postData = rootCreation.getBytes(StandardCharsets.UTF_8);
         int postDataLength = postData.length;
         URL url = null;
@@ -175,7 +174,7 @@ public class DishonestAgentNP {
             SimpleDateFormat sdf3 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
             Date now3 = new Date();
             String strDate3 = sdf3.format(now3);
-            String request="fid=" + fId + "&ubication=" + ubication + "&name=" + nameProduction + "&harvestDate=" + harvestD + "&caducationDate=" + caducationD + "&previousStage=" + previousS + "&currentStage=" + currentS + "&description=" + description+ "&originalname=Productor1.jpg" + "&documentation=document.pdf&code=" + code + "&hashX=" + hashX;
+            String request = "fid=" + fId + "&ubication=" + ubication + "&name=" + nameProduction + "&harvestDate=" + harvestD + "&caducationDate=" + caducationD + "&previousStage=" + previousS + "&currentStage=" + currentS + "&description=" + description + "&originalname=Productor1.jpg" + "&documentation=document.pdf&code=" + code + "&hashX=" + hashX;
             response = "DishonestAgent/dataProductor --> Date: " + strDate3 + "; Request: {" + request + "}";
             //System.out.println(response + ", " + position);
 
@@ -241,8 +240,8 @@ public class DishonestAgentNP {
         String jsonData = "{\"fid\":\"" + fId + "\",\"code\":\"" + code + "\",\"name\":\"" + nameProduction + "\",\"previousStage\":\"" + previousS + "\",\"currentStage\":\"" + currentS + "\",\"description\":\"" + description + "\",\"driverName\":\"" + driverName + "\",\"origin\":\"" + origin + "\",\"destination\":\"" + destination + "\",\"plates\":\"" + plates + "\",\"tracking\":\"" + tracking + "\"}";
         String hashX = MD5.getMd5(jsonData);
         //String rootCreation = "fid=" + fId + "&ubication=" + ubication + "&name=" + nameProduction + "&previousStage=" + previousS + "&currentStage=" + currentS + "&image=" + image + "&description=" + description + "&code=" + code + "&driverName=" + driverName + "&origin=" + origin + "&destination=" + destination + "&plates=" + plates + "&productPhotos=" + productPhotos + "&vehiclePhotos=" + vehiclePhotos + "&tracking=" + tracking + "&hashX=" + hashX;
-        String rootCreation = "fid=" + fId + "&ubication=" + ubication + "&name=" + nameProduction + "&previousStage=" + previousS + "&currentStage=" + currentS + "&originalnameImage=Carrier1.jpg" + "&bufferImage=" + image + "&originalnameProductPhotos=" + productName + "&bufferProductPhotos=" + productPhotos + "&description=" + description + "&code=" + code + "&driverName=" + driverName + "&origin=" + origin + "&destination=" + destination + "&plates=" + plates  + "&bufferVehiclePhotos=" + vehiclePhotos + "&originalnameVehiclePhotos="+ vehicleName + "&tracking=" + tracking + "&hashX=" + hashX;
-        
+        String rootCreation = "fid=" + fId + "&ubication=" + ubication + "&name=" + nameProduction + "&previousStage=" + previousS + "&currentStage=" + currentS + "&originalnameImage=Carrier1.jpg" + "&bufferImage=" + image + "&originalnameProductPhotos=" + productName + "&bufferProductPhotos=" + productPhotos + "&description=" + description + "&code=" + code + "&driverName=" + driverName + "&origin=" + origin + "&destination=" + destination + "&plates=" + plates + "&bufferVehiclePhotos=" + vehiclePhotos + "&originalnameVehiclePhotos=" + vehicleName + "&tracking=" + tracking + "&hashX=" + hashX;
+
         byte[] postData = rootCreation.getBytes(StandardCharsets.UTF_8);
         int postDataLength = postData.length;
         URL url = null;
@@ -262,7 +261,7 @@ public class DishonestAgentNP {
             SimpleDateFormat sdf3 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
             Date now3 = new Date();
             String strDate3 = sdf3.format(now3);
-            String request = "fid=" + fId + "&ubication=" + ubication + "&name=" + nameProduction + "&previousStage=" + previousS + "&currentStage=" + currentS + "&originalnameImage=Carrier1.jpg" + "&originalnameProductPhotos=" + productName + "&description=" + description + "&code=" + code + "&driverName=" + driverName + "&origin=" + origin + "&destination=" + destination + "&plates=" + plates  + "&originalnameVehiclePhotos="+ vehicleName + "&tracking=" + tracking + "&hashX=" + hashX;
+            String request = "fid=" + fId + "&ubication=" + ubication + "&name=" + nameProduction + "&previousStage=" + previousS + "&currentStage=" + currentS + "&originalnameImage=Carrier1.jpg" + "&originalnameProductPhotos=" + productName + "&description=" + description + "&code=" + code + "&driverName=" + driverName + "&origin=" + origin + "&destination=" + destination + "&plates=" + plates + "&originalnameVehiclePhotos=" + vehicleName + "&tracking=" + tracking + "&hashX=" + hashX;
             response = "DishonestAgent/dataCarrier --> Date: " + strDate3 + "; Request: {" + request + "}";
             //System.out.println(response + ", " + position);
 
@@ -348,7 +347,7 @@ public class DishonestAgentNP {
             SimpleDateFormat sdf3 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
             Date now3 = new Date();
             String strDate3 = sdf3.format(now3);
-            String request = "fid=" + fId + "&ubication=" + ubication + "&name=" + nameAcopio + "&previousStage=" + previousS + "&currentStage=" + currentS + "&originalname=Acopio1.jpg"+"&description=" + description + "&code=" + code + "&arrivalDate=" + arrivalDate + "&clasification=Hass" + "&quantity=" + quantity + "&measure=" + measure + "&whoReceives=" + whoReceives + "&hashX=" + hashX;
+            String request = "fid=" + fId + "&ubication=" + ubication + "&name=" + nameAcopio + "&previousStage=" + previousS + "&currentStage=" + currentS + "&originalname=Acopio1.jpg" + "&description=" + description + "&code=" + code + "&arrivalDate=" + arrivalDate + "&clasification=Hass" + "&quantity=" + quantity + "&measure=" + measure + "&whoReceives=" + whoReceives + "&hashX=" + hashX;
             response = "DishonestAgent/dataAcopio --> Date: " + strDate3 + "; Request: {" + request + "}";
             //System.out.println(response + ", " + position);
 
@@ -415,7 +414,7 @@ public class DishonestAgentNP {
         System.out.println("NewPhase/userCreationMerchant/jsonData: " + jsonData);
         String hashX = MD5.getMd5(jsonData);
         String rootCreation = "fid=" + fId + "&ubication=" + ubication + "&name=" + nameMerchant + "&previousStage=" + previousS + "&currentStage=" + currentS + "&originalname=Merchant1.jpg" + "&image=" + image + "&description=" + description + "&code=" + code + "&arrivalDate=" + arrivalDate + "&quantity=" + quantity + "&hashX=" + hashX;
-        
+
         byte[] postData = rootCreation.getBytes(StandardCharsets.UTF_8);
         int postDataLength = postData.length;
         URL url = null;
@@ -435,7 +434,7 @@ public class DishonestAgentNP {
             SimpleDateFormat sdf3 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
             Date now3 = new Date();
             String strDate3 = sdf3.format(now3);
-            String request = "fid=" + fId + "&ubication=" + ubication + "&name=" + nameMerchant + "&previousStage=" + previousS + "&currentStage=" + currentS+ "&originalname=Merchant1.jpg" + "&description=" + description + "&code=" + code + "&arrivalDate=" + arrivalDate + "&quantity=" + quantity + "&hashX=" + hashX;
+            String request = "fid=" + fId + "&ubication=" + ubication + "&name=" + nameMerchant + "&previousStage=" + previousS + "&currentStage=" + currentS + "&originalname=Merchant1.jpg" + "&description=" + description + "&code=" + code + "&arrivalDate=" + arrivalDate + "&quantity=" + quantity + "&hashX=" + hashX;
             response = "DishonestAgent/dataMerchant --> Date: " + strDate3 + "; Request: {" + request + "}";
             //System.out.println(response + ", " + position);
 

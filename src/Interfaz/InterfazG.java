@@ -1014,7 +1014,7 @@ public class InterfazG extends javax.swing.JFrame {
     //-------------
     private String getImage() {
         String base64Image = "";
-        
+
         String imagenes[] = {".\\src\\imagenes\\1.png", ".\\src\\imagenes\\2.png", ".\\src\\imagenes\\3.png", ".\\src\\imagenes\\4.png", ".\\src\\imagenes\\5.png"};
         String imagenesL[] = {"./src/imagenes/1.png", "./src/imagenes/2.png", "./src/imagenes/3.png", "./src/imagenes/4.png", "./src/imagenes/5.png"};
         int i = (int) Math.floor(Math.random() * 5);
@@ -1028,7 +1028,7 @@ public class InterfazG extends javax.swing.JFrame {
         }
         base64Image = Encoder.encoder(imagen);
         //System.out.println("InterfazG/getImage/base64Image: " + base64Image);
-        return base64Image+","+imagen.substring(imagen.length()-5);
+        return base64Image + "," + imagen.substring(imagen.length() - 5);
     }
 
     //-------------
@@ -1696,6 +1696,7 @@ public class InterfazG extends javax.swing.JFrame {
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Simulador de peticiones");
         setResizable(false);
 
         BIniciar.setBackground(new java.awt.Color(0, 153, 0));
@@ -3818,24 +3819,7 @@ public class InterfazG extends javax.swing.JFrame {
         try {
             LecEscTXT objeto = new LecEscTXT();
 
-            File archivo = new File(obtenerCarpeta() + "archivo.txt");
-            FileReader fr = new FileReader(archivo);
-            BufferedReader br = new BufferedReader(fr);
-            String linea = "";
-
-            model = new DefaultTableModel();
-            model.addColumn("Dirección IP");
-
-            System.out.println("InterfazG/ModificarAction/tamaño de la tabla: " + TBDirecciones.getRowCount());
-            for (int x = 0; x < TBDirecciones.getRowCount(); x++) {
-                if (TBDirecciones.getSelectedRow() == x) {
-                    br.readLine();
-                } else {
-                    model.addRow(new Object[]{br.readLine()});
-                }
-            }
-
-            objeto.modificar(model);
+            objeto.eliminar(TBDirecciones.getSelectedRow());
             TFConfiguration.setText("");
             TBDirecciones.setModel(objeto.leer());
 
@@ -3850,30 +3834,8 @@ public class InterfazG extends javax.swing.JFrame {
 //------------
     private void BTModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTModificarActionPerformed
         try {
-            if (TFConfiguration.getText().isEmpty()) {
-                JOptionPane.showMessageDialog(null, "Ingresa una dirección ip");
-            } else {
                 LecEscTXT objeto = new LecEscTXT();
-
-                File archivo = new File(obtenerCarpeta() + "archivo.txt");
-                FileReader fr = new FileReader(archivo);
-                BufferedReader br = new BufferedReader(fr);
-                String linea = "";
-
-                model = new DefaultTableModel();
-                model.addColumn("Dirección IP");
-
-                System.out.println("InterfazG/ModificarAction/tamaño de la tabla: " + TBDirecciones.getRowCount());
-                for (int x = 0; x < TBDirecciones.getRowCount(); x++) {
-                    if (TBDirecciones.getSelectedRow() == x) {
-                        br.readLine();
-                        model.addRow(new Object[]{TFConfiguration.getText()});
-                    } else {
-                        model.addRow(new Object[]{br.readLine()});
-                    }
-                }
-
-                objeto.modificar(model);
+                objeto.modificar(TBDirecciones.getSelectedRow(), TFConfiguration.getText());
                 TFConfiguration.setText("");
                 TBDirecciones.setModel(objeto.leer());
 
@@ -3881,14 +3843,13 @@ public class InterfazG extends javax.swing.JFrame {
                 generateCBCU();
                 generateCBAS();
                 generateCBAC();
-            }
+            //}
 
         } catch (Exception e) {
-
+            System.out.println("InterfazG/BTModificarActionPerformed/Exception/line 3887: " + e);
         }
     }//GEN-LAST:event_BTModificarActionPerformed
 
-    //-------------
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         try {
             jPanel13.removeAll();

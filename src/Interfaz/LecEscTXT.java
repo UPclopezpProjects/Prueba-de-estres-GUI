@@ -14,6 +14,8 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileSystemView;
 import javax.swing.table.DefaultTableModel;
@@ -26,14 +28,13 @@ public class LecEscTXT {
 
     DefaultTableModel model;
     getOS objeto = new getOS();
-    String ruta = obtenerCarpeta()+objeto.getSisOpe()+"archivo.txt";
+    String ruta = obtenerCarpeta() + objeto.getSisOpe() + "archivo.txt";
 
     public DefaultTableModel leer() {
         try {
-            
+
             File archivo = new File(ruta);
-            System.out.println("LecEscTXT/leer/la ubicación del archivo es: "+archivo.getAbsolutePath());
-            //System.out.println("LecEscTXT/leer/ruta: "+ruta);
+            //System.out.println("LecEscTXT/leer/la ubicación del archivo es: "+archivo.getAbsolutePath());
 
             if (!archivo.exists()) {
                 System.out.println("LecEscTXT/leer/No existe el archivo");
@@ -73,6 +74,7 @@ public class LecEscTXT {
 
         } catch (IOException e) {
             //exception handling left as an exercise for the reader
+            System.out.println("LecEscTXT/agregar/exception: " + e);
         }
     }
 
@@ -81,19 +83,21 @@ public class LecEscTXT {
         PrintWriter pw = null;
         File archivo = new File(ruta);
         try {
-            
-            if(!archivo.exists()){
+
+            if (!archivo.exists()) {
                 archivo.createNewFile();
             }
-            
+
             fichero = new FileWriter(ruta);
             pw = new PrintWriter(fichero);
 
             for (int i = 0; i < model.getRowCount(); i++) {
+                System.out.println("LecEscTXT/modificar/dato" + i + " " + model.getValueAt(i, 0));
                 pw.println(model.getValueAt(i, 0));
             }
 
         } catch (Exception e) {
+            System.out.println("LecEscTXT/modificar/exception line 98: " + e);
             e.printStackTrace();
         } finally {
             try {
@@ -103,14 +107,85 @@ public class LecEscTXT {
                     fichero.close();
                 }
             } catch (Exception e2) {
+                System.out.println("LecEscTXT/modificar/exception line 108: " + e2);
                 e2.printStackTrace();
             }
         }
     }
-    
-    public String obtenerCarpeta(){
+
+    public void modificar(int n, String dato) {
+        try {
+            File archivo = new File(ruta);
+            DefaultTableModel model = leer();
+            vaciarArchivo();
+
+            for (int i = 0; i < model.getRowCount(); i++) {
+                if (i == n) {
+                    agregar(dato);
+                } else {
+                    agregar(model.getValueAt(i, 0).toString());
+                    //model.getValueAt(i, 0);
+                }
+            }
+
+        } catch (IOException ex) {
+            Logger.getLogger(LecEscTXT.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    public void eliminar(int n) {
+        FileWriter fichero = null;
+        PrintWriter pw = null;
+        File archivo = new File(ruta);
+        DefaultTableModel model = leer();
+
+        try {
+            if (!archivo.exists()) {
+                archivo.createNewFile();
+            }
+
+            fichero = new FileWriter(ruta);
+            pw = new PrintWriter(fichero);
+
+            for (int i = 0; i < model.getRowCount(); i++) {
+                /*System.out.println("LecEscTXT/modificar/dato"+i+" "+model.getValueAt(i, 0));
+                pw.println(model.getValueAt(i, 0));*/
+                if (i != n) {
+                    pw.println(model.getValueAt(i, 0));
+                }
+            }
+
+        } catch (Exception e) {
+            System.out.println("LecEscTXT/modificar/exception line 98: " + e);
+            e.printStackTrace();
+        } finally {
+            try {
+                // Nuevamente aprovechamos el finally para 
+                // asegurarnos que se cierra el fichero.
+                if (null != fichero) {
+                    fichero.close();
+                }
+            } catch (Exception e2) {
+                System.out.println("LecEscTXT/modificar/exception line 108: " + e2);
+                e2.printStackTrace();
+            }
+        }
+    }
+
+    public String obtenerCarpeta() {
         JFileChooser fr = new JFileChooser();
         FileSystemView fw = fr.getFileSystemView();
         return String.valueOf(fw.getDefaultDirectory());
+    }
+    
+    public void vaciarArchivo(){
+        try {
+            PrintWriter writer = new PrintWriter(ruta);
+            writer.print("");
+            writer.close();
+            
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(LecEscTXT.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 }

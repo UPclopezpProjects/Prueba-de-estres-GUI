@@ -80,7 +80,6 @@ public class Respuesta {
     public static void setTamanioUC(int tamanioUC) {
         Respuesta.tamanioUC = tamanioUC;
         Respuesta.consultaUC = new String[tamanioUC];
-        //System.out.println("Respuesta/setTamanioUC: "+consultaUC.length);
     }
     
     public static void setNumeroCU() {

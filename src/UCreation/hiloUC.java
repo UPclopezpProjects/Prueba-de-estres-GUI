@@ -275,9 +275,10 @@ public class hiloUC implements Runnable {
             carga.setVisible(false);
             caja.setText(Respuesta.getConsultaUC(position).substring(4));
             dialogoCaja.setVisible(true);
-        } finally {
             executor.shutdown();
-        }
+        } /*finally {
+            executor.shutdown();
+        }*/
 
         System.out.println("hiloUC/después del loop");
     }

@@ -273,9 +273,10 @@ public class Hilo implements Runnable {
             Respuesta.setConsultaRoot("Hadn't response of server, perhaps the microservice is down" + "\n", position);
             caja.setText(Respuesta.getConsultaRoot(position).substring(4));
             dialogoCaja.setVisible(true);
-        } finally {
             executor.shutdown();
-        }
+        } /*finally {
+            executor.shutdown();
+        }*/
 
         System.out.println("Hilo/después del loop");
     }

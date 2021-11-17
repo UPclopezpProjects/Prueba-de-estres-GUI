@@ -240,10 +240,10 @@ public class HiloCN implements Runnable {
                 caja.setText(Respuesta.getConsultaCompany(position).replace("null", ""));
                 dialogoCaja.setVisible(true);
             }
-
-        } finally {
             executor.shutdown();
-        }
+        } /*finally {
+            executor.shutdown();
+        }*/
 
         System.out.println("HiloAuto/después del loop");
     }
