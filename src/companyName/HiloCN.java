@@ -134,12 +134,10 @@ public class HiloCN implements Runnable {
                         interfaz.setEnabled(true);
                         caja.setText(Respuesta.getConsultaCompany(position).replace("null", ""));
                         dialogoCaja.setVisible(true);
-
                     }
                 }
             }
         }
-
     }
 
     private String email() {

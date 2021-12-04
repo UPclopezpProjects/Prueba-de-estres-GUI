@@ -211,7 +211,7 @@ public class HonestAgent {
         }
     }
 
-    private String permisosDP(String cadena) {
+    /*private String permisosDP(String cadena) {
 
         int nRandom = (int) Math.floor(Math.random() * 101);
         if (nRandom <= 50) {
@@ -227,15 +227,15 @@ public class HonestAgent {
             }
         }
         return cadena;
-    }
+    }*/
 
-    private boolean randomDP() {
+    /*private boolean randomDP() {
         int nRandom = (int) Math.floor(Math.random() * 101);
         if (nRandom <= 50) {
             return true;
         } else {
             return false;
         }
-    }
+    }*/
 
 }

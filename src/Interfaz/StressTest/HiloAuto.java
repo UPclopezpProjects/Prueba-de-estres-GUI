@@ -22,11 +22,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JDialog;
 import javax.swing.JTextArea;
-
-/**
- *
- * @author frank
- */
 public class HiloAuto implements Runnable {
 
     private int email;
