@@ -2996,7 +2996,7 @@ public class InterfazG extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Configuration", jPanel10);
 
-        jLabel88.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/upLogo pequeño.png"))); // NOI18N
+        jLabel88.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/upLogopequeño.png"))); // NOI18N
 
         jLabel87.setFont(new java.awt.Font("Arial", 0, 20)); // NOI18N
         jLabel87.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
